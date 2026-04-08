@@ -1,0 +1,17 @@
+{
+  "vertical": "medspa",
+  "license": "Unsplash License — free for commercial use, no attribution required",
+  "notes": "detail-1, detail-2, hero, interior-1, interior-2, people-2 downloaded in prior session — source IDs pending",
+  "photos": [
+    { "file": "hero.jpg",      "unsplash_id": "pending",       "page": "pending",                                     "credit": "Unsplash contributor" },
+    { "file": "interior-1.jpg","unsplash_id": "pending",       "page": "pending",                                     "credit": "Unsplash contributor" },
+    { "file": "interior-2.jpg","unsplash_id": "pending",       "page": "pending",                                     "credit": "Unsplash contributor" },
+    { "file": "detail-1.jpg",  "unsplash_id": "pending",       "page": "pending",                                     "credit": "Unsplash contributor" },
+    { "file": "detail-2.jpg",  "unsplash_id": "pending",       "page": "pending",                                     "credit": "Unsplash contributor" },
+    { "file": "space-1.jpg",   "unsplash_id": "4r9OKorlcTk",  "page": "https://unsplash.com/photos/4r9OKorlcTk",    "credit": "Unsplash contributor" },
+    { "file": "space-2.jpg",   "unsplash_id": "XJptUS8nbhs",  "page": "https://unsplash.com/photos/XJptUS8nbhs",    "credit": "Atikah Akhtar / Unsplash" },
+    { "file": "people-1.jpg",  "unsplash_id": "vyhYvCiL3QQ",  "page": "https://unsplash.com/photos/vyhYvCiL3QQ",    "credit": "Unsplash contributor" },
+    { "file": "people-2.jpg",  "unsplash_id": "pending",       "page": "pending",                                     "credit": "Unsplash contributor" },
+    { "file": "cta.jpg",       "unsplash_id": "W7AyAs7azHc",  "page": "https://unsplash.com/photos/W7AyAs7azHc",    "credit": "Unsplash contributor" }
+  ]
+}

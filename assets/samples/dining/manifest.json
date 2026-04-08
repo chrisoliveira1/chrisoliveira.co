@@ -1,0 +1,17 @@
+{
+  "vertical": "dining",
+  "license": "Unsplash License — free for commercial use, no attribution required",
+  "notes": "detail-1, hero, interior-1, interior-2, people-1, space-2 downloaded in prior session — source IDs pending",
+  "photos": [
+    { "file": "hero.jpg",      "unsplash_id": "pending",       "page": "pending",                                     "credit": "Unsplash contributor" },
+    { "file": "interior-1.jpg","unsplash_id": "pending",       "page": "pending",                                     "credit": "Unsplash contributor" },
+    { "file": "interior-2.jpg","unsplash_id": "pending",       "page": "pending",                                     "credit": "Unsplash contributor" },
+    { "file": "detail-1.jpg",  "unsplash_id": "pending",       "page": "pending",                                     "credit": "Unsplash contributor" },
+    { "file": "detail-2.jpg",  "unsplash_id": "_WI3DGseB3g",  "page": "https://unsplash.com/photos/_WI3DGseB3g",    "credit": "Delightin Dee / Unsplash" },
+    { "file": "space-1.jpg",   "unsplash_id": "pn7dIk2kiYw",  "page": "https://unsplash.com/photos/pn7dIk2kiYw",    "credit": "Anima Visual / Unsplash" },
+    { "file": "space-2.jpg",   "unsplash_id": "pending",       "page": "pending",                                     "credit": "Unsplash contributor" },
+    { "file": "people-1.jpg",  "unsplash_id": "pending",       "page": "pending",                                     "credit": "Unsplash contributor" },
+    { "file": "people-2.jpg",  "unsplash_id": "B5giYHNQPvA",  "page": "https://unsplash.com/photos/B5giYHNQPvA",    "credit": "Unsplash contributor" },
+    { "file": "cta.jpg",       "unsplash_id": "CTrqyKtj9ec",  "page": "https://unsplash.com/photos/CTrqyKtj9ec",    "credit": "Chad Montgomery / Unsplash" }
+  ]
+}

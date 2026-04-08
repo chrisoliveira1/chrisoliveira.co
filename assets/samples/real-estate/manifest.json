@@ -1,0 +1,16 @@
+{
+  "vertical": "real-estate",
+  "license": "Unsplash License — free for commercial use, no attribution required",
+  "photos": [
+    { "file": "hero.jpg",      "unsplash_id": "12WFO8yWrsw", "page": "https://unsplash.com/photos/12WFO8yWrsw", "credit": "Caroline Badran / Unsplash" },
+    { "file": "interior-1.jpg","unsplash_id": "mw_mj-noYHM", "page": "https://unsplash.com/photos/mw_mj-noYHM", "credit": "Zac Gudakov / Unsplash" },
+    { "file": "interior-2.jpg","unsplash_id": "ztWpwTEx728", "page": "https://unsplash.com/photos/ztWpwTEx728", "credit": "Unsplash contributor" },
+    { "file": "detail-1.jpg",  "unsplash_id": "95UK5aVgx54", "page": "https://unsplash.com/photos/95UK5aVgx54", "credit": "Unsplash contributor" },
+    { "file": "detail-2.jpg",  "unsplash_id": "ZuHIek5xn_I", "page": "https://unsplash.com/photos/ZuHIek5xn_I", "credit": "Nha Chill / Unsplash" },
+    { "file": "space-1.jpg",   "unsplash_id": "L6LSzjhWI0Y", "page": "https://unsplash.com/photos/L6LSzjhWI0Y", "credit": "Ela De Pure / Unsplash" },
+    { "file": "space-2.jpg",   "unsplash_id": "JGfXR2a8RNg", "page": "https://unsplash.com/photos/JGfXR2a8RNg", "credit": "Unsplash contributor" },
+    { "file": "people-1.jpg",  "unsplash_id": "vqMQN9zImG4", "page": "https://unsplash.com/photos/vqMQN9zImG4", "credit": "Unsplash contributor" },
+    { "file": "people-2.jpg",  "unsplash_id": "kE6Luqa4bBQ", "page": "https://unsplash.com/photos/kE6Luqa4bBQ", "credit": "Unsplash contributor" },
+    { "file": "cta.jpg",       "unsplash_id": "RbbZn_M5fgU", "page": "https://unsplash.com/photos/RbbZn_M5fgU", "credit": "Unsplash contributor" }
+  ]
+}
