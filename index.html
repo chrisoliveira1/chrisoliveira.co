@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Chris Oliveira</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Jost:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -11,44 +11,39 @@
   html, body {
     width: 100%;
     height: 100%;
-    height: 100dvh;
     overflow: hidden;
     background: #d8d6d3;
   }
 
+  /* position:fixed + explicit trbl beats inset shorthand on older iOS */
   .scene {
     position: fixed;
-    inset: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
     background: #d8d6d3;
   }
 
-  /* Photo sits as a bg so we can control exact crop with background-position */
   .photo-bg {
     position: absolute;
-    inset: 0;
-    background-image: url('IMG_3319.jpeg');
-    background-size: cover;
-    /*
-      Portrait photo: Chris's face is ~33% from top.
-      With cover on 16:9 container the image is zoomed ~2.4×.
-      Position 65% right (toward subject) 32% down places his
-      face/body in the upper-right quadrant — clear of the text.
-    */
-    background-position: 65% 32%;
+    top: 0; right: 0; bottom: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('IMG_3319.jpeg') no-repeat 65% 32% / cover;
     filter: grayscale(100%);
   }
 
   .ui {
     position: absolute;
-    inset: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
     font-family: 'Jost', sans-serif;
     color: #fff;
+    /* respect notch/home-bar safe areas */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   }
 
   .top-left {
     position: absolute;
-    top: 5.5%;
-    left: 5%;
+    top: calc(5.5% + env(safe-area-inset-top));
+    left: calc(5% + env(safe-area-inset-left));
     font-size: clamp(9px, .85vw, 13px);
     font-weight: 300;
     letter-spacing: 0.12em;
@@ -57,8 +52,8 @@
 
   .top-right {
     position: absolute;
-    top: 5.5%;
-    right: 5%;
+    top: calc(5.5% + env(safe-area-inset-top));
+    right: calc(5% + env(safe-area-inset-right));
     font-size: clamp(9px, .85vw, 13px);
     font-weight: 300;
     line-height: 1.7;
@@ -67,19 +62,23 @@
     text-transform: uppercase;
   }
 
-  /* Name + button stacked, anchored bottom-left */
   .name-block {
     position: absolute;
-    bottom: 6%;
-    left: 4%;
+    bottom: calc(6% + env(safe-area-inset-bottom));
+    left: calc(4% + env(safe-area-inset-left));
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-direction: column;
     flex-direction: column;
+    -webkit-align-items: flex-start;
     align-items: flex-start;
     gap: clamp(14px, 1.6vh, 26px);
   }
 
   .contact-btn {
+    display: -webkit-inline-flex;
     display: inline-flex;
+    -webkit-align-items: center;
     align-items: center;
     padding: clamp(9px, .75vw, 13px) clamp(20px, 2vw, 32px);
     border: 1px solid rgba(255,255,255,0.65);
@@ -92,8 +91,9 @@
     color: #fff;
     text-decoration: none;
     background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    -webkit-transition: background .25s, border-color .25s;
     transition: background .25s, border-color .25s;
     white-space: nowrap;
   }
@@ -113,8 +113,8 @@
 
   .year {
     position: absolute;
-    bottom: 6%;
-    right: 5%;
+    bottom: calc(6% + env(safe-area-inset-bottom));
+    right: calc(5% + env(safe-area-inset-right));
     font-size: clamp(9px, .85vw, 13px);
     font-weight: 300;
     letter-spacing: 0.12em;
