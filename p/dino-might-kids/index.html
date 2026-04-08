@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dino-Might Kids Preschool — Boca's preschool since 1992</title>
+<meta name="description" content="A small, family-owned preschool in west Boca Raton. Low ratios, warm teachers, and three decades of word-of-mouth. Ages 2 months through Pre-K. VPK accepted.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --cream:#FFF7ED;
+    --cream-2:#FEF3C7;
+    --cream-3:#FDE9C4;
+    --green-900:#1B4332;
+    --green-700:#2D6A4F;
+    --green-500:#52B788;
+    --green-300:#95D5B2;
+    --green-100:#D8F3DC;
+    --orange:#F4A261;
+    --orange-dark:#E76F51;
+    --yellow:#FCD34D;
+    --clay:#C9824A;
+    --ink:#1C1917;
+    --ink-soft:#57534E;
+    --ink-mute:#A8A29E;
+    --shadow-sm:0 2px 12px rgba(28,10,0,.07);
+    --shadow-md:0 12px 36px rgba(28,10,0,.11);
+    --shadow-lg:0 28px 70px rgba(28,10,0,.16);
+    --r-md:1rem;
+    --r-lg:1.5rem;
+    --r-xl:2rem;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Nunito",system-ui,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .display{font-family:"Baloo 2",cursive;font-weight:700;line-height:1.05;letter-spacing:-.01em}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+  a{color:inherit}
+
+  /* ===== NAV ===== */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:200;
+    padding:14px 0;
+    transition:background .35s,box-shadow .35s,padding .35s;
+  }
+  nav.scrolled{
+    background:rgba(255,247,237,.96);
+    backdrop-filter:saturate(140%) blur(14px);
+    box-shadow:0 2px 24px rgba(28,10,0,.08);
+    padding:10px 0;
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+  .logo-mark{
+    width:46px;height:46px;border-radius:14px;
+    background:linear-gradient(135deg,var(--green-500),var(--green-700));
+    display:grid;place-items:center;
+    font-size:26px;
+    box-shadow:0 6px 18px rgba(45,106,79,.35);
+  }
+  .logo-text{font-family:"Baloo 2",cursive;font-weight:800;font-size:22px;color:var(--green-900);line-height:1}
+  .logo-text small{display:block;font-family:"Nunito",sans-serif;font-weight:600;font-size:11px;color:var(--orange-dark);letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
+  nav ul{display:none;gap:32px;list-style:none}
+  nav ul a{font-weight:700;font-size:14px;text-decoration:none;color:var(--ink);transition:color .2s}
+  nav ul a:hover{color:var(--green-700)}
+  .nav-cta{
+    background:var(--orange-dark);color:#fff;
+    font-family:"Baloo 2",cursive;font-weight:700;font-size:14px;
+    padding:12px 22px;border-radius:999px;text-decoration:none;
+    box-shadow:0 6px 20px rgba(231,111,81,.4);
+    transition:transform .2s,box-shadow .2s;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(231,111,81,.5)}
+  @media(min-width:880px){nav ul{display:flex}}
+
+  /* ===== HERO ===== */
+  .hero{padding:140px 0 100px;position:relative;overflow:hidden}
+  .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;pointer-events:none}
+  .blob-1{width:520px;height:520px;background:var(--green-100);top:-180px;left:-180px}
+  .blob-2{width:420px;height:420px;background:var(--cream-3);top:60px;right:-150px}
+  .blob-3{width:340px;height:340px;background:#FCE7B3;bottom:-140px;left:30%}
+  .hero .wrap{position:relative;z-index:2}
+  .hero-grid{display:grid;gap:48px;grid-template-columns:1fr;align-items:center}
+  @media(min-width:920px){.hero-grid{grid-template-columns:1.05fr .95fr;gap:72px}}
+  .hero-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#fff;border:2px solid var(--green-100);
+    padding:10px 18px;border-radius:999px;
+    font-weight:700;font-size:13px;color:var(--green-900);
+    box-shadow:var(--shadow-sm);margin-bottom:24px;
+  }
+  .hero-pill .star{font-size:14px}
+  h1.hero-h1{
+    font-size:clamp(42px,6.4vw,76px);
+    color:var(--green-900);
+    margin-bottom:24px;
+    max-width:14ch;
+  }
+  h1.hero-h1 .swing{
+    color:var(--orange-dark);
+    position:relative;display:inline-block;
+  }
+  h1.hero-h1 .swing::after{
+    content:"";position:absolute;left:0;right:0;bottom:6px;height:14px;
+    background:var(--yellow);z-index:-1;border-radius:8px;
+    transform:skew(-6deg) translateY(2px) scaleX(0);
+    transform-origin:left center;
+    animation:underline-draw 1.1s cubic-bezier(.7,.05,.25,1) .55s forwards;
+  }
+  @keyframes underline-draw{
+    0%  {transform:skew(-6deg) translateY(2px) scaleX(0)}
+    100%{transform:skew(-6deg) translateY(2px) scaleX(1)}
+  }
+  h1.hero-h1 .swing{animation:roar-tilt 4.5s ease-in-out 1.8s infinite}
+  @keyframes roar-tilt{
+    0%,100%{transform:rotate(0)}
+    50%    {transform:rotate(-2deg)}
+  }
+
+  /* fade-in lift for hero text + photo */
+  .hero-text-anim{opacity:0;transform:translateY(18px);animation:rise .8s cubic-bezier(.2,.7,.2,1) .1s forwards}
+  .hero-photo{opacity:0;transform:translateY(28px) rotate(0);animation:rise .9s cubic-bezier(.2,.7,.2,1) .35s forwards}
+  @keyframes rise{to{opacity:1;transform:translateY(0)}}
+
+  /* gentle bobbing badges */
+  .badge.b1{animation:bob 6s ease-in-out 1.2s infinite}
+  .badge.b2{animation:bob 7s ease-in-out 1.5s infinite}
+  .badge.b3{animation:bob 6.5s ease-in-out 1.8s infinite}
+  @keyframes bob{
+    0%,100%{transform:translateY(0) rotate(var(--rot,0deg))}
+    50%    {transform:translateY(-6px) rotate(var(--rot,0deg))}
+  }
+  .badge.b1{--rot:-4deg}
+  .badge.b2{--rot:3deg}
+  .badge.b3{--rot:-2deg}
+
+  /* scroll reveal */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:translateY(0)}
+
+  /* pcard icon wiggle on hover */
+  .pcard:hover .pcard-icon{animation:wiggle .6s ease}
+  @keyframes wiggle{
+    0%,100%{transform:rotate(0)}
+    25%{transform:rotate(-8deg)}
+    75%{transform:rotate(8deg)}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+    .hero-text-anim,.hero-photo{opacity:1;transform:none}
+  }
+  .hero-sub{font-size:19px;color:var(--ink-soft);max-width:54ch;margin-bottom:34px}
+  .hero-btns{display:flex;flex-wrap:wrap;gap:14px}
+  .btn-green{
+    background:var(--green-700);color:#fff;
+    font-family:"Baloo 2",cursive;font-weight:700;font-size:16px;
+    padding:16px 28px;border-radius:999px;text-decoration:none;
+    display:inline-flex;align-items:center;gap:8px;
+    box-shadow:0 8px 24px rgba(45,106,79,.4);
+    transition:transform .2s,box-shadow .2s;
+  }
+  .btn-green:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(45,106,79,.5)}
+  .btn-outline{
+    background:transparent;color:var(--green-900);
+    font-family:"Baloo 2",cursive;font-weight:700;font-size:16px;
+    padding:16px 28px;border-radius:999px;text-decoration:none;
+    border:2px solid var(--green-900);
+    display:inline-flex;align-items:center;gap:8px;
+    transition:background .2s,color .2s;
+  }
+  .btn-outline:hover{background:var(--green-900);color:var(--cream)}
+
+  /* hero photo */
+  .hero-photo{position:relative;aspect-ratio:4/5;max-width:520px;margin:0 auto;width:100%}
+  .hero-photo-frame{
+    position:relative;width:100%;height:100%;
+    border-radius:var(--r-xl);
+    overflow:hidden;
+    box-shadow:var(--shadow-lg);
+    transform:rotate(2deg);
+    background:linear-gradient(135deg,var(--green-100),var(--cream-3));
+  }
+  .hero-photo-frame img{width:100%;height:100%;object-fit:cover;display:block}
+  .badge{
+    position:absolute;
+    background:#fff;
+    padding:12px 18px;border-radius:999px;
+    font-family:"Baloo 2",cursive;font-weight:700;font-size:14px;
+    box-shadow:var(--shadow-md);
+    display:inline-flex;align-items:center;gap:8px;
+    white-space:nowrap;
+  }
+  .badge.b1{top:-14px;left:-12px;color:var(--green-900);transform:rotate(-4deg)}
+  .badge.b2{bottom:60px;right:-22px;color:var(--orange-dark);transform:rotate(3deg)}
+  .badge.b3{bottom:-18px;left:18%;color:var(--green-700);transform:rotate(-2deg)}
+
+  /* ===== TRUST BAR ===== */
+  .trust{
+    background:var(--green-900);color:#fff;padding:36px 0;
+    margin-top:0;
+  }
+  .trust .wrap{
+    display:grid;gap:24px;text-align:center;
+    grid-template-columns:repeat(2,1fr);
+  }
+  @media(min-width:780px){.trust .wrap{grid-template-columns:repeat(4,1fr)}}
+  .trust-num{font-family:"Baloo 2",cursive;font-weight:800;font-size:36px;color:var(--yellow);line-height:1}
+  .trust-label{font-size:12px;color:rgba(255,255,255,.78);letter-spacing:.1em;text-transform:uppercase;margin-top:8px;font-weight:600}
+
+  /* ===== SECTION BASE ===== */
+  section{padding:110px 0;position:relative}
+  .eyebrow{
+    display:inline-block;font-family:"Baloo 2",cursive;font-weight:700;
+    font-size:13px;color:var(--orange-dark);letter-spacing:.16em;
+    text-transform:uppercase;margin-bottom:14px;
+  }
+  .s-title{
+    font-family:"Baloo 2",cursive;font-weight:700;
+    font-size:clamp(32px,4.6vw,52px);color:var(--green-900);
+    line-height:1.08;margin-bottom:18px;max-width:18ch;
+  }
+  .s-sub{font-size:18px;color:var(--ink-soft);max-width:60ch;margin-bottom:56px}
+  .center{text-align:center}
+  .center .s-title,.center .s-sub{margin-left:auto;margin-right:auto}
+
+  /* ===== PROGRAMS ===== */
+  .programs{background:var(--cream)}
+  .programs-grid{display:grid;gap:22px;grid-template-columns:1fr}
+  @media(min-width:680px){.programs-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1040px){.programs-grid{grid-template-columns:repeat(4,1fr)}}
+  .pcard{
+    background:#fff;border-radius:var(--r-lg);padding:32px 26px;
+    box-shadow:var(--shadow-sm);border:2px solid transparent;
+    transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+    position:relative;overflow:hidden;
+  }
+  .pcard::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:6px;
+  }
+  .pcard.c1::before{background:var(--orange)}
+  .pcard.c2::before{background:var(--green-500)}
+  .pcard.c3::before{background:var(--orange-dark)}
+  .pcard.c4::before{background:var(--yellow)}
+  .pcard:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:var(--green-100)}
+  .pcard-icon{
+    display:inline-grid;place-items:center;
+    width:60px;height:60px;border-radius:18px;
+    background:var(--green-100);font-size:32px;
+    margin-bottom:18px;
+  }
+  .pcard.c1 .pcard-icon{background:#FFEDD5}
+  .pcard.c3 .pcard-icon{background:#FED7C3}
+  .pcard.c4 .pcard-icon{background:#FEF3C7}
+  .pcard-age{
+    display:inline-block;font-family:"Baloo 2",cursive;font-weight:700;
+    font-size:11px;color:var(--orange-dark);letter-spacing:.1em;
+    text-transform:uppercase;margin-bottom:6px;
+  }
+  .pcard h3{font-family:"Baloo 2",cursive;font-weight:700;font-size:24px;color:var(--green-900);margin-bottom:12px}
+  .pcard p{font-size:14.5px;color:var(--ink-soft);margin-bottom:18px}
+  .pcard a{
+    font-family:"Baloo 2",cursive;font-weight:700;font-size:14px;
+    color:var(--green-700);text-decoration:none;
+    display:inline-flex;align-items:center;gap:6px;
+    transition:gap .2s;
+  }
+  .pcard a:hover{gap:10px}
+
+  /* VPK callout */
+  .vpk{
+    margin-top:48px;
+    background:linear-gradient(135deg,var(--green-700),var(--green-900));
+    color:#fff;border-radius:var(--r-xl);padding:36px 40px;
+    display:flex;flex-wrap:wrap;align-items:center;gap:28px;
+    box-shadow:var(--shadow-md);
+    position:relative;overflow:hidden;
+  }
+  .vpk::after{
+    content:"🎓";position:absolute;right:-20px;bottom:-30px;
+    font-size:200px;opacity:.08;
+  }
+  .vpk-text{flex:1;min-width:240px;position:relative;z-index:1}
+  .vpk-text h4{font-family:"Baloo 2",cursive;font-weight:800;font-size:26px;margin-bottom:6px}
+  .vpk-text p{opacity:.92;font-size:15px;max-width:48ch}
+  .vpk .btn-green{background:var(--yellow);color:var(--green-900);position:relative;z-index:1;box-shadow:0 6px 20px rgba(252,211,77,.4)}
+  .vpk .btn-green:hover{background:#fff}
+
+  /* ===== ABOUT / STORY ===== */
+  .about{background:var(--cream-2)}
+  .about-grid{display:grid;gap:56px;grid-template-columns:1fr;align-items:center}
+  @media(min-width:920px){.about-grid{grid-template-columns:.9fr 1.1fr;gap:80px}}
+  .about-photo{position:relative}
+  .about-photo-frame{
+    aspect-ratio:4/5;border-radius:var(--r-xl);overflow:hidden;
+    box-shadow:var(--shadow-lg);transform:rotate(-2deg);
+    background:linear-gradient(135deg,var(--cream-3),var(--green-100));
+  }
+  .about-photo-frame img{width:100%;height:100%;object-fit:cover}
+  .est-badge{
+    position:absolute;top:-20px;right:-12px;
+    width:120px;height:120px;border-radius:50%;
+    background:var(--orange-dark);color:#fff;
+    display:grid;place-items:center;text-align:center;
+    font-family:"Baloo 2",cursive;font-weight:800;
+    box-shadow:var(--shadow-md);
+    transform:rotate(8deg);
+  }
+  .est-badge span{display:block}
+  .est-badge .yr{font-size:32px;line-height:1}
+  .est-badge .lbl{font-size:11px;letter-spacing:.1em;margin-top:4px;opacity:.9}
+  .float-tag{
+    position:absolute;background:#fff;
+    padding:10px 16px;border-radius:999px;
+    font-family:"Baloo 2",cursive;font-weight:700;font-size:13px;
+    color:var(--green-900);box-shadow:var(--shadow-md);
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .ft-1{bottom:30px;left:-22px;transform:rotate(-3deg)}
+  .ft-2{top:34%;right:-26px;transform:rotate(4deg);color:var(--orange-dark)}
+  .about-text p{font-size:17px;color:var(--ink-soft);margin-bottom:20px}
+  .pullquote{
+    border-left:4px solid var(--orange-dark);
+    padding:18px 0 18px 24px;margin:28px 0;
+    font-family:"Baloo 2",cursive;font-weight:600;font-size:21px;
+    line-height:1.4;color:var(--green-900);font-style:italic;
+  }
+  .pullquote cite{display:block;margin-top:14px;font-size:14px;font-style:normal;color:var(--ink-soft);font-family:"Nunito",sans-serif;font-weight:600}
+
+  /* ===== GALLERY ===== */
+  .gallery{background:var(--cream)}
+  .gallery-grid{
+    display:grid;gap:18px;
+    grid-template-columns:repeat(2,1fr);
+  }
+  @media(min-width:780px){
+    .gallery-grid{grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,200px)}
+  }
+  .gphoto{
+    border-radius:var(--r-md);overflow:hidden;
+    box-shadow:var(--shadow-sm);
+    transition:transform .3s ease,box-shadow .3s ease;
+    background:var(--green-100);
+  }
+  .gphoto:hover{transform:translateY(-4px) scale(1.02);box-shadow:var(--shadow-md)}
+  .gphoto img{width:100%;height:100%;object-fit:cover;display:block;min-height:200px}
+  @media(min-width:780px){
+    .gphoto.tall{grid-row:span 2}
+    .gphoto img{min-height:auto}
+  }
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials{background:var(--green-100)}
+  .test-grid{display:grid;gap:22px;grid-template-columns:1fr}
+  @media(min-width:780px){.test-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1080px){.test-grid{grid-template-columns:repeat(3,1fr)}}
+  .tcard{
+    background:#fff;border-radius:var(--r-lg);padding:32px 28px;
+    box-shadow:var(--shadow-sm);position:relative;
+  }
+  .tcard::before{
+    content:"\201C";font-family:"Baloo 2",cursive;font-size:90px;line-height:.55;
+    color:var(--yellow);position:absolute;top:24px;left:22px;
+  }
+  .tcard p{margin:30px 0 22px;font-size:16px;color:var(--ink);line-height:1.55;position:relative;z-index:1}
+  .stars{color:var(--yellow);font-size:18px;margin-bottom:6px}
+  .tcard .who{font-family:"Baloo 2",cursive;font-weight:700;font-size:14px;color:var(--green-900)}
+
+  /* ===== BIG CTA ===== */
+  .cta-section{
+    background:linear-gradient(135deg,var(--orange-dark),var(--orange));
+    color:#fff;text-align:center;padding:120px 0;
+    position:relative;overflow:hidden;
+  }
+  .cta-section::before,.cta-section::after{
+    content:"";position:absolute;border-radius:50%;filter:blur(40px);opacity:.3;
+  }
+  .cta-section::before{width:300px;height:300px;background:var(--yellow);top:-100px;left:-50px}
+  .cta-section::after{width:400px;height:400px;background:#fff;bottom:-150px;right:-100px}
+  .cta-section .wrap{position:relative;z-index:1}
+  .cta-section h2{
+    font-family:"Baloo 2",cursive;font-weight:800;
+    font-size:clamp(36px,5.5vw,60px);line-height:1.05;margin-bottom:18px;
+  }
+  .cta-section h2 em{font-style:italic;color:var(--yellow)}
+  .cta-section p{font-size:19px;opacity:.94;max-width:54ch;margin:0 auto 38px}
+  .cta-section .btn-green{background:#fff;color:var(--orange-dark);font-size:18px;padding:18px 36px;box-shadow:0 14px 36px rgba(0,0,0,.18)}
+  .cta-section .btn-green:hover{background:var(--cream)}
+  .cta-meta{margin-top:30px;display:flex;justify-content:center;gap:32px;flex-wrap:wrap;font-size:14px;opacity:.92;font-weight:600}
+  .cta-meta a{color:#fff;text-decoration:none}
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--green-900);color:rgba(255,255,255,.7);padding:50px 0 36px;font-size:14px}
+  footer .wrap{display:grid;gap:30px;grid-template-columns:1fr}
+  @media(min-width:780px){footer .wrap{grid-template-columns:1.5fr 1fr 1fr}}
+  footer h5{font-family:"Baloo 2",cursive;font-weight:700;color:#fff;font-size:16px;margin-bottom:14px}
+  footer ul{list-style:none}
+  footer li{margin-bottom:8px}
+  footer a{color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s}
+  footer a:hover{color:var(--yellow)}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:36px;padding-top:24px;text-align:center;font-size:13px;color:rgba(255,255,255,.5)}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav id="nav">
+  <div class="wrap">
+    <a class="logo" href="#home">
+      <span class="logo-mark">🦕</span>
+      <span class="logo-text">Dino-Might Kids<small>Boca Raton · Est. 1992</small></span>
+    </a>
+    <ul>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#love">Parents</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">Schedule a Tour</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="home">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text-anim">
+        <div class="hero-pill"><span class="star">🌟</span> Family-Owned in West Boca · Since 1992</div>
+        <h1 class="display hero-h1">Where Little Explorers <span class="swing">Roar</span> to Life.</h1>
+        <p class="hero-sub">A warm, neighborhood preschool for ages 2 months through Pre-K. Low ratios, the same loving teachers year after year, and a Creative Curriculum that makes learning genuinely fun.</p>
+        <div class="hero-btns">
+          <a class="btn-green" href="#contact">🗓 Schedule a Tour</a>
+          <a class="btn-outline" href="#programs">View Programs ↓</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <div class="hero-photo-frame">
+          <img src="https://static.wixstatic.com/media/76f12e_8c7dbb92069f4855916abd82604c3ac5~mv2.png" alt="Children playing on the colorful playground at Dino-Might Kids Preschool in Boca Raton">
+        </div>
+        <span class="badge b1">🦕 Est. 1992</span>
+        <span class="badge b2">⭐ VPK Certified</span>
+        <span class="badge b3">🌿 Ages 2mo – Pre-K</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== TRUST BAR ===== -->
+<section class="trust" style="padding:36px 0">
+  <div class="wrap">
+    <div><div class="trust-num">33+</div><div class="trust-label">Years in Boca</div></div>
+    <div><div class="trust-num">2mo–5yr</div><div class="trust-label">Ages Served</div></div>
+    <div><div class="trust-num">VPK</div><div class="trust-label">State Certified</div></div>
+    <div><div class="trust-num">92%</div><div class="trust-label">Parents Recommend</div></div>
+  </div>
+</section>
+
+<!-- ===== PROGRAMS ===== -->
+<section class="programs" id="programs">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">Our Programs</span>
+      <h2 class="s-title">A Program for Every Little Dino</h2>
+      <p class="s-sub">From your newest arrival to your kindergarten-ready adventurer, we've built a caring classroom for every age and stage.</p>
+    </div>
+
+    <div class="programs-grid reveal">
+      <div class="pcard c1">
+        <div class="pcard-icon">🍼</div>
+        <span class="pcard-age">2 — 18 Months</span>
+        <h3>Tiny Dinos</h3>
+        <p>Individualized infant care with sensory play, tummy time, and gentle routines on your baby's rhythm. Tiny class. Lots of cuddles.</p>
+        <a href="#contact">Learn More →</a>
+      </div>
+      <div class="pcard c2">
+        <div class="pcard-icon">🌱</div>
+        <span class="pcard-age">18 mo — 3 Years</span>
+        <h3>Small Dinos</h3>
+        <p>Hands-on discovery through art, music, Spanish, and gross-motor play as toddlers build language, curiosity, and friendships.</p>
+        <a href="#contact">Learn More →</a>
+      </div>
+      <div class="pcard c3">
+        <div class="pcard-icon">🦕</div>
+        <span class="pcard-age">3+ (Potty Trained)</span>
+        <h3>Big Dinos</h3>
+        <p>Pre-reading, writing, math, and science in small groups — individualized instruction that sets every child up to thrive in K.</p>
+        <a href="#contact">Learn More →</a>
+      </div>
+      <div class="pcard c4">
+        <div class="pcard-icon">🎓</div>
+        <span class="pcard-age">Age 4 by Sept 1</span>
+        <h3>VPK</h3>
+        <p>Florida's free Voluntary Pre-K program — reading, writing, and math foundations for a powerful kindergarten head-start.</p>
+        <a href="#contact">Learn More →</a>
+      </div>
+    </div>
+
+    <div class="vpk">
+      <div class="vpk-text">
+        <h4>Florida VPK Accepted</h4>
+        <p>Free Pre-K hours for eligible 4-year-olds. We'll walk you through the paperwork from start to finish.</p>
+      </div>
+      <a class="btn-green" href="#contact">Ask About VPK →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-grid reveal">
+      <div class="about-photo">
+        <div class="about-photo-frame">
+          <img src="https://static.wixstatic.com/media/76f12e_7660caef96c04257bc12e8db75000643~mv2.png" alt="Bright, organized classroom at Dino-Might Kids Preschool">
+        </div>
+        <div class="est-badge"><span><span class="yr">33+</span><span class="lbl">YEARS</span></span></div>
+        <span class="float-tag ft-1">🌿 Creative Curriculum</span>
+        <span class="float-tag ft-2">🌍 Spanish Enrichment</span>
+      </div>
+      <div class="about-text">
+        <span class="eyebrow">Our Story</span>
+        <h2 class="s-title">Rooted in Love, Since 1992.</h2>
+        <p>Ms. Marlene opened Dino-Might Kids in 1992 with one belief: every child deserves a warm, nurturing place to grow into exactly who they're meant to be. Three decades later, that's still the whole idea — not a chain, not a franchise, just a small preschool where every family is known by name.</p>
+        <blockquote class="pullquote">
+          We believe that if you treat a child with respect and give them the attention they deserve, they will feel loved, valued, and able to reach their full potential.
+          <cite>— Ms. Marlene, Founder &amp; Director</cite>
+        </blockquote>
+        <p>Our Creative Curriculum weaves math, art, science, language, and play into days kids actually look forward to. Children have an innate desire to learn — we just try to make it fun.</p>
+        <a class="btn-green" href="#contact" style="margin-top:8px">Meet Our Family →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">Peek Inside</span>
+      <h2 class="s-title">Where the Magic Happens</h2>
+      <p class="s-sub">Real classrooms, real kids, real days at Dino-Might.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gphoto tall">
+        <img src="https://static.wixstatic.com/media/76f12e_2093c5ca176c4a61a93250118f44cc6d~mv2.png" alt="Pretend-play ice cream shop area">
+      </div>
+      <div class="gphoto">
+        <img src="https://static.wixstatic.com/media/76f12e_33a51e8a83594aa68aa8db7d97fb0fa1~mv2.png" alt="Classroom with children's artwork displayed on the walls">
+      </div>
+      <div class="gphoto">
+        <img src="https://static.wixstatic.com/media/76f12e_ea27191b28a24681bf08d805dfe47b71~mv2.png" alt="Reading and dress-up corner">
+      </div>
+      <div class="gphoto tall">
+        <img src="https://static.wixstatic.com/media/76f12e_eaa07e97e4d643fb826a68ac69cb27cd~mv2.png" alt="Colorful learning materials and manipulatives">
+      </div>
+      <div class="gphoto">
+        <img src="https://static.wixstatic.com/media/76f12e_8c7dbb92069f4855916abd82604c3ac5~mv2.png" alt="Outdoor playground">
+      </div>
+      <div class="gphoto">
+        <img src="https://static.wixstatic.com/media/76f12e_7660caef96c04257bc12e8db75000643~mv2.png" alt="Bright classroom interior">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials" id="love">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">Parents</span>
+      <h2 class="s-title">"None compared to Dino-Might."</h2>
+      <p class="s-sub">Word-of-mouth has done most of our marketing for thirty-three years. Here's what west Boca parents actually say.</p>
+    </div>
+    <div class="test-grid reveal">
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p>I looked at all the preschools in Boca and none compared in SO many ways to Dino-Might. Low ratios, cleanliness, and warm teachers.</p>
+        <div class="who">— Boca Parent</div>
+      </div>
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p>This is the BEST preschool that we could ever-ever choose!! Such a lovely and friendly atmosphere, professional approach to each child.</p>
+        <div class="who">— Boca Parent</div>
+      </div>
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p>Dino-Might Kids is by far the best preschool in Boca Raton — and the surrounding area.</p>
+        <div class="who">— Boca Parent</div>
+      </div>
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p>The teachers are loving, you are welcomed by everyone. The school is clean and the activities include Spanish, computer, writing, math, and so much more.</p>
+        <div class="who">— Boca Parent</div>
+      </div>
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p>Clean, with an engaging learning environment for kids while also having all the resources for FUN! The teachers are warm, loving, and patient.</p>
+        <div class="who">— Boca Parent</div>
+      </div>
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p>After three decades of word-of-mouth, the best review is the families who send their second and third child here.</p>
+        <div class="who">— What we hear most</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BIG CTA ===== -->
+<section class="cta-section" id="contact">
+  <div class="wrap">
+    <h2>Ready to Join the<br><em>Dino-Might</em> Family?</h2>
+    <p>Tours take about 30 minutes. Walk the classrooms, peek into the playground, meet Ms. Marlene, and ask anything. We'd love to meet your little explorer.</p>
+    <a class="btn-green" href="tel:+15613381732">📞 Call (561) 338-1732</a>
+    <div class="cta-meta">
+      <span>📍 5982 SW 18th Street, Boca Raton, FL 33433</span>
+      <a href="mailto:dinomightkidspreschool@gmail.com">✉️ dinomightkidspreschool@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#home" style="margin-bottom:14px">
+        <span class="logo-mark">🦕</span>
+        <span class="logo-text" style="color:#fff">Dino-Might Kids<small style="color:var(--yellow)">Boca Raton · Est. 1992</small></span>
+      </a>
+      <p style="margin-top:14px;max-width:36ch">A small, family-owned preschool that's been quietly raising west Boca's kids for over three decades.</p>
+    </div>
+    <div>
+      <h5>Visit</h5>
+      <ul>
+        <li>5982 SW 18th Street</li>
+        <li>Boca Raton, FL 33433</li>
+        <li><a href="tel:+15613381732">(561) 338-1732</a></li>
+        <li><a href="mailto:dinomightkidspreschool@gmail.com">Email us</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Explore</h5>
+      <ul>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Schedule a Tour</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap"><div class="foot-bottom">© 2026 Dino-Might Kids Preschool · Family owned and operated since 1992</div></div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  const onScroll=()=>{nav.classList.toggle('scrolled',window.scrollY>20)};
+  window.addEventListener('scroll',onScroll);onScroll();
+
+  // scroll reveal
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+  },{threshold:.15,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+# Keep pitch working files local — only index.html ships to production
+brand.md
+notes.md
+screenshots/
+raw/
+*.md
+.DS_Store

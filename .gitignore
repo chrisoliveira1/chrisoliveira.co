@@ -1,0 +1,3 @@
+# Leads dashboard — local only, never ships to production
+leads/
+.DS_Store
