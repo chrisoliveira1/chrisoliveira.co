@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chris Oliveira</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    background: #d8d6d3;
+  }
+
+  .scene {
+    width: 100%; height: 100%;
+    position: relative;
+    background: #d8d6d3;
+  }
+
+  /* Photo sits as a bg so we can control exact crop with background-position */
+  .photo-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('IMG_3319.jpeg');
+    background-size: cover;
+    /*
+      Portrait photo: Chris's face is ~33% from top.
+      With cover on 16:9 container the image is zoomed ~2.4×.
+      Position 65% right (toward subject) 32% down places his
+      face/body in the upper-right quadrant — clear of the text.
+    */
+    background-position: 65% 32%;
+    filter: grayscale(100%);
+  }
+
+  .ui {
+    position: absolute;
+    inset: 0;
+    font-family: 'Jost', sans-serif;
+    color: #fff;
+  }
+
+  .top-left {
+    position: absolute;
+    top: 5.5%;
+    left: 5%;
+    font-size: clamp(9px, .85vw, 13px);
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .top-right {
+    position: absolute;
+    top: 5.5%;
+    right: 5%;
+    font-size: clamp(9px, .85vw, 13px);
+    font-weight: 300;
+    line-height: 1.7;
+    letter-spacing: 0.12em;
+    text-align: right;
+    text-transform: uppercase;
+  }
+
+  /* Name + button stacked, anchored bottom-left */
+  .name-block {
+    position: absolute;
+    bottom: 6%;
+    left: 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(14px, 1.6vh, 26px);
+  }
+
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: clamp(9px, .75vw, 13px) clamp(20px, 2vw, 32px);
+    border: 1px solid rgba(255,255,255,0.65);
+    border-radius: 999px;
+    font-family: 'Jost', sans-serif;
+    font-size: clamp(9px, .8vw, 13px);
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: background .25s, border-color .25s;
+    white-space: nowrap;
+  }
+
+  .contact-btn:hover {
+    background: rgba(255,255,255,0.2);
+    border-color: #fff;
+  }
+
+  .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: clamp(52px, 18vw, 320px);
+    line-height: 0.85;
+    letter-spacing: -0.01em;
+  }
+
+  .year {
+    position: absolute;
+    bottom: 6%;
+    right: 5%;
+    font-size: clamp(9px, .85vw, 13px);
+    font-weight: 300;
+    letter-spacing: 0.12em;
+  }
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="photo-bg"></div>
+  <div class="ui">
+    <div class="top-left">Boca Raton, Florida</div>
+    <div class="top-right">Digital Design<br>Website Development</div>
+    <div class="name-block">
+      <a class="contact-btn" href="mailto:chris@chrisoliveira.co">Get in touch</a>
+      <div class="name">Chris<br>Oliveira</div>
+    </div>
+    <div class="year">2025</div>
+  </div>
+</div>
+</body>
+</html>
