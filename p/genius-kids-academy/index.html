@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Genius Kids Academy — Hallandale Beach, FL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700&display=swap" as="style">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700&display=swap">
+<style>
+:root{
+  --bg:#FFF1F2;
+  --rose-dark:#9F1239;
+  --rose:#BE185D;
+  --rose-mid:#EC4899;
+  --olive:#4D7C0F;
+  --olive-light:#BEF264;
+  --yellow:#FDE047;
+  --cream:#FFF9F9;
+  --ink:#1C1917;
+  --ink-soft:#57534E;
+  --ff-head:'Baloo 2',cursive;
+  --ff-body:'Nunito',sans-serif;
+  --shadow-md:0 12px 36px rgba(28,10,0,.10);
+  --shadow-lg:0 28px 70px rgba(28,10,0,.14);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-body);background:var(--bg);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,241,242,.97);
+  border-bottom:1px solid rgba(190,24,93,.15);
+  padding:0 48px;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{font-family:var(--ff-head);font-size:22px;font-weight:800;color:var(--rose-dark);text-decoration:none}
+.nav-logo span{color:var(--olive)}
+.nav-meta{font-size:12px;color:var(--ink-soft);font-weight:600}
+.nav-cta{
+  background:var(--rose);color:#fff;
+  font-family:var(--ff-head);font-weight:700;font-size:14px;
+  padding:11px 22px;border-radius:999px;text-decoration:none;
+  box-shadow:0 6px 20px rgba(190,24,93,.4);
+}
+.nav-cta:hover{background:var(--rose-dark)}
+
+/* HERO */
+#hero{
+  min-height:100vh;padding-top:68px;
+  display:grid;grid-template-columns:1fr 1fr;overflow:hidden;
+  background:var(--bg);position:relative;
+}
+#hero::before{
+  content:'';position:absolute;
+  width:480px;height:480px;border-radius:50%;
+  background:rgba(236,72,153,.18);
+  filter:blur(70px);top:-100px;left:-80px;pointer-events:none;
+}
+#hero::after{
+  content:'';position:absolute;
+  width:360px;height:360px;border-radius:50%;
+  background:rgba(190,242,100,.25);
+  filter:blur(55px);bottom:-60px;right:5%;pointer-events:none;
+}
+.hero-text{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 48px 80px 72px;
+  position:relative;z-index:2;
+}
+.stars-row{
+  display:flex;align-items:center;gap:8px;margin-bottom:28px;
+}
+.stars{font-size:22px;letter-spacing:2px;color:var(--rose)}
+.stars-label{font-family:var(--ff-head);font-size:14px;font-weight:700;color:var(--ink-soft)}
+.hero-h1{
+  font-family:var(--ff-head);
+  font-size:clamp(44px,4.8vw,68px);
+  font-weight:800;line-height:1.0;
+  color:var(--rose-dark);margin-bottom:12px;
+}
+.hero-h1 .accent{color:var(--olive)}
+.hero-year{
+  font-family:var(--ff-head);font-size:14px;font-weight:700;
+  color:var(--ink-soft);letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:24px;
+}
+.hero-sub{
+  font-size:17px;line-height:1.7;color:var(--ink-soft);
+  max-width:420px;margin-bottom:36px;
+}
+.hero-btns{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.btn-primary{
+  background:var(--rose);color:#fff;
+  font-family:var(--ff-head);font-weight:700;font-size:16px;
+  padding:14px 28px;border-radius:999px;text-decoration:none;
+  box-shadow:0 8px 24px rgba(190,24,93,.4);
+}
+.btn-primary:hover{background:var(--rose-dark)}
+.btn-ghost{color:var(--ink-soft);font-family:var(--ff-head);font-weight:700;font-size:15px;text-decoration:none}
+.btn-ghost:hover{color:var(--rose-dark)}
+
+/* HERO VISUAL */
+.hero-visual{position:relative;overflow:hidden;z-index:2}
+.hero-photo-wrap{
+  position:relative;width:88%;height:88%;
+  margin:auto;margin-top:8%;
+  border-radius:2rem;overflow:hidden;
+  box-shadow:var(--shadow-lg);
+  transform:rotate(1.5deg);
+}
+.hero-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.badge{
+  position:absolute;
+  background:#fff;
+  padding:11px 17px;border-radius:999px;
+  font-family:var(--ff-head);font-weight:700;font-size:13px;
+  box-shadow:var(--shadow-md);
+  display:inline-flex;align-items:center;gap:7px;
+  white-space:nowrap;
+}
+.badge-1{top:-10px;left:18px;color:var(--rose-dark);transform:rotate(-3deg)}
+.badge-2{bottom:36px;right:-14px;color:var(--olive);transform:rotate(3deg)}
+
+/* PROOF STRIP */
+#proof{
+  background:var(--rose-dark);color:#fff;
+  padding:36px 72px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:4px solid var(--olive-light);
+}
+.proof-item{padding:0 24px 0 0;border-right:1px solid rgba(255,255,255,.12)}
+.proof-item:last-child{border-right:none}
+.proof-val{font-family:var(--ff-head);font-size:28px;font-weight:800;color:var(--yellow);display:block;line-height:1}
+.proof-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:6px;display:block}
+
+@media(max-width:900px){
+  nav{padding:0 20px}
+  #hero{grid-template-columns:1fr}
+  .hero-visual{display:none}
+  .hero-text{padding:48px 24px}
+  #proof{grid-template-columns:repeat(2,1fr);padding:28px 24px;gap:20px}
+  .proof-item{border-right:none;padding-right:0}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="#hero">Genius <span>Kids</span></a>
+  <span class="nav-meta">Hallandale Beach, FL &middot; Est. 2013</span>
+  <a class="nav-cta" href="tel:9545054300">(954) 505-4300</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-text">
+    <div class="stars-row">
+      <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="stars-label">Dr. Nadine Manning, Founder</span>
+    </div>
+    <h1 class="hero-h1">Hollywood &amp;<br>Hallandale's<br>most loved<br><span class="accent">preschool</span>.</h1>
+    <p class="hero-year">The Genius Kids Academy &middot; Est. 2013</p>
+    <p class="hero-sub">Dr. Nadine Manning has spent over a decade building something families in Hallandale Beach genuinely love. Parents say the teachers are caring, patient, and dedicated. That kind of reputation should be filling your waitlist, not just word of mouth.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="tel:9545054300">Call (954) 505-4300</a>
+      <a class="btn-ghost" href="#proof">Our Story &rarr;</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-photo-wrap">
+      <img src="../../assets/samples/daycare/IMG_0895.JPG" alt="The Genius Kids Academy children learning in Hallandale Beach">
+      <div class="badge badge-1">&#127775; Dr. Nadine Manning &bull; Founder</div>
+      <div class="badge badge-2">&#127881; 10+ Years Hallandale Beach</div>
+    </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="proof-item">
+    <span class="proof-val">2013</span>
+    <span class="proof-label">Est. Year</span>
+  </div>
+  <div class="proof-item">
+    <span class="proof-val">10+</span>
+    <span class="proof-label">Years in Hallandale</span>
+  </div>
+  <div class="proof-item">
+    <span class="proof-val">VPK</span>
+    <span class="proof-label">Accepted</span>
+  </div>
+  <div class="proof-item">
+    <span class="proof-val">18 mos</span>
+    <span class="proof-label">Youngest Accepted</span>
+  </div>
+</section>
+</body>
+</html>

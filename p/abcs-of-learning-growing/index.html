@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ABC's of Learning &amp; Growing — North Lauderdale, FL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" as="style">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{
+  --cream:#FFFCF0;
+  --amber-dark:#92400E;
+  --amber:#D97706;
+  --amber-light:#FDE68A;
+  --burg-dark:#7D1D3F;
+  --burg:#9B2335;
+  --yellow:#FDE047;
+  --sage-light:#BBF7D0;
+  --ink:#1C1917;
+  --ink-soft:#57534E;
+  --ff-head:'Fredoka',cursive;
+  --ff-body:'Inter',sans-serif;
+  --shadow-md:0 12px 36px rgba(28,10,0,.10);
+  --shadow-lg:0 28px 70px rgba(28,10,0,.14);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-body);background:var(--cream);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,252,240,.97);
+  border-bottom:1px solid rgba(217,119,6,.15);
+  padding:0 48px;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{font-family:var(--ff-head);font-size:21px;font-weight:700;color:var(--burg-dark);text-decoration:none}
+.nav-logo span{color:var(--amber)}
+.nav-meta{font-size:12px;color:var(--ink-soft);font-weight:500}
+.nav-cta{
+  background:var(--amber);color:#fff;
+  font-family:var(--ff-head);font-weight:700;font-size:14px;
+  padding:11px 22px;border-radius:999px;text-decoration:none;
+  box-shadow:0 6px 20px rgba(217,119,6,.4);
+}
+.nav-cta:hover{background:var(--amber-dark)}
+
+/* HERO */
+#hero{
+  min-height:100vh;padding-top:68px;
+  display:grid;grid-template-columns:1fr 1fr;overflow:hidden;
+  background:var(--cream);position:relative;
+}
+#hero::before{
+  content:'';position:absolute;
+  width:460px;height:460px;border-radius:50%;
+  background:rgba(253,230,138,.5);
+  filter:blur(70px);top:-100px;left:-80px;pointer-events:none;
+}
+#hero::after{
+  content:'';position:absolute;
+  width:360px;height:360px;border-radius:50%;
+  background:rgba(155,35,53,.12);
+  filter:blur(55px);bottom:-60px;right:5%;pointer-events:none;
+}
+.hero-text{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 48px 80px 72px;
+  position:relative;z-index:2;
+}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#fff;border:2px solid rgba(217,119,6,.2);
+  padding:10px 18px;border-radius:999px;
+  font-family:var(--ff-head);font-weight:700;font-size:13px;color:var(--amber-dark);
+  box-shadow:0 2px 12px rgba(28,10,0,.06);
+  margin-bottom:28px;width:fit-content;
+}
+.hero-h1{
+  font-family:var(--ff-head);
+  font-size:clamp(44px,4.8vw,68px);
+  font-weight:700;line-height:1.05;
+  color:var(--burg-dark);margin-bottom:12px;
+}
+.hero-h1 .accent{color:var(--amber)}
+.hero-year{
+  font-family:var(--ff-head);font-size:14px;font-weight:600;
+  color:var(--ink-soft);letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:24px;
+}
+.hero-sub{
+  font-size:17px;line-height:1.7;color:var(--ink-soft);
+  max-width:420px;margin-bottom:36px;
+}
+.hero-btns{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.btn-primary{
+  background:var(--burg);color:#fff;
+  font-family:var(--ff-head);font-weight:700;font-size:16px;
+  padding:14px 28px;border-radius:999px;text-decoration:none;
+  box-shadow:0 8px 24px rgba(155,35,53,.4);
+}
+.btn-primary:hover{background:var(--burg-dark)}
+.btn-ghost{color:var(--ink-soft);font-family:var(--ff-head);font-weight:700;font-size:15px;text-decoration:none}
+.btn-ghost:hover{color:var(--burg-dark)}
+
+/* HERO VISUAL */
+.hero-visual{position:relative;overflow:hidden;z-index:2}
+.hero-photo-wrap{
+  position:relative;width:88%;height:88%;
+  margin:auto;margin-top:8%;
+  border-radius:2rem;overflow:hidden;
+  box-shadow:var(--shadow-lg);
+  transform:rotate(2deg);
+}
+.hero-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.badge{
+  position:absolute;
+  background:#fff;
+  padding:11px 17px;border-radius:999px;
+  font-family:var(--ff-head);font-weight:700;font-size:13px;
+  box-shadow:var(--shadow-md);
+  display:inline-flex;align-items:center;gap:7px;
+  white-space:nowrap;
+}
+.badge-1{top:-10px;right:18px;color:var(--amber-dark);transform:rotate(-3deg)}
+.badge-2{bottom:36px;left:-16px;color:var(--burg-dark);transform:rotate(3deg)}
+
+/* PROOF STRIP */
+#proof{
+  background:var(--burg-dark);color:#fff;
+  padding:36px 72px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:4px solid var(--amber);
+}
+.proof-item{padding:0 24px 0 0;border-right:1px solid rgba(255,255,255,.12)}
+.proof-item:last-child{border-right:none}
+.proof-val{font-family:var(--ff-head);font-size:28px;font-weight:700;color:var(--yellow);display:block;line-height:1}
+.proof-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:6px;display:block}
+
+@media(max-width:900px){
+  nav{padding:0 20px}
+  #hero{grid-template-columns:1fr}
+  .hero-visual{display:none}
+  .hero-text{padding:48px 24px}
+  #proof{grid-template-columns:repeat(2,1fr);padding:28px 24px;gap:20px}
+  .proof-item{border-right:none;padding-right:0}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="#hero">ABC's of <span>Learning</span></a>
+  <span class="nav-meta">North Lauderdale, FL &middot; Gold Seal &bull; APPLE Accredited</span>
+  <a class="nav-cta" href="tel:9547227082">(954) 722-7082</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-text">
+    <div class="hero-pill">&#127881; Serving North Lauderdale families since 1993</div>
+    <h1 class="hero-h1">30 years.<br><span class="accent">Two top</span><br>accreditations.<br>One community.</h1>
+    <p class="hero-year">ABC's of Learning &amp; Growing &middot; Est. 1993</p>
+    <p class="hero-sub">Gold Seal and APPLE accredited, and serving the same North Lauderdale families for over 30 years. That kind of track record is remarkable. Families searching for a preschool nearby should be finding you before anyone else.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="tel:9547227082">Call (954) 722-7082</a>
+      <a class="btn-ghost" href="#proof">Credentials &rarr;</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-photo-wrap">
+      <img src="../../assets/samples/daycare/jerry-wang-RwCP91RwZeM-unsplash.jpg" alt="ABC's of Learning and Growing child proud of learning in North Lauderdale">
+      <div class="badge badge-1">&#11088; Gold Seal &bull; APPLE Accredited</div>
+      <div class="badge badge-2">&#127891; 30+ Yrs &bull; Est. 1993</div>
+    </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="proof-item">
+    <span class="proof-val">1993</span>
+    <span class="proof-label">Est. Year</span>
+  </div>
+  <div class="proof-item">
+    <span class="proof-val">Gold Seal</span>
+    <span class="proof-label">Quality Care</span>
+  </div>
+  <div class="proof-item">
+    <span class="proof-val">APPLE</span>
+    <span class="proof-label">Accredited</span>
+  </div>
+  <div class="proof-item">
+    <span class="proof-val">30+</span>
+    <span class="proof-label">Years Serving N. Lauderdale</span>
+  </div>
+</section>
+</body>
+</html>

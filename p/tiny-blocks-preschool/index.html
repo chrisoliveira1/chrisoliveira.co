@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tiny Blocks Preschool — Coconut Creek, FL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" as="style">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#F5F3FF;
+  --purple-dark:#4C1D95;
+  --purple:#7C3AED;
+  --sage:#2D6A4F;
+  --sage-light:#95D5B2;
+  --tangerine:#F97316;
+  --tangerine-light:#FED7AA;
+  --yellow:#FDE047;
+  --ink:#1C1917;
+  --ink-soft:#57534E;
+  --ff-head:'Baloo 2',cursive;
+  --ff-body:'Inter',sans-serif;
+  --shadow-md:0 12px 36px rgba(28,10,0,.10);
+  --shadow-lg:0 28px 70px rgba(28,10,0,.14);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-body);background:var(--bg);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(245,243,255,.97);
+  border-bottom:1px solid rgba(124,58,237,.15);
+  padding:0 48px;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{font-family:var(--ff-head);font-size:22px;font-weight:800;color:var(--purple-dark);text-decoration:none}
+.nav-logo span{color:var(--tangerine)}
+.nav-meta{font-size:12px;color:var(--ink-soft);font-weight:500}
+.nav-cta{
+  background:var(--tangerine);color:#fff;
+  font-family:var(--ff-head);font-weight:700;font-size:14px;
+  padding:11px 22px;border-radius:999px;text-decoration:none;
+  box-shadow:0 6px 20px rgba(249,115,22,.4);
+}
+.nav-cta:hover{background:#ea6b0a}
+
+/* HERO */
+#hero{
+  min-height:100vh;padding-top:68px;
+  display:grid;grid-template-columns:1fr 1fr;overflow:hidden;
+  background:var(--bg);position:relative;
+}
+#hero::before{
+  content:'';position:absolute;
+  width:440px;height:440px;border-radius:50%;
+  background:rgba(124,58,237,.18);
+  filter:blur(65px);top:-80px;left:-80px;pointer-events:none;
+}
+#hero::after{
+  content:'';position:absolute;
+  width:360px;height:360px;border-radius:50%;
+  background:rgba(249,115,22,.2);
+  filter:blur(55px);bottom:-50px;right:10%;pointer-events:none;
+}
+.hero-text{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 48px 80px 72px;
+  position:relative;z-index:2;
+}
+.award-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(249,115,22,.12);
+  border:2px solid rgba(249,115,22,.3);
+  border-radius:12px;padding:10px 16px;
+  margin-bottom:28px;width:fit-content;
+}
+.award-icon{font-size:22px}
+.award-text{font-family:var(--ff-head);font-size:13px;font-weight:700;color:var(--tangerine);text-transform:uppercase;letter-spacing:.1em}
+.hero-h1{
+  font-family:var(--ff-head);
+  font-size:clamp(46px,5vw,70px);
+  font-weight:800;line-height:1.0;
+  color:var(--purple-dark);margin-bottom:12px;
+}
+.hero-h1 .accent{color:var(--tangerine)}
+.hero-year{
+  font-family:var(--ff-head);font-size:14px;font-weight:700;
+  color:var(--ink-soft);letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:24px;
+}
+.hero-sub{
+  font-size:17px;line-height:1.7;color:var(--ink-soft);
+  max-width:420px;margin-bottom:36px;
+}
+.hero-btns{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.btn-primary{
+  background:var(--purple);color:#fff;
+  font-family:var(--ff-head);font-weight:700;font-size:16px;
+  padding:14px 28px;border-radius:999px;text-decoration:none;
+  box-shadow:0 8px 24px rgba(124,58,237,.4);
+}
+.btn-primary:hover{background:var(--purple-dark)}
+.btn-ghost{color:var(--ink-soft);font-family:var(--ff-head);font-weight:700;font-size:15px;text-decoration:none}
+.btn-ghost:hover{color:var(--purple-dark)}
+
+/* HERO VISUAL */
+.hero-visual{position:relative;overflow:hidden;z-index:2}
+.hero-photo-wrap{
+  position:relative;width:88%;height:88%;
+  margin:auto;margin-top:8%;
+  border-radius:2rem;overflow:hidden;
+  box-shadow:var(--shadow-lg);
+  transform:rotate(2.5deg);
+}
+.hero-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.badge{
+  position:absolute;
+  background:#fff;
+  padding:11px 17px;border-radius:999px;
+  font-family:var(--ff-head);font-weight:700;font-size:13px;
+  box-shadow:var(--shadow-md);
+  display:inline-flex;align-items:center;gap:7px;
+  white-space:nowrap;
+}
+.badge-1{top:-10px;right:20px;color:var(--purple-dark);transform:rotate(-3deg)}
+.badge-2{bottom:36px;left:-16px;color:var(--sage);transform:rotate(3deg)}
+
+/* PROOF STRIP */
+#proof{
+  background:var(--purple-dark);color:#fff;
+  padding:36px 72px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:4px solid var(--tangerine);
+}
+.proof-item{padding:0 24px 0 0;border-right:1px solid rgba(255,255,255,.12)}
+.proof-item:last-child{border-right:none}
+.proof-val{font-family:var(--ff-head);font-size:28px;font-weight:800;color:var(--yellow);display:block;line-height:1}
+.proof-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:6px;display:block}
+
+@media(max-width:900px){
+  nav{padding:0 20px}
+  #hero{grid-template-columns:1fr}
+  .hero-visual{display:none}
+  .hero-text{padding:48px 24px}
+  #proof{grid-template-columns:repeat(2,1fr);padding:28px 24px;gap:20px}
+  .proof-item{border-right:none;padding-right:0}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="#hero">Tiny <span>Blocks</span></a>
+  <span class="nav-meta">Coconut Creek, FL &middot; Bilingual Preschool</span>
+  <a class="nav-cta" href="tel:9544250554">(954) 425-0554</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-text">
+    <div class="award-badge">
+      <span class="award-icon">&#127942;</span>
+      <span class="award-text">Best Business &mdash; Coconut Creek 2024</span>
+    </div>
+    <h1 class="hero-h1">The preschool<br>Coconut Creek<br>named <span class="accent">best</span><br>in 2024.</h1>
+    <p class="hero-year">Tiny Blocks Preschool &middot; Bilingual &middot; VPK</p>
+    <p class="hero-sub">Ms. Nathalia built something special here. Parents call it a true second home. Being named Best Business 2024 is a huge deal, and families searching for a preschool in Coconut Creek should be finding you first.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="tel:9544250554">Call (954) 425-0554</a>
+      <a class="btn-ghost" href="#proof">Credentials &rarr;</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-photo-wrap">
+      <img src="../../assets/samples/daycare/cta.jpg" alt="Tiny Blocks Preschool toddler learning and playing in Coconut Creek">
+      <div class="badge badge-1">&#127881; Best Business 2024 &bull; Coconut Creek</div>
+      <div class="badge badge-2">&#127758; Bilingual &bull; English &amp; Spanish</div>
+    </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="proof-item">
+    <span class="proof-val">Best Biz</span>
+    <span class="proof-label">Coconut Creek 2024</span>
+  </div>
+  <div class="proof-item">
+    <span class="proof-val">Bilingual</span>
+    <span class="proof-label">English &amp; Spanish</span>
+  </div>
+  <div class="proof-item">
+    <span class="proof-val">VPK</span>
+    <span class="proof-label">Accepted</span>
+  </div>
+  <div class="proof-item">
+    <span class="proof-val">Ms. Nathalia</span>
+    <span class="proof-label">Owner &amp; Director</span>
+  </div>
+</section>
+</body>
+</html>

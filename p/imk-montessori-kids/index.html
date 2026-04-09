@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>International Montessori Kids Center — Deerfield Beach, FL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" as="style">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#F0FFF4;
+  --navy:#1E3A5F;
+  --navy-mid:#1D4ED8;
+  --mint:#4ADE80;
+  --mint-dark:#16A34A;
+  --sky:#BAE6FD;
+  --yellow:#FDE047;
+  --orange:#FDBA74;
+  --ink:#1C1917;
+  --ink-soft:#57534E;
+  --ff-head:'Fredoka',cursive;
+  --ff-body:'Inter',sans-serif;
+  --shadow-md:0 12px 36px rgba(28,10,0,.10);
+  --shadow-lg:0 28px 70px rgba(28,10,0,.14);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-body);background:var(--bg);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(240,255,244,.97);
+  border-bottom:1px solid rgba(30,58,95,.15);
+  padding:0 48px;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{font-family:var(--ff-head);font-size:21px;font-weight:700;color:var(--navy);text-decoration:none;letter-spacing:.3px}
+.nav-logo span{color:var(--mint-dark)}
+.nav-meta{font-size:12px;color:var(--ink-soft);font-weight:500}
+.nav-cta{
+  background:var(--navy);color:#fff;
+  font-family:var(--ff-head);font-weight:600;font-size:14px;
+  padding:11px 22px;border-radius:999px;text-decoration:none;
+  box-shadow:0 6px 20px rgba(30,58,95,.4);
+}
+.nav-cta:hover{background:#162c48}
+
+/* HERO — REVERSED */
+#hero{
+  min-height:100vh;padding-top:68px;
+  display:grid;grid-template-columns:1fr 1fr;overflow:hidden;
+  background:var(--bg);position:relative;
+}
+#hero::before{
+  content:'';position:absolute;
+  width:460px;height:460px;border-radius:50%;
+  background:rgba(74,222,128,.25);
+  filter:blur(70px);top:-100px;right:-80px;pointer-events:none;
+}
+#hero::after{
+  content:'';position:absolute;
+  width:340px;height:340px;border-radius:50%;
+  background:rgba(186,230,253,.4);
+  filter:blur(55px);bottom:-60px;left:30%;pointer-events:none;
+}
+.hero-visual{position:relative;overflow:hidden;z-index:2;order:1}
+.hero-photo-wrap{
+  position:relative;width:88%;height:88%;
+  margin:auto;margin-top:8%;
+  border-radius:2rem;overflow:hidden;
+  box-shadow:var(--shadow-lg);
+  transform:rotate(-2deg);
+}
+.hero-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.badge{
+  position:absolute;
+  background:#fff;
+  padding:11px 17px;border-radius:999px;
+  font-family:var(--ff-head);font-weight:600;font-size:13px;
+  box-shadow:var(--shadow-md);
+  display:inline-flex;align-items:center;gap:7px;
+  white-space:nowrap;
+}
+.badge-1{top:-10px;right:18px;color:var(--navy);transform:rotate(3deg)}
+.badge-2{bottom:36px;left:-14px;color:var(--mint-dark);transform:rotate(-3deg)}
+
+.hero-text{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 72px 80px 48px;
+  position:relative;z-index:2;order:2;
+}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#fff;border:2px solid rgba(30,58,95,.2);
+  padding:10px 18px;border-radius:999px;
+  font-family:var(--ff-head);font-weight:600;font-size:13px;color:var(--navy);
+  box-shadow:0 2px 12px rgba(28,10,0,.06);
+  margin-bottom:28px;width:fit-content;
+}
+.hero-h1{
+  font-family:var(--ff-head);
+  font-size:clamp(44px,4.8vw,68px);
+  font-weight:700;line-height:1.05;
+  color:var(--navy);margin-bottom:12px;
+}
+.hero-h1 .accent{color:var(--mint-dark)}
+.hero-year{
+  font-family:var(--ff-head);font-size:14px;font-weight:600;
+  color:var(--ink-soft);letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:24px;
+}
+.hero-sub{
+  font-size:17px;line-height:1.7;color:var(--ink-soft);
+  max-width:420px;margin-bottom:36px;
+}
+.hero-quote{
+  font-size:15px;font-style:italic;color:var(--navy);
+  background:#fff;padding:14px 20px;border-radius:12px;
+  border-left:4px solid var(--mint);
+  margin-bottom:28px;max-width:400px;
+}
+.hero-btns{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.btn-primary{
+  background:var(--navy);color:#fff;
+  font-family:var(--ff-head);font-weight:600;font-size:16px;
+  padding:14px 28px;border-radius:999px;text-decoration:none;
+  box-shadow:0 8px 24px rgba(30,58,95,.4);
+}
+.btn-primary:hover{background:#162c48}
+.btn-ghost{color:var(--ink-soft);font-family:var(--ff-head);font-weight:600;font-size:15px;text-decoration:none}
+.btn-ghost:hover{color:var(--navy)}
+
+/* PROOF STRIP */
+#proof{
+  background:var(--navy);color:#fff;
+  padding:36px 72px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:4px solid var(--mint);
+}
+.proof-item{padding:0 24px 0 0;border-right:1px solid rgba(255,255,255,.12)}
+.proof-item:last-child{border-right:none}
+.proof-val{font-family:var(--ff-head);font-size:28px;font-weight:700;color:var(--yellow);display:block;line-height:1}
+.proof-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:6px;display:block}
+
+@media(max-width:900px){
+  nav{padding:0 20px}
+  #hero{grid-template-columns:1fr}
+  .hero-visual{display:none}
+  .hero-text{padding:48px 24px;order:1}
+  #proof{grid-template-columns:repeat(2,1fr);padding:28px 24px;gap:20px}
+  .proof-item{border-right:none;padding-right:0}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="#hero">IMK <span>Montessori</span></a>
+  <span class="nav-meta">Deerfield Beach, FL &middot; Family Montessori</span>
+  <a class="nav-cta" href="tel:9544820880">(954) 482-0880</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-visual">
+    <div class="hero-photo-wrap">
+      <img src="../../assets/samples/daycare/IMG_0894.JPG" alt="International Montessori Kids Center children with teacher in Deerfield Beach">
+      <div class="badge badge-1">&#127757; Montessori Method &bull; Family Founded</div>
+      <div class="badge badge-2">&#127775; 3 South FL Locations</div>
+    </div>
+  </div>
+  <div class="hero-text">
+    <div class="hero-pill">&#127968; Family-Built Montessori School</div>
+    <h1 class="hero-h1">Marcos and<br>Carolina built<br>this. It shows<br>in every <span class="accent">classroom</span>.</h1>
+    <p class="hero-year">International Montessori Kids Center</p>
+    <div class="hero-quote">"The teachers are kind, patient, and truly care about the kids."</div>
+    <p class="hero-sub">Your reviews say exactly what every family wants to hear. A school that Marcos and Carolina built together, run with the warmth that only a family operation delivers. That story deserves a website that tells it properly.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="tel:9544820880">Call (954) 482-0880</a>
+      <a class="btn-ghost" href="#proof">Credentials &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="proof-item">
+    <span class="proof-val">Montessori</span>
+    <span class="proof-label">Method</span>
+  </div>
+  <div class="proof-item">
+    <span class="proof-val">Family</span>
+    <span class="proof-label">Founded &amp; Run</span>
+  </div>
+  <div class="proof-item">
+    <span class="proof-val">3</span>
+    <span class="proof-label">South FL Locations</span>
+  </div>
+  <div class="proof-item">
+    <span class="proof-val">VPK</span>
+    <span class="proof-label">Accepted &middot; Deerfield Beach</span>
+  </div>
+</section>
+</body>
+</html>
