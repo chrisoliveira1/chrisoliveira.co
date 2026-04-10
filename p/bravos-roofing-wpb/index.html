@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bravo's Roofing | West Palm Beach, FL | 40+ Years Family Roofing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --mahogany: #3d1c1c;
+      --gold: #c8973a;
+      --ivory: #faf8f5;
+      --dark: #1a1a1a;
+      --white: #ffffff;
+    }
+    body { font-family: 'Inter', sans-serif; color: var(--dark); background: var(--ivory); }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--mahogany);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 68px;
+    }
+    .nav-logo { font-family: 'Raleway', sans-serif; font-size: 21px; font-weight: 800; color: var(--white); letter-spacing: 0.05em; }
+    .nav-logo span { color: var(--gold); }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-phone { color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 600; text-decoration: none; }
+    .nav-cta { background: var(--gold); color: var(--mahogany); font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 3px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 68px); max-height: 832px; }
+    .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 64px 52px 64px 64px; background: var(--ivory); }
+    .hero-eyebrow { font-family: 'Raleway', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mahogany); opacity: 0.6; margin-bottom: 16px; }
+    .hero-h1 { font-family: 'Raleway', sans-serif; font-size: clamp(42px, 4.4vw, 68px); font-weight: 900; line-height: 1.08; color: var(--mahogany); margin-bottom: 20px; }
+    .hero-h1 em { color: var(--gold); font-style: normal; }
+    .hero-divider { width: 56px; height: 4px; background: var(--gold); border-radius: 2px; margin-bottom: 20px; }
+    .hero-sub { font-size: 17px; line-height: 1.65; color: #4a2d2d; max-width: 420px; margin-bottom: 36px; }
+    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .btn-primary { background: var(--mahogany); color: var(--white); font-weight: 700; font-size: 15px; padding: 15px 30px; border-radius: 3px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; }
+    .btn-link { color: var(--mahogany); font-weight: 600; font-size: 15px; text-decoration: none; }
+    .btn-link::after { content: ' →'; color: var(--gold); }
+
+    .hero-img { position: relative; overflow: hidden; }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .trust-bar { background: var(--mahogany); display: grid; grid-template-columns: repeat(4, 1fr); }
+    .trust-item { padding: 26px 28px; text-align: center; border-right: 1px solid rgba(255,255,255,0.1); }
+    .trust-item:last-child { border-right: none; }
+    .trust-number { font-family: 'Raleway', sans-serif; font-size: 36px; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+    .trust-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; max-height: none; }
+      .hero-text { padding: 48px 24px 32px; }
+      .hero-img { height: 280px; }
+      .trust-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span>Bravo's</span> Roofing</div>
+  <div class="nav-right">
+    <a href="tel:5613353869" class="nav-phone">(561) 335-3869</a>
+    <a href="tel:5613353869" class="nav-cta">Free Estimate</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">West Palm Beach, FL &nbsp;·&nbsp; Family Owned &nbsp;·&nbsp; 40+ Years</div>
+    <h1 class="hero-h1">West Palm's<br><em>Family Roofer,</em><br>For Decades</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">
+      Four decades of protecting West Palm Beach homes. Same-day callbacks, crews that clean up every scrap, and a family name on the line with every job.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:5613353869" class="btn-primary">Get a Free Estimate</a>
+      <a href="tel:5613353869" class="btn-link">Call (561) 335-3869</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="../../assets/samples/Roofers/68dc031f006dcb683e2a4def_68cae699707e934792d5ce76_image-23.jpeg" alt="Bravo's Roofing family team working on a West Palm Beach residential roof" loading="eager">
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item"><div class="trust-number">40+</div><div class="trust-label">Years in Business</div></div>
+  <div class="trust-item"><div class="trust-number">Family</div><div class="trust-label">Owned &amp; Operated</div></div>
+  <div class="trust-item"><div class="trust-number">Same</div><div class="trust-label">Day Callbacks</div></div>
+  <div class="trust-item"><div class="trust-number">100%</div><div class="trust-label">Licensed &amp; Insured</div></div>
+</div>
+
+</body>
+</html>

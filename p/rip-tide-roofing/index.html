@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rip Tide Roofing | Boynton Beach, FL | 5-Star Rated</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue: #0a4d6b;
+      --orange: #f4a142;
+      --sky: #f0f7fa;
+      --dark: #0d1f2d;
+      --white: #ffffff;
+    }
+    body { font-family: 'Inter', sans-serif; color: var(--dark); background: var(--white); }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--blue);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 68px;
+    }
+    .nav-logo { font-family: 'Sora', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.01em; }
+    .nav-logo .wave { color: var(--orange); }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-phone { color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 600; text-decoration: none; }
+    .nav-cta { background: var(--orange); color: var(--white); font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; }
+
+    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 68px); max-height: 832px; }
+    .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 64px 52px 64px 64px; background: var(--sky); }
+    .hero-stars { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+    .stars-icon { font-size: 20px; letter-spacing: 2px; color: var(--orange); }
+    .stars-label { font-size: 14px; font-weight: 700; color: var(--blue); }
+    .hero-h1 { font-family: 'Sora', sans-serif; font-size: clamp(44px, 4.4vw, 68px); font-weight: 800; line-height: 1.05; color: var(--blue); margin-bottom: 18px; }
+    .hero-h1 .wave { color: var(--orange); }
+    .hero-sub { font-size: 17px; line-height: 1.65; color: #1a3d52; max-width: 420px; margin-bottom: 36px; }
+    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .btn-primary { background: var(--orange); color: var(--white); font-weight: 700; font-size: 15px; padding: 15px 30px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.03em; }
+    .btn-link { color: var(--blue); font-weight: 600; font-size: 15px; text-decoration: none; }
+    .btn-link::after { content: ' →'; }
+
+    .hero-img { position: relative; overflow: hidden; }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .trust-bar { background: var(--blue); display: grid; grid-template-columns: repeat(4, 1fr); }
+    .trust-item { padding: 26px 28px; text-align: center; border-right: 1px solid rgba(255,255,255,0.1); }
+    .trust-item:last-child { border-right: none; }
+    .trust-number { font-family: 'Sora', sans-serif; font-size: 36px; font-weight: 800; color: var(--orange); line-height: 1; margin-bottom: 4px; }
+    .trust-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; max-height: none; }
+      .hero-text { padding: 48px 24px 32px; }
+      .hero-img { height: 280px; }
+      .trust-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Rip<span class="wave">Tide</span> Roofing</div>
+  <div class="nav-right">
+    <a href="tel:5616672515" class="nav-phone">(561) 667-2515</a>
+    <a href="tel:5616672515" class="nav-cta">Free Estimate</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-stars">
+      <span class="stars-icon">★★★★★</span>
+      <span class="stars-label">5.0 · 29 Google Reviews · Boynton Beach</span>
+    </div>
+    <h1 class="hero-h1">Honest <span class="wave">Roofing</span><br>South Florida<br>Counts On</h1>
+    <p class="hero-sub">
+      Doug won't sell you a repair you don't need. 29 five-star reviews say the same thing: straight talk, quality work, clean site. Serving Broward, Palm Beach, and Martin County.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:5616672515" class="btn-primary">Get a Free Estimate</a>
+      <a href="mailto:doug@riptideroofing.org" class="btn-link">Email Doug</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="../../assets/samples/Roofers/68dc031f006dcb683e2a4def_68cae699707e934792d5ce76_image-23.jpeg" alt="Rip Tide Roofing crew working on a South Florida residential roof replacement" loading="eager">
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item"><div class="trust-number">5.0★</div><div class="trust-label">Google Rating</div></div>
+  <div class="trust-item"><div class="trust-number">29</div><div class="trust-label">Verified Reviews</div></div>
+  <div class="trust-item"><div class="trust-number">3</div><div class="trust-label">Counties Served</div></div>
+  <div class="trust-item"><div class="trust-number">100%</div><div class="trust-label">Licensed &amp; Insured</div></div>
+</div>
+
+</body>
+</html>

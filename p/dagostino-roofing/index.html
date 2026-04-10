@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D'Agostino Roofing | Coral Springs, FL | Family Owned Since 1997</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #1a3c1a;
+      --amber: #e8a01c;
+      --cream: #f9f6f0;
+      --dark: #1a1a1a;
+      --white: #ffffff;
+      --mid: #4a6741;
+    }
+    body { font-family: 'Inter', sans-serif; color: var(--dark); background: var(--cream); }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--green);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 68px;
+    }
+    .nav-logo { font-family: 'Montserrat', sans-serif; font-size: 19px; font-weight: 900; color: var(--white); letter-spacing: 0.04em; }
+    .nav-logo span { color: var(--amber); }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-phone { color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 600; text-decoration: none; }
+    .nav-cta { background: var(--amber); color: var(--green); font-weight: 800; font-size: 13px; padding: 10px 22px; border-radius: 4px; text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; }
+
+    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 68px); max-height: 832px; }
+    .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 64px 52px 64px 64px; background: var(--cream); }
+    .hero-tag { display: inline-flex; align-items: center; gap: 6px; background: var(--green); color: var(--white); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; width: fit-content; margin-bottom: 22px; }
+    .hero-h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(42px, 4.2vw, 66px); font-weight: 900; line-height: 1.05; color: var(--green); margin-bottom: 18px; }
+    .hero-h1 em { color: var(--amber); font-style: normal; }
+    .hero-sub { font-size: 17px; line-height: 1.65; color: #3a5235; max-width: 420px; margin-bottom: 36px; }
+    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .btn-primary { background: var(--amber); color: var(--green); font-weight: 800; font-size: 15px; padding: 15px 30px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.03em; }
+    .btn-link { color: var(--green); font-weight: 600; font-size: 15px; text-decoration: none; }
+    .btn-link::after { content: ' →'; }
+
+    .hero-img { position: relative; overflow: hidden; }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+
+    .trust-bar { background: var(--green); display: grid; grid-template-columns: repeat(4, 1fr); }
+    .trust-item { padding: 26px 28px; text-align: center; border-right: 1px solid rgba(255,255,255,0.12); }
+    .trust-item:last-child { border-right: none; }
+    .trust-number { font-family: 'Montserrat', sans-serif; font-size: 36px; font-weight: 900; color: var(--amber); line-height: 1; margin-bottom: 4px; }
+    .trust-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; max-height: none; }
+      .hero-text { padding: 48px 24px 32px; }
+      .hero-img { height: 280px; }
+      .trust-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span>D'Agostino</span> Roofing</div>
+  <div class="nav-right">
+    <a href="tel:9548407000" class="nav-phone">(954) 840-7000</a>
+    <a href="tel:9548407000" class="nav-cta">Free Estimate</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-tag">Coral Springs, FL &nbsp;·&nbsp; Family Owned &nbsp;·&nbsp; 27 Years</div>
+    <h1 class="hero-h1">A Roof<br>Built by <em>Family,</em><br>Built to Last</h1>
+    <p class="hero-sub">
+      Peter D'Agostino started this with his two sons in 1997. Today, 61 Google reviews at 4.5 stars say one thing: when D'Agostino puts on your roof, it stays on.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:9548407000" class="btn-primary">Get a Free Estimate</a>
+      <a href="tel:9548407000" class="btn-link">Call the Family</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="../../assets/samples/Roofers/roofing-operative-ss2502774429.jpg.webp" alt="Expert roofer carefully placing tiles on a Coral Springs home for D'Agostino Roofing" loading="eager">
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item"><div class="trust-number">4.5★</div><div class="trust-label">Google Rating</div></div>
+  <div class="trust-item"><div class="trust-number">61</div><div class="trust-label">Verified Reviews</div></div>
+  <div class="trust-item"><div class="trust-number">27</div><div class="trust-label">Years in Business</div></div>
+  <div class="trust-item"><div class="trust-number">A+</div><div class="trust-label">BBB Accredited</div></div>
+</div>
+
+</body>
+</html>

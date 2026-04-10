@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jovil Roofing Corp | Deerfield Beach, FL | 4.4 Stars Google Rated</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --teal: #1c4a45;
+      --amber: #f59e2a;
+      --white: #ffffff;
+      --dark: #0f1f1c;
+      --light: #edf5f4;
+    }
+    body { font-family: 'DM Sans', sans-serif; color: var(--dark); background: var(--white); }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--teal);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 68px;
+    }
+    .nav-logo { font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.02em; }
+    .nav-logo span { color: var(--amber); }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-phone { color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 600; text-decoration: none; }
+    .nav-cta { background: var(--amber); color: var(--teal); font-weight: 800; font-size: 13px; padding: 10px 22px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; }
+
+    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 68px); max-height: 832px; }
+    .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 64px 52px 64px 64px; background: var(--light); }
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--teal); color: var(--white); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; width: fit-content; margin-bottom: 20px; }
+    .hero-h1 { font-size: clamp(44px, 4.4vw, 68px); font-weight: 800; line-height: 1.05; color: var(--teal); margin-bottom: 18px; }
+    .hero-h1 em { color: var(--amber); font-style: normal; }
+    .hero-sub { font-size: 17px; line-height: 1.65; color: #2a5045; max-width: 420px; margin-bottom: 36px; }
+    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .btn-primary { background: var(--teal); color: var(--white); font-weight: 700; font-size: 15px; padding: 15px 30px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.03em; }
+    .btn-link { color: var(--teal); font-weight: 600; font-size: 15px; text-decoration: none; border-bottom: 2px solid var(--amber); padding-bottom: 1px; }
+
+    .hero-img { position: relative; overflow: hidden; }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .trust-bar { background: var(--teal); display: grid; grid-template-columns: repeat(4, 1fr); }
+    .trust-item { padding: 26px 28px; text-align: center; border-right: 1px solid rgba(255,255,255,0.1); }
+    .trust-item:last-child { border-right: none; }
+    .trust-number { font-size: 36px; font-weight: 800; color: var(--amber); line-height: 1; margin-bottom: 4px; }
+    .trust-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; max-height: none; }
+      .hero-text { padding: 48px 24px 32px; }
+      .hero-img { height: 280px; }
+      .trust-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span>Jovil</span> Roofing Corp</div>
+  <div class="nav-right">
+    <a href="tel:9542634994" class="nav-phone">(954) 263-4994</a>
+    <a href="tel:9542634994" class="nav-cta">Free Estimate</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">Deerfield Beach, FL &nbsp;·&nbsp; 4.4★ Google &nbsp;·&nbsp; 22 Reviews</div>
+    <h1 class="hero-h1">Roofing That<br><em>Shows Up Early</em><br>and Cleans Up Right</h1>
+    <p class="hero-sub">
+      That's what Jose's customers say, again and again. Deerfield Beach's detail-first roofer. Residential and commercial roofing done the right way.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:9542634994" class="btn-primary">Get Your Free Estimate</a>
+      <a href="tel:9542634994" class="btn-link">Call (954) 263-4994</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="../../assets/samples/Roofers/67c8a027ddc2711c0e6c2bd0_Why Trustworthy Roofers Are Hard To Find Graphic.jpg" alt="Jovil Roofing Corp professional roofer carefully inspecting and repairing a Deerfield Beach roof" loading="eager">
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item"><div class="trust-number">4.4★</div><div class="trust-label">Google Rating</div></div>
+  <div class="trust-item"><div class="trust-number">22</div><div class="trust-label">Verified Reviews</div></div>
+  <div class="trust-item"><div class="trust-number">Owens</div><div class="trust-label">Corning Certified</div></div>
+  <div class="trust-item"><div class="trust-number">100%</div><div class="trust-label">Licensed &amp; Insured</div></div>
+</div>
+
+</body>
+</html>
