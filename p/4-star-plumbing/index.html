@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4 Star Plumbing Services | Fort Lauderdale, FL | Broward's Premier Plumber</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --teal: #0d3a3a;
+      --silver: #c8d8d8;
+      --white: #ffffff;
+      --dark: #0d0d0d;
+    }
+    body { font-family: 'Inter', sans-serif; color: var(--dark); background: #f2f7f7; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--teal);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 68px;
+    }
+    .nav-logo { font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.03em; }
+    .nav-logo span { color: var(--silver); }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-phone { color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 600; text-decoration: none; }
+    .nav-cta { background: var(--silver); color: var(--teal); font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; }
+
+    .hero { position: relative; height: calc(100vh - 68px); overflow: hidden; display: flex; align-items: center; }
+    .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(13,58,58,0.93) 40%, rgba(13,58,58,0.45)); }
+    .hero-content { position: relative; z-index: 1; padding: 0 72px; max-width: 700px; }
+    .hero-eyebrow { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--silver); margin-bottom: 18px; }
+    .hero-h1 { font-family: 'DM Sans', sans-serif; font-size: clamp(48px, 5vw, 76px); font-weight: 900; line-height: 1.04; color: var(--white); margin-bottom: 20px; }
+    .hero-h1 em { color: var(--silver); font-style: normal; }
+    .hero-rule { width: 56px; height: 4px; background: var(--silver); border-radius: 2px; margin-bottom: 22px; }
+    .hero-sub { font-size: 18px; line-height: 1.65; color: rgba(255,255,255,0.85); max-width: 500px; margin-bottom: 38px; }
+    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .btn-primary { background: var(--silver); color: var(--teal); font-weight: 700; font-size: 15px; padding: 16px 32px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.03em; }
+    .btn-ghost { color: var(--white); font-weight: 600; font-size: 15px; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.4); padding-bottom: 2px; }
+
+    .trust-bar { background: var(--silver); display: grid; grid-template-columns: repeat(4, 1fr); }
+    .trust-item { padding: 24px 20px; text-align: center; border-right: 1px solid rgba(13,58,58,0.15); }
+    .trust-item:last-child { border-right: none; }
+    .trust-label-top { font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 800; color: var(--teal); line-height: 1; margin-bottom: 4px; }
+    .trust-label-bot { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(13,58,58,0.7); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .hero-content { padding: 0 24px; }
+      .trust-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span>4 Star</span> Plumbing Services</div>
+  <div class="nav-right">
+    <a href="tel:9547769888" class="nav-phone">(954) 776-9888</a>
+    <a href="tel:9547769888" class="nav-cta">Free Estimate</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <img class="hero-bg" src="../../assets/samples/Plumbers/plumber-using-wrench.jpg.webp" alt="4 Star Plumbing Services expert plumbing in Fort Lauderdale" loading="eager">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Fort Lauderdale, FL &nbsp;·&nbsp; Sean Hasle &nbsp;·&nbsp; Broward County</div>
+    <h1 class="hero-h1">Broward County's<br><em>Premier</em><br>Plumbing Service.</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">Sean Hasle has built one of the most trusted plumbing operations in South Florida. Customers call 4 Star for the complicated jobs other plumbers won't touch.</p>
+    <div class="hero-actions">
+      <a href="tel:9547769888" class="btn-primary">Get a Free Estimate</a>
+      <a href="tel:9547769888" class="btn-ghost">Call Sean</a>
+    </div>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item"><div class="trust-label-top">Top Rated</div><div class="trust-label-bot">Broward County</div></div>
+  <div class="trust-item"><div class="trust-label-top">24/7</div><div class="trust-label-bot">Emergency Service</div></div>
+  <div class="trust-item"><div class="trust-label-top">Free</div><div class="trust-label-bot">Estimates</div></div>
+  <div class="trust-item"><div class="trust-label-top">100%</div><div class="trust-label-bot">Licensed &amp; Insured</div></div>
+</div>
+
+</body>
+</html>
