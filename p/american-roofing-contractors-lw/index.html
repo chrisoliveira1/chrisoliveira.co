@@ -6,107 +6,51 @@
   <title>American Roofing Contractors | Lake Worth, FL | Since 1981</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Open+Sans:wght@400;600;700&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Open+Sans:wght@400;600;700&display=swap">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800;900&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800;900&family=Inter:wght@400;500;600;700&display=swap">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --navy: #010171;
-      --teal: #68ccd1;
-      --gold: #ffcc09;
+      --char: #1e1410;
+      --brick: #b84c2c;
+      --cream: #faf6f1;
+      --tan: #e8e0d5;
+      --dark: #1a1210;
       --white: #ffffff;
-      --dark: #000001;
     }
-    body { font-family: 'Open Sans', sans-serif; color: var(--dark); background: var(--white); }
+    body { font-family: 'Inter', sans-serif; color: var(--dark); background: var(--cream); }
 
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: var(--navy);
+      background: var(--char);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 48px; height: 68px;
     }
-    .nav-logo {
-      font-family: 'Merriweather', serif;
-      font-size: 17px; font-weight: 900;
-      color: var(--white); letter-spacing: 0.02em;
-      line-height: 1.2;
-    }
-    .nav-logo span { color: var(--gold); }
-    .nav-right { display: flex; align-items: center; gap: 24px; }
-    .nav-phone { color: var(--teal); font-size: 15px; font-weight: 700; text-decoration: none; }
-    .nav-cta {
-      background: var(--gold); color: var(--navy);
-      font-weight: 700; font-size: 13px; letter-spacing: 0.05em;
-      padding: 10px 22px; border-radius: 3px;
-      text-decoration: none; text-transform: uppercase;
-    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: var(--white); letter-spacing: 0.02em; line-height: 1.25; }
+    .nav-logo span { color: var(--brick); }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-phone { color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 600; text-decoration: none; }
+    .nav-cta { background: var(--brick); color: var(--white); font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 3px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; }
 
-    .hero {
-      display: grid; grid-template-columns: 1fr 1fr;
-      min-height: calc(100vh - 68px); max-height: 832px;
-      background: #f0f4f8;
-    }
-    .hero-text {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 64px 52px 64px 64px;
-      background: var(--navy);
-    }
-    .hero-eyebrow {
-      font-size: 12px; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--teal); margin-bottom: 18px;
-    }
-    .hero-h1 {
-      font-family: 'Merriweather', serif;
-      font-size: clamp(36px, 3.8vw, 58px);
-      font-weight: 900; line-height: 1.15;
-      color: var(--white);
-      margin-bottom: 16px;
-    }
-    .hero-h1 .accent { color: var(--gold); }
-    .hero-divider {
-      width: 60px; height: 4px;
-      background: var(--gold); border-radius: 2px;
-      margin-bottom: 20px;
-    }
-    .hero-sub {
-      font-size: 17px; line-height: 1.7;
-      color: rgba(255,255,255,0.8);
-      max-width: 420px; margin-bottom: 36px;
-    }
+    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 68px); max-height: 832px; }
+    .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 64px 52px 64px 64px; background: var(--char); }
+    .hero-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brick); margin-bottom: 18px; }
+    .hero-h1 { font-family: 'Playfair Display', serif; font-size: clamp(40px, 4vw, 62px); font-weight: 900; line-height: 1.1; color: var(--white); margin-bottom: 20px; }
+    .hero-h1 em { color: var(--brick); font-style: normal; }
+    .hero-divider { width: 56px; height: 4px; background: var(--brick); border-radius: 2px; margin-bottom: 22px; }
+    .hero-sub { font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.78); max-width: 420px; margin-bottom: 36px; }
     .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--gold); color: var(--navy);
-      font-weight: 700; font-size: 15px;
-      padding: 15px 30px; border-radius: 3px;
-      text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em;
-    }
-    .btn-ghost {
-      color: var(--teal); font-weight: 600; font-size: 15px;
-      text-decoration: none; border-bottom: 2px solid var(--teal); padding-bottom: 2px;
-    }
+    .btn-primary { background: var(--brick); color: var(--white); font-weight: 700; font-size: 15px; padding: 15px 30px; border-radius: 3px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; }
+    .btn-ghost { color: var(--white); font-weight: 600; font-size: 15px; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.35); padding-bottom: 2px; }
 
     .hero-img { position: relative; overflow: hidden; }
     .hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    .trust-bar {
-      background: var(--teal);
-      display: grid; grid-template-columns: repeat(4, 1fr);
-    }
-    .trust-item {
-      padding: 26px 28px; text-align: center;
-      border-right: 1px solid rgba(1,1,113,0.2);
-    }
+    .trust-bar { background: var(--brick); display: grid; grid-template-columns: repeat(4, 1fr); }
+    .trust-item { padding: 26px 28px; text-align: center; border-right: 1px solid rgba(255,255,255,0.2); }
     .trust-item:last-child { border-right: none; }
-    .trust-number {
-      font-family: 'Merriweather', serif;
-      font-size: 34px; font-weight: 900;
-      color: var(--navy); line-height: 1; margin-bottom: 4px;
-    }
-    .trust-label {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--navy);
-    }
+    .trust-number { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--white); line-height: 1; margin-bottom: 4px; }
+    .trust-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.82); }
 
     @media (max-width: 768px) {
       nav { padding: 0 20px; }
@@ -130,11 +74,7 @@
 <section class="hero">
   <div class="hero-text">
     <div class="hero-eyebrow">Lake Worth, FL &nbsp;·&nbsp; Est. 1981 &nbsp;·&nbsp; 3rd Generation</div>
-    <h1 class="hero-h1">
-      <span class="accent">43 Years</span><br>
-      of Roofing<br>
-      Lake Worth Trusts
-    </h1>
+    <h1 class="hero-h1"><em>43 Years</em><br>of Roofing<br>Lake Worth Trusts</h1>
     <div class="hero-divider"></div>
     <p class="hero-sub">
       Frank Quarles Jr. learned this trade from his father, who learned it from his. Three generations of quality and honesty — your neighbors know the name.
@@ -145,27 +85,15 @@
     </div>
   </div>
   <div class="hero-img">
-    <img src="../../assets/samples/Roofers/67c8a027ddc2711c0e6c2bd0_Why Trustworthy Roofers Are Hard To Find Graphic.jpg" alt="Experienced roofer inspecting and replacing roof at American Roofing Contractors Lake Worth FL" loading="eager">
+    <img src="../../assets/samples/Roofers/67c8a027ddc2711c0e6c2bd0_Why Trustworthy Roofers Are Hard To Find Graphic.jpg" alt="Experienced roofer from American Roofing Contractors inspecting a roof in Lake Worth FL" loading="eager">
   </div>
 </section>
 
 <div class="trust-bar">
-  <div class="trust-item">
-    <div class="trust-number">43</div>
-    <div class="trust-label">Years Serving South FL</div>
-  </div>
-  <div class="trust-item">
-    <div class="trust-number">3rd</div>
-    <div class="trust-label">Generation Roofer</div>
-  </div>
-  <div class="trust-item">
-    <div class="trust-number">A+</div>
-    <div class="trust-label">BBB Rated</div>
-  </div>
-  <div class="trust-item">
-    <div class="trust-number">100%</div>
-    <div class="trust-label">Licensed &amp; Insured</div>
-  </div>
+  <div class="trust-item"><div class="trust-number">43</div><div class="trust-label">Years Serving South FL</div></div>
+  <div class="trust-item"><div class="trust-number">3rd</div><div class="trust-label">Generation Roofer</div></div>
+  <div class="trust-item"><div class="trust-number">A+</div><div class="trust-label">BBB Rated</div></div>
+  <div class="trust-item"><div class="trust-number">100%</div><div class="trust-label">Licensed &amp; Insured</div></div>
 </div>
 
 </body>
