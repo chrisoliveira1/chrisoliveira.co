@@ -11,39 +11,39 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --charcoal: #1e2530;
-      --green: #3a9e5f;
+      --cyan: #00bfff;
+      --teal: #007ea1;
       --white: #ffffff;
       --dark: #0d0d0d;
     }
-    body { font-family: 'Inter', sans-serif; color: var(--dark); background: #f3f7f4; }
+    body { font-family: 'Inter', sans-serif; color: var(--dark); background: #f0faff; }
 
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: var(--charcoal);
+      background: var(--cyan);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 48px; height: 68px;
     }
     .nav-logo { font-family: 'Work Sans', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.03em; }
-    .nav-logo span { color: var(--green); }
+    .nav-logo span { color: rgba(255,255,255,0.85); }
     .nav-right { display: flex; align-items: center; gap: 20px; }
-    .nav-phone { color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 600; text-decoration: none; }
-    .nav-cta { background: var(--green); color: var(--white); font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; }
+    .nav-phone { color: rgba(255,255,255,0.9); font-size: 15px; font-weight: 600; text-decoration: none; }
+    .nav-cta { background: var(--teal); color: var(--white); font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; }
 
     .hero { position: relative; height: calc(100vh - 68px); overflow: hidden; display: flex; align-items: center; }
     .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(30,37,48,0.93) 40%, rgba(30,37,48,0.45)); }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,126,161,0.93) 40%, rgba(0,191,255,0.55)); }
     .hero-content { position: relative; z-index: 1; padding: 0 72px; max-width: 700px; }
-    .hero-eyebrow { font-family: 'Work Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 18px; }
+    .hero-eyebrow { font-family: 'Work Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 18px; }
     .hero-h1 { font-family: 'Work Sans', sans-serif; font-size: clamp(48px, 5vw, 76px); font-weight: 900; line-height: 1.04; color: var(--white); margin-bottom: 20px; }
-    .hero-h1 em { color: var(--green); font-style: normal; }
-    .hero-rule { width: 56px; height: 4px; background: var(--green); border-radius: 2px; margin-bottom: 22px; }
-    .hero-sub { font-size: 18px; line-height: 1.65; color: rgba(255,255,255,0.85); max-width: 500px; margin-bottom: 38px; }
+    .hero-h1 em { color: var(--cyan); font-style: normal; }
+    .hero-rule { width: 56px; height: 4px; background: var(--cyan); border-radius: 2px; margin-bottom: 22px; }
+    .hero-sub { font-size: 18px; line-height: 1.65; color: rgba(255,255,255,0.88); max-width: 500px; margin-bottom: 38px; }
     .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-    .btn-primary { background: var(--green); color: var(--white); font-weight: 700; font-size: 15px; padding: 16px 32px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.03em; }
+    .btn-primary { background: var(--cyan); color: var(--teal); font-weight: 700; font-size: 15px; padding: 16px 32px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.03em; }
     .btn-ghost { color: var(--white); font-weight: 600; font-size: 15px; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.4); padding-bottom: 2px; }
 
-    .trust-bar { background: var(--green); display: grid; grid-template-columns: repeat(4, 1fr); }
+    .trust-bar { background: var(--teal); display: grid; grid-template-columns: repeat(4, 1fr); }
     .trust-item { padding: 24px 20px; text-align: center; border-right: 1px solid rgba(255,255,255,0.25); }
     .trust-item:last-child { border-right: none; }
     .trust-label-top { font-family: 'Work Sans', sans-serif; font-size: 22px; font-weight: 800; color: var(--white); line-height: 1; margin-bottom: 4px; }
