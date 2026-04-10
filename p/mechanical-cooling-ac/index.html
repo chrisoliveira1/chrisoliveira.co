@@ -31,7 +31,7 @@
     .nav-phone { color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 600; text-decoration: none; }
     .nav-cta { background: var(--teal); color: var(--gunmetal); font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; }
 
-    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 68px); max-height: 832px; }
+    .hero { display: grid; grid-template-columns: 1fr 1fr; height: calc(100vh - 68px); }
     .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 64px 52px 64px 64px; background: var(--gunmetal); }
     .hero-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; }
     .hero-h1 { font-family: 'Nunito Sans', sans-serif; font-size: clamp(44px, 4.4vw, 68px); font-weight: 900; line-height: 1.06; color: var(--white); margin-bottom: 20px; }
@@ -48,12 +48,12 @@
     .trust-bar { background: var(--teal); display: grid; grid-template-columns: repeat(4, 1fr); }
     .trust-item { padding: 26px 28px; text-align: center; border-right: 1px solid rgba(45,49,66,0.2); }
     .trust-item:last-child { border-right: none; }
-    .trust-number { font-family: 'Nunito Sans', sans-serif; font-size: 36px; font-weight: 900; color: var(--gunmetal); line-height: 1; margin-bottom: 4px; }
+    .trust-number { font-family: 'Nunito Sans', sans-serif; font-size: 28px; font-weight: 900; color: var(--gunmetal); line-height: 1; margin-bottom: 4px; }
     .trust-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(45,49,66,0.75); }
 
     @media (max-width: 768px) {
       nav { padding: 0 20px; }
-      .hero { grid-template-columns: 1fr; min-height: auto; max-height: none; }
+      .hero { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
       .hero-text { padding: 48px 24px 32px; }
       .hero-img { height: 280px; }
       .trust-bar { grid-template-columns: repeat(2, 1fr); }
@@ -73,10 +73,10 @@
 <section class="hero">
   <div class="hero-text">
     <div class="hero-eyebrow">Margate, FL &nbsp;·&nbsp; Broward County &nbsp;·&nbsp; 24-Hour Service</div>
-    <h1 class="hero-h1">5.0 Stars.<br><em>51 Times.</em><br>No Exceptions.</h1>
+    <h1 class="hero-h1">Residential &amp; Commercial<br><em>HVAC Done</em><br>Right the First Time.</h1>
     <div class="hero-rule"></div>
     <p class="hero-sub">
-      Five stars across every single review. Residential, commercial, and complex mechanical systems done right the first time. South Florida's standard for precise HVAC work.
+      Residential, commercial, and complex mechanical systems handled with precision. South Florida's standard for HVAC work that actually lasts.
     </p>
     <div class="hero-actions">
       <a href="tel:9543972527" class="btn-primary">Get a Free Estimate</a>
@@ -89,9 +89,9 @@
 </section>
 
 <div class="trust-bar">
-  <div class="trust-item"><div class="trust-number">5.0★</div><div class="trust-label">Google Rating</div></div>
-  <div class="trust-item"><div class="trust-number">51</div><div class="trust-label">Verified Reviews</div></div>
   <div class="trust-item"><div class="trust-number">24/7</div><div class="trust-label">Emergency Service</div></div>
+  <div class="trust-item"><div class="trust-number">Free</div><div class="trust-label">Estimates</div></div>
+  <div class="trust-item"><div class="trust-number">Local</div><div class="trust-label">Broward County</div></div>
   <div class="trust-item"><div class="trust-number">100%</div><div class="trust-label">Licensed &amp; Insured</div></div>
 </div>
 
