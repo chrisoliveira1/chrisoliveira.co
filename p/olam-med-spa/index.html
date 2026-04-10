@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Olam Med Spa — Pembroke Pines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Nunito:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Nunito:wght@300;400;500&display=swap">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal: #5a99be;
+    --teal-deep: #2d6a8a;
+    --teal-light: #8bc4db;
+    --pink: #e2498a;
+    --dark: #1a2a35;
+    --white: #ffffff;
+    --off-white: #f4f8fb;
+    --nav-h: 68px;
+  }
+  body { font-family: 'Nunito', sans-serif; background: var(--off-white); color: var(--dark); -webkit-font-smoothing: antialiased; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(90,153,190,0.2);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--teal-deep); text-decoration: none;
+  }
+  .nav-logo span { font-style: italic; color: var(--pink); font-weight: 400; }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--dark); text-decoration: none; font-weight: 400; opacity: 0.6; }
+  .nav-cta {
+    background: var(--teal-deep); color: var(--white);
+    font-size: 11px; font-weight: 500; letter-spacing: 0.11em; text-transform: uppercase;
+    padding: 10px 22px; text-decoration: none; border-radius: 3px;
+  }
+
+  .hero {
+    position: relative;
+    height: calc(100vh - var(--nav-h));
+    margin-top: var(--nav-h);
+    overflow: hidden;
+    display: flex; align-items: center;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 25%;
+    display: block;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(26,42,53,0.90) 40%, rgba(45,106,138,0.52) 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    padding: 0 72px; max-width: 660px;
+  }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--teal-light); margin-bottom: 18px; font-weight: 400;
+  }
+  .hero-content h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 5vw, 64px);
+    font-weight: 300; line-height: 1.1;
+    color: var(--white); margin-bottom: 20px;
+  }
+  .hero-content h1 em { font-style: italic; color: #f8a0c8; }
+  .hero-sub {
+    font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.73);
+    max-width: 470px; margin-bottom: 36px; font-weight: 300;
+  }
+  .hero-btn {
+    display: inline-block;
+    background: var(--pink); color: var(--white);
+    font-size: 11px; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase;
+    padding: 14px 34px; text-decoration: none; border-radius: 3px;
+  }
+
+  .trust-bar {
+    background: var(--teal-deep);
+    padding: 18px 72px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 0 32px;
+    border-right: 1px solid rgba(255,255,255,0.15);
+  }
+  .trust-item:last-child { border-right: none; }
+  .trust-icon { color: var(--teal-light); font-size: 14px; }
+  .trust-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero-content { padding: 0 24px; }
+    .hero-content h1 { font-size: 34px; }
+    .trust-bar { flex-wrap: wrap; padding: 16px 20px; gap: 8px; }
+    .trust-item { border-right: none; padding: 6px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Olam <span>Med Spa</span></a>
+  <div class="nav-links">
+    <a href="#">Treatments</a>
+    <a href="#">About</a>
+    <a href="#">Press</a>
+    <a href="#" class="nav-cta">Book Now</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <img class="hero-bg" src="../../assets/samples/medspa/interior-1.jpg" alt="Expert aesthetic treatments at Olam Med Spa Pembroke Pines" loading="eager">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Pembroke Pines &bull; As Seen in Forbes &amp; Telemundo</p>
+    <h1>Results That Speak <em>for Themselves</em></h1>
+    <p class="hero-sub">With 322 five-star reviews and features in Forbes, Telemundo, and Univision, Olam Med Spa is the Pembroke Pines practice patients trust for injectables, laser, and body treatments that actually deliver.</p>
+    <a href="tel:+19549066216" class="hero-btn">Book a Consultation</a>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item">
+    <span class="trust-icon">&#10022;</span>
+    <span class="trust-label">4.9★ Rated</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">&#10022;</span>
+    <span class="trust-label">Forbes Featured</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">&#10022;</span>
+    <span class="trust-label">322 Reviews</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">&#10022;</span>
+    <span class="trust-label">Pembroke Pines</span>
+  </div>
+</div>
+
+</body>
+</html>

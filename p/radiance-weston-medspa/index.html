@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Radiance Weston Medspa — Weston</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500&display=swap">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --purple: #6c2c84;
+    --purple-deep: #4a1a5c;
+    --purple-light: #9b5ab8;
+    --gold: #f2a023;
+    --gold-light: #f7c068;
+    --white: #ffffff;
+    --cream: #fdfaf6;
+    --dark: #1a0e22;
+    --nav-h: 68px;
+  }
+  body { font-family: 'Montserrat', sans-serif; background: var(--cream); color: var(--dark); -webkit-font-smoothing: antialiased; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    background: rgba(253,250,246,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(108,44,132,0.15);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px; font-weight: 400; letter-spacing: 0.05em;
+    color: var(--purple-deep); text-decoration: none;
+  }
+  .nav-logo span { font-style: italic; color: var(--gold); }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dark); text-decoration: none; font-weight: 400; opacity: 0.65; }
+  .nav-cta {
+    background: var(--purple); color: var(--white);
+    font-size: 10px; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase;
+    padding: 10px 22px; text-decoration: none; border-radius: 2px;
+  }
+
+  .hero {
+    position: relative;
+    height: calc(100vh - var(--nav-h));
+    margin-top: var(--nav-h);
+    overflow: hidden;
+    display: flex; align-items: center;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 40%;
+    display: block;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(74,26,92,0.92) 38%, rgba(108,44,132,0.55) 75%, rgba(242,160,35,0.12) 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    padding: 0 72px; max-width: 680px;
+  }
+  .eyebrow {
+    font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 20px; font-weight: 500;
+  }
+  .hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 5.2vw, 65px);
+    font-weight: 400; line-height: 1.1;
+    color: var(--white); margin-bottom: 20px;
+  }
+  .hero-content h1 em { font-style: italic; color: var(--gold-light); }
+  .hero-sub {
+    font-size: 14px; line-height: 1.72; color: rgba(255,255,255,0.72);
+    max-width: 460px; margin-bottom: 36px; font-weight: 300; letter-spacing: 0.01em;
+  }
+  .hero-btn {
+    display: inline-block;
+    background: var(--gold); color: var(--dark);
+    font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 14px 36px; text-decoration: none; border-radius: 2px;
+  }
+
+  .trust-bar {
+    background: var(--purple-deep);
+    padding: 18px 72px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 0 32px;
+    border-right: 1px solid rgba(242,160,35,0.2);
+  }
+  .trust-item:last-child { border-right: none; }
+  .trust-icon { color: var(--gold); font-size: 14px; }
+  .trust-label { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero-content { padding: 0 24px; }
+    .hero-content h1 { font-size: 34px; }
+    .trust-bar { flex-wrap: wrap; padding: 16px 20px; gap: 8px; }
+    .trust-item { border-right: none; padding: 6px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Radiance <span>Weston</span></a>
+  <div class="nav-links">
+    <a href="#">Services</a>
+    <a href="#">About</a>
+    <a href="#">Awards</a>
+    <a href="#" class="nav-cta">Book Now</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <img class="hero-bg" src="../../assets/samples/medspa/cta.jpg" alt="Award-winning med spa treatments at Radiance Weston" loading="eager">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Weston &bull; Best Medspa 5 Consecutive Years</p>
+    <h1>Weston's Most <em>Awarded</em> Med Spa</h1>
+    <p class="hero-sub">Since 2006, Dr. Faiza Khalid and the Radiance team have delivered the results Weston residents trust most — voted Best Medspa five years running for a reason.</p>
+    <a href="tel:+19546590199" class="hero-btn">Schedule a Consultation</a>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item">
+    <span class="trust-icon">&#10022;</span>
+    <span class="trust-label">Best of Weston</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">&#10022;</span>
+    <span class="trust-label">Dr. Khalid, MD</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">&#10022;</span>
+    <span class="trust-label">Since 2006</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">&#10022;</span>
+    <span class="trust-label">Weston, FL</span>
+  </div>
+</div>
+
+</body>
+</html>

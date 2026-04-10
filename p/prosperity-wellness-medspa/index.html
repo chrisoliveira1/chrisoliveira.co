@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prosperity Wellness &amp; Medspa — Hallandale Beach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --champagne: #c8a96e;
+    --champagne-light: #e8d5a8;
+    --warm-dark: #2a2218;
+    --dark-mid: #3d3225;
+    --cream: #fdfaf4;
+    --white: #ffffff;
+    --sand: #f5efe3;
+    --nav-h: 68px;
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--warm-dark); -webkit-font-smoothing: antialiased; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    background: rgba(253,250,244,0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(200,169,110,0.22);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 400; letter-spacing: 0.05em;
+    color: var(--warm-dark); text-decoration: none;
+  }
+  .nav-logo span { font-style: italic; color: var(--champagne); }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--warm-dark); text-decoration: none; font-weight: 400; opacity: 0.6; }
+  .nav-cta {
+    background: var(--champagne); color: var(--warm-dark);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.11em; text-transform: uppercase;
+    padding: 10px 22px; text-decoration: none; border-radius: 2px;
+  }
+
+  .hero {
+    position: relative;
+    height: calc(100vh - var(--nav-h));
+    margin-top: var(--nav-h);
+    overflow: hidden;
+    display: flex; align-items: center;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 35%;
+    display: block;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(42,34,24,0.91) 38%, rgba(61,50,37,0.55) 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    padding: 0 72px; max-width: 660px;
+  }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--champagne-light); margin-bottom: 18px; font-weight: 400;
+  }
+  .hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 5vw, 62px);
+    font-weight: 400; line-height: 1.1;
+    color: var(--white); margin-bottom: 20px;
+  }
+  .hero-content h1 em { font-style: italic; color: var(--champagne-light); }
+  .hero-sub {
+    font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.72);
+    max-width: 460px; margin-bottom: 36px; font-weight: 300;
+  }
+  .hero-btn {
+    display: inline-block;
+    background: var(--champagne); color: var(--warm-dark);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase;
+    padding: 14px 34px; text-decoration: none; border-radius: 2px;
+  }
+
+  .trust-bar {
+    background: var(--dark-mid);
+    border-top: 1px solid rgba(200,169,110,0.2);
+    padding: 18px 72px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 0 32px;
+    border-right: 1px solid rgba(200,169,110,0.2);
+  }
+  .trust-item:last-child { border-right: none; }
+  .trust-icon { color: var(--champagne); font-size: 14px; }
+  .trust-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero-content { padding: 0 24px; }
+    .hero-content h1 { font-size: 34px; }
+    .trust-bar { flex-wrap: wrap; padding: 16px 20px; gap: 8px; }
+    .trust-item { border-right: none; padding: 6px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Prosperity <span>Wellness &amp; Medspa</span></a>
+  <div class="nav-links">
+    <a href="#">Services</a>
+    <a href="#">About</a>
+    <a href="#">Gallery</a>
+    <a href="#" class="nav-cta">Book Now</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <img class="hero-bg" src="../../assets/samples/medspa/interior-2.jpg" alt="Warm welcoming environment at Prosperity Wellness Medspa Hallandale Beach" loading="eager">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Hallandale Beach &bull; Wellness &amp; Aesthetics</p>
+    <h1>Where Every Client Feels <em>Welcome</em></h1>
+    <p class="hero-sub">Prosperity Wellness &amp; Medspa has earned 126 five-star reviews and a reputation for the kind of warmth and expertise that keeps Hallandale Beach clients coming back — and sending everyone they know.</p>
+    <a href="tel:+19543930300" class="hero-btn">Book a Visit</a>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item">
+    <span class="trust-icon">&#10022;</span>
+    <span class="trust-label">4.9★ Rated</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">&#10022;</span>
+    <span class="trust-label">126 Reviews</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">&#10022;</span>
+    <span class="trust-label">Expert Care</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">&#10022;</span>
+    <span class="trust-label">Hallandale Beach</span>
+  </div>
+</div>
+
+</body>
+</html>
