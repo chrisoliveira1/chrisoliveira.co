@@ -1,0 +1,1575 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SFL Agency — Leads Dashboard</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --line:#262a35; --text:#e7e9ee;
+    --muted:#8b93a7; --accent:#f4a261; --green:#4ade80; --blue:#60a5fa;
+    --purple:#a78bfa; --red:#f87171; --yellow:#fcd34d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font:14px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;background:var(--bg);color:var(--text)}
+  header{padding:24px 32px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+  h1{margin:0;font-size:20px;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:13px}
+  .counts{display:flex;gap:14px;flex-wrap:wrap}
+  .count{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:12px}
+  .count b{color:var(--accent);margin-right:6px}
+  main{padding:24px 32px}
+  table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);background:#11141a;font-weight:600}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#1b1f28}
+  .name{font-weight:600}
+  .vertical{display:inline-block;padding:2px 8px;border-radius:999px;background:#20252f;color:var(--muted);font-size:11px;margin-top:4px}
+  .stage{display:inline-block;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  .s-researched{background:rgba(96,165,250,.15);color:var(--blue)}
+  .s-designed{background:rgba(167,139,250,.15);color:var(--purple)}
+  .s-reviewed{background:rgba(252,211,77,.15);color:var(--yellow)}
+  .s-teased{background:rgba(244,162,97,.10);color:#c28a52}
+  .s-sent{background:rgba(244,162,97,.18);color:var(--accent)}
+  .s-replied{background:rgba(74,222,128,.15);color:var(--green)}
+  .s-call{background:rgba(74,222,128,.25);color:var(--green)}
+  .s-won{background:rgba(74,222,128,.3);color:#86efac}
+  .s-lost{background:rgba(248,113,113,.15);color:var(--red)}
+  .s-dq{background:rgba(139,147,167,.18);color:var(--muted);text-decoration:line-through}
+  .contact{color:var(--muted);font-size:12px;line-height:1.6}
+  .contact a{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--line)}
+  .contact a:hover{border-color:var(--accent)}
+  .notes{color:var(--muted);font-size:12px;max-width:260px}
+  .empty{text-align:center;padding:48px;color:var(--muted)}
+  footer{padding:16px 32px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);margin-top:24px}
+  code{background:#11141a;padding:2px 6px;border-radius:4px;font-size:11px}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>SFL Agency — Leads Dashboard</h1>
+    <div class="sub">Single source of truth for every lead in the pipeline. Local only, never ships.</div>
+  </div>
+  <div class="counts" id="counts"></div>
+</header>
+
+<main>
+  <table id="tbl">
+    <thead>
+      <tr>
+        <th style="width:22%">Business</th>
+        <th style="width:12%">Stage</th>
+        <th style="width:22%">Contact</th>
+        <th style="width:14%">Pitch URL</th>
+        <th style="width:12%">Last touch</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+</main>
+
+<footer>
+  Edit <code>leads/index.html</code> → the <code>LEADS</code> array near the bottom. Skills (sfl-researcher, designer, reviewer, sdr) append + update rows automatically. Duplicates are checked by <code>slug</code>.
+</footer>
+
+<script>
+// ============================================================
+// LEADS — source of truth. Skills read and append to this array.
+// Stages: researched → designed → reviewed → sent → replied → call → won / lost / dq
+// dq = disqualified at research stage (never pitch, keep for dedupe)
+// ============================================================
+const LEADS = [
+  {
+    slug: "dino-might-kids",
+    name: "Dino-Might Kids Preschool",
+    vertical: "daycare",
+    city: "Boca Raton, FL",
+    stage: "sent",
+    contact: {
+      website: "https://www.dinomightkidspreschool.com",
+      email: "dinomightkidspreschool@gmail.com",
+      phone: "(561) 338-1732",
+      address: "5982 SW 18th Street, Boca Raton, FL 33433",
+      owner: "Ms. Marlene"
+    },
+    pitch_url: "/p/dino-might-kids/",
+    added: "2026-04-08",
+    last_touch: "2026-04-08",
+    notes: "SDR drafted 2026-04-08: Gmail draft live, phone-script.md + gap-analysis.md + loom-script.md + outreach-sms.txt in pitch folder. Awaiting Chris to hit send in Gmail Drafts."
+  },
+  {
+    slug: "apex-gym-and-training",
+    name: "Apex Gym and Training",
+    vertical: "fitness",
+    city: "Oakland Park / Fort Lauderdale, FL",
+    stage: "dq",
+    contact: {
+      website: "https://www.apexgymandtraining.com",
+      email: "customerservice@apexgym.com",
+      phone: "(832) 348-6377",
+      address: "Oakland Park / Fort Lauderdale area",
+      owner: "Dr. Troy Godsey & Dr. Cliff Shapiro (sports rehab + training)"
+    },
+    pitch_url: null,
+    added: "2026-04-08",
+    last_touch: "2026-04-08",
+    notes: "DISQUALIFIED — site was recently rebuilt ('Welcome to Our New Website' page live). Owner just paid for a redesign; not receptive. Do not re-pitch."
+  },
+  {
+    slug: "brightnest-academy",
+    name: "BrightNest Academy",
+    vertical: "daycare",
+    city: "Delray Beach, FL",
+    stage: "dq",
+    contact: {
+      website: "https://www.brightnestacademy.org",
+      email: null,
+      phone: null,
+      address: "Off Lake Ida Rd, Delray Beach, FL",
+      owner: null
+    },
+    pitch_url: null,
+    added: "2026-04-08",
+    last_touch: "2026-04-08",
+    notes: "DQ — site is already modern and well-branded. Owl mascot, clean blue/orange palette, Tour Calendar CTA. Not a pitch target."
+  },
+  {
+    slug: "oxford-academy-delray",
+    name: "Oxford Academy",
+    vertical: "daycare",
+    city: "Delray Beach, FL",
+    stage: "researched",
+    contact: {
+      website: "https://oxforddelray.com",
+      email: null,
+      phone: null,
+      address: "Delray Beach, FL",
+      owner: null
+    },
+    pitch_url: null,
+    added: "2026-04-08",
+    last_touch: "2026-04-08",
+    notes: "NEEDS MANUAL CHECK — site returns SSL/privacy cert error, won't load. Either expired cert (strong pitch signal) or defunct business. Chris to verify active."
+  },
+  {
+    slug: "the-learning-place-preschool",
+    name: "The Learning Place Preschool",
+    vertical: "daycare",
+    city: "Boynton Beach, FL",
+    stage: "researched",
+    contact: {
+      website: "https://www.thelearningplacepreschool.com",
+      email: null,
+      phone: null,
+      address: "Boynton Beach, FL",
+      owner: null
+    },
+    pitch_url: null,
+    added: "2026-04-08",
+    last_touch: "2026-04-08",
+    notes: "PITCH CANDIDATE — dated photo-hero layout, broken text wrapping, unreadable hero copy, dated nav. Authentic local classroom photos. Classic low-tech target. Need email + owner name before building pitch."
+  },
+  {
+    slug: "beautysmart-medical-spa",
+    name: "BeautySmart Medical Spa",
+    vertical: "med-spa",
+    city: "Boca Raton, FL",
+    stage: "researched",
+    contact: {
+      website: "https://beautysmartmd.com",
+      email: "info@beautysmartmd.com",
+      phone: "(561) 990-7294",
+      address: "Boca Raton, FL",
+      owner: "Female/family-owned boutique; ARNP injector w/ OBGYN background, 65+ yrs combined experience"
+    },
+    pitch_url: null,
+    added: "2026-04-08",
+    last_touch: "2026-04-08",
+    notes: "CONDITIONAL PITCH — hero renders nearly blank on load (broken or very slow JS). If real-world UX is this bad, strong pitch target. Chris to verify rendering."
+  },
+  {
+    slug: "everybody-is-beautiful-med-spa",
+    name: "Everybody is Beautiful Med Spa",
+    vertical: "med-spa",
+    city: "Boca Raton, FL",
+    stage: "dq",
+    contact: {
+      website: "https://ebbmedspa.com",
+      email: null,
+      phone: "(561) 756-8550",
+      address: "Boca Raton, FL",
+      owner: null
+    },
+    pitch_url: null,
+    added: "2026-04-08",
+    last_touch: "2026-04-08",
+    notes: "DQ — working modern site, real model photo hero, Book Online CTA, TikTok presence. Colors off-brand for luxe med spa but functionally fine. Not a target."
+  },
+  {
+    slug: "kibali-med-spa",
+    name: "Kibali Med Spa (Dr. Daniel Man)",
+    vertical: "med-spa",
+    city: "Boca Raton, FL",
+    stage: "dq",
+    contact: {
+      website: "https://kibalimedspa.com",
+      email: null,
+      phone: null,
+      address: "Boca Raton, FL",
+      owner: "Dr. Daniel Man (plastic surgeon)"
+    },
+    pitch_url: null,
+    added: "2026-04-08",
+    last_touch: "2026-04-08",
+    notes: "DQ — fully polished modern luxe site (black theme, chat widget, booking, shop, memberships, blog). Mature operation. Hard pass."
+  },
+  {
+    slug: "zaidel-law",
+    name: "Zaidel Law",
+    vertical: "lawyer",
+    city: "Boca Raton, FL",
+    stage: "researched",
+    lane: "tease",
+    contact: {
+      website: "https://www.zaidellaw.com",
+      email: "mzaidel@zaidellaw.com",
+      phone: "(561) 962-4222",
+      address: "Boca Raton, FL",
+      owner: "Michael Zaidel"
+    },
+    pitch_url: null,
+    added: "2026-04-08",
+    last_touch: "2026-04-08",
+    notes: "Tease batch 2026-04-08 | Tier B | 20+ year solo immigration practice, site uses Yahoo YUI CSS from 2014 — frozen in time."
+  },
+  {
+    slug: "boca-delray-attorney-at-law",
+    name: "Boca Delray Attorney at Law",
+    vertical: "lawyer",
+    city: "Boca Raton, FL",
+    stage: "researched",
+    lane: "tease",
+    contact: {
+      website: "https://www.bocadelrayattorneyatlaw.com",
+      email: "pamela@bocadelrayattorneyatlaw.com",
+      phone: "(561) 496-4222",
+      address: "Boca Raton, FL",
+      owner: "Pamela Higer-Polani"
+    },
+    pitch_url: null,
+    added: "2026-04-08",
+    last_touch: "2026-04-08",
+    notes: "Tease batch 2026-04-08 | Tier B | Solo estate and family law practice — Wix template with default stock photos."
+  },
+  {
+    slug: "medgebow-law",
+    name: "Medgebow Law",
+    vertical: "lawyer",
+    city: "Boca Raton, FL",
+    stage: "researched",
+    lane: "tease",
+    contact: {
+      website: "https://medgebowlaw.com",
+      email: "joel@medgebowlaw.com",
+      phone: "(954) 478-4223",
+      address: "Boca Raton, FL",
+      owner: "Joel Medgebow"
+    },
+    pitch_url: null,
+    added: "2026-04-08",
+    last_touch: "2026-04-08",
+    notes: "Tease batch 2026-04-08 | Tier B | 200+ five-star Google reviews but stuck on GoDaddy Website Builder template."
+  },
+  {
+    slug: "rumbak-law",
+    name: "Rumbak Law, P.A.",
+    vertical: "lawyer",
+    city: "Boca Raton, FL",
+    stage: "researched",
+    lane: "tease",
+    contact: {
+      website: "https://www.rumbaklaw.com",
+      email: "info@rumbaklaw.com",
+      phone: "(561) 948-2298",
+      address: "Boca Raton, FL",
+      owner: "Neil Rumbak"
+    },
+    pitch_url: null,
+    added: "2026-04-08",
+    last_touch: "2026-04-08",
+    notes: "Tease batch 2026-04-08 | Tier B | Tax/estate attorney since 2007 — rumbaklaw.com returns 404, clients cannot find him online."
+  },
+  {
+    slug: "brofsky-law-firm",
+    name: "The Law Firm of Adam M. Brofsky, P.A.",
+    vertical: "lawyer",
+    city: "Boca Raton, FL",
+    stage: "researched",
+    lane: "tease",
+    contact: {
+      website: "https://www.brofskylawfirm.com",
+      email: "adam@brofskylawfirm.com",
+      phone: "(561) 577-7762",
+      address: "Boca Raton, FL",
+      owner: "Adam Brofsky"
+    },
+    pitch_url: null,
+    added: "2026-04-08",
+    last_touch: "2026-04-08",
+    notes: "Tease batch 2026-04-08 | Tier A | 42 reviews / 5.0 stars / solo criminal defense / wordpress_broken site with dead social links."
+  },
+  {
+    slug: "friedman-law-firm",
+    name: "The Friedman Law Firm, P.A.",
+    vertical: "lawyer",
+    city: "Boca Raton, FL",
+    stage: "researched",
+    lane: "tease",
+    contact: {
+      website: "https://www.thefriedman-lawfirm.com",
+      email: "info@thefriedman-lawfirm.com",
+      phone: "(561) 394-8235",
+      address: "Boca Raton, FL",
+      owner: "Barry Friedman"
+    },
+    pitch_url: null,
+    added: "2026-04-08",
+    last_touch: "2026-04-08",
+    notes: "Tease batch 2026-04-08 | Tier B | 22 reviews / 4.8 stars / dated legal template site with generic stock photos."
+  },
+  {
+    slug: "wender-law",
+    name: "Wender Law, P.A.",
+    vertical: "lawyer",
+    city: "Boca Raton, FL",
+    stage: "researched",
+    lane: "tease",
+    contact: {
+      website: "https://wenderlawpa.com",
+      email: "jrw@wenderlawpa.com",
+      phone: "(561) 272-9510",
+      address: "Boca Raton, FL",
+      owner: "Jane-Robin Wender"
+    },
+    pitch_url: null,
+    added: "2026-04-08",
+    last_touch: "2026-04-08",
+    notes: "Tease batch 2026-04-08 | Tier B | Board-certified top 3% FL workers comp attorneys since 1992 — site copyright 2018, layout matches."
+  },
+  {
+    slug: "leslie-duberstein-glenn",
+    name: "Leslie Duberstein Glenn, P.A.",
+    vertical: "lawyer",
+    city: "Boca Raton, FL",
+    stage: "researched",
+    lane: "tease",
+    contact: {
+      website: "https://lesliedubersteinglenn.com",
+      email: "Leslieg@ldgpa.com",
+      phone: "(561) 361-1381",
+      address: "Boca Raton, FL",
+      owner: "Leslie Glenn"
+    },
+    pitch_url: null,
+    added: "2026-04-08",
+    last_touch: "2026-04-08",
+    notes: "Tease batch 2026-04-08 | Tier B | Personal injury advocate since 1994 — 30+ years in Boca Raton — site last updated 2018."
+  },
+  {
+    slug: "professional-services-contracting",
+    name: "Professional Services Contracting",
+    vertical: "gc",
+    city: "Boynton Beach, FL",
+    stage: "teased",
+    lane: "tease",
+    contact: {
+      website: null,
+      email: "nick@professional-services.com",
+      phone: "(561) 664-4368",
+      address: "Boynton Beach, FL",
+      owner: "Nick"
+    },
+    pitch_url: null,
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-08-gc-boca | Tier B | Founded NY 1994, relocated SFL, 35+ yr owner-managed GC. Wix template site. Draft r-2120123448784094164."
+  },
+  {
+    slug: "cambridge-construction",
+    name: "Cambridge Construction LLC",
+    vertical: "gc",
+    city: "West Palm Beach, FL",
+    stage: "teased",
+    lane: "tease",
+    contact: {
+      website: "https://cambridgebuild.com",
+      email: "info@cambridgebuild.com",
+      phone: "(561) 784-3722",
+      address: "West Palm Beach, FL",
+      owner: "Chris"
+    },
+    pitch_url: null,
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-08-gc-boca | Tier A | 3rd-gen builder since 2004. SSL-invalid site. Draft r3473743705638821302. Call script ready."
+  },
+  {
+    slug: "scotty-mac-construction",
+    name: "Scotty Mac Construction Inc.",
+    vertical: "gc",
+    city: "Oakland Park, FL",
+    stage: "teased",
+    lane: "tease",
+    contact: {
+      website: "https://scottymacconstruction.com",
+      email: "info@scottymacconstruction.com",
+      phone: "(954) 480-2876",
+      address: "Oakland Park, FL",
+      owner: "Scotty"
+    },
+    pitch_url: null,
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-08-gc-boca | Tier A | 30+ yr CGC, BBB A+ since 2005, site copyright 2018. Draft r-4407679237070521791. Call script ready."
+  },
+  {
+    slug: "the-remodeling-doctor",
+    name: "The Remodeling Doctor",
+    vertical: "gc",
+    city: "Boynton Beach, FL",
+    stage: "researched",
+    lane: "tease",
+    contact: {
+      website: null,
+      email: "TheRemodelingDoctor@gmail.com",
+      phone: "(561) 369-1836",
+      address: "Boynton Beach, FL",
+      owner: null
+    },
+    pitch_url: null,
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-08-gc-boca | Tier B | 25 yr trade, NY to Boynton. WordPress broken. NO DRAFT — owner name not confirmed. Needs manual lookup."
+  },
+  {
+    slug: "pinecrest-construction",
+    name: "Pinecrest Construction",
+    vertical: "gc",
+    city: "Davie, FL",
+    stage: "teased",
+    lane: "tease",
+    contact: {
+      website: "https://pinecrestconstruction.com",
+      email: "info@pinecrestconstruction.com",
+      phone: "(954) 817-3030",
+      address: "Davie, FL",
+      owner: "Steve Gonzalez"
+    },
+    pitch_url: null,
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-08-gc-boca | Tier A | Steve Gonzalez CGC, 40 yr, 150+ projects. Outdated site. Draft r-1112846871456898746. Call script ready."
+  },
+  {
+    slug: "a-to-z-gc",
+    name: "A to Z GC",
+    vertical: "gc",
+    city: "Fort Lauderdale, FL",
+    stage: "researched",
+    lane: "tease",
+    contact: {
+      website: "https://atoz-gc.com",
+      email: "contact@atoz-gc.com",
+      phone: "(954) 994-0914",
+      address: "Fort Lauderdale, FL",
+      owner: null
+    },
+    pitch_url: null,
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-08-gc-boca | Tier A | 231 reviews 4.6 stars, homepage 404. NO DRAFT — owner name not found. HIGH PRIORITY. Call script ready."
+  },
+  {
+    slug: "az-contracting-restoration",
+    name: "AZ Contracting & Restoration",
+    vertical: "gc",
+    city: "Fort Lauderdale, FL",
+    stage: "teased",
+    lane: "tease",
+    contact: {
+      website: "https://sfldesignbuild.com",
+      email: "azemach@gmail.com",
+      phone: "(754) 222-8550",
+      address: "Fort Lauderdale, FL",
+      owner: "Amit Zemach"
+    },
+    pitch_url: null,
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-08-gc-boca | Tier B | RE dev pivot 2016, 5-star rep. Expired SSL cert. Draft r-2413516199072090985."
+  },
+  {
+    slug: "jaimes-construction",
+    name: "Jaimes Construction Services, LLC",
+    vertical: "gc",
+    city: "Palm Springs, FL",
+    stage: "teased",
+    lane: "tease",
+    contact: {
+      website: null,
+      email: "jaimesconstruction@gmail.com",
+      phone: "(561) 248-6241",
+      address: "Palm Springs, FL",
+      owner: "Jaime"
+    },
+    pitch_url: null,
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-08-gc-boca | Tier B | 18 yr family-owned, BBB A+ since 2011, PHP static site. Draft r-4822417581446298670."
+  },
+  {
+    slug: "custom-homes-building",
+    name: "Custom Homes Building & Remodeling",
+    vertical: "gc",
+    city: "Pompano Beach, FL",
+    stage: "teased",
+    lane: "tease",
+    contact: {
+      website: "https://customhomesfla.com",
+      email: "customhomesfl@gmail.com",
+      phone: "(954) 655-6088",
+      address: "Pompano Beach, FL",
+      owner: "Sam Dorvil"
+    },
+    pitch_url: null,
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-08-gc-boca | Tier B | 21 reviews 4.6 stars, site last modified Nov 2022. Draft r1150164886954581195."
+  },
+  {
+    slug: "axe-general-contractor",
+    name: "AXE General Contractor Corp.",
+    vertical: "gc",
+    city: "Pompano Beach, FL",
+    stage: "teased",
+    lane: "tease",
+    contact: {
+      website: "https://axegeneralcontractor.com",
+      email: "cs@axehomeanddesign.com",
+      phone: "(954) 280-5688",
+      address: "Pompano Beach, FL",
+      owner: "Josiane Machado"
+    },
+    pitch_url: null,
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-08-gc-boca | Tier B | 2024 Best of FL Regional Winner. Site ECONNREFUSED (completely down). Draft r4450697437318844028."
+  },
+  {
+    slug: "global-learning-preschool",
+    name: "Global Learning Preschool",
+    vertical: "daycare",
+    city: "Boca Raton, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: null,
+      email: "learnglobal3@gmail.com",
+      phone: "(561) 368-5255",
+      address: "Boca Raton, FL",
+      owner: "Janet Higgins"
+    },
+    pitch_url: "/p/global-learning-preschool/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-09-daycare-sfl | Tier B | 65+ yrs combined staff experience, Gold Seal, outdated_2017 site. Draft r-7898862928575757798."
+  },
+  {
+    slug: "circle-time-preschool",
+    name: "Circle Time Preschool",
+    vertical: "daycare",
+    city: "Pompano Beach, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: null,
+      email: "circletime@bellsouth.net",
+      phone: "(954) 786-0303",
+      address: "Pompano Beach, FL",
+      owner: "Jennifer Moschette"
+    },
+    pitch_url: "/p/circle-time-preschool/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-09-daycare-sfl | Tier B | Gold Seal + NAEYC accredited since 1994, GoDaddy default site. Draft r-4234035834605720053."
+  },
+  {
+    slug: "abc-workshop-lighthouse-point",
+    name: "ABC Workshop of Lighthouse Point",
+    vertical: "daycare",
+    city: "Lighthouse Point, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: "https://abcworkshop.school",
+      email: "info@abcworkshop.school",
+      phone: "(954) 946-3300",
+      address: "Lighthouse Point, FL",
+      owner: "Penny"
+    },
+    pitch_url: "/p/abc-workshop-lighthouse-point/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-09-daycare-sfl | Tier B | Gold Seal since 2008, Wix template site. Draft r4823037529961985245."
+  },
+  {
+    slug: "davinci-preschool-academy",
+    name: "Da Vinci Preschool Academy",
+    vertical: "daycare",
+    city: "Coral Springs, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: "https://davinci-preschool.com",
+      email: "admin@davinci-preschool.com",
+      phone: "(954) 227-8400",
+      address: "Coral Springs, FL",
+      owner: "Angela"
+    },
+    pitch_url: "/p/davinci-preschool-academy/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-09-daycare-sfl | Tier B | Reggio Emilia, 40+ yrs expertise, family-built 2013, outdated site. Draft r7550270575126843824."
+  },
+  {
+    slug: "tiny-blocks-preschool",
+    name: "Tiny Blocks Preschool",
+    vertical: "daycare",
+    city: "Coconut Creek, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: "https://tinyblockspreschool.com",
+      email: "director@tinyblockspreschool.com",
+      phone: "(954) 425-0554",
+      address: "Coconut Creek, FL",
+      owner: "Nathalia Hurtado"
+    },
+    pitch_url: "/p/tiny-blocks-preschool/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-09-daycare-sfl | Tier B | Best Business Coconut Creek 2024, bilingual, Wix template. Draft r-234455619221689178."
+  },
+  {
+    slug: "imk-montessori-kids",
+    name: "International Montessori Kids Center",
+    vertical: "daycare",
+    city: "Deerfield Beach, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: "https://imkpreschool.com",
+      email: "contact@imkpreschool.com",
+      phone: "(954) 482-0880",
+      address: "Deerfield Beach, FL",
+      owner: "Marcos Liberato"
+    },
+    pitch_url: "/p/imk-montessori-kids/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-09-daycare-sfl | Tier B | Marcos + Carolina Liberato, family Montessori, 3 locations, wordpress_underutilized. Draft r-343564156023384816."
+  },
+  {
+    slug: "genius-kids-academy",
+    name: "The Genius Kids Academy",
+    vertical: "daycare",
+    city: "Hallandale Beach, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: "https://geniuskidsacademy.com",
+      email: "Gkapreschool@gmail.com",
+      phone: "(954) 505-4300",
+      address: "Hallandale Beach, FL",
+      owner: "Dr. Nadine Manning"
+    },
+    pitch_url: "/p/genius-kids-academy/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-09-daycare-sfl | Tier B | Dr. Nadine Manning, 10+ yrs, top-rated Hallandale, wordpress_underutilized. Draft r615716953352671449."
+  },
+  {
+    slug: "michelles-learning-house",
+    name: "Michelle's International Learning House",
+    vertical: "daycare",
+    city: "Margate, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: null,
+      email: "michelleslearninghouse@gmail.com",
+      phone: "(954) 972-0437",
+      address: "Margate, FL",
+      owner: "Michelle"
+    },
+    pitch_url: "/p/michelles-learning-house/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-09-daycare-sfl | Tier B | Gold Seal + NECPA accredited, infant thru after-school, wordpress_underutilized. Draft r-7685891534237865834."
+  },
+  {
+    slug: "abcs-of-learning-growing",
+    name: "ABC's of Learning & Growing",
+    vertical: "daycare",
+    city: "North Lauderdale, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: null,
+      email: "info@abcoflearning.com",
+      phone: "(954) 722-7082",
+      address: "North Lauderdale, FL",
+      owner: "Tiffany Romero"
+    },
+    pitch_url: "/p/abcs-of-learning-growing/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-09-daycare-sfl | Tier B | Gold Seal + APPLE accredited, serving N. Lauderdale since 1993, outdated site. Draft r5678810619268547107."
+  },
+  {
+    slug: "hyer-quality-roofing",
+    name: "Hyer Quality Roofing & Construction",
+    vertical: "roofer",
+    city: "Pompano Beach, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: "https://hyerroofing.com",
+      email: "bhyerinc@gmail.com",
+      phone: "(954) 560-6443",
+      address: "Pompano Beach, FL",
+      owner: "William Hyer"
+    },
+    pitch_url: "/p/hyer-quality-roofing/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-09-roofers-sfl | Tier A | 58 reviews 5.0 stars, outdated WordPress 2015, William personally on-site. Navy+orange palette, Bebas Neue."
+  },
+  {
+    slug: "american-roofing-contractors-lw",
+    name: "American Roofing Contractors",
+    vertical: "roofer",
+    city: "Lake Worth, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: "https://americanroofingoriginal.com",
+      email: "americanroofingc@bellsouth.net",
+      phone: "(561) 585-0199",
+      address: "Lake Worth, FL",
+      owner: "Frank Quarles Jr."
+    },
+    pitch_url: "/p/american-roofing-contractors-lw/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-09-roofers-sfl | Tier A | 3rd gen roofer since 1981, Thryv 2000s template. REDESIGNED 2026-04-09: warm charcoal+brick red, Playfair Display — blue scrapped. New draft r-8375259630238083287 to americanroofingc@bellsouth.net."
+  },
+  {
+    slug: "dagostino-roofing",
+    name: "D'Agostino Roofing",
+    vertical: "roofer",
+    city: "Coral Springs, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: "https://dagostinoroofing.com",
+      email: "roof@dagostinoroofing.com",
+      phone: "(954) 840-7000",
+      address: "Coral Springs, FL",
+      owner: "Peter D'Agostino"
+    },
+    pitch_url: "/p/dagostino-roofing/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-09-roofers-sfl | Tier B | 61 reviews 4.5 stars, Wix template. Forest green+amber, Montserrat. Peter+sons since 1997."
+  },
+  {
+    slug: "rip-tide-roofing",
+    name: "Rip Tide Roofing",
+    vertical: "roofer",
+    city: "Boynton Beach, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: "https://riptideroofing.org",
+      email: "doug@riptideroofing.org",
+      phone: "(561) 667-2515",
+      address: "Boynton Beach, FL",
+      owner: "Doug Heinke"
+    },
+    pitch_url: "/p/rip-tide-roofing/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-09-roofers-sfl | Tier B | 29 reviews 5.0 stars, Squarespace outdated. Ocean blue+sandy orange, Sora."
+  },
+  {
+    slug: "brads-roofing-delray",
+    name: "Brad's Roofing Co.",
+    vertical: "roofer",
+    city: "Delray Beach, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: "https://bradsroofingco.com",
+      email: "contact@bradsroofing.net",
+      phone: "(561) 274-3920",
+      address: "Delray Beach, FL",
+      owner: "Brad"
+    },
+    pitch_url: "/p/brads-roofing-delray/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-09-roofers-sfl | Tier B | Since 1981, outdated WordPress CherryFramework. Charcoal+brick red, Oswald."
+  },
+  {
+    slug: "jovil-roofing",
+    name: "Jovil Roofing Corp",
+    vertical: "roofer",
+    city: "Deerfield Beach, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: "https://jovilroofing.com",
+      email: "info@jovilroofing.com",
+      phone: "(954) 263-4994",
+      address: "Deerfield Beach, FL",
+      owner: "Jose Vilchiz"
+    },
+    pitch_url: "/p/jovil-roofing/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-09-roofers-sfl | Tier B | 22 reviews 4.4 stars, WordPress Rooftops template. Deep teal+amber, DM Sans."
+  },
+  {
+    slug: "klr-roofing",
+    name: "KLR Roofing Corp",
+    vertical: "roofer",
+    city: "West Palm Beach, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: "https://klrroofing.com",
+      email: "michael@klrroofing.com",
+      phone: "(561) 603-9914",
+      address: "West Palm Beach, FL",
+      owner: "Michael Fitzpatrick"
+    },
+    pitch_url: "/p/klr-roofing/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-09-roofers-sfl | Tier B | Veteran-owned, WordPress Neve template. Military green+gold, Barlow Condensed."
+  },
+  {
+    slug: "bravos-roofing-wpb",
+    name: "Bravo's Roofing",
+    vertical: "roofer",
+    city: "West Palm Beach, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: "https://bravosroof.com",
+      email: "info@bravosroof.com",
+      phone: "(561) 335-3869",
+      address: "West Palm Beach, FL",
+      owner: "[OWNER — LOOK UP]"
+    },
+    pitch_url: "/p/bravos-roofing-wpb/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-09-roofers-sfl | Tier B | 40+ years family biz, WordPress broken staging links. Mahogany+gold, Raleway."
+  },
+  {
+    slug: "ricketts-roofing",
+    name: "Ricketts Roofing and Construction",
+    vertical: "roofer",
+    city: "Fort Lauderdale, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: "https://rickettsroofing.com",
+      email: "sales@rickettsconstruction.com",
+      phone: "(954) 588-5670",
+      address: "Fort Lauderdale, FL",
+      owner: "Winston Ricketts"
+    },
+    pitch_url: "/p/ricketts-roofing/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Tease batch 2026-04-09-roofers-sfl | Tier B | Winston named in reviews, WordPress Elementor. Slate navy+coral, Work Sans."
+  },
+  {
+    slug: "dan-olsons-ac",
+    name: "Dan Olson's A/C",
+    vertical: "hvac",
+    city: "West Palm Beach, FL",
+    stage: "teased",
+    lane: "tease",
+    contact: {
+      website: null,
+      email: "danolsonac@gmail.com",
+      phone: "(561) 202-6000",
+      address: "West Palm Beach, FL",
+      owner: "Dan Olson"
+    },
+    pitch_url: "/p/dan-olsons-ac/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "HVAC batch 2026-04-09-hvac-sfl | Tier A | 92 reviews 4.79 stars, outdated WP, owner named. Draft r-567089000295219097. Call script ready."
+  },
+  {
+    slug: "razorback-air",
+    name: "Razorback Air",
+    vertical: "hvac",
+    city: "Palm Springs, FL",
+    stage: "teased",
+    lane: "tease",
+    contact: {
+      website: null,
+      email: "admin@razorbackair.com",
+      phone: "(561) 767-5629",
+      address: "Palm Springs, FL",
+      owner: "Derek Lewis"
+    },
+    pitch_url: "/p/razorback-air/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "HVAC batch 2026-04-09-hvac-sfl | Tier A | 113 reviews 5.0 stars, since 1999, outdated site. Draft r-8749317298536481987. Call script ready."
+  },
+  {
+    slug: "expert-air-advice",
+    name: "Expert Air Advice",
+    vertical: "hvac",
+    city: "Fort Lauderdale, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: "https://expertairadvice.com",
+      email: "info@expertairadvice.com",
+      phone: "(954) 764-1990",
+      address: "Fort Lauderdale, FL",
+      owner: "[OWNER — LOOK UP]"
+    },
+    pitch_url: "/p/expert-air-advice/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "HVAC batch 2026-04-09-hvac-sfl | Tier B | 5.0 stars 37 reviews, family-owned since 1986. EMAIL SKIPPED — owner name needed."
+  },
+  {
+    slug: "snell-precision-cooling",
+    name: "Snell Precision Cooling",
+    vertical: "hvac",
+    city: "Margate, FL",
+    stage: "teased",
+    lane: "tease",
+    contact: {
+      website: "https://snellac.com",
+      email: "john@snellac.com",
+      phone: "(954) 726-8883",
+      address: "Margate, FL",
+      owner: "John Snell"
+    },
+    pitch_url: "/p/snell-precision-cooling/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "HVAC batch 2026-04-09-hvac-sfl | Tier B | 5.0 stars 23 reviews, since 2000, dated WP. Draft r5907107069414844006."
+  },
+  {
+    slug: "helena-air-conditioning",
+    name: "Helena Air Conditioning & Heating",
+    vertical: "hvac",
+    city: "Pompano Beach, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: "https://helenaac.com",
+      email: "helenaairconditioning@gmail.com",
+      phone: "(754) 367-7237",
+      address: "Pompano Beach, FL",
+      owner: "[OWNER — LOOK UP]"
+    },
+    pitch_url: "/p/helena-air-conditioning/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "HVAC batch 2026-04-09-hvac-sfl | Tier B | 5.0 stars HomeAdvisor, A+ BBB, outdated template. EMAIL SKIPPED — owner name needed."
+  },
+  {
+    slug: "holmes-cooling-heating",
+    name: "Holmes Cooling & Heating",
+    vertical: "hvac",
+    city: "Royal Palm Beach, FL",
+    stage: "teased",
+    lane: "tease",
+    contact: {
+      website: "https://holmescoolingandheating.com",
+      email: "hch@holmescoolingandheating.com",
+      phone: "(561) 856-6611",
+      address: "Royal Palm Beach, FL",
+      owner: "Bart Holmes"
+    },
+    pitch_url: "/p/holmes-cooling-heating/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "HVAC batch 2026-04-09-hvac-sfl | Tier B | Bart Holmes master tech, 35+ years, modern site. Draft r-1267313733765681990."
+  },
+  {
+    slug: "gmc-air-conditioning",
+    name: "GMC Air Conditioning Services",
+    vertical: "hvac",
+    city: "Pompano Beach, FL",
+    stage: "teased",
+    lane: "tease",
+    contact: {
+      website: "https://gmcacservices.com",
+      email: "skip@gmcacservices.com",
+      phone: "(954) 973-5980",
+      address: "Pompano Beach, FL",
+      owner: "Skip Farinhas"
+    },
+    pitch_url: "/p/gmc-air-conditioning/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "HVAC batch 2026-04-09-hvac-sfl | Tier A | 390 reviews 4.66 stars, since 1977, dated WP. Draft r-2576787955339126488. Call script ready."
+  },
+  {
+    slug: "rome-aire-services",
+    name: "Rome Aire Services",
+    vertical: "hvac",
+    city: "Boca Raton, FL",
+    stage: "teased",
+    lane: "tease",
+    contact: {
+      website: "https://romeaire.com",
+      email: "contact@romeaire.com",
+      phone: "(561) 482-7495",
+      address: "Boca Raton, FL",
+      owner: "Kiel Green"
+    },
+    pitch_url: "/p/rome-aire-services/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "HVAC batch 2026-04-09-hvac-sfl | Tier A | 615 reviews 4.85 stars, family-owned since 1982, outdated HTTP site. Draft r-4178406470601278890. Call script ready."
+  },
+  {
+    slug: "kilbourne-hvac",
+    name: "Kilbourne Heating & AC",
+    vertical: "hvac",
+    city: "Delray Beach, FL",
+    stage: "teased",
+    lane: "tease",
+    contact: {
+      website: "https://kilbourneairconditioning.com",
+      email: "fern@kilbourneac.com",
+      phone: "(561) 269-2261",
+      address: "Delray Beach, FL",
+      owner: "Michael Kilbourne"
+    },
+    pitch_url: "/p/kilbourne-hvac/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "HVAC batch 2026-04-09-hvac-sfl | Tier B | 341 reviews 4.87 stars, since 1986, modern Avada site. Draft r2541526598515847751."
+  },
+  {
+    slug: "mechanical-cooling-ac",
+    name: "Mechanical Cooling A/C",
+    vertical: "hvac",
+    city: "Margate, FL",
+    stage: "designed",
+    lane: "tease",
+    contact: {
+      website: "https://mechanicalcoolingac.com",
+      email: "info@mechanicalcoolingac.com",
+      phone: "(954) 397-2527",
+      address: "Margate, FL",
+      owner: "[OWNER — LOOK UP]"
+    },
+    pitch_url: "/p/mechanical-cooling-ac/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "HVAC batch 2026-04-09-hvac-sfl | Tier B | 5.0 stars 51 reviews, 24hr service. EMAIL SKIPPED — owner name needed."
+  },
+  {
+    slug: "jax-plumbing",
+    name: "Jax Plumbing",
+    vertical: "plumber",
+    city: "Pembroke Pines, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: {
+      website: "https://www.jaxplumbing.net",
+      email: "info@jaxplumbing.net",
+      phone: "(954) 440-9933",
+      owner: "Anthony Tetoff"
+    },
+    pitch_url: "/p/jax-plumbing/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Plumber batch 2026-04-09-plumbers-sfl | Tier A | 4.9★ 100+ reviews, Nextdoor Neighborhood Favorite 6 years, Anthony runs every job personally. Draft: r-3663321485145874504. Call script ready."
+  },
+  {
+    slug: "amys-plumbing",
+    name: "Amy's Plumbing",
+    vertical: "plumber",
+    city: "Fort Lauderdale, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: {
+      website: "https://www.amysplumbing.com",
+      email: "service@amysplumbing.com",
+      owner: "Amy"
+    },
+    pitch_url: "/p/amys-plumbing/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Plumber batch 2026-04-09-plumbers-sfl | Tier B | 4.5★ 70+ reviews, one of SFL's only female master plumbers, 22 years. Draft: r-5178228722554128096."
+  },
+  {
+    slug: "terrano-plumbing",
+    name: "Terrano Plumbing & Remodeling",
+    vertical: "plumber",
+    city: "Boca Raton, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: {
+      website: "https://www.terranoplumbing.com",
+      email: "info@terranoplumbing.com",
+      owner: "Ross"
+    },
+    pitch_url: "/p/terrano-plumbing/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Plumber batch 2026-04-09-plumbers-sfl | Tier B | Family-owned Boca since 1994, Ross communicates daily during jobs. Draft: r5833337490720304628."
+  },
+  {
+    slug: "integrity-plumbing-drain",
+    name: "Integrity Plumbing & Drain",
+    vertical: "plumber",
+    city: "West Palm Beach, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: {
+      website: "https://www.integrityplumbingfl.com",
+      email: "integrityplumbinganddrain@gmail.com",
+      owner: "Jeff Woods"
+    },
+    pitch_url: "/p/integrity-plumbing-drain/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Plumber batch 2026-04-09-plumbers-sfl | Tier B | West Palm Beach since 1985, perfect score across hundreds of reviews. Draft: r-1645648618144151037."
+  },
+  {
+    slug: "mister-plumber",
+    name: "Mister Plumber Inc",
+    vertical: "plumber",
+    city: "West Palm Beach, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: {
+      website: "https://www.mrplumberfl.com",
+      email: "office@mrplumberfl.com",
+      owner: "Don"
+    },
+    pitch_url: "/p/mister-plumber/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Plumber batch 2026-04-09-plumbers-sfl | Tier B | Third-generation family business, contractor trades call Don first. Draft: r-3778855467401378984."
+  },
+  {
+    slug: "mike-the-plumber",
+    name: "Mike The Plumber",
+    vertical: "plumber",
+    city: "Lake Worth, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: {
+      website: "https://www.miketheplumberinc.com",
+      email: "office@miketheplumberinc.com",
+      owner: "Mike"
+    },
+    pitch_url: "/p/mike-the-plumber/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Plumber batch 2026-04-09-plumbers-sfl | Tier B | Mike answers every call personally, always on time, fair pricing. Draft: r-5480946581197912469."
+  },
+  {
+    slug: "wards-plumbing",
+    name: "Ward's Plumbing Service",
+    vertical: "plumber",
+    city: "Boynton Beach, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: {
+      website: "https://www.southfloridaplumber.com",
+      email: "contact@southfloridaplumber.com",
+      owner: "Tom"
+    },
+    pitch_url: "/p/wards-plumbing/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Plumber batch 2026-04-09-plumbers-sfl | Tier B | South Palm Beach County since 1992, neighbors say Tom is prompt and the only one they recommend. Draft: r-5642995069490073830."
+  },
+  {
+    slug: "john-the-plumber",
+    name: "John The Plumber",
+    vertical: "plumber",
+    city: "Pompano Beach, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: {
+      website: "https://www.johntheplumberfl.com",
+      email: "service@johntheplumberfl.com",
+      phone: "(954) 781-4823",
+      owner: "John Krobatsch"
+    },
+    pitch_url: "/p/john-the-plumber/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Plumber batch 2026-04-09-plumbers-sfl | Tier A | 4.9★ 473 reviews, 3rd-generation family since 1979, highest-reviewed plumber in Broward County. Draft: r611775721051063621. Call script ready."
+  },
+  {
+    slug: "4-star-plumbing",
+    name: "4 Star Plumbing Services",
+    vertical: "plumber",
+    city: "Fort Lauderdale, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: {
+      website: "https://www.4starservices.com",
+      email: "info@4starservices.com",
+      owner: "Sean Hasle"
+    },
+    pitch_url: "/p/4-star-plumbing/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Plumber batch 2026-04-09-plumbers-sfl | Tier B | One of the most-reviewed plumbing ops in Broward, Sean handles jobs others won't touch. Draft: r6132227328948273840."
+  },
+  {
+    slug: "gimler-plumbing",
+    name: "Gimler Plumbing",
+    vertical: "plumber",
+    city: "Deerfield Beach, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: {
+      website: null,
+      email: "gimlerplumbing@gmail.com",
+      owner: "[OWNER — LOOK UP]"
+    },
+    pitch_url: "/p/gimler-plumbing/",
+    added: "2026-04-09",
+    last_touch: "2026-04-09",
+    notes: "Plumber batch 2026-04-09-plumbers-sfl | Tier B | Century-old family institution in SFL. Owner name unknown — look up before follow-up. Draft: r8839830519102818129."
+  },
+  {
+    slug: "icon-aesthetics-pompano",
+    name: "Icon Aesthetics & Wellness",
+    vertical: "med-spa",
+    city: "Pompano Beach, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: { email: "info@icon-wellness.com", phone: "(954) 864-4100", owner: "Chad Van Horn, PA-C" },
+    pitch_url: "/p/icon-aesthetics-pompano/",
+    added: "2026-04-10",
+    last_touch: "2026-04-10",
+    notes: "Spa batch 2026-04-10-spa-sfl | Tier A | 210+ reviews / 5.0★ / PA-C led / WordPress template. Draft: r-5131423117045791096. Call script ready."
+  },
+  {
+    slug: "alluramd-dania-beach",
+    name: "AlluraMD Aesthetics + Wellness",
+    vertical: "med-spa",
+    city: "Dania Beach, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: { email: "info@alluraesthetics.com", phone: "(954) 947-0103", owner: "Evelyn Rodriguez" },
+    pitch_url: "/p/alluramd-dania-beach/",
+    added: "2026-04-10",
+    last_touch: "2026-04-10",
+    notes: "Spa batch 2026-04-10-spa-sfl | Tier B | 161 reviews / 5.0★ / 20+ years NP-led. Draft: r-2118643677099349003."
+  },
+  {
+    slug: "carib-med-spa",
+    name: "Carib Med Spa",
+    vertical: "med-spa",
+    city: "Pompano Beach, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: { email: "info.caribmedspa@gmail.com", phone: "(954) 545-1778", owner: "Jean" },
+    pitch_url: "/p/carib-med-spa/",
+    added: "2026-04-10",
+    last_touch: "2026-04-10",
+    notes: "Spa batch 2026-04-10-spa-sfl | Tier B | Est. 2009, hidden gem reputation, Wix template. Draft: r2009229428566602556."
+  },
+  {
+    slug: "refined-beauty-day-spa",
+    name: "Refined Beauty Day Spa",
+    vertical: "med-spa",
+    city: "Coral Springs, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: { email: "refinedbeauty786@gmail.com", phone: "(954) 753-8800", owner: "Mona" },
+    pitch_url: "/p/refined-beauty-day-spa/",
+    added: "2026-04-10",
+    last_touch: "2026-04-10",
+    notes: "Spa batch 2026-04-10-spa-sfl | Tier B | 200+ reviews / 4.7★ / 13+ years / WordPress outdated. Draft: r2862410313772528119."
+  },
+  {
+    slug: "narotique-medspa",
+    name: "Narotique MedSpa",
+    vertical: "med-spa",
+    city: "Pembroke Pines, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: { email: "narotique@gmail.com", phone: "(954) 780-3800", owner: "Cassandra" },
+    pitch_url: "/p/narotique-medspa/",
+    added: "2026-04-10",
+    last_touch: "2026-04-10",
+    notes: "Spa batch 2026-04-10-spa-sfl | Tier B | 800+ reviews / 4.6★ / platform template. Draft: r-7092392748410520939."
+  },
+  {
+    slug: "radiance-weston-medspa",
+    name: "Radiance Weston Medspa",
+    vertical: "med-spa",
+    city: "Weston, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: { email: "radianceweston@yahoo.com", phone: "(954) 659-0199", owner: "Dr. Faiza Khalid" },
+    pitch_url: "/p/radiance-weston-medspa/",
+    added: "2026-04-10",
+    last_touch: "2026-04-10",
+    notes: "Spa batch 2026-04-10-spa-sfl | Tier A | 5x Best of Weston / since 2006 / outdated WordPress. Draft: r7986639972697205650. Call script ready."
+  },
+  {
+    slug: "olam-med-spa",
+    name: "Olam Med Spa",
+    vertical: "med-spa",
+    city: "Pembroke Pines, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: { email: "info@olammedspa.com", phone: "(954) 906-6216", owner: "Andrea" },
+    pitch_url: "/p/olam-med-spa/",
+    added: "2026-04-10",
+    last_touch: "2026-04-10",
+    notes: "Spa batch 2026-04-10-spa-sfl | Tier A | 322 reviews / 4.9★ / Forbes + Telemundo featured / Squarespace template. Draft: r-1962962671539016328. Call script ready."
+  },
+  {
+    slug: "facial-mania-medspa",
+    name: "Facial Mania Med Spa",
+    vertical: "med-spa",
+    city: "Delray Beach, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: { email: "contact@facialmaniamedspa.com", phone: "(561) 562-5621", owner: "Anthony" },
+    pitch_url: "/p/facial-mania-medspa/",
+    added: "2026-04-10",
+    last_touch: "2026-04-10",
+    notes: "Spa batch 2026-04-10-spa-sfl | Tier B | 4.9★ / no upsell reputation / WordPress template. Draft: r8671653762665572431."
+  },
+  {
+    slug: "prosperity-wellness-medspa",
+    name: "Prosperity Wellness & Medspa",
+    vertical: "med-spa",
+    city: "Hallandale Beach, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: { email: "info@prosperity-spa.com", phone: "(954) 393-0300", owner: "Larisa" },
+    pitch_url: "/p/prosperity-wellness-medspa/",
+    added: "2026-04-10",
+    last_touch: "2026-04-10",
+    notes: "Spa batch 2026-04-10-spa-sfl | Tier B | 126 reviews / 4.9★ / Wix template. Draft: r5136842294893117417."
+  },
+  {
+    slug: "advanced-med-spa-deerfield",
+    name: "Advanced Med Spa",
+    vertical: "med-spa",
+    city: "Deerfield Beach, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: { email: "office@advancedmedspaofficial.com", phone: "(561) 332-0225", owner: "Giovana" },
+    pitch_url: "/p/advanced-med-spa-deerfield/",
+    added: "2026-04-10",
+    last_touch: "2026-04-10",
+    notes: "Spa batch 2026-04-10-spa-sfl | Tier B | 4.9★ / Brazilian integrative aesthetics / Squarespace template. Draft: r1001480439796854783."
+  },
+  {
+    slug: "mark-blum-dds",
+    name: "Mark Blum DDS",
+    vertical: "dentist",
+    city: "Sunrise, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: {
+      website: "https://www.markblumdds.com",
+      email: "mail@markblumdds.com",
+      phone: "(954) 748-3448",
+      owner: "Mark"
+    },
+    pitch_url: "/p/mark-blum-dds/",
+    added: "2026-04-10",
+    last_touch: "2026-04-10",
+    notes: "Dentist batch 2026-04-10 | Tier A | 179 reviews / 4.9 stars / solo since 1987 / Bootstrap 4-era site. Draft r8926280258485246893. Call script ready."
+  },
+  {
+    slug: "pearl-white-dentistry",
+    name: "Pearl White Dentistry",
+    vertical: "dentist",
+    city: "Fort Lauderdale, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: {
+      website: "https://www.pearlwhitedentistry.com",
+      email: "dr@pearlwhitedentistry.com",
+      phone: "(954) 491-8812",
+      owner: "Ahmed"
+    },
+    pitch_url: "/p/pearl-white-dentistry/",
+    added: "2026-04-10",
+    last_touch: "2026-04-10",
+    notes: "Dentist batch 2026-04-10 | Tier B | ~300 five-star reviews / outdated_2017 site. Draft r1129989000298433238."
+  },
+  {
+    slug: "smile-brighteners",
+    name: "Smile Brighteners",
+    vertical: "dentist",
+    city: "Lauderhill, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: {
+      website: null,
+      email: "smilebrighteners@aol.com",
+      phone: "(954) 741-4500",
+      owner: "Robert"
+    },
+    pitch_url: "/p/smile-brighteners/",
+    added: "2026-04-10",
+    last_touch: "2026-04-10",
+    notes: "Dentist batch 2026-04-10 | Tier B | 30+ yr loyalty patients / no website. Draft r1499643062273972617."
+  },
+  {
+    slug: "dennis-hernandez-dmd",
+    name: "Dennis A. Hernandez, DMD, PA",
+    vertical: "dentist",
+    city: "Lake Worth Beach, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: {
+      website: "https://www.drdennishernandez.com",
+      email: "lorraine@drdennishernandez.com",
+      phone: "(561) 582-9077",
+      owner: "Dennis"
+    },
+    pitch_url: "/p/dennis-hernandez-dmd/",
+    added: "2026-04-10",
+    last_touch: "2026-04-10",
+    notes: "Dentist batch 2026-04-10 | Tier B | Pain-free dental care / Officite outdated_2018 template. Draft r-7924861885409339761."
+  },
+  {
+    slug: "south-florida-dental-care",
+    name: "South Florida Dental Care",
+    vertical: "dentist",
+    city: "Hollywood, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: {
+      website: "https://www.southfloridadentalcare.com",
+      email: "info@southfloridadentalcare.com",
+      phone: "(954) 966-6410",
+      owner: "Leonardo"
+    },
+    pitch_url: "/p/south-florida-dental-care/",
+    added: "2026-04-10",
+    last_touch: "2026-04-10",
+    notes: "Dentist batch 2026-04-10 | Tier B | Dr. Leo Frydman painless novocaine / outdated_2014 site. Draft r1223275321654504653."
+  },
+  {
+    slug: "paul-perella-dmd",
+    name: "Dr. Paul Perella, DMD",
+    vertical: "dentist",
+    city: "North Palm Beach, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: {
+      website: "https://www.northpalmbeachdentistry.com",
+      email: "northpalmbeachdentistry@gmail.com",
+      phone: "(561) 290-1636",
+      owner: "Paul"
+    },
+    pitch_url: "/p/paul-perella-dmd/",
+    added: "2026-04-10",
+    last_touch: "2026-04-10",
+    notes: "Dentist batch 2026-04-10 | Tier B | Chipped tooth cosmetic miracle story / outdated_2015 site. Draft r557611559769670075."
+  },
+  {
+    slug: "ozga-dental",
+    name: "Ozga Dental",
+    vertical: "dentist",
+    city: "Pompano Beach, FL",
+    lane: "tease",
+    stage: "teased",
+    contact: {
+      website: "https://www.ozgadental.com",
+      email: "ozgadental@bellsouth.net",
+      phone: "(954) 942-0420",
+      owner: "Gary"
+    },
+    pitch_url: "/p/ozga-dental/",
+    added: "2026-04-10",
+    last_touch: "2026-04-10",
+    notes: "Dentist batch 2026-04-10 | Tier B | 40+ year patient loyalty / outdated bellsouth-era site. Draft r1820314098206872454."
+  }
+];
+
+// ------------------------------------------------------------
+// Render
+// ------------------------------------------------------------
+const STAGES = ["researched","teased","designed","reviewed","sent","replied","call","won","lost","dq"];
+const counts = Object.fromEntries(STAGES.map(s=>[s,0]));
+LEADS.forEach(l => counts[l.stage] = (counts[l.stage]||0) + 1);
+
+document.getElementById("counts").innerHTML =
+  `<div class="count"><b>${LEADS.length}</b>total</div>` +
+  STAGES.filter(s=>counts[s]).map(s=>`<div class="count"><b>${counts[s]}</b>${s}</div>`).join("");
+
+const rows = document.getElementById("rows");
+if (!LEADS.length) {
+  rows.innerHTML = `<tr><td colspan="6" class="empty">No leads yet. Run the sfl-researcher skill.</td></tr>`;
+} else {
+  rows.innerHTML = LEADS.map(l => {
+    const c = l.contact || {};
+    const contactBits = [
+      c.owner ? `<div>${c.owner}</div>` : "",
+      c.email ? `<div><a href="mailto:${c.email}">${c.email}</a></div>` : "",
+      c.phone ? `<div>${c.phone}</div>` : "",
+      c.website ? `<div><a href="${c.website}" target="_blank" rel="noopener">${c.website.replace(/^https?:\/\//,"")}</a></div>` : "",
+      c.address ? `<div>${c.address}</div>` : ""
+    ].filter(Boolean).join("");
+    const pitch = l.pitch_url ? `<a href="${l.pitch_url}" target="_blank">${l.pitch_url}</a>` : `<span style="color:var(--muted)">—</span>`;
+    return `
+      <tr>
+        <td>
+          <div class="name">${l.name}</div>
+          <div class="vertical">${l.vertical} · ${l.city || ""}</div>
+        </td>
+        <td><span class="stage s-${l.stage}">${l.stage}</span></td>
+        <td class="contact">${contactBits}</td>
+        <td class="contact">${pitch}</td>
+        <td class="contact">${l.last_touch || l.added || ""}</td>
+        <td class="notes">${l.notes || ""}</td>
+      </tr>
+    `;
+  }).join("");
+}
+</script>
+</body>
+</html>
