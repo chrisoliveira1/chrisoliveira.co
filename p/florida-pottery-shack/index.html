@@ -111,25 +111,33 @@
 
     .hero-video-wrap {
       position: absolute;
-      inset: 0;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
       z-index: 0;
-      /* CSS fallback: shows if both video and poster fail */
-      background: url('Hero%20Images/earl-wilcox-pSo0u53FF10-unsplash.jpg') center/cover no-repeat;
+    }
+    /* Fallback image — always rendered, video layers on top */
+    .hero-fallback-img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      z-index: 0;
     }
     .hero-video-wrap video {
+      position: absolute;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      z-index: 1;
     }
     .hero-video-wrap .hero-vid-desktop { display: block; }
     .hero-video-wrap .hero-vid-mobile  { display: none; }
-
-    @media (max-width: 768px) {
-      .hero-video-wrap {
-        background-image: url('Hero%20Images/aedrian-salazar-BshM9VkzGw8-unsplash.jpg');
-      }
-    }
 
     .hero-overlay {
       position: absolute;
@@ -932,6 +940,8 @@
       }
       .hero-video-wrap .hero-vid-desktop { display: none; }
       .hero-video-wrap .hero-vid-mobile  { display: block; }
+      .hero-fallback-desktop { display: none !important; }
+      .hero-fallback-mobile  { display: block !important; }
       .hero-overlay {
         background: linear-gradient(
           to top,
@@ -1001,16 +1011,22 @@
 
   <!-- ── HERO ── -->
   <section class="hero" style="padding:0;">
-    <!-- Background videos — fallback to hero images if video can't load -->
+    <!-- Background: fallback img always renders, video layers on top when loaded -->
     <div class="hero-video-wrap">
-      <video class="hero-vid-desktop" autoplay muted loop playsinline
-        poster="Hero%20Images/earl-wilcox-pSo0u53FF10-unsplash.jpg">
-        <source src="Hero%20video%20/5633938-uhd_3840_2160_24fps.MP4" type="video/mp4">
-        <!-- If video fails, poster image shows automatically -->
+      <!-- Fallback images (always visible underneath) -->
+      <img class="hero-fallback-img hero-fallback-desktop"
+        src="Hero Images/earl-wilcox-pSo0u53FF10-unsplash.jpg"
+        alt="">
+      <img class="hero-fallback-img hero-fallback-mobile"
+        src="Hero Images/aedrian-salazar-BshM9VkzGw8-unsplash.jpg"
+        alt="" style="display:none;">
+      <!-- Desktop video -->
+      <video class="hero-vid-desktop" autoplay muted loop playsinline>
+        <source src="Hero video /5633938-uhd_3840_2160_24fps.MP4" type="video/mp4">
       </video>
-      <video class="hero-vid-mobile" autoplay muted loop playsinline
-        poster="Hero%20Images/aedrian-salazar-BshM9VkzGw8-unsplash.jpg">
-        <source src="Hero%20video%20/9363603-hd_1080_1920_25fps.MP4" type="video/mp4">
+      <!-- Mobile video -->
+      <video class="hero-vid-mobile" autoplay muted loop playsinline>
+        <source src="Hero video /9363603-hd_1080_1920_25fps.MP4" type="video/mp4">
       </video>
     </div>
     <div class="hero-overlay"></div>
