@@ -324,41 +324,100 @@
       margin-top: 3px;
     }
 
-    /* ─── TRUST BAR ─────────────────────────────────────────── */
-    .trust-bar {
+    /* ─── REVIEW CAROUSEL ───────────────────────────────────── */
+    .carousel-section {
       background: var(--clay);
-      padding: 28px 80px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
+      padding: 64px 0;
+      overflow: hidden;
+      position: relative;
     }
-    .trust-item {
+    .carousel-track-wrap {
+      overflow: hidden;
+      width: 100%;
+    }
+    .carousel-track {
       display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 0 28px;
-      border-right: 1px solid rgba(255,255,255,0.12);
+      gap: 24px;
+      width: max-content;
+      animation: carouselScroll 38s linear infinite;
     }
-    .trust-item:first-child { padding-left: 0; }
-    .trust-item:last-child { border-right: none; }
-    .trust-icon {
-      font-size: 22px;
+    .carousel-track:hover { animation-play-state: paused; }
+    @keyframes carouselScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .carousel-card {
       flex-shrink: 0;
+      width: 360px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 28px 30px;
     }
-    .trust-text-main {
+    .carousel-stars {
+      color: #f5c842;
+      font-size: 13px;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    .carousel-text {
       font-family: 'Cormorant Garamond', serif;
       font-size: 18px;
-      font-weight: 500;
-      color: var(--cream);
-      line-height: 1.1;
-    }
-    .trust-text-sub {
-      font-size: 10px;
       font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--cream);
+      margin-bottom: 18px;
+    }
+    .carousel-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .carousel-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .carousel-author {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--sand-light);
+    }
+    .carousel-product {
+      font-size: 10px;
       color: var(--sand);
+      letter-spacing: 0.06em;
       margin-top: 2px;
+    }
+    /* fade edges */
+    .carousel-section::before,
+    .carousel-section::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .carousel-section::before {
+      left: 0;
+      background: linear-gradient(to right, var(--clay), transparent);
+    }
+    .carousel-section::after {
+      right: 0;
+      background: linear-gradient(to left, var(--clay), transparent);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .carousel-track { animation: none; }
     }
 
     /* ─── SECTION SHARED ────────────────────────────────────── */
@@ -693,75 +752,6 @@
     .gallery-item:hover img { transform: scale(1.05); }
     .gallery-item.tall img { aspect-ratio: 3/4; }
 
-    /* ─── REVIEWS ───────────────────────────────────────────── */
-    .reviews-section {
-      background: var(--clay);
-      padding: 100px 80px;
-    }
-    .reviews-section .section-eyebrow { color: var(--sand); }
-    .reviews-section .section-title { color: var(--cream); }
-    .reviews-section .section-title em { color: var(--teal-light); }
-    .reviews-section .section-sub { color: var(--sand-light); }
-
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .review-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px;
-      padding: 28px;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .review-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
-
-    .review-stars {
-      color: #f5c842;
-      font-size: 14px;
-      letter-spacing: 2px;
-      margin-bottom: 14px;
-    }
-    .review-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
-      font-weight: 400;
-      font-style: italic;
-      line-height: 1.55;
-      color: var(--cream);
-      margin-bottom: 20px;
-    }
-    .review-meta {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .review-avatar {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: var(--teal);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 600;
-      color: #fff;
-      flex-shrink: 0;
-    }
-    .review-author {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--sand-light);
-    }
-    .review-product {
-      font-size: 10px;
-      color: var(--sand);
-      letter-spacing: 0.06em;
-      margin-top: 2px;
-    }
 
     /* ─── CTA ───────────────────────────────────────────────── */
     .cta-section {
@@ -967,7 +957,6 @@
       .trust-item { border-right: none; padding: 0; }
 
       section { padding: 64px 24px; }
-      .reviews-section { padding: 64px 24px; }
       .cta-section { padding: 64px 24px; }
       .insta-section { padding: 48px 24px; }
       footer { padding: 40px 24px; flex-direction: column; gap: 24px; text-align: center; }
@@ -1004,7 +993,6 @@
     <ul class="nav-links">
       <li><a href="#shop">Shop</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#reviews">Reviews</a></li>
       <li><a href="https://www.etsy.com/shop/Floridapotteryshack" target="_blank" class="nav-cta">Shop on Etsy →</a></li>
     </ul>
   </nav>
@@ -1038,7 +1026,7 @@
         Built to <em>Last.</em>
       </h1>
       <p class="hero-sub">
-        Every mug, bowl, and oil bottle is thrown on the wheel and glazed by hand in South Florida. Functional ceramics with a soul — pieces you'll reach for every single morning.
+        Every mug, bowl, and oil bottle is thrown on the wheel and glazed by hand in South Florida. Functional ceramics with a soul. Pieces you'll reach for every single morning.
       </p>
       <div class="hero-actions">
         <a href="https://www.etsy.com/shop/Floridapotteryshack" target="_blank" class="btn-primary">
@@ -1064,34 +1052,212 @@
     </div>
   </section>
 
-  <!-- ── TRUST BAR ── -->
-  <div class="trust-bar">
-    <div class="trust-item">
-      <div class="trust-icon">🤲</div>
-      <div>
-        <div class="trust-text-main">Wheel-Thrown</div>
-        <div class="trust-text-sub">No molds. Ever.</div>
-      </div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-icon">🔥</div>
-      <div>
-        <div class="trust-text-main">Kiln-Fired Glazes</div>
-        <div class="trust-text-sub">Food, microwave & dishwasher safe</div>
-      </div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-icon">🌴</div>
-      <div>
-        <div class="trust-text-main">Made in Florida</div>
-        <div class="trust-text-sub">Boynton Beach, South Florida</div>
-      </div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-icon">📦</div>
-      <div>
-        <div class="trust-text-main">Ships Nationwide</div>
-        <div class="trust-text-sub">Carefully packed, every order</div>
+  <!-- ── REVIEW CAROUSEL ── -->
+  <div class="carousel-section">
+    <div class="carousel-track-wrap">
+      <div class="carousel-track">
+
+        <!-- Card 1 -->
+        <div class="carousel-card">
+          <div class="carousel-stars">★★★★★</div>
+          <p class="carousel-text">"Somehow beautiful and cute at the same time. Lovely craftsmanship. Brings me joy every morning."</p>
+          <div class="carousel-meta">
+            <div class="carousel-avatar">S</div>
+            <div>
+              <div class="carousel-author">Shelli</div>
+              <div class="carousel-product">Stoneware Espresso Cup</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="carousel-card">
+          <div class="carousel-stars">★★★★★</div>
+          <p class="carousel-text">"This is my second mug from this shop. The first one was gifted to me and it's one of my favorites. All the love from Michigan."</p>
+          <div class="carousel-meta">
+            <div class="carousel-avatar" style="background:var(--terra);">M</div>
+            <div>
+              <div class="carousel-author">Marieav</div>
+              <div class="carousel-product">Coffee Mug / Cappuccino Cup</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="carousel-card">
+          <div class="carousel-stars">★★★★★</div>
+          <p class="carousel-text">"The most beautifully fired turquoise salt cellar. A real gem. Exactly what I was hoping for."</p>
+          <div class="carousel-meta">
+            <div class="carousel-avatar" style="background:#4a6e8a;">S</div>
+            <div>
+              <div class="carousel-author">Slithie2</div>
+              <div class="carousel-product">Handmade Ceramic Salt Cellar</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="carousel-card">
+          <div class="carousel-stars">★★★★★</div>
+          <p class="carousel-text">"Absolutely beautiful. As pictured and exactly what I needed."</p>
+          <div class="carousel-meta">
+            <div class="carousel-avatar" style="background:#6b5e3e;">E</div>
+            <div>
+              <div class="carousel-author">ElecSaver</div>
+              <div class="carousel-product">Stoneware Ramekin</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="carousel-card">
+          <div class="carousel-stars">★★★★★</div>
+          <p class="carousel-text">"Beautiful, high quality. My husband loves it for his morning espresso!"</p>
+          <div class="carousel-meta">
+            <div class="carousel-avatar" style="background:var(--teal);">M</div>
+            <div>
+              <div class="carousel-author">Moo</div>
+              <div class="carousel-product">Stoneware Espresso Cup</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="carousel-card">
+          <div class="carousel-stars">★★★★★</div>
+          <p class="carousel-text">"Beautiful but solid! Love the size, easy to hold. Gorgeous in my kitchen!"</p>
+          <div class="carousel-meta">
+            <div class="carousel-avatar" style="background:#7a6050;">A</div>
+            <div>
+              <div class="carousel-author">Verified Buyer</div>
+              <div class="carousel-product">Olive Oil Bottle with Top</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="carousel-card">
+          <div class="carousel-stars">★★★★★</div>
+          <p class="carousel-text">"A fantastic handmade accent to any kitchen counter!"</p>
+          <div class="carousel-meta">
+            <div class="carousel-avatar" style="background:#5a7a6a;">P</div>
+            <div>
+              <div class="carousel-author">Renee</div>
+              <div class="carousel-product">Olive Oil Bottle / Stoneware Cruet</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="carousel-card">
+          <div class="carousel-stars">★★★★★</div>
+          <p class="carousel-text">"Love this mug, thank you!"</p>
+          <div class="carousel-meta">
+            <div class="carousel-avatar" style="background:var(--terra);">E</div>
+            <div>
+              <div class="carousel-author">Erin</div>
+              <div class="carousel-product">Coffee Mug / Stoneware</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Duplicate set for seamless loop -->
+        <div class="carousel-card">
+          <div class="carousel-stars">★★★★★</div>
+          <p class="carousel-text">"Somehow beautiful and cute at the same time. Lovely craftsmanship. Brings me joy every morning."</p>
+          <div class="carousel-meta">
+            <div class="carousel-avatar">S</div>
+            <div>
+              <div class="carousel-author">Shelli</div>
+              <div class="carousel-product">Stoneware Espresso Cup</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-card">
+          <div class="carousel-stars">★★★★★</div>
+          <p class="carousel-text">"This is my second mug from this shop. The first one was gifted to me and it's one of my favorites. All the love from Michigan."</p>
+          <div class="carousel-meta">
+            <div class="carousel-avatar" style="background:var(--terra);">M</div>
+            <div>
+              <div class="carousel-author">Marieav</div>
+              <div class="carousel-product">Coffee Mug / Cappuccino Cup</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-card">
+          <div class="carousel-stars">★★★★★</div>
+          <p class="carousel-text">"The most beautifully fired turquoise salt cellar. A real gem. Exactly what I was hoping for."</p>
+          <div class="carousel-meta">
+            <div class="carousel-avatar" style="background:#4a6e8a;">S</div>
+            <div>
+              <div class="carousel-author">Slithie2</div>
+              <div class="carousel-product">Handmade Ceramic Salt Cellar</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-card">
+          <div class="carousel-stars">★★★★★</div>
+          <p class="carousel-text">"Absolutely beautiful. As pictured and exactly what I needed."</p>
+          <div class="carousel-meta">
+            <div class="carousel-avatar" style="background:#6b5e3e;">E</div>
+            <div>
+              <div class="carousel-author">ElecSaver</div>
+              <div class="carousel-product">Stoneware Ramekin</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-card">
+          <div class="carousel-stars">★★★★★</div>
+          <p class="carousel-text">"Beautiful, high quality. My husband loves it for his morning espresso!"</p>
+          <div class="carousel-meta">
+            <div class="carousel-avatar" style="background:var(--teal);">M</div>
+            <div>
+              <div class="carousel-author">Moo</div>
+              <div class="carousel-product">Stoneware Espresso Cup</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-card">
+          <div class="carousel-stars">★★★★★</div>
+          <p class="carousel-text">"Beautiful but solid! Love the size, easy to hold. Gorgeous in my kitchen!"</p>
+          <div class="carousel-meta">
+            <div class="carousel-avatar" style="background:#7a6050;">A</div>
+            <div>
+              <div class="carousel-author">Verified Buyer</div>
+              <div class="carousel-product">Olive Oil Bottle with Top</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-card">
+          <div class="carousel-stars">★★★★★</div>
+          <p class="carousel-text">"A fantastic handmade accent to any kitchen counter!"</p>
+          <div class="carousel-meta">
+            <div class="carousel-avatar" style="background:#5a7a6a;">P</div>
+            <div>
+              <div class="carousel-author">Renee</div>
+              <div class="carousel-product">Olive Oil Bottle / Stoneware Cruet</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-card">
+          <div class="carousel-stars">★★★★★</div>
+          <p class="carousel-text">"Love this mug, thank you!"</p>
+          <div class="carousel-meta">
+            <div class="carousel-avatar" style="background:var(--terra);">E</div>
+            <div>
+              <div class="carousel-author">Erin</div>
+              <div class="carousel-product">Coffee Mug / Stoneware</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -1101,8 +1267,7 @@
     <div class="section-eyebrow">The Collection</div>
     <h2 class="section-title">Featured <em>Pieces</em></h2>
     <p class="section-sub">
-      A rotating selection of mugs, bowls, espresso cups, ramekins, oil bottles, and more —
-      each one a one-of-a-kind original. Browse what's available now on Etsy.
+      A rotating selection of mugs, bowls, espresso cups, ramekins, oil bottles, and more. Each one a one-of-a-kind original. Browse what's available now on Etsy.
     </p>
 
     <div class="etsy-widget">
@@ -1230,12 +1395,12 @@
       <img
         class="about-photo-main"
         src="il_600x600.7862561372_ec9d.jpg.webp"
-        alt="Handmade amber bowl — Florida Pottery Shack stoneware"
+        alt="Handmade amber bowl, Florida Pottery Shack stoneware"
       >
       <img
         class="about-photo-accent"
         src="il_800x800.7364909297_oqy2.jpg.webp"
-        alt="Green speckled stoneware mug — handcrafted in South Florida"
+        alt="Green speckled stoneware mug, handcrafted in South Florida"
       >
       <div class="about-photo-tag">
         <div class="about-photo-tag-line1">Native Floridian</div>
@@ -1248,17 +1413,17 @@
       <h2 class="section-title">Where <em>Surfing,<br>Art &amp; Clay</em> Meet</h2>
 
       <blockquote class="about-quote">
-        "Surfing, outdoors, and art have always gone hand in hand for me — one inspires the other."
+        "Surfing, outdoors, and art have always gone hand in hand for me. One inspires the other."
       </blockquote>
 
       <p class="about-body">
-        This Pottery Shack started as an idea: create a shop in a tropical setting to display handmade works straight from the studio. For Ernie, the outdoors and the wheel have always been inseparable — the ocean shapes the glazes, the Florida light lives in every piece.
+        This Pottery Shack started as an idea: create a shop in a tropical setting to display handmade works straight from the studio. For Ernie, the outdoors and the wheel have always been inseparable. The ocean shapes the glazes, the Florida light lives in every piece.
       </p>
       <p class="about-body">
-        Ernie DeBlasi is a local South Florida potter and artist who cultivates inspiration from nature in the tropics. His appreciation for the outdoors and wildlife in his home state is part of his way of life — and it shows in every mug, bowl, and bottle he throws.
+        Ernie DeBlasi is a local South Florida potter and artist who cultivates inspiration from nature in the tropics. His appreciation for the outdoors and wildlife in his home state is part of his way of life, and it shows in every mug, bowl, and bottle he throws.
       </p>
       <p class="about-body" style="font-style:italic; color: var(--clay);">
-        Thank you for stopping by. — Ernie
+        Thank you for stopping by. Sincerely, Ernie
       </p>
 
       <div class="about-credentials">
@@ -1270,98 +1435,13 @@
     </div>
   </section>
 
-  <!-- ── REVIEWS ── -->
-  <section class="reviews-section" id="reviews">
-    <div class="section-eyebrow">What People Say</div>
-    <h2 class="section-title">Real Reviews,<br><em>Real Kitchens</em></h2>
-    <p class="section-sub">
-      Every review is from a verified Etsy purchase. No scripts, no filters.
-    </p>
-
-    <div class="reviews-grid">
-
-      <div class="review-card reveal">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Somehow beautiful and cute at the same time. Lovely craftsmanship. Brings me joy every morning."</p>
-        <div class="review-meta">
-          <div class="review-avatar">S</div>
-          <div>
-            <div class="review-author">Shelli</div>
-            <div class="review-product">Stoneware Espresso Cup · 3 oz Macchiato</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="review-card reveal">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"This is my second mug from this shop. The first one was gifted to me and it's one of my favorites. All the love from Michigan."</p>
-        <div class="review-meta">
-          <div class="review-avatar" style="background:var(--terra);">M</div>
-          <div>
-            <div class="review-author">Marieav</div>
-            <div class="review-product">Coffee Mug / Cappuccino Cup · 14 oz</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="review-card reveal">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"The most beautifully fired turquoise salt cellar — a real gem. Exactly what I was hoping for."</p>
-        <div class="review-meta">
-          <div class="review-avatar" style="background:#4a6e8a;">S</div>
-          <div>
-            <div class="review-author">Slithie2</div>
-            <div class="review-product">Handmade Ceramic Salt Cellar / Sugar Jar</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="review-card reveal">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Absolutely beautiful. As pictured and exactly what I needed."</p>
-        <div class="review-meta">
-          <div class="review-avatar" style="background:#6b5e3e;">E</div>
-          <div>
-            <div class="review-author">ElecSaver</div>
-            <div class="review-product">Stoneware Ramekin · Crème Brûlée Dish</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="review-card reveal">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Beautiful, high quality — my husband loves it for his morning espresso!"</p>
-        <div class="review-meta">
-          <div class="review-avatar" style="background:var(--teal);">M</div>
-          <div>
-            <div class="review-author">Moo</div>
-            <div class="review-product">Stoneware Espresso Cup · Ceramic Shot Glass</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="review-card reveal">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Beautiful but solid! Love the size, easy to hold. Gorgeous in my kitchen!"</p>
-        <div class="review-meta">
-          <div class="review-avatar" style="background:#7a6050;">A</div>
-          <div>
-            <div class="review-author">Verified Buyer</div>
-            <div class="review-product">Olive Oil Bottle with Top · Stoneware Dispenser</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
 
   <!-- ── CTA ── -->
   <section class="cta-section">
     <div class="cta-eyebrow">Shop the Full Collection</div>
     <h2 class="cta-headline">Find Your<br>Perfect Piece</h2>
     <p class="cta-sub">
-      Every item is one of a kind. When it's gone, it's gone.
-      Shop the full collection on Etsy while pieces are still available.
+      Every item is one of a kind. When it's gone, it's gone. Shop the full collection on Etsy while pieces are still available.
     </p>
     <a href="https://www.etsy.com/shop/Floridapotteryshack" target="_blank" class="btn-cta-white">
       Browse on Etsy
@@ -1382,7 +1462,7 @@
 
   <!-- ── FOOTER ── -->
   <footer>
-    <div class="footer-logo">Florida Pottery Shack <span>· Est. Boynton Beach, FL</span></div>
+    <div class="footer-logo">Florida Pottery Shack <span>· Boynton Beach, FL</span></div>
     <ul class="footer-links">
       <li><a href="#shop">Shop</a></li>
       <li><a href="#about">About</a></li>
