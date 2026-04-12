@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Florida Pottery Shack — Handmade Stoneware by Ernie DeBlasi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:       #f4efe6;
+      --warm-white:  #faf8f4;
+      --clay:        #271c10;
+      --clay-mid:    #3e2d1c;
+      --teal:        #3d7a72;
+      --teal-light:  #5a9a90;
+      --terra:       #b86840;
+      --sand:        #c9a87c;
+      --sand-light:  #e8d9c4;
+      --etsy-orange: #f16521;
+      --nav-h:       72px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--clay);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ──────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: rgba(39,28,16,0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      transition: background 0.3s;
+    }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .nav-logo-top {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--cream);
+      letter-spacing: 0.08em;
+    }
+    .nav-logo-sub {
+      font-size: 9px;
+      font-weight: 400;
+      color: var(--sand);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sand-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    .nav-cta {
+      background: var(--teal);
+      color: #fff !important;
+      padding: 9px 20px !important;
+      border-radius: 4px;
+      letter-spacing: 0.1em !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--teal-light) !important; transform: translateY(-1px); }
+
+    /* ─── HERO ─────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      margin-top: 0;
+      padding-top: var(--nav-h);
+      background: var(--clay);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      /* CSS fallback: shows if both video and poster fail */
+      background: url('Hero%20Images/earl-wilcox-pSo0u53FF10-unsplash.jpg') center/cover no-repeat;
+    }
+    .hero-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-video-wrap .hero-vid-desktop { display: block; }
+    .hero-video-wrap .hero-vid-mobile  { display: none; }
+
+    @media (max-width: 768px) {
+      .hero-video-wrap {
+        background-image: url('Hero%20Images/aedrian-salazar-BshM9VkzGw8-unsplash.jpg');
+      }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(20,12,4,0.88) 0%,
+        rgba(20,12,4,0.5) 40%,
+        rgba(20,12,4,0.18) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 2;
+      padding: 0 80px 80px;
+      max-width: 680px;
+      margin-top: auto;
+      opacity: 0;
+      transform: translateY(32px);
+      animation: fadeUp 0.9s ease forwards 0.2s;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal-light);
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--teal-light);
+    }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(46px, 5vw, 72px);
+      font-weight: 500;
+      line-height: 1.08;
+      color: var(--cream);
+      margin-bottom: 24px;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--teal-light);
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--sand-light);
+      max-width: 440px;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--teal-light); transform: translateY(-1px); }
+
+    .btn-secondary {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      border-bottom: 1px solid var(--sand);
+      padding-bottom: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { color: var(--teal-light); border-color: var(--teal-light); }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 48px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(201,168,124,0.3);
+    }
+    .hero-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-top: 4px;
+    }
+
+    /* hero-photo class kept for badges positioning */
+    .hero-photo {
+      display: none;
+    }
+
+    /* floating badge */
+    .hero-badge {
+      position: absolute;
+      bottom: 60px;
+      left: -20px;
+      background: var(--clay);
+      color: var(--cream);
+      padding: 14px 22px;
+      border-radius: 8px;
+      box-shadow: 0 16px 48px rgba(39,28,16,0.35);
+      animation: fadeUp 0.8s ease forwards 0.8s, bob 6s ease-in-out 1.6s infinite;
+      opacity: 0;
+    }
+    .hero-badge-top {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1;
+    }
+    .hero-badge-bot {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-top: 4px;
+    }
+
+    .hero-badge-2 {
+      position: absolute;
+      top: 60px;
+      right: 24px;
+      background: var(--teal);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 8px;
+      box-shadow: 0 12px 36px rgba(61,122,114,0.4);
+      animation: fadeUp 0.8s ease forwards 1s, bob 7s ease-in-out 2s infinite;
+      opacity: 0;
+    }
+    .hero-badge-2-top {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      line-height: 1;
+    }
+    .hero-badge-2-bot {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-top: 3px;
+    }
+
+    /* ─── TRUST BAR ─────────────────────────────────────────── */
+    .trust-bar {
+      background: var(--clay);
+      padding: 28px 80px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 28px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .trust-item:first-child { padding-left: 0; }
+    .trust-item:last-child { border-right: none; }
+    .trust-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .trust-text-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--cream);
+      line-height: 1.1;
+    }
+    .trust-text-sub {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-top: 2px;
+    }
+
+    /* ─── SECTION SHARED ────────────────────────────────────── */
+    section { padding: 100px 80px; }
+
+    .section-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 3.5vw, 52px);
+      font-weight: 500;
+      line-height: 1.1;
+      color: var(--clay);
+      margin-bottom: 16px;
+    }
+    .section-title em { font-style: italic; color: var(--teal); }
+    .section-sub {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--clay-mid);
+      max-width: 560px;
+      margin-bottom: 56px;
+    }
+
+    /* ─── ETSY SHOP WIDGET ──────────────────────────────────── */
+    .shop-section {
+      background: var(--warm-white);
+      text-align: center;
+    }
+    .shop-section .section-sub { margin-left: auto; margin-right: auto; }
+
+    /* Etsy widget embed mock */
+    .etsy-widget {
+      background: #fff;
+      border: 1px solid #e8e0d5;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(39,28,16,0.06);
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .etsy-widget-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      border-bottom: 1px solid #f0e8de;
+      background: #fdf8f3;
+    }
+    .etsy-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .etsy-logo-mark {
+      width: 28px;
+      height: 28px;
+      background: var(--etsy-orange);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .etsy-brand-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #222;
+    }
+    .etsy-brand-sub {
+      font-size: 11px;
+      color: #888;
+      margin-top: 1px;
+    }
+    .etsy-header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .etsy-stars {
+      font-size: 12px;
+      color: var(--etsy-orange);
+      letter-spacing: 1px;
+    }
+    .etsy-rating-text {
+      font-size: 11px;
+      color: #666;
+    }
+    .etsy-visit-btn {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--etsy-orange);
+      text-decoration: none;
+      border: 1px solid var(--etsy-orange);
+      padding: 5px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, color 0.2s;
+    }
+    .etsy-visit-btn:hover { background: var(--etsy-orange); color: #fff; }
+
+    .etsy-product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .etsy-product-card {
+      border-right: 1px solid #f0e8de;
+      border-bottom: 1px solid #f0e8de;
+      padding: 0;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: background 0.15s;
+      position: relative;
+      overflow: hidden;
+    }
+    .etsy-product-card:nth-child(4n) { border-right: none; }
+    .etsy-product-card:hover { background: #fdf8f3; }
+
+    .etsy-product-img {
+      width: 100%;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: var(--sand-light);
+    }
+    .etsy-product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .etsy-product-card:hover .etsy-product-img img {
+      transform: scale(1.04);
+    }
+    .etsy-product-info {
+      padding: 12px 14px 16px;
+    }
+    .etsy-product-name {
+      font-size: 12px;
+      font-weight: 400;
+      color: #333;
+      line-height: 1.4;
+      margin-bottom: 6px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .etsy-product-price {
+      font-size: 13px;
+      font-weight: 600;
+      color: #222;
+    }
+    .etsy-product-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(241,101,33,0.9);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 7px;
+      border-radius: 3px;
+    }
+
+    .etsy-widget-footer {
+      padding: 20px 24px;
+      border-top: 1px solid #f0e8de;
+      background: #fdf8f3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .etsy-footer-text {
+      font-size: 11px;
+      color: #999;
+    }
+    .etsy-shop-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--etsy-orange);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .etsy-shop-link:hover { text-decoration: underline; }
+    .etsy-shop-link svg { width: 14px; height: 14px; }
+
+    /* ─── ABOUT ─────────────────────────────────────────────── */
+    .about-section {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-photo-wrap {
+      position: relative;
+    }
+    .about-photo-main {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+    .about-photo-accent {
+      position: absolute;
+      bottom: -28px;
+      right: -28px;
+      width: 55%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 6px solid var(--cream);
+      box-shadow: 0 16px 48px rgba(39,28,16,0.15);
+    }
+    .about-photo-tag {
+      position: absolute;
+      top: 24px;
+      left: -20px;
+      background: var(--teal);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 6px;
+      box-shadow: 0 8px 24px rgba(61,122,114,0.4);
+    }
+    .about-photo-tag-line1 {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+    .about-photo-tag-line2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.1;
+      margin-top: 2px;
+    }
+
+    .about-text { padding-right: 20px; }
+
+    .about-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.45;
+      color: var(--clay);
+      border-left: 3px solid var(--teal);
+      padding-left: 24px;
+      margin: 32px 0 32px;
+    }
+
+    .about-body {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--clay-mid);
+      margin-bottom: 20px;
+    }
+
+    .about-credentials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 32px;
+    }
+    .about-cred-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clay-mid);
+      background: var(--sand-light);
+      padding: 7px 14px;
+      border-radius: 20px;
+    }
+
+    /* ─── GALLERY ───────────────────────────────────────────── */
+    .gallery-section {
+      background: var(--warm-white);
+      padding-bottom: 80px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 0;
+    }
+    .gallery-grid-row2 {
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 16px;
+    }
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--sand-light);
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item.tall img { aspect-ratio: 3/4; }
+
+    /* ─── REVIEWS ───────────────────────────────────────────── */
+    .reviews-section {
+      background: var(--clay);
+      padding: 100px 80px;
+    }
+    .reviews-section .section-eyebrow { color: var(--sand); }
+    .reviews-section .section-title { color: var(--cream); }
+    .reviews-section .section-title em { color: var(--teal-light); }
+    .reviews-section .section-sub { color: var(--sand-light); }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .review-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 28px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .review-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+    .review-stars {
+      color: #f5c842;
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+    .review-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--cream);
+      margin-bottom: 20px;
+    }
+    .review-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .review-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .review-author {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--sand-light);
+    }
+    .review-product {
+      font-size: 10px;
+      color: var(--sand);
+      letter-spacing: 0.06em;
+      margin-top: 2px;
+    }
+
+    /* ─── CTA ───────────────────────────────────────────────── */
+    .cta-section {
+      background: var(--teal);
+      padding: 100px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .cta-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 16px;
+    }
+    .cta-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 4vw, 62px);
+      font-weight: 500;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .cta-sub {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.8);
+      max-width: 500px;
+      margin: 0 auto 44px;
+    }
+    .btn-cta-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-cta-white:hover {
+      background: var(--cream);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(39,28,16,0.2);
+    }
+
+    /* ─── INSTAGRAM STRIP ───────────────────────────────────── */
+    .insta-section {
+      background: var(--cream);
+      padding: 60px 80px;
+      text-align: center;
+    }
+    .insta-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 8px;
+    }
+    .insta-handle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--clay);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .insta-handle:hover { color: var(--teal); }
+
+    /* ─── FOOTER ────────────────────────────────────────────── */
+    footer {
+      background: var(--clay);
+      padding: 48px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--cream);
+      letter-spacing: 0.06em;
+    }
+    .footer-logo span { color: var(--sand); font-weight: 300; }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sand);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--cream); }
+    .footer-right {
+      font-size: 11px;
+      color: var(--sand);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── SCROLL REVEAL ─────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── ANIMATIONS ────────────────────────────────────────── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-text, .hero-badge, .hero-badge-2 {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      section { padding: 80px 48px; }
+      .trust-bar { padding: 24px 48px; }
+      .hero-text { padding: 60px 40px 60px 48px; }
+      .about-section { gap: 48px; }
+      .etsy-product-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+
+      .hero {
+        min-height: 100vh;
+      }
+      .hero-video-wrap .hero-vid-desktop { display: none; }
+      .hero-video-wrap .hero-vid-mobile  { display: block; }
+      .hero-overlay {
+        background: linear-gradient(
+          to top,
+          rgba(39,28,16,0.88) 0%,
+          rgba(39,28,16,0.6) 50%,
+          rgba(39,28,16,0.3) 100%
+        );
+      }
+      .hero-text {
+        padding: 48px 24px;
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+      .hero-stats { gap: 20px; flex-wrap: wrap; }
+      .hero-badge, .hero-badge-2 { display: none; }
+
+      .trust-bar {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 24px;
+        gap: 20px;
+      }
+      .trust-item { border-right: none; padding: 0; }
+
+      section { padding: 64px 24px; }
+      .reviews-section { padding: 64px 24px; }
+      .cta-section { padding: 64px 24px; }
+      .insta-section { padding: 48px 24px; }
+      footer { padding: 40px 24px; flex-direction: column; gap: 24px; text-align: center; }
+
+      .about-section {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 64px 24px;
+      }
+      .about-photo-accent { display: none; }
+      .about-photo-tag { left: 12px; }
+      .about-text { padding-right: 0; }
+
+      .reviews-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid-row2 { grid-template-columns: repeat(2, 1fr); }
+
+      .etsy-product-grid { grid-template-columns: repeat(2, 1fr); }
+      .etsy-product-card:nth-child(2n) { border-right: none; }
+      .etsy-product-card:nth-child(4n) { border-right: 1px solid #f0e8de; }
+
+      .etsy-header-right { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <div class="nav-logo">
+      <div class="nav-logo-top">Florida Pottery Shack</div>
+      <div class="nav-logo-sub">Handcrafted Stoneware · South Florida</div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="https://www.etsy.com/shop/Floridapotteryshack" target="_blank" class="nav-cta">Shop on Etsy →</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero" style="padding:0;">
+    <!-- Background videos — fallback to hero images if video can't load -->
+    <div class="hero-video-wrap">
+      <video class="hero-vid-desktop" autoplay muted loop playsinline
+        poster="Hero%20Images/earl-wilcox-pSo0u53FF10-unsplash.jpg">
+        <source src="Hero%20video%20/5633938-uhd_3840_2160_24fps.MP4" type="video/mp4">
+        <!-- If video fails, poster image shows automatically -->
+      </video>
+      <video class="hero-vid-mobile" autoplay muted loop playsinline
+        poster="Hero%20Images/aedrian-salazar-BshM9VkzGw8-unsplash.jpg">
+        <source src="Hero%20video%20/9363603-hd_1080_1920_25fps.MP4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-text">
+      <div class="hero-eyebrow">South Florida · Wheel-Thrown Stoneware</div>
+      <h1 class="hero-headline">
+        Made by Hand.<br>
+        Built to <em>Last.</em>
+      </h1>
+      <p class="hero-sub">
+        Every mug, bowl, and oil bottle is thrown on the wheel and glazed by hand in South Florida. Functional ceramics with a soul — pieces you'll reach for every single morning.
+      </p>
+      <div class="hero-actions">
+        <a href="https://www.etsy.com/shop/Floridapotteryshack" target="_blank" class="btn-primary">
+          Shop the Collection
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#about" class="btn-secondary">Meet the Maker</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">5.0★</div>
+          <div class="hero-stat-label">Etsy Rating</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">100%</div>
+          <div class="hero-stat-label">Handmade</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">Ships Fast</div>
+          <div class="hero-stat-label">From Boynton Beach, FL</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TRUST BAR ── -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <div class="trust-icon">🤲</div>
+      <div>
+        <div class="trust-text-main">Wheel-Thrown</div>
+        <div class="trust-text-sub">No molds. Ever.</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🔥</div>
+      <div>
+        <div class="trust-text-main">Kiln-Fired Glazes</div>
+        <div class="trust-text-sub">Food, microwave & dishwasher safe</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🌴</div>
+      <div>
+        <div class="trust-text-main">Made in Florida</div>
+        <div class="trust-text-sub">Boynton Beach, South Florida</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">📦</div>
+      <div>
+        <div class="trust-text-main">Ships Nationwide</div>
+        <div class="trust-text-sub">Carefully packed, every order</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ETSY SHOP WIDGET ── -->
+  <section class="shop-section" id="shop">
+    <div class="section-eyebrow">The Collection</div>
+    <h2 class="section-title">Featured <em>Pieces</em></h2>
+    <p class="section-sub">
+      A rotating selection of mugs, bowls, espresso cups, ramekins, oil bottles, and more —
+      each one a one-of-a-kind original. Browse what's available now on Etsy.
+    </p>
+
+    <div class="etsy-widget">
+      <!-- Widget header -->
+      <div class="etsy-widget-header">
+        <div class="etsy-brand">
+          <div class="etsy-logo-mark">e</div>
+          <div>
+            <div class="etsy-brand-name">Florida Pottery Shack</div>
+            <div class="etsy-brand-sub">Floridapotteryshack · Etsy Shop</div>
+          </div>
+        </div>
+        <div class="etsy-header-right">
+          <div>
+            <div class="etsy-stars">★★★★★</div>
+            <div class="etsy-rating-text">5.0 · All Reviews</div>
+          </div>
+          <a href="https://www.etsy.com/shop/Floridapotteryshack" target="_blank" class="etsy-visit-btn">Visit Shop</a>
+        </div>
+      </div>
+
+      <!-- Product grid -->
+      <div class="etsy-product-grid">
+
+        <a href="https://www.etsy.com/shop/Floridapotteryshack" target="_blank" class="etsy-product-card">
+          <div class="etsy-product-img">
+            <img src="il_800x800.7364909297_oqy2.jpg.webp" alt="Handmade speckled green coffee mug, wheel-thrown stoneware">
+          </div>
+          <div class="etsy-product-info">
+            <div class="etsy-product-name">Handmade Coffee Mug / Stoneware Cappuccino Cup · 14 oz</div>
+            <div class="etsy-product-price">$28.00</div>
+          </div>
+        </a>
+
+        <a href="https://www.etsy.com/shop/Floridapotteryshack" target="_blank" class="etsy-product-card">
+          <div class="etsy-product-img">
+            <img src="il_600x600.7862561372_ec9d.jpg.webp" alt="Handmade amber stoneware matcha tea bowl">
+          </div>
+          <div class="etsy-product-info">
+            <div class="etsy-product-name">Matcha Tea Bowl / Noodle Bowl · Wheel-Thrown Stoneware</div>
+            <div class="etsy-product-price">$24.00</div>
+          </div>
+        </a>
+
+        <a href="https://www.etsy.com/shop/Floridapotteryshack" target="_blank" class="etsy-product-card">
+          <div class="etsy-product-badge">Only 2 left</div>
+          <div class="etsy-product-img">
+            <img src="il_600x600.7389119252_qm9w.jpg.avif" alt="Handmade stoneware espresso cup 3oz macchiato tumbler">
+          </div>
+          <div class="etsy-product-info">
+            <div class="etsy-product-name">Handmade Espresso Cup / 3 oz Macchiato Tumbler · Stoneware</div>
+            <div class="etsy-product-price">$25.00</div>
+          </div>
+        </a>
+
+        <a href="https://www.etsy.com/shop/Floridapotteryshack" target="_blank" class="etsy-product-card">
+          <div class="etsy-product-img">
+            <img src="il_600x600.7520699331_gla6.jpg.avif" alt="Handmade olive oil bottle with spout — stoneware housewarming gift">
+          </div>
+          <div class="etsy-product-info">
+            <div class="etsy-product-name">Olive Oil Bottle with Spout · Handmade Stoneware Cruet</div>
+            <div class="etsy-product-price">$32.00</div>
+          </div>
+        </a>
+
+        <a href="https://www.etsy.com/shop/Floridapotteryshack" target="_blank" class="etsy-product-card">
+          <div class="etsy-product-img">
+            <img src="il_600x600.7540020819_g2fg.jpg.avif" alt="Handmade ceramic ramekin crème brûlée trinket dish">
+          </div>
+          <div class="etsy-product-info">
+            <div class="etsy-product-name">Handmade Stoneware Ramekin · Crème Brûlée / Trinket Dish</div>
+            <div class="etsy-product-price">$16.00</div>
+          </div>
+        </a>
+
+        <a href="https://www.etsy.com/shop/Floridapotteryshack" target="_blank" class="etsy-product-card">
+          <div class="etsy-product-img">
+            <img src="il_800x800.4902407903_r2y6.jpg.avif" alt="Handmade stoneware tumbler hot and cold beverage cup">
+          </div>
+          <div class="etsy-product-info">
+            <div class="etsy-product-name">Handmade Tumbler Cup · Hot &amp; Cold · Wheel-Thrown</div>
+            <div class="etsy-product-price">$21.00</div>
+          </div>
+        </a>
+
+        <a href="https://www.etsy.com/shop/Floridapotteryshack" target="_blank" class="etsy-product-card">
+          <div class="etsy-product-badge">Only 1 left</div>
+          <div class="etsy-product-img">
+            <img src="il_800x800.5510096526_s5tz.jpg.avif" alt="Garlic grater plate handmade stoneware pottery">
+          </div>
+          <div class="etsy-product-info">
+            <div class="etsy-product-name">Garlic Grater Plate · Handmade Stoneware Kitchen Tool</div>
+            <div class="etsy-product-price">$18.00</div>
+          </div>
+        </a>
+
+        <a href="https://www.etsy.com/shop/Floridapotteryshack" target="_blank" class="etsy-product-card">
+          <!-- view all tile -->
+          <div class="etsy-product-img" style="background: var(--clay); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px;">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" stroke="rgba(255,255,255,0.3)" stroke-width="1"/><path d="M12 18h12M20 14l4 4-4 4" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div style="font-family:'Cormorant Garamond',serif; font-size:16px; color:rgba(255,255,255,0.9); font-style:italic;">View all →</div>
+          </div>
+          <div class="etsy-product-info">
+            <div class="etsy-product-name" style="color:#888;">More pieces in the shop</div>
+            <div class="etsy-product-price" style="color: var(--etsy-orange);">Browse Etsy →</div>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Widget footer -->
+      <div class="etsy-widget-footer">
+        <span class="etsy-footer-text">Powered by Etsy Shop · All inventory live &amp; up to date</span>
+        <a href="https://www.etsy.com/shop/Floridapotteryshack" target="_blank" class="etsy-shop-link">
+          View Full Shop on Etsy
+          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section class="about-section" id="about">
+    <div class="about-photo-wrap reveal">
+      <img
+        class="about-photo-main"
+        src="il_600x600.7862561372_ec9d.jpg.webp"
+        alt="Handmade amber bowl — Florida Pottery Shack stoneware"
+      >
+      <img
+        class="about-photo-accent"
+        src="il_800x800.7364909297_oqy2.jpg.webp"
+        alt="Green speckled stoneware mug — handcrafted in South Florida"
+      >
+      <div class="about-photo-tag">
+        <div class="about-photo-tag-line1">Native Floridian</div>
+        <div class="about-photo-tag-line2">Ernie DeBlasi</div>
+      </div>
+    </div>
+
+    <div class="about-text reveal">
+      <div class="section-eyebrow">The Maker</div>
+      <h2 class="section-title">Where <em>Surfing,<br>Art &amp; Clay</em> Meet</h2>
+
+      <blockquote class="about-quote">
+        "Surfing, outdoors, and art have always gone hand in hand for me — one inspires the other."
+      </blockquote>
+
+      <p class="about-body">
+        This Pottery Shack started as an idea: create a shop in a tropical setting to display handmade works straight from the studio. For Ernie, the outdoors and the wheel have always been inseparable — the ocean shapes the glazes, the Florida light lives in every piece.
+      </p>
+      <p class="about-body">
+        Ernie DeBlasi is a local South Florida potter and artist who cultivates inspiration from nature in the tropics. His appreciation for the outdoors and wildlife in his home state is part of his way of life — and it shows in every mug, bowl, and bottle he throws.
+      </p>
+      <p class="about-body" style="font-style:italic; color: var(--clay);">
+        Thank you for stopping by. — Ernie
+      </p>
+
+      <div class="about-credentials">
+        <span class="about-cred-pill">🌊 Inspired by the Tropics</span>
+        <span class="about-cred-pill">🔥 Wood &amp; Salt Kiln Trained</span>
+        <span class="about-cred-pill">🎨 Painter &amp; Ceramicist</span>
+        <span class="about-cred-pill">📍 Boynton Beach, FL</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── REVIEWS ── -->
+  <section class="reviews-section" id="reviews">
+    <div class="section-eyebrow">What People Say</div>
+    <h2 class="section-title">Real Reviews,<br><em>Real Kitchens</em></h2>
+    <p class="section-sub">
+      Every review is from a verified Etsy purchase. No scripts, no filters.
+    </p>
+
+    <div class="reviews-grid">
+
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Somehow beautiful and cute at the same time. Lovely craftsmanship. Brings me joy every morning."</p>
+        <div class="review-meta">
+          <div class="review-avatar">S</div>
+          <div>
+            <div class="review-author">Shelli</div>
+            <div class="review-product">Stoneware Espresso Cup · 3 oz Macchiato</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"This is my second mug from this shop. The first one was gifted to me and it's one of my favorites. All the love from Michigan."</p>
+        <div class="review-meta">
+          <div class="review-avatar" style="background:var(--terra);">M</div>
+          <div>
+            <div class="review-author">Marieav</div>
+            <div class="review-product">Coffee Mug / Cappuccino Cup · 14 oz</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The most beautifully fired turquoise salt cellar — a real gem. Exactly what I was hoping for."</p>
+        <div class="review-meta">
+          <div class="review-avatar" style="background:#4a6e8a;">S</div>
+          <div>
+            <div class="review-author">Slithie2</div>
+            <div class="review-product">Handmade Ceramic Salt Cellar / Sugar Jar</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Absolutely beautiful. As pictured and exactly what I needed."</p>
+        <div class="review-meta">
+          <div class="review-avatar" style="background:#6b5e3e;">E</div>
+          <div>
+            <div class="review-author">ElecSaver</div>
+            <div class="review-product">Stoneware Ramekin · Crème Brûlée Dish</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Beautiful, high quality — my husband loves it for his morning espresso!"</p>
+        <div class="review-meta">
+          <div class="review-avatar" style="background:var(--teal);">M</div>
+          <div>
+            <div class="review-author">Moo</div>
+            <div class="review-product">Stoneware Espresso Cup · Ceramic Shot Glass</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Beautiful but solid! Love the size, easy to hold. Gorgeous in my kitchen!"</p>
+        <div class="review-meta">
+          <div class="review-avatar" style="background:#7a6050;">A</div>
+          <div>
+            <div class="review-author">Verified Buyer</div>
+            <div class="review-product">Olive Oil Bottle with Top · Stoneware Dispenser</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="cta-section">
+    <div class="cta-eyebrow">Shop the Full Collection</div>
+    <h2 class="cta-headline">Find Your<br>Perfect Piece</h2>
+    <p class="cta-sub">
+      Every item is one of a kind. When it's gone, it's gone.
+      Shop the full collection on Etsy while pieces are still available.
+    </p>
+    <a href="https://www.etsy.com/shop/Floridapotteryshack" target="_blank" class="btn-cta-white">
+      Browse on Etsy
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </section>
+
+  <!-- ── INSTAGRAM ── -->
+  <section class="insta-section">
+    <div class="insta-label">Follow Along</div>
+    <a href="https://www.instagram.com/erniethepotter/" target="_blank" class="insta-handle">
+      @erniethepotter
+    </a>
+    <p style="font-size:13px; color:var(--clay-mid); margin-top:10px; font-weight:300;">
+      Behind-the-scenes from the wheel, the kiln, and the shack.
+    </p>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-logo">Florida Pottery Shack <span>· Est. Boynton Beach, FL</span></div>
+    <ul class="footer-links">
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="https://www.instagram.com/erniethepotter/" target="_blank">Instagram</a></li>
+      <li><a href="https://www.etsy.com/shop/Floridapotteryshack" target="_blank">Etsy Shop</a></li>
+    </ul>
+    <div class="footer-right">Handmade with care · South Florida</div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Nav opacity on scroll
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.style.boxShadow = window.scrollY > 40
+        ? '0 2px 24px rgba(39,28,16,0.25)'
+        : 'none';
+    });
+  </script>
+
+</body>
+</html>
