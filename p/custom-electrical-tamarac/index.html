@@ -93,20 +93,17 @@ section.alt{background:var(--off)}
 .cred-item{display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:600;color:var(--text)}
 .cred-item::before{content:'';display:block;width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0}
 
-/* REVIEWS CAROUSEL */
-.review-card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:36px 40px}
-.review-stars{color:#f59e0b;font-size:1.1rem;margin-bottom:14px;letter-spacing:3px}
-.review-text{font-size:1rem;color:var(--text);line-height:1.7;margin-bottom:18px;font-style:italic}
-.review-author{font-size:.85rem;font-weight:700;color:var(--muted)}
-.carousel-wrap{position:relative;margin-top:48px;overflow:hidden}
-.carousel-track{display:flex;width:100%;transition:transform .45s cubic-bezier(.4,0,.2,1)}
-.carousel-track .review-card{flex:0 0 100%;min-width:100%;box-sizing:border-box}
-.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:var(--white);border:1px solid var(--line);border-radius:50%;width:40px;height:40px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;color:var(--muted);padding:0;box-shadow:0 2px 8px rgba(0,0,0,.07)}
-.carousel-prev{left:12px}
-.carousel-next{right:12px}
-.carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:16px}
-.carousel-dot{width:8px;height:8px;border-radius:50%;background:#d1d5db;cursor:pointer;border:none;padding:0;transition:all .25s}
-.carousel-dot.active{background:var(--accent);width:24px;border-radius:4px}
+/* REVIEW TICKER */
+.review-ticker{background:var(--off);padding:32px 64px;overflow:hidden}
+.review-ticker-inner{max-width:600px;margin:0 auto;position:relative;min-height:100px}
+.ticker-slide{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.ticker-slide.active{opacity:1}
+.ticker-stars{color:var(--accent);font-size:.8rem;letter-spacing:2px;margin-bottom:8px}
+.ticker-text{font-size:.9rem;color:var(--muted);line-height:1.65;font-style:italic}
+.ticker-author{font-size:.75rem;font-weight:600;color:var(--text);opacity:.45;margin-top:8px}
+.ticker-dots{display:flex;justify-content:center;gap:5px;margin-top:12px}
+.ticker-dot{width:5px;height:5px;border-radius:50%;background:#cbd5e1;border:none;padding:0;cursor:pointer;transition:all .3s}
+.ticker-dot.active{background:var(--accent);width:16px;border-radius:3px}
 
 /* CTA */
 .cta-banner{background:var(--navy);padding:80px 64px;text-align:center}
@@ -134,7 +131,7 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
   .trust-item{border-right:none;padding:8px 0}
   section{padding:56px 20px}
   .services-grid{grid-template-columns:1fr}
-  .review-card{padding:24px 20px}
+  .review-ticker{padding:24px 20px}
   .about-grid{grid-template-columns:1fr;gap:32px}
   .about-photo{height:260px}
   footer{grid-template-columns:1fr;gap:32px;padding:40px 20px}
@@ -191,6 +188,31 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
   <div class="trust-item">
     <div class="trust-title">Free Estimates</div>
     <div class="trust-sub">Miami-Dade · Broward · Palm Beach</div>
+  </div>
+</div>
+
+<div class="review-ticker">
+  <div class="review-ticker-inner">
+    <div class="ticker-slide active">
+      <div class="ticker-stars">★★★★★</div>
+      <p class="ticker-text">"Finally, an honest, punctual, affordable, helpful, knowledgeable electrician. Joey's service exceeded our expectations."</p>
+      <div class="ticker-author">Verified Customer — Broward County</div>
+    </div>
+    <div class="ticker-slide">
+      <div class="ticker-stars">★★★★★</div>
+      <p class="ticker-text">"Professional, dependable and their prices can't be beat. Called in the morning, had someone out by afternoon. Did a great job and cleaned up after themselves."</p>
+      <div class="ticker-author">HomeAdvisor Review</div>
+    </div>
+    <div class="ticker-slide">
+      <div class="ticker-stars">★★★★★</div>
+      <p class="ticker-text">"Joey showed up right on time for the estimate, gave me an honest opinion about what I actually needed, and didn't try to upsell me on anything extra. Refreshing."</p>
+      <div class="ticker-author">Verified Customer — Fort Lauderdale</div>
+    </div>
+  </div>
+  <div class="ticker-dots">
+    <button class="ticker-dot active" aria-label="Review 1"></button>
+    <button class="ticker-dot" aria-label="Review 2"></button>
+    <button class="ticker-dot" aria-label="Review 3"></button>
   </div>
 </div>
 
@@ -275,39 +297,6 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
   </div>
 </section>
 
-<!-- REVIEWS -->
-<section>
-  <div class="section-label">What Customers Say</div>
-  <h2 class="section-title">Trusted by South Florida Homeowners</h2>
-  <p class="section-sub">Hundreds of satisfied customers across three counties. Here's what they say about working with Custom Electrical Solutions.</p>
-  <div class="carousel-wrap">
-    <div class="carousel-track">
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Finally, an honest, punctual, affordable, helpful, knowledgeable electrician. Joey's service exceeded our expectations."</p>
-        <div class="review-author">Verified Customer — Broward County</div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Professional, dependable and their prices can't be beat. Called in the morning, had someone out by afternoon. Did a great job and cleaned up after themselves."</p>
-        <div class="review-author">HomeAdvisor Review</div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Joey showed up right on time for the estimate, gave me an honest opinion about what I actually needed, and didn't try to upsell me on anything extra. Refreshing."</p>
-        <div class="review-author">Verified Customer — Fort Lauderdale</div>
-      </div>
-    </div>
-    <button class="carousel-btn carousel-prev" aria-label="Previous"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
-    <button class="carousel-btn carousel-next" aria-label="Next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
-  </div>
-  <div class="carousel-dots">
-    <button class="carousel-dot active" aria-label="Review 1"></button>
-    <button class="carousel-dot" aria-label="Review 2"></button>
-    <button class="carousel-dot" aria-label="Review 3"></button>
-  </div>
-</section>
-
 <!-- CTA -->
 <div class="cta-banner">
   <h2>Get Your Free Estimate Today</h2>
@@ -350,20 +339,17 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
 
 <script>
 (function(){
-  var wrap=document.querySelector('.carousel-wrap');
-  if(!wrap)return;
-  var track=wrap.querySelector('.carousel-track');
-  var dots=document.querySelectorAll('.carousel-dot');
-  var n=track.querySelectorAll('.review-card').length,cur=0,timer;
+  var slides=document.querySelectorAll('.ticker-slide');
+  var dots=document.querySelectorAll('.ticker-dot');
+  if(!slides.length)return;
+  var n=slides.length,cur=0,timer;
   function go(i){
     cur=(i%n+n)%n;
-    track.style.transform='translateX(-'+(cur*100)+'%)';
+    slides.forEach(function(s,j){s.classList.toggle('active',j===cur)});
     dots.forEach(function(d,j){d.classList.toggle('active',j===cur)});
   }
-  wrap.querySelector('.carousel-prev').addEventListener('click',function(){go(cur-1);reset()});
-  wrap.querySelector('.carousel-next').addEventListener('click',function(){go(cur+1);reset()});
   dots.forEach(function(d,i){d.addEventListener('click',function(){go(i);reset()})});
-  function reset(){clearInterval(timer);timer=setInterval(function(){go(cur+1)},5000)}
+  function reset(){clearInterval(timer);timer=setInterval(function(){go(cur+1)},4500)}
   reset();
 })();
 </script>
