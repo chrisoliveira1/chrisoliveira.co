@@ -48,6 +48,12 @@ h1 em{font-style:normal;color:var(--accent-light)}
 .hero-right{position:relative;overflow:hidden}
 .hero-right::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to right,#1c1c2e 0%,#1c1c2e 8%,rgba(28,28,46,.5) 42%,transparent 78%)}
 .hero-right img,.hero-right .photo-placeholder{width:100%;height:100%;object-fit:cover;display:block}
+.hero-form-card{position:absolute;right:7%;top:50%;transform:translateY(-50%);z-index:4;background:rgba(8,8,18,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:28px 24px;width:290px}
+.hero-form-card h3{margin:0 0 16px;font-size:.95rem;font-weight:700;color:#fff;letter-spacing:.02em}
+.hero-form-card input,.hero-form-card textarea{display:block;width:100%;box-sizing:border-box;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:11px 14px;font-size:.85rem;color:#fff;font-family:inherit;margin-bottom:10px;outline:none}
+.hero-form-card input::placeholder,.hero-form-card textarea::placeholder{color:rgba(255,255,255,.38)}
+.hero-form-card textarea{resize:none;height:78px}
+.hero-form-card button{width:100%;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:13px;font-size:.875rem;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.02em}
 .hero-wave{position:absolute;bottom:0;left:0;width:100%;line-height:0;z-index:3;pointer-events:none}
 .hero-wave svg{display:block;width:100%;height:48px}
 
@@ -161,10 +167,14 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
     </div>
   </div>
   <div class="hero-right">
-    <div class="photo-placeholder">
-      <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="2" y="4" width="20" height="16" rx="2" stroke-width="1.5"/><circle cx="8.5" cy="10.5" r="1.5" stroke-width="1.5"/><path d="M2 16l5-5 4 4 3-3 5 5" stroke-width="1.5"/></svg>
-      Photo — upload later
-    </div>
+    <img src="../../assets/samples/Electricians/Inspo/9367b709ebcbf9d77560efcea8117cc1.jpg" alt="Licensed electrician at work">
+    <form class="hero-form-card" action="#" method="POST">
+      <h3>Get a Free Quote</h3>
+      <input type="text" name="name" placeholder="Your Name" autocomplete="off">
+      <input type="tel" name="phone" placeholder="Phone Number" autocomplete="off">
+      <textarea name="message" placeholder="Describe your electrical need…"></textarea>
+      <button type="submit">Get a Free Quote</button>
+    </form>
   </div>
   <div class="hero-wave">
     <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -254,9 +264,8 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
 <!-- ABOUT -->
 <section class="alt">
   <div class="about-grid">
-    <div class="about-photo photo-placeholder-light">
-      <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="#8a95a8" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-      <span style="font-size:.8rem;color:#8a95a8;font-weight:600;text-transform:uppercase;letter-spacing:.08em">Photo of Joey — upload later</span>
+    <div class="about-photo">
+      <img src="../../assets/samples/Electricians/Inspo/fbc7be6e2fe019ed75af08f72ff185b1.jpg" alt="Electrician on the job" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px">
     </div>
     <div class="about-content">
       <div class="about-badge">About Joey</div>
