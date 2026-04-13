@@ -476,21 +476,20 @@ footer{background:var(--black);padding:56px 64px;display:grid;grid-template-colu
   var loader = document.getElementById('loader');
 
   var steps = [
-    { q: '"Professional, dependable, and their prices can\'t be beat."', a: '— Happy Customer · Yahoo Local' },
-    { q: '"Joey and his team went above and beyond."',                   a: '— Lauri K. · Yahoo Local' },
-    { q: '"One of the best in the biz. 8 years and counting."',          a: '— Condo Association Manager · Broward' },
+    '"Professional, dependable, and their prices can\'t be beat."',
+    '"Joey and his team went above and beyond."',
+    '"One of the best in the biz. 8 years and counting."',
   ];
+
+  attr.style.display = 'none';
 
   var i = 0;
   function show(idx) {
     quote.classList.remove('on');
-    attr.classList.remove('on');
     stars.classList.remove('on');
     setTimeout(function() {
-      quote.textContent = steps[idx].q;
-      attr.textContent  = steps[idx].a;
+      quote.textContent = steps[idx];
       quote.classList.add('on');
-      attr.classList.add('on');
       stars.classList.add('on');
     }, 300);
   }
@@ -503,13 +502,12 @@ footer{background:var(--black);padding:56px 64px;display:grid;grid-template-colu
       setTimeout(function() {
         loader.classList.add('done');
         document.getElementById('page').style.visibility = 'visible';
-        // Fire the hero rating count-up after page reveals
         startHeroRating();
-      }, 1000);
+      }, 1200);
     } else {
       show(i);
     }
-  }, 1300);
+  }, 1400);
 })();
 
 

@@ -459,21 +459,20 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
   var loader = document.getElementById('loader');
 
   var steps = [
-    { q: '"Maurice\'s work is meticulous. This is what a family business looks like."', a: '— Roberto M. · Lauderhill' },
-    { q: '"Had someone out within two hours. Fixed the issue and didn\'t overcharge."',  a: '— Denise T. · Plantation' },
-    { q: '"We\'ve used MG Electric for years and won\'t use anyone else."',              a: '— James K. · Fort Lauderdale' },
+    '"Maurice\'s work is meticulous. This is what a family business looks like."',
+    '"Had someone out within two hours. Fixed the issue and didn\'t overcharge."',
+    '"We\'ve used MG Electric for years and won\'t use anyone else."',
   ];
+
+  attr.style.display = 'none';
 
   var i = 0;
   function show(idx) {
     quote.classList.remove('on');
-    attr.classList.remove('on');
     stars.classList.remove('on');
     setTimeout(function() {
-      quote.textContent = steps[idx].q;
-      attr.textContent  = steps[idx].a;
+      quote.textContent = steps[idx];
       quote.classList.add('on');
-      attr.classList.add('on');
       stars.classList.add('on');
     }, 300);
   }
@@ -487,11 +486,11 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
         loader.classList.add('done');
         document.getElementById('page').style.visibility = 'visible';
         startHeroRating();
-      }, 1000);
+      }, 1200);
     } else {
       show(i);
     }
-  }, 1300);
+  }, 1400);
 })();
 
 
