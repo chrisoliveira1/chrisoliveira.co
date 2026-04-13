@@ -35,18 +35,22 @@ nav{position:sticky;top:0;z-index:100;height:68px;background:var(--white);border
 .nav-cta:hover{background:var(--accent-light)}
 
 /* HERO */
-.hero{min-height:calc(100vh - 68px);display:grid;grid-template-columns:1fr 1fr;position:relative;background:#fff}
-.hero-left{display:flex;flex-direction:column;justify-content:center;padding:0 48px 0 64px;position:relative;z-index:2}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);color:#92400e;font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;padding:6px 14px;border-radius:99px;width:fit-content;margin-bottom:24px}
+.hero{height:calc(100vh - 68px);display:flex;align-items:center;position:relative;background:#0a1a2e;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:1}
+.hero-bg img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(10,26,46,.92) 0%,rgba(10,26,46,.75) 45%,rgba(10,26,46,.4) 100%);pointer-events:none}
+.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;width:100%;max-width:1200px;margin:0 auto;padding:0 64px}
+.hero-left{display:flex;flex-direction:column;justify-content:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.35);color:var(--accent-light);font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;padding:6px 14px;border-radius:99px;width:fit-content;margin-bottom:24px}
 .eyebrow::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--accent)}
-h1{font-size:clamp(2rem,3.4vw,2.8rem);font-weight:900;color:var(--navy);line-height:1.12;letter-spacing:-.025em;margin-bottom:16px}
+h1{font-size:clamp(2rem,3.4vw,2.8rem);font-weight:900;color:var(--white);line-height:1.12;letter-spacing:-.025em;margin-bottom:16px}
 h1 em{font-style:normal;color:var(--accent)}
-.hero-sub{color:var(--muted);font-size:1rem;line-height:1.65;max-width:420px;margin-bottom:28px}
+.hero-sub{color:rgba(255,255,255,.7);font-size:1rem;line-height:1.65;max-width:420px;margin-bottom:28px}
 .btn-primary{background:var(--accent);color:var(--navy);font-weight:700;font-size:.95rem;padding:14px 28px;border-radius:8px;text-decoration:none;display:inline-block;transition:background .2s}
 .btn-primary:hover{background:var(--accent-light)}
 .btn-ghost{color:var(--white);font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid rgba(255,255,255,.3);padding:13px 24px;border-radius:8px;display:inline-block;transition:background .2s}
 .btn-ghost:hover{background:rgba(255,255,255,.1)}
-.hero-form{max-width:400px}
+.hero-form{max-width:400px;background:var(--white);border-radius:14px;padding:28px 26px;box-shadow:0 12px 40px rgba(0,0,0,.3)}
 .hero-form .form-heading{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:12px}
 .hero-form .form-sub{font-size:.8rem;color:var(--muted);margin-bottom:14px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
@@ -56,9 +60,6 @@ h1 em{font-style:normal;color:var(--accent)}
 .hero-form textarea{resize:none;height:82px}
 .hero-form button{background:var(--accent);color:var(--navy);border:none;border-radius:10px;padding:14px;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit;width:100%;transition:background .2s}
 .hero-form button:hover{background:var(--accent-light)}
-.hero-right{position:relative;overflow:hidden}
-.hero-right img{width:100%;height:100%;object-fit:cover;display:block}
-.hero-right::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to right,#fff 0%,rgba(255,255,255,.5) 22%,transparent 58%);pointer-events:none}
 
 /* TRUST BAR */
 .trust-bar{background:var(--trust-bg);padding:20px 64px;display:grid;grid-template-columns:repeat(4,1fr)}
@@ -123,9 +124,13 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
 
 @media(max-width:900px){
   nav{padding:0 20px}
-  .hero{grid-template-columns:1fr;height:auto;min-height:calc(100vh - 68px)}
-  .hero-right{height:280px}
-  .hero-left{padding:36px 20px 48px}
+  .nav-phone{display:none}
+  .nav-right{gap:10px}
+  .nav-cta{padding:8px 16px;font-size:.8rem}
+  .hero{height:auto;min-height:calc(100vh - 68px)}
+  .hero-content{grid-template-columns:1fr;padding:36px 20px 48px}
+  .hero-form{max-width:100%}
+  .hero-left{padding:0}
   h1{font-size:1.8rem}
   .trust-bar{grid-template-columns:1fr 1fr;padding:16px 20px;gap:12px}
   .trust-item{border-right:none;padding:8px 0}
@@ -143,8 +148,49 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
   .mobile-cta .mc-quote{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.3)}
 }
 
+/* ANIMATIONS */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes slideInRight{
+  from{opacity:0;transform:translateX(40px)}
+  to{opacity:1;transform:translateX(0)}
+}
+.hero .eyebrow,
+.hero h1,
+.hero .hero-sub,
+.hero .hero-form{opacity:0;animation:fadeUp .7s cubic-bezier(.22,1,.36,1) forwards}
+.hero .eyebrow{animation-delay:.15s}
+.hero h1{animation-delay:.35s}
+.hero .hero-sub{animation-delay:.55s}
+.hero .hero-form{animation:slideInRight .8s cubic-bezier(.22,1,.36,1) .4s forwards}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+.service-card{opacity:0;transform:translateY(24px);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1),box-shadow .25s ease}
+.service-card.visible{opacity:1;transform:translateY(0)}
+.service-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.08);transform:translateY(-4px)}
+
+.hero-form input,.hero-form textarea{transition:border-color .2s,box-shadow .2s,transform .15s ease}
+.hero-form input:focus,.hero-form textarea:focus{transform:scale(1.01)}
+.hero-form button{transition:background .2s,transform .15s ease,box-shadow .2s}
+.hero-form button:hover{transform:scale(1.02);box-shadow:0 6px 20px rgba(0,0,0,.2)}
+
+.scroll-card{transition:transform .25s ease,box-shadow .25s ease}
+.scroll-card:hover{transform:scale(1.03);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+
 @media(prefers-reduced-motion:reduce){
   .review-scroll-track{animation:none}
+  .hero .eyebrow,
+  .hero h1,
+  .hero .hero-sub,
+  .hero .hero-form{opacity:1;animation:none}
+  .reveal{opacity:1;transform:none;transition:none}
+  .service-card{opacity:1;transform:none;transition:none}
+  .scroll-card{transition:none}
+  .hero-form input,.hero-form textarea,.hero-form button{transition:none}
 }
 </style>
 </head>
@@ -153,16 +199,20 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
 <nav>
   <div class="nav-logo">Customer 1st<span> Electric</span></div>
   <div class="nav-right">
-    <a href="tel:9543405668" class="nav-phone">(954) 340-5668</a>
     <a href="tel:9543405668" class="nav-cta">Book Will Directly</a>
   </div>
 </nav>
 
 <section class="hero">
-  <div class="hero-left">
-    <div class="eyebrow">Coral Springs, FL&nbsp;&nbsp;·&nbsp;&nbsp;Veteran Owned Since 2009</div>
-    <h1>You Work With <em>Will.</em><br>Every Single Time.</h1>
-    <p class="hero-sub">Licensed master electrician and Iraq combat veteran with 15+ years of experience. Will handles every job personally — no subcontractors, no surprises, no sending someone else.</p>
+  <div class="hero-bg">
+    <img src="../../assets/samples/Electricians/electrician-working-on-electrical-panel-circuit-breaker-box.jpg" alt="Licensed electrician at work">
+  </div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="eyebrow">Coral Springs, FL&nbsp;&nbsp;·&nbsp;&nbsp;Veteran Owned Since 2009</div>
+      <h1>You Work With <em>Will.</em><br>Every Single Time.</h1>
+      <p class="hero-sub">Licensed master electrician and Iraq combat veteran with 15+ years of experience. Will handles every job personally — no subcontractors, no surprises, no sending someone else.</p>
+    </div>
     <form id="quote-form" class="hero-form" action="#" method="POST">
       <div class="form-heading">Get Your Free Quote</div>
       <div class="form-sub">Most jobs scheduled within the week.</div>
@@ -174,9 +224,6 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
       <textarea id="c1e-message" name="message" placeholder="e.g., panel upgrade, EV charger, lighting install…"></textarea>
       <button type="submit">Get a Free Quote</button>
     </form>
-  </div>
-  <div class="hero-right">
-    <img src="../../assets/samples/Electricians/electrician-working-on-electrical-panel-circuit-breaker-box.jpg" alt="Licensed electrician at work">
   </div>
 </section>
 
@@ -206,21 +253,19 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
     <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"As a veteran myself, I wanted to support a fellow service member. Will didn't disappoint. On time, and the EV charger install looks like it came straight from the factory."</p><div class="scroll-author">— Marcus D. · Parkland</div></div>
     <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Will rewired our entire kitchen during a remodel. Clean work, pulled the permit himself, and the inspector had zero notes. That never happens."</p><div class="scroll-author">— Linda P. · Coconut Creek</div></div>
     <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Called about a tripping breaker. Will came out next day, found the issue in 20 minutes, and the fix was half what I expected to pay. Straight shooter."</p><div class="scroll-author">— Robert H. · Margate</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="4 out of 5 stars">★★★★☆</div><p class="scroll-text">"Will was booked out about a week, but the recessed lighting install was worth the wait. Six cans, dimmer switch, done in a few hours. Looks great."</p><div class="scroll-author">— Amanda C. · Coral Springs</div></div>
     <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Will was punctual, professional, and clearly knows his craft. He explained everything before starting and left the place cleaner than he found it. Would hire again without hesitation."</p><div class="scroll-author">— Sarah K. · Coral Springs</div></div>
     <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"I loved that Will does every job himself. No strangers showing up at my house. He was upfront about pricing, did the panel work the same week, and passed inspection first try."</p><div class="scroll-author">— Jennifer M. · Coral Springs</div></div>
     <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"As a veteran myself, I wanted to support a fellow service member. Will didn't disappoint. On time, and the EV charger install looks like it came straight from the factory."</p><div class="scroll-author">— Marcus D. · Parkland</div></div>
     <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Will rewired our entire kitchen during a remodel. Clean work, pulled the permit himself, and the inspector had zero notes. That never happens."</p><div class="scroll-author">— Linda P. · Coconut Creek</div></div>
     <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Called about a tripping breaker. Will came out next day, found the issue in 20 minutes, and the fix was half what I expected to pay. Straight shooter."</p><div class="scroll-author">— Robert H. · Margate</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="4 out of 5 stars">★★★★☆</div><p class="scroll-text">"Will was booked out about a week, but the recessed lighting install was worth the wait. Six cans, dimmer switch, done in a few hours. Looks great."</p><div class="scroll-author">— Amanda C. · Coral Springs</div></div>
   </div>
 </div>
 
 <!-- SERVICES -->
 <section>
-  <div class="section-label">What We Do</div>
-  <h2 class="section-title">What Will Can Do for Your Home</h2>
-  <p class="section-sub">From panel upgrades to EV chargers, Will handles every job personally with the precision and discipline you'd expect from a master electrician and military veteran.</p>
+  <div class="section-label reveal">What We Do</div>
+  <h2 class="section-title reveal">What Will Can Do for Your Home</h2>
+  <p class="section-sub reveal">From panel upgrades to EV chargers, Will handles every job personally with the precision and discipline you'd expect from a master electrician and military veteran.</p>
   <div class="services-grid">
     <div class="service-card">
       <div class="service-icon">
@@ -274,11 +319,11 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
       <img src="../../assets/samples/Electricians/615df0fce4220.image.jpg" alt="Electrician on the job" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px">
     </div>
     <div class="about-content">
-      <div class="about-badge">About Will</div>
-      <h2 class="about-title">A Veteran Who Takes His Work Personally</h2>
-      <p class="about-body">William Malyska is a licensed master electrician with 15+ years of experience and an Iraq combat veteran. That military background shows in everything he does — punctual, precise, and accountable from the first call to the final walkthrough.</p>
-      <p class="about-body">When you book Customer 1st Electric, you get Will. Not a crew you've never met, not a subcontractor, not a helper. Will shows up, Will does the work, and Will signs off on it. That's not common in this industry — he made it his standard.</p>
-      <ul class="cred-list">
+      <div class="about-badge reveal">About Will</div>
+      <h2 class="about-title reveal">A Veteran Who Takes His Work Personally</h2>
+      <p class="about-body reveal">William Malyska is a licensed master electrician with 15+ years of experience and an Iraq combat veteran. That military background shows in everything he does — punctual, precise, and accountable from the first call to the final walkthrough.</p>
+      <p class="about-body reveal">When you book Customer 1st Electric, you get Will. Not a crew you've never met, not a subcontractor, not a helper. Will shows up, Will does the work, and Will signs off on it. That's not common in this industry — he made it his standard.</p>
+      <ul class="cred-list reveal">
         <li class="cred-item">Licensed Master Electrician — Lic # EC13010579</li>
         <li class="cred-item">Iraq Combat Veteran, U.S. Military</li>
         <li class="cred-item">15+ Years of Electrical Experience</li>
@@ -291,9 +336,9 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
 
 <!-- CTA -->
 <div class="cta-banner">
-  <h2>Ready to Talk to Will?</h2>
-  <p>Free estimates, upfront pricing, and Will on every job. Call or text to get started — most jobs scheduled within the week.</p>
-  <div class="cta-actions">
+  <h2 class="reveal">Ready to Talk to Will?</h2>
+  <p class="reveal">Free estimates, upfront pricing, and Will on every job. Call or text to get started — most jobs scheduled within the week.</p>
+  <div class="cta-actions reveal">
     <a href="tel:9543405668" class="btn-primary">Call (954) 340-5668</a>
     <a href="#quote-form" class="btn-ghost">Get a Free Estimate</a>
   </div>
@@ -333,6 +378,30 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
   <a href="tel:9543405668" class="mc-call">Call Now</a>
   <a href="#quote-form" class="mc-quote">Free Quote</a>
 </div>
+
+<script>
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}
+    });
+  },{threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  var cards = document.querySelectorAll('.service-card');
+  var cardIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var idx = Array.prototype.indexOf.call(cards, e.target);
+        e.target.style.transitionDelay = (idx * 100) + 'ms';
+        e.target.classList.add('visible');
+        cardIO.unobserve(e.target);
+      }
+    });
+  },{threshold:0.1});
+  cards.forEach(function(c){cardIO.observe(c)});
+})();
+</script>
 
 </body>
 </html>

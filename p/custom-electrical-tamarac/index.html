@@ -35,18 +35,22 @@ nav{position:sticky;top:0;z-index:100;height:68px;background:var(--white);border
 .nav-cta:hover{background:var(--accent-light)}
 
 /* HERO */
-.hero{min-height:calc(100vh - 68px);display:grid;grid-template-columns:1fr 1fr;position:relative;background:#fff}
-.hero-left{display:flex;flex-direction:column;justify-content:center;padding:0 48px 0 64px;position:relative;z-index:2}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);color:#92400e;font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;padding:6px 14px;border-radius:99px;width:fit-content;margin-bottom:24px}
+.hero{height:calc(100vh - 68px);display:flex;align-items:center;position:relative;background:#0a1a2e;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:1}
+.hero-bg img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(10,26,46,.92) 0%,rgba(10,26,46,.75) 45%,rgba(10,26,46,.4) 100%)}
+.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;width:100%;max-width:1200px;margin:0 auto;padding:0 64px}
+.hero-left{display:flex;flex-direction:column;justify-content:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.35);color:var(--accent-light);font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;padding:6px 14px;border-radius:99px;width:fit-content;margin-bottom:24px}
 .eyebrow::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--accent)}
-h1{font-size:clamp(2rem,3.4vw,2.8rem);font-weight:900;color:var(--navy);line-height:1.12;letter-spacing:-.025em;margin-bottom:16px}
+h1{font-size:clamp(2rem,3.4vw,2.8rem);font-weight:900;color:var(--white);line-height:1.12;letter-spacing:-.025em;margin-bottom:16px}
 h1 em{font-style:normal;color:var(--accent)}
-.hero-sub{color:var(--muted);font-size:1rem;line-height:1.65;max-width:420px;margin-bottom:28px}
+.hero-sub{color:rgba(255,255,255,.7);font-size:1rem;line-height:1.65;max-width:420px;margin-bottom:28px}
 .btn-primary{background:var(--accent);color:var(--navy);font-weight:700;font-size:.95rem;padding:14px 28px;border-radius:8px;text-decoration:none;display:inline-block;transition:background .2s}
 .btn-primary:hover{background:var(--accent-light)}
 .btn-ghost{color:var(--white);font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid rgba(255,255,255,.3);padding:13px 24px;border-radius:8px;display:inline-block;transition:background .2s}
 .btn-ghost:hover{background:rgba(255,255,255,.1)}
-.hero-form{max-width:400px}
+.hero-form{max-width:400px;background:var(--white);border-radius:14px;padding:28px 26px;box-shadow:0 12px 40px rgba(0,0,0,.3)}
 .hero-form .form-heading{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:12px}
 .hero-form .form-sub{font-size:.8rem;color:var(--muted);margin-bottom:14px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
@@ -56,9 +60,6 @@ h1 em{font-style:normal;color:var(--accent)}
 .hero-form textarea{resize:none;height:82px}
 .hero-form button{background:var(--accent);color:var(--navy);border:none;border-radius:10px;padding:14px;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit;width:100%;transition:background .2s}
 .hero-form button:hover{background:var(--accent-light)}
-.hero-right{position:relative;overflow:hidden}
-.hero-right img{width:100%;height:100%;object-fit:cover;display:block}
-.hero-right::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to right,#fff 0%,rgba(255,255,255,.5) 22%,transparent 58%);pointer-events:none}
 
 /* TRUST BAR */
 .trust-bar{background:var(--trust-bg);padding:20px 64px;display:grid;grid-template-columns:repeat(4,1fr)}
@@ -128,9 +129,13 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
 
 @media(max-width:900px){
   nav{padding:0 20px}
-  .hero{grid-template-columns:1fr;height:auto;min-height:calc(100vh - 68px)}
-  .hero-right{height:280px}
-  .hero-left{padding:36px 20px 48px}
+  .hero{height:auto;min-height:calc(100vh - 68px)}
+  .hero-content{grid-template-columns:1fr;padding:0 20px}
+  .hero-left{padding:36px 0 32px}
+  .hero-form{max-width:100%}
+  .nav-phone{display:none}
+  .nav-right{gap:10px}
+  .nav-cta{padding:8px 16px;font-size:.8rem}
   h1{font-size:1.8rem}
   .trust-bar{grid-template-columns:1fr 1fr;padding:16px 20px;gap:12px}
   .trust-item{border-right:none;padding:8px 0}
@@ -148,8 +153,46 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
   .mobile-cta .mc-quote{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.3)}
 }
 
+/* ANIMATIONS */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes slideInRight{
+  from{opacity:0;transform:translateX(40px)}
+  to{opacity:1;transform:translateX(0)}
+}
+.hero .eyebrow,
+.hero h1,
+.hero .hero-sub,
+.hero .hero-form{opacity:0;animation:fadeUp .7s cubic-bezier(.22,1,.36,1) forwards}
+.hero .eyebrow{animation-delay:.15s}
+.hero h1{animation-delay:.35s}
+.hero .hero-sub{animation-delay:.55s}
+.hero .hero-form{animation:slideInRight .8s cubic-bezier(.22,1,.36,1) .4s forwards}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+.service-card{opacity:0;transform:translateY(24px);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1),box-shadow .25s ease}
+.service-card.visible{opacity:1;transform:translateY(0)}
+.service-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.08);transform:translateY(-4px)}
+
+.hero-form input,.hero-form textarea{transition:border-color .2s,box-shadow .2s,transform .15s ease}
+.hero-form input:focus,.hero-form textarea:focus{transform:scale(1.01)}
+.hero-form button{transition:background .2s,transform .15s ease,box-shadow .2s}
+.hero-form button:hover{transform:scale(1.02);box-shadow:0 6px 20px rgba(0,0,0,.2)}
+
+.scroll-card{transition:transform .25s ease,box-shadow .25s ease}
+.scroll-card:hover{transform:scale(1.03);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+
 @media(prefers-reduced-motion:reduce){
   .review-scroll-track{animation:none}
+  .hero .eyebrow,.hero h1,.hero .hero-sub,.hero .hero-form{opacity:1;animation:none}
+  .reveal{opacity:1;transform:none;transition:none}
+  .service-card{opacity:1;transform:none;transition:none}
+  .scroll-card{transition:none}
+  .hero-form input,.hero-form textarea,.hero-form button{transition:none}
 }
 </style>
 </head>
@@ -158,16 +201,20 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
 <nav>
   <div class="nav-logo">Custom<span> Electrical Solutions</span></div>
   <div class="nav-right">
-    <a href="tel:9544645507" class="nav-phone">(954) 464-5507</a>
     <a href="tel:9544645507" class="nav-cta">Get a Free Quote</a>
   </div>
 </nav>
 
 <section class="hero">
-  <div class="hero-left">
-    <div class="eyebrow">South Florida&nbsp;&nbsp;·&nbsp;&nbsp;Since 1995</div>
-    <h1>No Surprise Bills.<br><em>Expert Electrical Work.</em></h1>
-    <p class="hero-sub">Serving Miami-Dade, Broward, and Palm Beach for 30+ years. From panel upgrades to EV chargers, Joey's team delivers expert electrical work with upfront pricing on every job.</p>
+  <div class="hero-bg">
+    <img src="../../assets/samples/Electricians/electrician-working-on-electrical-panel-circuit-breaker-box.jpg" alt="Licensed electrician at work">
+  </div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="eyebrow">South Florida&nbsp;&nbsp;·&nbsp;&nbsp;Since 1995</div>
+      <h1>No Surprise Bills.<br><em>Expert Electrical Work.</em></h1>
+      <p class="hero-sub">Serving Miami-Dade, Broward, and Palm Beach for 30+ years. From panel upgrades to EV chargers, Joey's team delivers expert electrical work with upfront pricing on every job.</p>
+    </div>
     <form id="quote-form" class="hero-form" action="#" method="POST">
       <div class="form-heading">Request Your Free Estimate</div>
       <div class="form-sub">We respond same-day. No obligation.</div>
@@ -179,9 +226,6 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
       <textarea id="ces-message" name="message" placeholder="e.g., panel upgrade, EV charger, outdoor lighting…"></textarea>
       <button type="submit">Get a Free Quote</button>
     </form>
-  </div>
-  <div class="hero-right">
-    <img src="../../assets/samples/Electricians/electrician-working-on-electrical-panel-circuit-breaker-box.jpg" alt="Licensed electrician at work">
   </div>
 </section>
 
@@ -211,21 +255,19 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
     <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Joey showed up right on time for the estimate, gave me a straightforward opinion about what I actually needed, and didn't try to upsell me on anything extra. Refreshing."</p><div class="scroll-author">— Angela R. · Fort Lauderdale</div></div>
     <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Needed a full panel upgrade for our older home. Joey quoted it, scheduled within a week, and the inspector signed off first visit. Exactly what was promised."</p><div class="scroll-author">— David S. · Tamarac</div></div>
     <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"EV charger install was done in half a day. Properly permitted, clean wiring, and the price was exactly what Joey quoted. No games."</p><div class="scroll-author">— Rachel T. · Coral Springs</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="4 out of 5 stars">★★★★☆</div><p class="scroll-text">"Had to wait a few days for the appointment since they were busy, but the landscape lighting turned out beautiful. Fair price and solid work."</p><div class="scroll-author">— Tony M. · Plantation</div></div>
     <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Finally, a punctual, affordable, knowledgeable electrician. Joey's service exceeded our expectations. We'll be calling him for everything from now on."</p><div class="scroll-author">— Maria G. · Broward County</div></div>
     <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Professional, dependable and their prices can't be beat. Called in the morning, had someone out by afternoon. Did a great job and cleaned up after themselves."</p><div class="scroll-author">— Kevin P. · HomeAdvisor</div></div>
     <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Joey showed up right on time for the estimate, gave me a straightforward opinion about what I actually needed, and didn't try to upsell me on anything extra. Refreshing."</p><div class="scroll-author">— Angela R. · Fort Lauderdale</div></div>
     <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Needed a full panel upgrade for our older home. Joey quoted it, scheduled within a week, and the inspector signed off first visit. Exactly what was promised."</p><div class="scroll-author">— David S. · Tamarac</div></div>
     <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"EV charger install was done in half a day. Properly permitted, clean wiring, and the price was exactly what Joey quoted. No games."</p><div class="scroll-author">— Rachel T. · Coral Springs</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="4 out of 5 stars">★★★★☆</div><p class="scroll-text">"Had to wait a few days for the appointment since they were busy, but the landscape lighting turned out beautiful. Fair price and solid work."</p><div class="scroll-author">— Tony M. · Plantation</div></div>
   </div>
 </div>
 
 <!-- SERVICES -->
 <section>
-  <div class="section-label">What We Do</div>
-  <h2 class="section-title">Full-Service Electrical for South Florida</h2>
-  <p class="section-sub">Whether it's a panel upgrade, a new EV charger, outdoor lighting, or a full rewire — Custom Electrical Solutions handles it all across three counties.</p>
+  <div class="section-label reveal">What We Do</div>
+  <h2 class="section-title reveal">Full-Service Electrical for South Florida</h2>
+  <p class="section-sub reveal">Whether it's a panel upgrade, a new EV charger, outdoor lighting, or a full rewire — Custom Electrical Solutions handles it all across three counties.</p>
   <div class="services-grid">
     <div class="service-card">
       <div class="service-icon">
@@ -287,11 +329,11 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
       <img src="../../assets/samples/Electricians/615df0fce4220.image.jpg" alt="Electrician on the job" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px">
     </div>
     <div class="about-content">
-      <div class="about-badge">About Joey</div>
-      <h2 class="about-title">Three Decades of Straight Talk and Expert Work</h2>
-      <p class="about-body">Joel "Joey" Gutierrez founded Custom Electrical Solutions in 1995 with one rule: tell the customer what it costs before you start, and never change the number after. Thirty years later, that rule hasn't bent.</p>
-      <p class="about-body">Customers across three counties keep coming back because Joey's crew shows up on time, gives upfront written quotes, and doesn't nickel-and-dime. Every permit gets pulled, every inspection gets passed, and every invoice matches the estimate.</p>
-      <ul class="cred-list">
+      <div class="about-badge reveal">About Joey</div>
+      <h2 class="about-title reveal">Three Decades of Straight Talk and Expert Work</h2>
+      <p class="about-body reveal">Joel "Joey" Gutierrez founded Custom Electrical Solutions in 1995 with one rule: tell the customer what it costs before you start, and never change the number after. Thirty years later, that rule hasn't bent.</p>
+      <p class="about-body reveal">Customers across three counties keep coming back because Joey's crew shows up on time, gives upfront written quotes, and doesn't nickel-and-dime. Every permit gets pulled, every inspection gets passed, and every invoice matches the estimate.</p>
+      <ul class="cred-list reveal">
         <li class="cred-item">Licensed Electrical Contractor — Lic # EC13005904</li>
         <li class="cred-item">HomeAdvisor Top Rated, Tenured Pro (5+ years)</li>
         <li class="cred-item">Greater Ft. Lauderdale Chamber of Commerce Member</li>
@@ -304,9 +346,9 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
 
 <!-- CTA -->
 <div class="cta-banner">
-  <h2>Get Your Free Estimate Today</h2>
-  <p>Upfront pricing, experienced crew, and 30 years of South Florida electrical work behind every job. Call or text to schedule.</p>
-  <div class="cta-actions">
+  <h2 class="reveal">Get Your Free Estimate Today</h2>
+  <p class="reveal">Upfront pricing, experienced crew, and 30 years of South Florida electrical work behind every job. Call or text to schedule.</p>
+  <div class="cta-actions reveal">
     <a href="tel:9544645507" class="btn-primary">Call (954) 464-5507</a>
     <a href="#quote-form" class="btn-ghost">Get a Free Estimate</a>
   </div>
@@ -346,6 +388,30 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
   <a href="tel:9544645507" class="mc-call">Call Now</a>
   <a href="#quote-form" class="mc-quote">Free Quote</a>
 </div>
+
+<script>
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}
+    });
+  },{threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  var cards = document.querySelectorAll('.service-card');
+  var cardIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var idx = Array.prototype.indexOf.call(cards, e.target);
+        e.target.style.transitionDelay = (idx * 100) + 'ms';
+        e.target.classList.add('visible');
+        cardIO.unobserve(e.target);
+      }
+    });
+  },{threshold:0.1});
+  cards.forEach(function(c){cardIO.observe(c)});
+})();
+</script>
 
 </body>
 </html>
