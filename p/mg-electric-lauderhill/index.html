@@ -92,17 +92,15 @@ section.alt{background:var(--off)}
 .cred-item{display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:600;color:var(--text)}
 .cred-item::before{content:'';display:block;width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0}
 
-/* REVIEW TICKER */
-.review-ticker{background:var(--off);padding:32px 64px;overflow:hidden}
-.review-ticker-inner{max-width:600px;margin:0 auto;position:relative;min-height:100px}
-.ticker-slide{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.ticker-slide.active{opacity:1}
-.ticker-stars{color:var(--accent);font-size:.8rem;letter-spacing:2px;margin-bottom:8px}
-.ticker-text{font-size:.9rem;color:var(--muted);line-height:1.65;font-style:italic}
-.ticker-author{font-size:.75rem;font-weight:600;color:var(--text);opacity:.45;margin-top:8px}
-.ticker-dots{display:flex;justify-content:center;gap:5px;margin-top:12px}
-.ticker-dot{width:5px;height:5px;border-radius:50%;background:#cbd5e1;border:none;padding:0;cursor:pointer;transition:all .3s}
-.ticker-dot.active{background:var(--accent);width:16px;border-radius:3px}
+/* REVIEW SCROLL */
+.review-scroll{background:var(--off);padding:28px 0;overflow:hidden}
+.review-scroll-track{display:flex;gap:20px;width:max-content;animation:reviewScroll 28s linear infinite}
+.review-scroll:hover .review-scroll-track{animation-play-state:paused}
+.scroll-card{flex:0 0 360px;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:22px 26px}
+.scroll-stars{color:var(--accent);font-size:.8rem;letter-spacing:2px;margin-bottom:8px}
+.scroll-text{font-size:.875rem;color:var(--muted);line-height:1.6;font-style:italic;margin-bottom:10px}
+.scroll-author{font-size:.72rem;font-weight:600;color:var(--text);opacity:.4}
+@keyframes reviewScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* CTA */
 .cta-banner{background:var(--navy);padding:80px 64px;text-align:center}
@@ -131,7 +129,7 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
   section{padding:56px 20px}
   .promo-strip{padding:12px 20px;flex-direction:column;text-align:center;gap:8px}
   .services-grid{grid-template-columns:1fr}
-  .review-ticker{padding:24px 20px}
+  .scroll-card{flex:0 0 280px}
   .about-grid{grid-template-columns:1fr;gap:32px}
   .about-photo{height:260px}
   footer{grid-template-columns:1fr;gap:32px;padding:40px 20px}
@@ -195,28 +193,14 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
   </div>
 </div>
 
-<div class="review-ticker">
-  <div class="review-ticker-inner">
-    <div class="ticker-slide active">
-      <div class="ticker-stars">★★★★★</div>
-      <p class="ticker-text">"Maurice's work is meticulous. He took the time to explain everything before starting and the panel upgrade came out perfect. This is what a family business looks like."</p>
-      <div class="ticker-author">Google Review — Lauderhill, FL</div>
-    </div>
-    <div class="ticker-slide">
-      <div class="ticker-stars">★★★★★</div>
-      <p class="ticker-text">"Called at 9pm with a tripped breaker that wouldn't reset. They had someone out within two hours. Fixed the issue, explained the cause, and didn't overcharge for the after-hours call."</p>
-      <div class="ticker-author">Google Review — Broward County</div>
-    </div>
-    <div class="ticker-slide">
-      <div class="ticker-stars">★★★★★</div>
-      <p class="ticker-text">"They clearly explain services and pricing at every job. No surprise invoices, no upselling. We've used MG Electric for our commercial property for years and won't use anyone else."</p>
-      <div class="ticker-author">Google Review — South Florida</div>
-    </div>
-  </div>
-  <div class="ticker-dots">
-    <button class="ticker-dot active" aria-label="Review 1"></button>
-    <button class="ticker-dot" aria-label="Review 2"></button>
-    <button class="ticker-dot" aria-label="Review 3"></button>
+<div class="review-scroll">
+  <div class="review-scroll-track">
+    <div class="scroll-card"><div class="scroll-stars">★★★★★</div><p class="scroll-text">"Maurice's work is meticulous. He took the time to explain everything before starting and the panel upgrade came out perfect. This is what a family business looks like."</p><div class="scroll-author">Google Review — Lauderhill, FL</div></div>
+    <div class="scroll-card"><div class="scroll-stars">★★★★★</div><p class="scroll-text">"Called at 9pm with a tripped breaker that wouldn't reset. They had someone out within two hours. Fixed the issue, explained the cause, and didn't overcharge for the after-hours call."</p><div class="scroll-author">Google Review — Broward County</div></div>
+    <div class="scroll-card"><div class="scroll-stars">★★★★★</div><p class="scroll-text">"They clearly explain services and pricing at every job. No surprise invoices, no upselling. We've used MG Electric for our commercial property for years and won't use anyone else."</p><div class="scroll-author">Google Review — South Florida</div></div>
+    <div class="scroll-card"><div class="scroll-stars">★★★★★</div><p class="scroll-text">"Maurice's work is meticulous. He took the time to explain everything before starting and the panel upgrade came out perfect. This is what a family business looks like."</p><div class="scroll-author">Google Review — Lauderhill, FL</div></div>
+    <div class="scroll-card"><div class="scroll-stars">★★★★★</div><p class="scroll-text">"Called at 9pm with a tripped breaker that wouldn't reset. They had someone out within two hours. Fixed the issue, explained the cause, and didn't overcharge for the after-hours call."</p><div class="scroll-author">Google Review — Broward County</div></div>
+    <div class="scroll-card"><div class="scroll-stars">★★★★★</div><p class="scroll-text">"They clearly explain services and pricing at every job. No surprise invoices, no upselling. We've used MG Electric for our commercial property for years and won't use anyone else."</p><div class="scroll-author">Google Review — South Florida</div></div>
   </div>
 </div>
 
@@ -334,21 +318,5 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
   <span>Licensed &amp; Insured · Lic # EC13009638</span>
 </div>
 
-<script>
-(function(){
-  var slides=document.querySelectorAll('.ticker-slide');
-  var dots=document.querySelectorAll('.ticker-dot');
-  if(!slides.length)return;
-  var n=slides.length,cur=0,timer;
-  function go(i){
-    cur=(i%n+n)%n;
-    slides.forEach(function(s,j){s.classList.toggle('active',j===cur)});
-    dots.forEach(function(d,j){d.classList.toggle('active',j===cur)});
-  }
-  dots.forEach(function(d,i){d.addEventListener('click',function(){go(i);reset()})});
-  function reset(){clearInterval(timer);timer=setInterval(function(){go(cur+1)},4500)}
-  reset();
-})();
-</script>
 </body>
 </html>
