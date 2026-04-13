@@ -22,38 +22,31 @@
 body{font-family:'Work Sans',sans-serif;background:var(--white);color:var(--text)}
 
 /* NAV */
-nav{position:sticky;top:0;z-index:100;height:68px;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 48px}
-.nav-logo{color:var(--white);font-weight:800;font-size:1.1rem;letter-spacing:-.01em;line-height:1.2}
-.nav-logo span{color:var(--accent-light)}
+nav{position:sticky;top:0;z-index:100;height:68px;background:var(--white);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 48px}
+.nav-logo{color:var(--navy);font-weight:800;font-size:1.1rem;letter-spacing:-.01em;line-height:1.2}
+.nav-logo span{color:var(--accent)}
 .nav-right{display:flex;align-items:center;gap:20px}
-.nav-phone{color:rgba(255,255,255,.85);font-weight:600;font-size:.9rem;text-decoration:none}
-.nav-cta{background:var(--accent);color:#0f2d4e;font-weight:700;font-size:.875rem;padding:10px 22px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.nav-phone{color:var(--navy);font-weight:600;font-size:.9rem;text-decoration:none}
+.nav-cta{background:var(--accent);color:var(--navy);font-weight:700;font-size:.875rem;padding:10px 22px;border-radius:6px;text-decoration:none;white-space:nowrap}
 
 /* HERO */
-.hero{height:calc(100vh - 68px);display:grid;grid-template-columns:1fr 1fr;overflow:hidden;position:relative;background:var(--navy)}
-.hero-left{display:flex;flex-direction:column;justify-content:center;padding:64px 56px 80px 64px;position:relative;z-index:2}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:var(--accent-light);font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;padding:6px 14px;border-radius:99px;width:fit-content;margin-bottom:24px}
-.eyebrow::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--accent-light)}
-h1{font-size:clamp(2rem,3.4vw,2.8rem);font-weight:900;color:var(--white);line-height:1.12;letter-spacing:-.025em;margin-bottom:20px}
-h1 em{font-style:normal;color:var(--accent-light)}
-.hero-sub{color:rgba(255,255,255,.75);font-size:1.05rem;line-height:1.65;max-width:420px;margin-bottom:36px}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
-.btn-primary{background:var(--accent);color:#0f2d4e;font-weight:700;font-size:.95rem;padding:14px 28px;border-radius:8px;text-decoration:none}
-.btn-ghost{color:rgba(255,255,255,.85);font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid rgba(255,255,255,.3);padding:13px 24px;border-radius:8px}
-.hero-stats{display:flex;gap:0;padding-top:28px;border-top:1px solid rgba(255,255,255,.12)}
-.stat{padding:0 28px 0 0;margin-right:28px;border-right:1px solid rgba(255,255,255,.15)}
-.stat:last-child{border-right:none}
-.stat-num{display:block;font-size:1.6rem;font-weight:900;color:var(--white);letter-spacing:-.02em}
-.stat-label{display:block;font-size:.75rem;font-weight:500;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
-.hero-right{position:relative;overflow:hidden}
-.hero-right::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to right,var(--navy) 0%,var(--navy) 8%,rgba(15,45,78,.5) 42%,transparent 78%)}
-.hero-right img,.hero-right .photo-placeholder{width:100%;height:100%;object-fit:cover;display:block}
-.hero-form-card{position:absolute;right:7%;top:50%;transform:translateY(-50%);z-index:4;background:rgba(6,12,20,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:28px 24px;width:290px}
-.hero-form-card h3{margin:0 0 16px;font-size:.95rem;font-weight:700;color:#fff;letter-spacing:.02em}
-.hero-form-card input,.hero-form-card textarea{display:block;width:100%;box-sizing:border-box;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:11px 14px;font-size:.85rem;color:#fff;font-family:inherit;margin-bottom:10px;outline:none}
-.hero-form-card input::placeholder,.hero-form-card textarea::placeholder{color:rgba(255,255,255,.38)}
-.hero-form-card textarea{resize:none;height:78px}
-.hero-form-card button{width:100%;background:var(--accent);color:#0f2d4e;border:none;border-radius:8px;padding:13px;font-size:.875rem;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.02em}
+.hero{height:calc(100vh - 68px);display:grid;grid-template-columns:1fr 1fr;overflow:hidden;position:relative;background:#fff;align-items:center}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:0 48px 0 64px;position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);color:#92400e;font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;padding:6px 14px;border-radius:99px;width:fit-content;margin-bottom:24px}
+.eyebrow::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+h1{font-size:clamp(2rem,3.4vw,2.8rem);font-weight:900;color:var(--navy);line-height:1.12;letter-spacing:-.025em;margin-bottom:16px}
+h1 em{font-style:normal;color:var(--accent)}
+.hero-sub{color:var(--muted);font-size:1rem;line-height:1.65;max-width:420px;margin-bottom:28px}
+.btn-primary{background:var(--accent);color:var(--navy);font-weight:700;font-size:.95rem;padding:14px 28px;border-radius:8px;text-decoration:none;display:inline-block}
+.btn-ghost{color:var(--navy);font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid var(--line);padding:13px 24px;border-radius:8px;display:inline-block}
+.hero-form{max-width:400px}
+.hero-form input,.hero-form textarea{display:block;width:100%;background:#f3f4f6;border:1.5px solid #e5e7eb;border-radius:10px;padding:12px 16px;font-size:.9rem;color:var(--text);font-family:inherit;margin-bottom:10px;outline:none}
+.hero-form input::placeholder,.hero-form textarea::placeholder{color:#9ca3af}
+.hero-form textarea{resize:none;height:82px}
+.hero-form button{background:var(--accent);color:var(--navy);border:none;border-radius:10px;padding:14px;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit;width:100%}
+.hero-right{position:relative;display:flex;align-items:center;justify-content:center;height:100%}
+.hero-blob{position:absolute;width:420px;height:420px;background:var(--accent);border-radius:60% 40% 30% 70% / 60% 30% 70% 40%;top:50%;left:50%;transform:translate(-45%,-50%)}
+.hero-circle{width:340px;height:340px;border-radius:50%;object-fit:cover;position:absolute;top:50%;left:50%;transform:translate(-38%,-50%);z-index:1;border:6px solid #fff;box-shadow:0 24px 48px rgba(0,0,0,.12)}
 .hero-wave{position:absolute;bottom:0;left:0;width:100%;line-height:0;z-index:3;pointer-events:none}
 .hero-wave svg{display:block;width:100%;height:48px}
 
@@ -160,25 +153,16 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
     <div class="eyebrow">Lauderhill, FL&nbsp;&nbsp;·&nbsp;&nbsp;Family Owned Since 1994</div>
     <h1>Broward's Family Electrician<br><em>Since 1994</em></h1>
     <p class="hero-sub">Over 30 years of family-owned electrical service across Broward, Miami, and Palm Beach. Licensed, insured, and available 24 hours a day — no job too big, no job too small.</p>
-    <div class="hero-actions">
-      <a href="tel:9543287918" class="btn-primary">Call (954) 328-7918</a>
-      <a href="tel:9543287918" class="btn-ghost">24-Hour Emergency</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat"><span class="stat-num">30+</span><span class="stat-label">Years in Business</span></div>
-      <div class="stat"><span class="stat-num">24/7</span><span class="stat-label">Emergency Service</span></div>
-      <div class="stat"><span class="stat-num">3</span><span class="stat-label">Counties Served</span></div>
-    </div>
-  </div>
-  <div class="hero-right">
-    <img src="../../assets/samples/Electricians/electrician-working-on-electrical-panel-circuit-breaker-box.jpg" alt="Licensed electrician at work">
-    <form class="hero-form-card" action="#" method="POST">
-      <h3>Get a Free Quote</h3>
+    <form class="hero-form" action="#" method="POST">
       <input type="text" name="name" placeholder="Your Name" autocomplete="off">
       <input type="tel" name="phone" placeholder="Phone Number" autocomplete="off">
       <textarea name="message" placeholder="Describe your electrical need…"></textarea>
       <button type="submit">Get a Free Quote</button>
     </form>
+  </div>
+  <div class="hero-right">
+    <div class="hero-blob"></div>
+    <img class="hero-circle" src="../../assets/samples/Electricians/electrician-working-on-electrical-panel-circuit-breaker-box.jpg" alt="Licensed electrician at work">
   </div>
   <div class="hero-wave">
     <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
