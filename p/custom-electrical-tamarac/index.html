@@ -212,7 +212,7 @@ footer{background:var(--black);padding:56px 64px;display:grid;grid-template-colu
     <img src="../../assets/samples/Electricians/ces-logo.png" alt="Custom Electrical Solutions">
   </a>
   <div class="nav-right">
-    <a href="tel:9544645507" class="nav-cta">Free Estimate</a>
+    <a href="#quote-form" class="nav-cta">Free Estimate</a>
   </div>
 </nav>
 
@@ -223,16 +223,18 @@ footer{background:var(--black);padding:56px 64px;display:grid;grid-template-colu
   <div class="hero-content">
     <div class="hero-left">
       <div class="eyebrow">South Florida&nbsp;&nbsp;·&nbsp;&nbsp;Lic # EC13005904</div>
-      <h1>All Your Electrical Solutions.<br><em>The Most Affordable Prices.</em></h1>
-      <p class="hero-sub">From installing one dimmer switch to servicing your entire commercial facility. Custom Electrical Solutions offers a full line of electrical service across Miami-Dade, Broward, and West Palm Beach.</p>
+      <h1>All Your Electrical Solutions.<br><em>Done Right. Every Time.</em></h1>
+      <p class="hero-sub">From installing one dimmer switch to servicing your entire commercial facility. A full line of electrical service across Miami-Dade, Broward, and West Palm Beach — backed by 25+ years and a top 1% contractor rating in Florida.</p>
     </div>
     <form id="quote-form" class="hero-form" action="#" method="POST">
       <div class="form-heading">Let's Get Connected</div>
-      <div class="form-sub">A real person will review your project and get back to you promptly. We believe in human connection.</div>
+      <div class="form-sub">A human (not AI) will review your project and get back to you promptly.</div>
       <label for="ces-name" class="sr-only">Your Name</label>
       <input id="ces-name" type="text" name="name" placeholder="Your Name" autocomplete="name" required>
       <label for="ces-phone" class="sr-only">Phone Number</label>
       <input id="ces-phone" type="tel" name="phone" placeholder="Phone Number" autocomplete="tel" required>
+      <label for="ces-email" class="sr-only">Email Address</label>
+      <input id="ces-email" type="email" name="email" placeholder="Email Address" autocomplete="email">
       <label for="ces-message" class="sr-only">Describe your electrical need</label>
       <textarea id="ces-message" name="message" placeholder="e.g., panel upgrade, landscape lighting, generator..."></textarea>
       <button type="submit">Get a Free Estimate</button>
@@ -261,22 +263,28 @@ footer{background:var(--black);padding:56px 64px;display:grid;grid-template-colu
 
 <div class="review-scroll">
   <div class="review-scroll-track">
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Finally, a punctual, affordable, knowledgeable electrician. Joey's service exceeded our expectations. We'll be calling him for everything from now on."</p><div class="scroll-author">Maria G. · Broward County</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Professional, dependable and their prices can't be beat. Called in the morning, had someone out by afternoon. Did a great job and cleaned up after themselves."</p><div class="scroll-author">Kevin P. · HomeAdvisor</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Joey showed up right on time for the estimate, gave me a straightforward opinion about what I actually needed, and didn't try to upsell me on anything extra. Refreshing."</p><div class="scroll-author">Angela R. · Fort Lauderdale</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Needed a full panel upgrade for our older home. Joey quoted it, scheduled within a week, and the inspector signed off first visit. Exactly what was promised."</p><div class="scroll-author">David S. · Tamarac</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Landscape lighting install was done perfectly. Joey walked us through every option, stayed on budget, and the yard looks incredible at night. Highly recommend."</p><div class="scroll-author">Rachel T. · Coral Springs</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Finally, a punctual, affordable, knowledgeable electrician. Joey's service exceeded our expectations. We'll be calling him for everything from now on."</p><div class="scroll-author">Maria G. · Broward County</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Professional, dependable and their prices can't be beat. Called in the morning, had someone out by afternoon. Did a great job and cleaned up after themselves."</p><div class="scroll-author">Kevin P. · HomeAdvisor</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Joey showed up right on time for the estimate, gave me a straightforward opinion about what I actually needed, and didn't try to upsell me on anything extra. Refreshing."</p><div class="scroll-author">Angela R. · Fort Lauderdale</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Needed a full panel upgrade for our older home. Joey quoted it, scheduled within a week, and the inspector signed off first visit. Exactly what was promised."</p><div class="scroll-author">David S. · Tamarac</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Landscape lighting install was done perfectly. Joey walked us through every option, stayed on budget, and the yard looks incredible at night. Highly recommend."</p><div class="scroll-author">Rachel T. · Coral Springs</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"This is a great company — they've done a few jobs at my house and they are excellent. Professional, dependable, and their prices can't be beat."</p><div class="scroll-author">Happy Hollywood Customer · Yahoo Local</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Joey gave me an estimate over the phone, was able to reschedule to an earlier time at my request, solved the electrical issues I had in my home, and was competitively priced."</p><div class="scroll-author">Verified Customer · Yahoo Local</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Right on time for an estimate... gave me an honest opinion on a large job for my backyard hot tub. Joey and his team went above and beyond to find the parts needed to make everything work."</p><div class="scroll-author">Lauri K. · Yahoo Local</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Custom Electrical Solutions has been serving us for the last 8 years with so much attention to detail and fantastic response time! Highly recommend!"</p><div class="scroll-author">The P. · BuildZoom</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"These guys are great! Joey showed up on time, did a great job, and the price was right. I plan to use these guys again and would recommend them to anybody."</p><div class="scroll-author">Happy Customer · Yahoo Local</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"They were the best price and they seemed to know what they were doing. I'm glad I chose to work with this reputable company."</p><div class="scroll-author">Pinklace · Yahoo Local</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Joey replaced an electrical panel and works quick, getting the job done right at the best price. He gave a great explanation as to why the work was needed. Very professional."</p><div class="scroll-author">Verified Customer · HomeAdvisor</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Honest, punctual, affordable, helpful, knowledgeable — one of the best in the biz. I've been working with Custom Electrical for over 8 years at two different Condo Associations."</p><div class="scroll-author">Condo Association Manager · Broward County</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"This is a great company — they've done a few jobs at my house and they are excellent. Professional, dependable, and their prices can't be beat."</p><div class="scroll-author">Happy Hollywood Customer · Yahoo Local</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Joey gave me an estimate over the phone, was able to reschedule to an earlier time at my request, solved the electrical issues I had in my home, and was competitively priced."</p><div class="scroll-author">Verified Customer · Yahoo Local</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Right on time for an estimate... gave me an honest opinion on a large job for my backyard hot tub. Joey and his team went above and beyond to find the parts needed to make everything work."</p><div class="scroll-author">Lauri K. · Yahoo Local</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Custom Electrical Solutions has been serving us for the last 8 years with so much attention to detail and fantastic response time! Highly recommend!"</p><div class="scroll-author">The P. · BuildZoom</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"These guys are great! Joey showed up on time, did a great job, and the price was right. I plan to use these guys again and would recommend them to anybody."</p><div class="scroll-author">Happy Customer · Yahoo Local</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"They were the best price and they seemed to know what they were doing. I'm glad I chose to work with this reputable company."</p><div class="scroll-author">Pinklace · Yahoo Local</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Joey replaced an electrical panel and works quick, getting the job done right at the best price. He gave a great explanation as to why the work was needed. Very professional."</p><div class="scroll-author">Verified Customer · HomeAdvisor</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="scroll-text">"Honest, punctual, affordable, helpful, knowledgeable — one of the best in the biz. I've been working with Custom Electrical for over 8 years at two different Condo Associations."</p><div class="scroll-author">Condo Association Manager · Broward County</div></div>
   </div>
 </div>
 
 <!-- SERVICES -->
-<section>
-  <div class="section-label reveal">Electrical · Cable · Telephone · Generators</div>
+<section class="alt">
+  <div class="section-label reveal">What We Handle</div>
   <h2 class="section-title reveal">A Full Line of Electrical Service</h2>
   <p class="section-sub reveal">Understanding your electrical needs is our priority. We stay in communication with you every step of the process — from the initial estimate to the final inspection.</p>
   <div class="services-grid">
@@ -339,11 +347,11 @@ footer{background:var(--black);padding:56px 64px;display:grid;grid-template-colu
 <section class="alt">
   <div class="about-grid">
     <div class="about-photo">
-      <img src="Joey-Gutierrez-Custom-Electrical-Solutions.jpeg" alt="Joel Gutierrez, founder of Custom Electrical Solutions" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:20px">
+      <img src="Joey-Gutierrez-Custom-Electrical-Solutions.jpeg" alt="Joel Gutierrez, founder of Custom Electrical Solutions" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;border-radius:20px">
     </div>
     <div class="about-content">
       <div class="about-badge reveal">About Custom Electrical Solutions</div>
-      <h2 class="about-title reveal">If You Love What You Do and Put the Customer First, Success Will Be Yours.</h2>
+      <h2 class="about-title reveal">Meet Joey. 25 Years, Three Counties, One Standard.</h2>
       <p class="about-body reveal">Founded by Joel Gutierrez, Custom Electrical Solutions is a family-operated company that has been providing all your electrical solutions since 1995. From installing one dimmer switch to servicing your entire commercial facility, we have the expertise and resources to deliver top-notch service at the most affordable prices.</p>
       <p class="about-body reveal">Understanding your electrical needs is our priority. We stay in communication with you every step of the process, and we always put the customer first. That's how we've built a reputation across three counties that keeps people coming back.</p>
       <ul class="cred-list reveal">
@@ -358,12 +366,13 @@ footer{background:var(--black);padding:56px 64px;display:grid;grid-template-colu
 </section>
 
 <!-- CTA -->
+<div style="height:2px;background:linear-gradient(to right,transparent,var(--accent),transparent)"></div>
 <div class="cta-banner">
   <h2 class="reveal">All Your Electrical Solutions. One Call Away.</h2>
   <p class="reveal">Free estimates, affordable prices, and a family-operated team that puts the customer first. Serving Miami-Dade, Broward, and West Palm Beach. Call or text today.</p>
   <div class="cta-actions reveal">
     <a href="tel:9544645507" class="btn-primary">Call (954) 464-5507</a>
-    <a href="#quote-form" class="btn-ghost">Get a Free Estimate</a>
+    <a href="tel:9542753046" class="btn-ghost">Or (954) 275-3046</a>
   </div>
 </div>
 
@@ -388,7 +397,8 @@ footer{background:var(--black);padding:56px 64px;display:grid;grid-template-colu
     <h4>Contact</h4>
     <ul>
       <li><a href="tel:9544645507">(954) 464-5507</a></li>
-      <li><a href="mailto:JOEYCES@icloud.com">JOEYCES@icloud.com</a></li>
+      <li><a href="tel:9542753046">(954) 275-3046</a></li>
+      <li><a href="mailto:joeyces@icloud.com">joeyces@icloud.com</a></li>
       <li>P.O. Box 25161<br>Tamarac, FL 33320</li>
       <li>Mon–Fri 9am–5pm</li>
     </ul>
