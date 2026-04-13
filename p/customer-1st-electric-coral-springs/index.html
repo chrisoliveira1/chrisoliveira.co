@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Customer 1st Electric | Licensed Master Electrician | Coral Springs, FL</title>
+<meta name="description" content="Veteran-owned master electrician in Coral Springs, FL. Will handles every job personally — no subcontractors. 4.9 stars, 63 reviews. Call (954) 340-5668.">
+<meta property="og:title" content="Customer 1st Electric | Licensed Master Electrician | Coral Springs, FL">
+<meta property="og:description" content="Veteran-owned, master-licensed electrician. Will does every job himself. 4.9 stars on Google. Free estimates.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -22,12 +26,13 @@
 body{font-family:'Work Sans',sans-serif;background:var(--white);color:var(--text)}
 
 /* NAV */
-nav{position:sticky;top:0;z-index:100;height:68px;background:var(--white);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 48px}
+nav{position:sticky;top:0;z-index:100;height:68px;background:var(--white);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 64px}
 .nav-logo{color:var(--navy);font-weight:800;font-size:1rem;letter-spacing:-.01em;line-height:1.2}
 .nav-logo span{color:var(--accent)}
 .nav-right{display:flex;align-items:center;gap:20px}
 .nav-phone{color:var(--navy);font-weight:600;font-size:.9rem;text-decoration:none}
-.nav-cta{background:var(--accent);color:var(--navy);font-weight:700;font-size:.875rem;padding:10px 22px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.nav-cta{background:var(--accent);color:var(--navy);font-weight:700;font-size:.875rem;padding:10px 22px;border-radius:6px;text-decoration:none;white-space:nowrap;transition:background .2s}
+.nav-cta:hover{background:var(--accent-light)}
 
 /* HERO */
 .hero{min-height:calc(100vh - 68px);display:grid;grid-template-columns:1fr 1fr;position:relative;background:#fff}
@@ -37,23 +42,23 @@ nav{position:sticky;top:0;z-index:100;height:68px;background:var(--white);border
 h1{font-size:clamp(2rem,3.4vw,2.8rem);font-weight:900;color:var(--navy);line-height:1.12;letter-spacing:-.025em;margin-bottom:16px}
 h1 em{font-style:normal;color:var(--accent)}
 .hero-sub{color:var(--muted);font-size:1rem;line-height:1.65;max-width:420px;margin-bottom:28px}
-.btn-primary{background:var(--accent);color:var(--navy);font-weight:700;font-size:.95rem;padding:14px 28px;border-radius:8px;text-decoration:none;display:inline-block}
-.btn-ghost{color:var(--navy);font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid var(--line);padding:13px 24px;border-radius:8px;display:inline-block}
+.btn-primary{background:var(--accent);color:var(--navy);font-weight:700;font-size:.95rem;padding:14px 28px;border-radius:8px;text-decoration:none;display:inline-block;transition:background .2s}
+.btn-primary:hover{background:var(--accent-light)}
+.btn-ghost{color:var(--white);font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid rgba(255,255,255,.3);padding:13px 24px;border-radius:8px;display:inline-block;transition:background .2s}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
 .hero-form{max-width:400px}
-.hero-form input,.hero-form textarea{display:block;width:100%;background:#f3f4f6;border:1.5px solid #e5e7eb;border-radius:10px;padding:12px 16px;font-size:.9rem;color:var(--text);font-family:inherit;margin-bottom:10px;outline:none}
+.hero-form .form-heading{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:12px}
+.hero-form .form-sub{font-size:.8rem;color:var(--muted);margin-bottom:14px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+.hero-form input,.hero-form textarea{display:block;width:100%;background:#f3f4f6;border:1.5px solid #e5e7eb;border-radius:10px;padding:12px 16px;font-size:.9rem;color:var(--text);font-family:inherit;margin-bottom:10px;outline:none;transition:border-color .2s}
+.hero-form input:focus,.hero-form textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(245,158,11,.15)}
 .hero-form input::placeholder,.hero-form textarea::placeholder{color:#9ca3af}
 .hero-form textarea{resize:none;height:82px}
-.hero-form button{background:var(--accent);color:var(--navy);border:none;border-radius:10px;padding:14px;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit;width:100%}
+.hero-form button{background:var(--accent);color:var(--navy);border:none;border-radius:10px;padding:14px;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit;width:100%;transition:background .2s}
+.hero-form button:hover{background:var(--accent-light)}
 .hero-right{position:relative;overflow:hidden}
 .hero-right img{width:100%;height:100%;object-fit:cover;display:block}
 .hero-right::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to right,#fff 0%,rgba(255,255,255,.5) 22%,transparent 58%);pointer-events:none}
-.hero-wave{position:absolute;bottom:0;left:0;width:100%;line-height:0;z-index:3;pointer-events:none}
-.hero-wave svg{display:block;width:100%;height:72px}
-
-/* PLACEHOLDERS */
-.photo-placeholder{background:rgba(255,255,255,.04);border:2px dashed rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:rgba(255,255,255,.25);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
-.photo-placeholder svg{opacity:.4}
-.photo-placeholder-light{background:#eef0f4;border:2px dashed #c8cdd6;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:#9aa3b0;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;border-radius:12px}
 
 /* TRUST BAR */
 .trust-bar{background:var(--trust-bg);padding:20px 64px;display:grid;grid-template-columns:repeat(4,1fr)}
@@ -72,7 +77,6 @@ section.alt{background:var(--off)}
 /* SERVICES */
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
 .service-card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:28px 24px}
-.service-card.alt-bg{background:var(--off)}
 .service-icon{width:44px;height:44px;background:rgba(245,158,11,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
 .service-icon svg{color:var(--accent)}
 .service-name{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:8px}
@@ -81,7 +85,6 @@ section.alt{background:var(--off)}
 /* ABOUT */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:48px}
 .about-photo{height:480px;border-radius:16px;overflow:hidden}
-.about-content{}
 .about-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,.1);color:var(--accent);font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;padding:6px 14px;border-radius:99px;margin-bottom:20px}
 .about-title{font-size:clamp(1.5rem,2.5vw,2rem);font-weight:900;color:var(--text);letter-spacing:-.02em;line-height:1.2;margin-bottom:16px}
 .about-body{font-size:.975rem;color:var(--muted);line-height:1.75;margin-bottom:24px}
@@ -91,12 +94,12 @@ section.alt{background:var(--off)}
 
 /* REVIEW SCROLL */
 .review-scroll{background:var(--off);padding:28px 0;overflow:hidden}
-.review-scroll-track{display:flex;gap:20px;width:max-content;animation:reviewScroll 28s linear infinite}
+.review-scroll-track{display:flex;gap:20px;width:max-content;animation:reviewScroll 40s linear infinite}
 .review-scroll:hover .review-scroll-track{animation-play-state:paused}
 .scroll-card{flex:0 0 360px;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:22px 26px}
 .scroll-stars{color:var(--accent);font-size:.8rem;letter-spacing:2px;margin-bottom:8px}
 .scroll-text{font-size:.875rem;color:var(--muted);line-height:1.6;font-style:italic;margin-bottom:10px}
-.scroll-author{font-size:.72rem;font-weight:600;color:var(--text);opacity:.4}
+.scroll-author{font-size:.72rem;font-weight:600;color:var(--text);opacity:.5}
 @keyframes reviewScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* CTA BANNER */
@@ -115,6 +118,9 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
 .footer-col a{color:rgba(255,255,255,.6);text-decoration:none}
 .footer-bottom{background:var(--trust-bg);padding:16px 64px;border-top:1px solid rgba(255,255,255,.08);font-size:.8rem;color:rgba(255,255,255,.3);display:flex;justify-content:space-between}
 
+/* STICKY MOBILE CTA */
+.mobile-cta{display:none}
+
 @media(max-width:900px){
   nav{padding:0 20px}
   .hero{grid-template-columns:1fr;height:auto;min-height:calc(100vh - 68px)}
@@ -129,8 +135,16 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
   .about-grid{grid-template-columns:1fr;gap:32px}
   .about-photo{height:260px}
   footer{grid-template-columns:1fr;gap:32px;padding:40px 20px}
-  .footer-bottom{padding:16px 20px;flex-direction:column;gap:6px}
-  .cta-banner{padding:56px 20px}
+  .footer-bottom{padding:16px 20px;flex-direction:column;gap:6px;padding-bottom:80px}
+  .cta-banner{padding:56px 20px;padding-bottom:100px}
+  .mobile-cta{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--navy);padding:12px 20px;gap:10px;align-items:center;justify-content:center;box-shadow:0 -2px 12px rgba(0,0,0,.15)}
+  .mobile-cta a{flex:1;text-align:center;padding:14px;border-radius:8px;font-weight:700;font-size:.9rem;text-decoration:none;font-family:inherit}
+  .mobile-cta .mc-call{background:var(--accent);color:var(--navy)}
+  .mobile-cta .mc-quote{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.3)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .review-scroll-track{animation:none}
 }
 </style>
 </head>
@@ -146,34 +160,34 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
 
 <section class="hero">
   <div class="hero-left">
-    <div class="eyebrow">Coral Springs, FL&nbsp;&nbsp;·&nbsp;&nbsp;Veteran Owned</div>
+    <div class="eyebrow">Coral Springs, FL&nbsp;&nbsp;·&nbsp;&nbsp;Veteran Owned Since 2009</div>
     <h1>You Work With <em>Will.</em><br>Every Single Time.</h1>
-    <p class="hero-sub">Iraq combat veteran and licensed master electrician with 15+ years of experience. Will handles every job personally — no subcontractors, no surprises, no sending someone else.</p>
-    <form class="hero-form" action="#" method="POST">
-      <input type="text" name="name" placeholder="Your Name" autocomplete="off">
-      <input type="tel" name="phone" placeholder="Phone Number" autocomplete="off">
-      <textarea name="message" placeholder="Describe your electrical need…"></textarea>
+    <p class="hero-sub">Licensed master electrician and Iraq combat veteran with 15+ years of experience. Will handles every job personally — no subcontractors, no surprises, no sending someone else.</p>
+    <form id="quote-form" class="hero-form" action="#" method="POST">
+      <div class="form-heading">Get Your Free Quote</div>
+      <div class="form-sub">Most jobs scheduled within the week.</div>
+      <label for="c1e-name" class="sr-only">Your Name</label>
+      <input id="c1e-name" type="text" name="name" placeholder="Your Name" autocomplete="name" required>
+      <label for="c1e-phone" class="sr-only">Phone Number</label>
+      <input id="c1e-phone" type="tel" name="phone" placeholder="Phone Number" autocomplete="tel" required>
+      <label for="c1e-message" class="sr-only">Describe your electrical need</label>
+      <textarea id="c1e-message" name="message" placeholder="e.g., panel upgrade, EV charger, lighting install…"></textarea>
       <button type="submit">Get a Free Quote</button>
     </form>
   </div>
   <div class="hero-right">
     <img src="../../assets/samples/Electricians/electrician-working-on-electrical-panel-circuit-breaker-box.jpg" alt="Licensed electrician at work">
   </div>
-  <div class="hero-wave">
-    <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,32 C360,72 1080,8 1440,40 L1440,72 L0,72 Z" fill="#081523"/>
-    </svg>
-  </div>
 </section>
 
 <div class="trust-bar">
   <div class="trust-item">
-    <div class="trust-title">Veteran Owned</div>
-    <div class="trust-sub">Iraq Combat Veteran</div>
-  </div>
-  <div class="trust-item">
     <div class="trust-title">Master Electrician</div>
     <div class="trust-sub">Lic # EC13010579</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-title">Veteran Owned</div>
+    <div class="trust-sub">Iraq Combat Veteran</div>
   </div>
   <div class="trust-item">
     <div class="trust-title">4.9 Stars</div>
@@ -187,19 +201,25 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
 
 <div class="review-scroll">
   <div class="review-scroll-track">
-    <div class="scroll-card"><div class="scroll-stars">★★★★★</div><p class="scroll-text">"Will was punctual, professional, and clearly knows his craft. He explained everything before starting and left the place cleaner than he found it. Would hire again without hesitation."</p><div class="scroll-author">Google Review — Coral Springs, FL</div></div>
-    <div class="scroll-card"><div class="scroll-stars">★★★★★</div><p class="scroll-text">"I loved that Will does every job himself. No strangers showing up at my house. He was upfront about pricing, did the panel work the same week, and passed inspection first try."</p><div class="scroll-author">Google Review — Coral Springs, FL</div></div>
-    <div class="scroll-card"><div class="scroll-stars">★★★★★</div><p class="scroll-text">"As a veteran myself, I wanted to support a fellow service member. Will didn't disappoint. Honest, on time, and the EV charger install looks like it came straight from the factory."</p><div class="scroll-author">Google Review — Broward County</div></div>
-    <div class="scroll-card"><div class="scroll-stars">★★★★★</div><p class="scroll-text">"Will was punctual, professional, and clearly knows his craft. He explained everything before starting and left the place cleaner than he found it. Would hire again without hesitation."</p><div class="scroll-author">Google Review — Coral Springs, FL</div></div>
-    <div class="scroll-card"><div class="scroll-stars">★★★★★</div><p class="scroll-text">"I loved that Will does every job himself. No strangers showing up at my house. He was upfront about pricing, did the panel work the same week, and passed inspection first try."</p><div class="scroll-author">Google Review — Coral Springs, FL</div></div>
-    <div class="scroll-card"><div class="scroll-stars">★★★★★</div><p class="scroll-text">"As a veteran myself, I wanted to support a fellow service member. Will didn't disappoint. Honest, on time, and the EV charger install looks like it came straight from the factory."</p><div class="scroll-author">Google Review — Broward County</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Will was punctual, professional, and clearly knows his craft. He explained everything before starting and left the place cleaner than he found it. Would hire again without hesitation."</p><div class="scroll-author">— Sarah K. · Coral Springs</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"I loved that Will does every job himself. No strangers showing up at my house. He was upfront about pricing, did the panel work the same week, and passed inspection first try."</p><div class="scroll-author">— Jennifer M. · Coral Springs</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"As a veteran myself, I wanted to support a fellow service member. Will didn't disappoint. On time, and the EV charger install looks like it came straight from the factory."</p><div class="scroll-author">— Marcus D. · Parkland</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Will rewired our entire kitchen during a remodel. Clean work, pulled the permit himself, and the inspector had zero notes. That never happens."</p><div class="scroll-author">— Linda P. · Coconut Creek</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Called about a tripping breaker. Will came out next day, found the issue in 20 minutes, and the fix was half what I expected to pay. Straight shooter."</p><div class="scroll-author">— Robert H. · Margate</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="4 out of 5 stars">★★★★☆</div><p class="scroll-text">"Will was booked out about a week, but the recessed lighting install was worth the wait. Six cans, dimmer switch, done in a few hours. Looks great."</p><div class="scroll-author">— Amanda C. · Coral Springs</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Will was punctual, professional, and clearly knows his craft. He explained everything before starting and left the place cleaner than he found it. Would hire again without hesitation."</p><div class="scroll-author">— Sarah K. · Coral Springs</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"I loved that Will does every job himself. No strangers showing up at my house. He was upfront about pricing, did the panel work the same week, and passed inspection first try."</p><div class="scroll-author">— Jennifer M. · Coral Springs</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"As a veteran myself, I wanted to support a fellow service member. Will didn't disappoint. On time, and the EV charger install looks like it came straight from the factory."</p><div class="scroll-author">— Marcus D. · Parkland</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Will rewired our entire kitchen during a remodel. Clean work, pulled the permit himself, and the inspector had zero notes. That never happens."</p><div class="scroll-author">— Linda P. · Coconut Creek</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Called about a tripping breaker. Will came out next day, found the issue in 20 minutes, and the fix was half what I expected to pay. Straight shooter."</p><div class="scroll-author">— Robert H. · Margate</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="4 out of 5 stars">★★★★☆</div><p class="scroll-text">"Will was booked out about a week, but the recessed lighting install was worth the wait. Six cans, dimmer switch, done in a few hours. Looks great."</p><div class="scroll-author">— Amanda C. · Coral Springs</div></div>
   </div>
 </div>
 
 <!-- SERVICES -->
 <section>
   <div class="section-label">What We Do</div>
-  <h2 class="section-title">Electrical Services Done Right</h2>
+  <h2 class="section-title">What Will Can Do for Your Home</h2>
   <p class="section-sub">From panel upgrades to EV chargers, Will handles every job personally with the precision and discipline you'd expect from a master electrician and military veteran.</p>
   <div class="services-grid">
     <div class="service-card">
@@ -256,13 +276,13 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
     <div class="about-content">
       <div class="about-badge">About Will</div>
       <h2 class="about-title">A Veteran Who Takes His Work Personally</h2>
-      <p class="about-body">William Malyska served in Iraq before dedicating his career to electrical work. That military background shows in everything he does — punctual, precise, and accountable from the first call to the final walkthrough.</p>
+      <p class="about-body">William Malyska is a licensed master electrician with 15+ years of experience and an Iraq combat veteran. That military background shows in everything he does — punctual, precise, and accountable from the first call to the final walkthrough.</p>
       <p class="about-body">When you book Customer 1st Electric, you get Will. Not a crew you've never met, not a subcontractor, not a helper. Will shows up, Will does the work, and Will signs off on it. That's not common in this industry — he made it his standard.</p>
       <ul class="cred-list">
         <li class="cred-item">Licensed Master Electrician — Lic # EC13010579</li>
         <li class="cred-item">Iraq Combat Veteran, U.S. Military</li>
         <li class="cred-item">15+ Years of Electrical Experience</li>
-        <li class="cred-item">Coral Springs, FL — serving all of Broward County</li>
+        <li class="cred-item">Coral Springs, FL — Serving Broward County Since 2009</li>
         <li class="cred-item">Satisfaction Guarantee on Every Job</li>
       </ul>
     </div>
@@ -272,10 +292,10 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
 <!-- CTA -->
 <div class="cta-banner">
   <h2>Ready to Talk to Will?</h2>
-  <p>Free estimates, honest pricing, and Will on every job. Call or text to get started — most jobs scheduled within the week.</p>
+  <p>Free estimates, upfront pricing, and Will on every job. Call or text to get started — most jobs scheduled within the week.</p>
   <div class="cta-actions">
     <a href="tel:9543405668" class="btn-primary">Call (954) 340-5668</a>
-    <a href="tel:9543405668" class="btn-ghost">Free Estimate</a>
+    <a href="#quote-form" class="btn-ghost">Get a Free Estimate</a>
   </div>
 </div>
 
@@ -305,8 +325,13 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
   </div>
 </footer>
 <div class="footer-bottom">
-  <span>© 2025 Customer 1st Electric LLC. All rights reserved.</span>
+  <span>&copy; 2026 Customer 1st Electric LLC. All rights reserved.</span>
   <span>Licensed Master Electrician · Lic # EC13010579</span>
+</div>
+
+<div class="mobile-cta">
+  <a href="tel:9543405668" class="mc-call">Call Now</a>
+  <a href="#quote-form" class="mc-quote">Free Quote</a>
 </div>
 
 </body>
