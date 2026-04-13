@@ -28,6 +28,26 @@
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:var(--black);color:var(--text)}
 
+/* PAGE hidden until loader done */
+#page{visibility:hidden}
+
+/* GRAIN CANVAS */
+#grain{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:99998}
+
+/* LOADER */
+#loader{position:fixed;inset:0;background:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 clamp(32px,8vw,120px);z-index:999999;transition:opacity .9s ease,visibility .9s ease}
+#loader.done{opacity:0;visibility:hidden;pointer-events:none}
+#loader-stars{color:var(--accent);font-size:.9rem;letter-spacing:4px;margin-bottom:20px;opacity:0;transition:opacity .4s ease}
+#loader-stars.on{opacity:1}
+#loader-quote{font-family:'Inter',sans-serif;font-size:clamp(1.4rem,3.5vw,2.6rem);font-weight:300;font-style:italic;line-height:1.35;color:var(--white);letter-spacing:-.01em;max-width:700px;text-align:center;opacity:0;transform:translateY(14px);transition:opacity .4s ease,transform .4s ease}
+#loader-quote.on{opacity:1;transform:translateY(0)}
+#loader-attr{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-top:1.2rem;opacity:0;transition:opacity .35s ease .12s}
+#loader-attr.on{opacity:1}
+#loader-counter{position:absolute;bottom:clamp(40px,8vh,80px);right:clamp(40px,6vw,80px);text-align:right}
+#loader-rating{font-family:'Inter',sans-serif;font-size:clamp(3.5rem,8vw,6rem);font-weight:900;line-height:1;color:var(--white);letter-spacing:-.04em}
+#loader-rating-label{font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+#loader-rating-stars{color:var(--accent);font-size:.7rem;letter-spacing:3px;margin-top:4px}
+
 /* NAV */
 nav{position:sticky;top:0;z-index:100;height:68px;background:rgba(10,10,10,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 64px}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
@@ -202,10 +222,30 @@ footer{background:var(--black);padding:56px 64px;display:grid;grid-template-colu
   .service-card{opacity:1;transform:none}
   .scroll-card{transition:none}
   .hero-form input,.hero-form textarea,.hero-form button{transition:none}
+  #loader{display:none}
+  #page{visibility:visible!important}
+  #grain{display:none}
 }
 </style>
 </head>
 <body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div id="loader-stars">★★★★★</div>
+  <p id="loader-quote"></p>
+  <p id="loader-attr"></p>
+  <div id="loader-counter">
+    <div id="loader-rating">0.0</div>
+    <div id="loader-rating-stars">★★★★★</div>
+    <div id="loader-rating-label">Perfect Rating</div>
+  </div>
+</div>
+
+<!-- GRAIN CANVAS -->
+<canvas id="grain"></canvas>
+
+<div id="page">
 
 <nav>
   <a href="#" class="nav-logo">
@@ -414,7 +454,92 @@ footer{background:var(--black);padding:56px 64px;display:grid;grid-template-colu
   <a href="#quote-form" class="mc-quote">Free Estimate</a>
 </div>
 
+</div><!-- /page -->
+
 <script>
+// ── LOADER ──
+(function() {
+  var quote  = document.getElementById('loader-quote');
+  var attr   = document.getElementById('loader-attr');
+  var stars  = document.getElementById('loader-stars');
+  var loader = document.getElementById('loader');
+  var rating = document.getElementById('loader-rating');
+
+  var steps = [
+    { q: '"Professional, dependable, and their prices can\'t be beat."', a: '— Happy Customer · Yahoo Local' },
+    { q: '"Joey and his team went above and beyond."',                   a: '— Lauri K. · Yahoo Local' },
+    { q: '"One of the best in the biz. 8 years and counting."',          a: '— Condo Association Manager · Broward' },
+  ];
+
+  var i = 0;
+  function show(idx) {
+    quote.classList.remove('on');
+    attr.classList.remove('on');
+    stars.classList.remove('on');
+    setTimeout(function() {
+      quote.textContent = steps[idx].q;
+      attr.textContent  = steps[idx].a;
+      quote.classList.add('on');
+      attr.classList.add('on');
+      stars.classList.add('on');
+    }, 300);
+  }
+  show(0);
+
+  // Rating count-up animation during loader
+  var dur = 3200;
+  var t0 = null;
+  function ease(t) { return 1 - Math.pow(2, -10 * t); }
+  function tick(ts) {
+    if (!t0) t0 = ts;
+    var p = Math.min((ts - t0) / dur, 1);
+    rating.textContent = (5 * ease(p)).toFixed(1);
+    if (p < 1) requestAnimationFrame(tick); else rating.textContent = '5.0';
+  }
+  requestAnimationFrame(tick);
+
+  var iv = setInterval(function() {
+    i++;
+    if (i >= steps.length) {
+      clearInterval(iv);
+      setTimeout(function() {
+        loader.classList.add('done');
+        document.getElementById('page').style.visibility = 'visible';
+      }, 1000);
+    } else {
+      show(i);
+    }
+  }, 1300);
+})();
+
+
+// ── GRAIN CANVAS (green-tinted for electric feel) ──
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var canvas = document.getElementById('grain');
+  var ctx = canvas.getContext('2d');
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  function draw() {
+    var w = canvas.width, h = canvas.height;
+    var img = ctx.createImageData(w, h);
+    var d = img.data;
+    for (var j = 0; j < d.length; j += 4) {
+      var v = Math.random() * 255;
+      d[j]   = v * 0.7;        // R (dimmed)
+      d[j+1] = v;              // G (full — green tint)
+      d[j+2] = v * 0.5;        // B (dimmed more)
+      d[j+3] = 12;             // A (very subtle)
+    }
+    ctx.putImageData(img, 0, 0);
+    requestAnimationFrame(draw);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  draw();
+})();
+
+
+// ── SCROLL REVEALS ──
 (function(){
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var io = new IntersectionObserver(function(entries){
