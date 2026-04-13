@@ -151,8 +151,54 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
   .mobile-cta .mc-quote{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.3)}
 }
 
+/* ANIMATIONS */
+
+/* -- Hero staggered entrance -- */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes slideInRight{
+  from{opacity:0;transform:translateX(40px)}
+  to{opacity:1;transform:translateX(0)}
+}
+.hero .eyebrow,
+.hero h1,
+.hero .hero-sub,
+.hero .hero-form{opacity:0;animation:fadeUp .7s cubic-bezier(.22,1,.36,1) forwards}
+.hero .eyebrow{animation-delay:.15s}
+.hero h1{animation-delay:.35s}
+.hero .hero-sub{animation-delay:.55s}
+.hero .hero-form{animation:slideInRight .8s cubic-bezier(.22,1,.36,1) .4s forwards}
+
+/* -- Scroll-triggered fade-in -- */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* -- Service cards cascade -- */
+.service-card{opacity:0;transform:translateY(24px);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1),box-shadow .25s ease}
+.service-card.visible{opacity:1;transform:translateY(0)}
+.service-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.08);transform:translateY(-4px)}
+
+/* -- Form micro-interactions -- */
+.hero-form input,.hero-form textarea{transition:border-color .2s,box-shadow .2s,transform .15s ease}
+.hero-form input:focus,.hero-form textarea:focus{transform:scale(1.01)}
+.hero-form button{transition:background .2s,transform .15s ease,box-shadow .2s}
+.hero-form button:hover{background:var(--red-light);transform:scale(1.02);box-shadow:0 6px 20px rgba(198,40,40,.3)}
+
+/* -- Review card hover -- */
+.scroll-card{transition:transform .25s ease,box-shadow .25s ease}
+.scroll-card:hover{transform:scale(1.03);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+
 @media(prefers-reduced-motion:reduce){
   .review-scroll-track{animation:none}
+  .hero .eyebrow,.hero h1,.hero .hero-sub,.hero .hero-form{opacity:1;animation:none}
+  .reveal{opacity:1;transform:none;transition:none}
+  .service-card{opacity:1;transform:none;transition:none}
+  .service-card:hover{transform:none}
+  .hero-form input:focus,.hero-form textarea:focus{transform:none}
+  .hero-form button:hover{transform:none}
+  .scroll-card:hover{transform:none}
 }
 </style>
 </head>
@@ -232,9 +278,9 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
 
 <!-- SERVICES -->
 <section>
-  <div class="section-label">Flexible Services &amp; Free Estimates</div>
-  <h2 class="section-title">24-Hour Residential &amp; Commercial Service</h2>
-  <p class="section-sub">Whether you have a simple or complex electrical problem, our highly trained technicians get it done right, the first time. No job is too big, no job is too small.</p>
+  <div class="section-label reveal">Flexible Services &amp; Free Estimates</div>
+  <h2 class="section-title reveal">24-Hour Residential &amp; Commercial Service</h2>
+  <p class="section-sub reveal">Whether you have a simple or complex electrical problem, our highly trained technicians get it done right, the first time. No job is too big, no job is too small.</p>
   <div class="services-grid">
     <div class="service-card">
       <div class="service-icon">
@@ -285,11 +331,11 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
 <section class="alt">
   <div class="about-grid">
     <div>
-      <div class="about-badge">Customer Satisfaction Guaranteed</div>
-      <h2 class="about-title">Meticulous Work. We Don't Leave Until You're Satisfied.</h2>
-      <p class="about-body">MG Electric Inc. is a family owned and operated electrical company in Lauderhill, Florida with over 30 years of experience. Our technicians are highly trained, and we are licensed, insured, and trusted professionals who provide top quality and reliable service.</p>
-      <p class="about-body">We are very meticulous about the work we do, so you can trust that you will have a seamless experience with us. We strive to save you both time and money by combining deep experience, the highest quality parts, and our dedication to exceptional service.</p>
-      <ul class="cred-list">
+      <div class="about-badge reveal">Customer Satisfaction Guaranteed</div>
+      <h2 class="about-title reveal">Meticulous Work. We Don't Leave Until You're Satisfied.</h2>
+      <p class="about-body reveal">MG Electric Inc. is a family owned and operated electrical company in Lauderhill, Florida with over 30 years of experience. Our technicians are highly trained, and we are licensed, insured, and trusted professionals who provide top quality and reliable service.</p>
+      <p class="about-body reveal">We are very meticulous about the work we do, so you can trust that you will have a seamless experience with us. We strive to save you both time and money by combining deep experience, the highest quality parts, and our dedication to exceptional service.</p>
+      <ul class="cred-list reveal">
         <li class="cred-item">Licensed &amp; Insured — Lic # EC13009638</li>
         <li class="cred-item">Family Owned and Operated Since 1994</li>
         <li class="cred-item">Highly Trained Technicians</li>
@@ -305,9 +351,9 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
 
 <!-- CTA -->
 <div class="cta-banner">
-  <h2>Don't Get Electrocuted — Call the Experts.</h2>
-  <p>Customer service that is second to none. Free estimates, highly trained technicians, and 30 years of experience across South Florida. Available 24 hours a day.</p>
-  <div class="cta-actions">
+  <h2 class="reveal">Don't Get Electrocuted — Call the Experts.</h2>
+  <p class="reveal">Customer service that is second to none. Free estimates, highly trained technicians, and 30 years of experience across South Florida. Available 24 hours a day.</p>
+  <div class="cta-actions reveal">
     <a href="tel:9543287918" class="btn-primary">Call (954) 328-7918</a>
     <a href="#quote-form" class="btn-ghost">Get a Free Estimate</a>
   </div>
@@ -349,5 +395,39 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
   <a href="#quote-form" class="mc-quote">Free Quote</a>
 </div>
 
+<script>
+// Scroll-triggered reveals + service card cascade
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.15});
+
+  // Observe all .reveal elements
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+  // Service cards — stagger with delay
+  var cards = document.querySelectorAll('.service-card');
+  var cardIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        // Find this card's index for stagger delay
+        var idx = Array.prototype.indexOf.call(cards, e.target);
+        e.target.style.transitionDelay = (idx * 100) + 'ms';
+        e.target.classList.add('visible');
+        cardIO.unobserve(e.target);
+      }
+    });
+  },{threshold:0.1});
+
+  cards.forEach(function(c){cardIO.observe(c)});
+})();
+</script>
 </body>
 </html>
