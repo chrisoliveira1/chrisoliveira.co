@@ -45,6 +45,7 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--dark-tex
 /* NAV */
 nav{position:sticky;top:0;z-index:100;height:68px;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 64px}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Poppins',sans-serif;font-weight:800;font-size:1.2rem;color:var(--navy);letter-spacing:-.02em}
+.nav-logo img{height:38px;width:auto}
 .nav-logo svg{flex-shrink:0}
 .nav-right{display:flex;align-items:center;gap:16px}
 .nav-phone{color:var(--navy);font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;letter-spacing:-.01em}
@@ -55,7 +56,7 @@ nav{position:sticky;top:0;z-index:100;height:68px;background:rgba(255,255,255,.9
 /* HERO */
 .hero{height:calc(100vh - 68px);display:flex;align-items:center;position:relative;background:var(--navy);overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:1}
-.hero-bg img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-bg img,.hero-bg video{width:100%;height:100%;object-fit:cover;display:block}
 .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(56,68,94,.92) 0%,rgba(56,68,94,.78) 40%,rgba(36,103,141,.5) 100%)}
 .hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;width:100%;max-width:1200px;margin:0 auto;padding:0 64px}
 .hero-left{display:flex;flex-direction:column;justify-content:center}
@@ -248,8 +249,7 @@ footer{background:var(--navy);padding:56px 64px;display:grid;grid-template-colum
 
 <nav>
   <a href="#" class="nav-logo" aria-label="Trust Pools - Home">
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="15" stroke="#24678d" stroke-width="2"/><path d="M10 14c0-3.3 2.7-6 6-6s6 2.7 6 6c0 5-6 10-6 10s-6-5-6-10z" fill="#24678d" opacity=".15"/><path d="M13 15a3 3 0 016 0" stroke="#24678d" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="12" r="1.5" fill="#ffc70b"/></svg>
-    Trust Pools
+    <img src="logo.png" alt="Trust Pools logo" width="158" height="54">
   </a>
   <div class="nav-right">
     <a href="tel:5615586737" class="nav-phone">(561) 558-6737</a>
@@ -259,7 +259,9 @@ footer{background:var(--navy);padding:56px 64px;display:grid;grid-template-colum
 
 <section class="hero">
   <div class="hero-bg">
-    <img src="../../assets/samples/Pool Service/Pool-Scouts-Provides-Professional-Pool-Maintenance.jpg" alt="Pool technician skimming a crystal clear swimming pool">
+    <video autoplay muted loop playsinline poster="../../assets/samples/Pool Service/Pool-Scouts-Provides-Professional-Pool-Maintenance.jpg">
+      <source src="../../assets/samples/Pool Service/pool-hero-bg.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="hero-content">
     <div class="hero-left">
