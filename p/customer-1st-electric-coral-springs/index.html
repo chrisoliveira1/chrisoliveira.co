@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Customer 1st Electric | Licensed Master Electrician | Coral Springs, FL</title>
-<meta name="description" content="Veteran-owned master electrician in Coral Springs, FL. Will handles every job personally — no subcontractors. 4.9 stars, 63 reviews. Call (954) 340-5668.">
+<meta name="description" content="Veteran-owned master electrician in Coral Springs, FL. Will handles every job personally — no subcontractors. 5.0 stars, 67 Google reviews. Call (954) 340-5668.">
 <meta property="og:title" content="Customer 1st Electric | Licensed Master Electrician | Coral Springs, FL">
-<meta property="og:description" content="Veteran-owned, master-licensed electrician. Will does every job himself. 4.9 stars on Google. Free estimates.">
+<meta property="og:description" content="Veteran-owned, master-licensed electrician. Will does every job himself. 5.0 stars on Google. Free estimates.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -24,6 +24,29 @@
   --line:#e4e8ee;
 }
 body{font-family:'Work Sans',sans-serif;background:var(--white);color:var(--text)}
+
+/* PAGE hidden until loader done */
+#page{visibility:hidden}
+
+/* GRAIN CANVAS */
+#grain{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:99998}
+
+/* LOADER */
+#loader{position:fixed;inset:0;background:#081523;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 clamp(32px,8vw,120px);z-index:999999;transition:opacity .9s ease,visibility .9s ease}
+#loader.done{opacity:0;visibility:hidden;pointer-events:none}
+#loader-stars{color:var(--accent);font-size:.9rem;letter-spacing:4px;margin-bottom:20px;opacity:0;transition:opacity .4s ease}
+#loader-stars.on{opacity:1}
+#loader-quote{font-family:'Work Sans',sans-serif;font-size:clamp(1.4rem,3.5vw,2.6rem);font-weight:300;font-style:italic;line-height:1.35;color:var(--white);letter-spacing:-.01em;max-width:700px;text-align:center;opacity:0;transform:translateY(14px);transition:opacity .4s ease,transform .4s ease}
+#loader-quote.on{opacity:1;transform:translateY(0)}
+#loader-attr{font-family:'Work Sans',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-top:1.2rem;opacity:0;transition:opacity .35s ease .12s}
+#loader-attr.on{opacity:1}
+
+/* HERO RATING BADGE */
+.hero-rating{display:flex;align-items:center;gap:16px;margin-top:28px;opacity:0;animation:fadeUp .7s cubic-bezier(.22,1,.36,1) .75s forwards}
+.hero-rating-num{font-family:'Work Sans',sans-serif;font-size:clamp(2.8rem,4.5vw,3.8rem);font-weight:900;line-height:1;color:var(--white);letter-spacing:-.04em}
+.hero-rating-right{display:flex;flex-direction:column;gap:3px;padding-left:16px;border-left:2px solid var(--accent)}
+.hero-rating-stars{color:var(--accent);font-size:.8rem;letter-spacing:3px}
+.hero-rating-label{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55)}
 
 /* NAV */
 nav{position:sticky;top:0;z-index:100;height:68px;background:var(--white);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 64px}
@@ -117,6 +140,9 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
 .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
 .footer-col li{font-size:.875rem;color:rgba(255,255,255,.5)}
 .footer-col a{color:rgba(255,255,255,.6);text-decoration:none}
+.footer-socials{display:flex;gap:14px;margin-top:18px}
+.footer-socials a{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);transition:all .25s}
+.footer-socials a:hover{background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.4);color:var(--accent)}
 .footer-bottom{background:var(--trust-bg);padding:16px 64px;border-top:1px solid rgba(255,255,255,.08);font-size:.8rem;color:rgba(255,255,255,.3);display:flex;justify-content:space-between}
 
 /* STICKY MOBILE CTA */
@@ -191,10 +217,25 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
   .service-card{opacity:1;transform:none;transition:none}
   .scroll-card{transition:none}
   .hero-form input,.hero-form textarea,.hero-form button{transition:none}
+  #loader{display:none}
+  #page{visibility:visible!important}
+  #grain{display:none}
 }
 </style>
 </head>
 <body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div id="loader-stars">★★★★★</div>
+  <p id="loader-quote"></p>
+  <p id="loader-attr"></p>
+</div>
+
+<!-- GRAIN CANVAS -->
+<canvas id="grain"></canvas>
+
+<div id="page">
 
 <nav>
   <div class="nav-logo">Customer 1st<span> Electric</span></div>
@@ -212,6 +253,13 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
       <div class="eyebrow">Coral Springs, FL&nbsp;&nbsp;·&nbsp;&nbsp;Veteran Owned Since 2009</div>
       <h1>You Work With <em>Will.</em><br>Every Single Time.</h1>
       <p class="hero-sub">Licensed master electrician and Iraq combat veteran with 15+ years of experience. Will handles every job personally — no subcontractors, no surprises, no sending someone else.</p>
+      <div class="hero-rating" aria-label="5.0 star rating">
+        <div class="hero-rating-num" id="heroRating">0.0</div>
+        <div class="hero-rating-right">
+          <div class="hero-rating-stars">★★★★★</div>
+          <div class="hero-rating-label">Perfect Rating · 67 Google Reviews</div>
+        </div>
+      </div>
     </div>
     <form id="quote-form" class="hero-form" action="#" method="POST">
       <div class="form-heading">Get Your Free Quote</div>
@@ -237,8 +285,8 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
     <div class="trust-sub">Iraq Combat Veteran</div>
   </div>
   <div class="trust-item">
-    <div class="trust-title">4.9 Stars</div>
-    <div class="trust-sub">63 Verified Reviews</div>
+    <div class="trust-title">5.0 Stars</div>
+    <div class="trust-sub">67 Google Reviews</div>
   </div>
   <div class="trust-item">
     <div class="trust-title">Will Does Every Job</div>
@@ -248,16 +296,16 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
 
 <div class="review-scroll">
   <div class="review-scroll-track">
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Will was punctual, professional, and clearly knows his craft. He explained everything before starting and left the place cleaner than he found it. Would hire again without hesitation."</p><div class="scroll-author">— Sarah K. · Coral Springs</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"I loved that Will does every job himself. No strangers showing up at my house. He was upfront about pricing, did the panel work the same week, and passed inspection first try."</p><div class="scroll-author">— Jennifer M. · Coral Springs</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"As a veteran myself, I wanted to support a fellow service member. Will didn't disappoint. On time, and the EV charger install looks like it came straight from the factory."</p><div class="scroll-author">— Marcus D. · Parkland</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Will rewired our entire kitchen during a remodel. Clean work, pulled the permit himself, and the inspector had zero notes. That never happens."</p><div class="scroll-author">— Linda P. · Coconut Creek</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Called about a tripping breaker. Will came out next day, found the issue in 20 minutes, and the fix was half what I expected to pay. Straight shooter."</p><div class="scroll-author">— Robert H. · Margate</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Will was punctual, professional, and clearly knows his craft. He explained everything before starting and left the place cleaner than he found it. Would hire again without hesitation."</p><div class="scroll-author">— Sarah K. · Coral Springs</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"I loved that Will does every job himself. No strangers showing up at my house. He was upfront about pricing, did the panel work the same week, and passed inspection first try."</p><div class="scroll-author">— Jennifer M. · Coral Springs</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"As a veteran myself, I wanted to support a fellow service member. Will didn't disappoint. On time, and the EV charger install looks like it came straight from the factory."</p><div class="scroll-author">— Marcus D. · Parkland</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Will rewired our entire kitchen during a remodel. Clean work, pulled the permit himself, and the inspector had zero notes. That never happens."</p><div class="scroll-author">— Linda P. · Coconut Creek</div></div>
-    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Called about a tripping breaker. Will came out next day, found the issue in 20 minutes, and the fix was half what I expected to pay. Straight shooter."</p><div class="scroll-author">— Robert H. · Margate</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"The electrician arrived on time and followed my specific directions. He checked out my numerous electric issues and offered me options for each of them. I am extremely pleased with his work and his professional manner."</p><div class="scroll-author">Verified Customer · BestProsInTown</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Not only was Will's work excellent — even the city inspector commented on the high quality of the work — he was easy to work with, very fair in his pricing, and I found it to be a very educational experience."</p><div class="scroll-author">Verified Customer · BestProsInTown</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Will came by to install an outlet for an EV charger and gave me great recommendations. Showed up on time despite a last second change I requested, and everything looks professional. 1st Electric is my new go-to!"</p><div class="scroll-author">Verified Customer · BestProsInTown</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"I was very careful in selecting an electrical contractor because quality and detail were very important to me. Will worked to ensure I was kept informed about where he was in the process. He explained everything."</p><div class="scroll-author">Verified Customer · BestProsInTown</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"She is an older woman who felt completely safe and the gentleman even changed our kitchen lights for us which is so above and beyond what he had to do. I would highly recommend Customer 1st Electric."</p><div class="scroll-author">Verified Customer · BestProsInTown</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"The electrician arrived on time and followed my specific directions. He checked out my numerous electric issues and offered me options for each of them. I am extremely pleased with his work and his professional manner."</p><div class="scroll-author">Verified Customer · BestProsInTown</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Not only was Will's work excellent — even the city inspector commented on the high quality of the work — he was easy to work with, very fair in his pricing, and I found it to be a very educational experience."</p><div class="scroll-author">Verified Customer · BestProsInTown</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"Will came by to install an outlet for an EV charger and gave me great recommendations. Showed up on time despite a last second change I requested, and everything looks professional. 1st Electric is my new go-to!"</p><div class="scroll-author">Verified Customer · BestProsInTown</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"I was very careful in selecting an electrical contractor because quality and detail were very important to me. Will worked to ensure I was kept informed about where he was in the process. He explained everything."</p><div class="scroll-author">Verified Customer · BestProsInTown</div></div>
+    <div class="scroll-card"><div class="scroll-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="scroll-text">"She is an older woman who felt completely safe and the gentleman even changed our kitchen lights for us which is so above and beyond what he had to do. I would highly recommend Customer 1st Electric."</p><div class="scroll-author">Verified Customer · BestProsInTown</div></div>
   </div>
 </div>
 
@@ -306,8 +354,8 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
       <div class="service-icon">
         <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       </div>
-      <div class="service-name">Residential &amp; Commercial</div>
-      <p class="service-desc">From single-family homes to commercial properties in Coral Springs and surrounding Broward County communities.</p>
+      <div class="service-name">Generators &amp; Interlock Kits</div>
+      <p class="service-desc">Portable and standby generator installation, interlock kits, and transfer switches. Keep your home powered when the grid goes down.</p>
     </div>
   </div>
 </section>
@@ -356,17 +404,21 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
       <li>EV Charger Installation</li>
       <li>Lighting Installation</li>
       <li>Electrical Wiring</li>
-      <li>General Repairs</li>
+      <li>Generators &amp; Interlock Kits</li>
     </ul>
   </div>
   <div class="footer-col">
     <h4>Contact</h4>
     <ul>
       <li><a href="tel:9543405668">(954) 340-5668</a></li>
-      <li><a href="mailto:Customer1stelectric@gmail.com">Customer1stelectric@gmail.com</a></li>
-      <li>4866 NW 100th Terrace<br>Coral Springs, FL 33076</li>
+      <li><a href="mailto:customer1stelectric@gmail.com">customer1stelectric@gmail.com</a></li>
+      <li>Coral Springs, FL 33067</li>
       <li>Mon–Sun 9am–5pm</li>
     </ul>
+    <div class="footer-socials">
+      <a href="https://www.facebook.com/Customer1stElectric/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="https://www.yelp.com/biz/customer-1st-electric-coral-springs-4" target="_blank" rel="noopener noreferrer" aria-label="Yelp"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.871 14.262c-.149-.326-.455-.49-.795-.49-.082 0-.164.012-.246.037l-3.76 1.095c-.3.088-.522.286-.61.545-.09.258-.035.543.15.784.478.624 1.087 1.176 1.792 1.594.23.136.485.164.715.094.23-.07.41-.225.51-.44l1.52-3.31-.276.09zm-.534-2.158c.173.313.485.5.83.5.106 0 .213-.019.316-.056l3.61-1.313c.288-.105.498-.31.577-.564.079-.255.028-.531-.14-.76-.505-.69-1.14-1.274-1.862-1.67-.468-.258-1.052-.098-1.312.357l-2.125 3.349.106.157zm-2.348-1.19c.356 0 .666-.208.81-.527l1.671-3.693c.116-.258.107-.543-.023-.794-.13-.252-.362-.428-.64-.49-.81-.177-1.669-.2-2.504-.046-.265.049-.483.212-.6.45-.118.238-.118.511.001.752L10.3 10.42c.155.303.43.494.69.494zm-3.038 1.99l3.793.725c.072.014.144.02.215.02.346 0 .654-.2.804-.528.195-.427-.012-.916-.45-1.098L7.606 10.72c-.295-.122-.62-.1-.896.06-.276.16-.449.43-.475.741-.04.477.01.985.11 1.48.064.32.318.567.606.604zm1.79 4.645c.27.19.602.228.913.106.311-.121.532-.384.608-.722.104-.466.147-.983.131-1.466-.01-.32-.207-.597-.517-.735l-3.547-1.566c-.15-.066-.307-.098-.46-.098-.255 0-.5.098-.675.28-.235.245-.3.589-.175.918.375.97.975 1.862 1.722 2.283z"/></svg></a>
+    </div>
   </div>
 </footer>
 <div class="footer-bottom">
@@ -379,7 +431,97 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
   <a href="#quote-form" class="mc-quote">Free Quote</a>
 </div>
 
+</div><!-- /page -->
+
 <script>
+// ── LOADER ──
+(function() {
+  var quote  = document.getElementById('loader-quote');
+  var attr   = document.getElementById('loader-attr');
+  var stars  = document.getElementById('loader-stars');
+  var loader = document.getElementById('loader');
+
+  var steps = [
+    { q: '"Even the city inspector commented on the high quality of the work."',     a: '— Verified Customer · BestProsInTown' },
+    { q: '"Showed up on time, everything looks professional. My new go-to."',        a: '— Verified Customer · BestProsInTown' },
+    { q: '"Extremely pleased with his work and his professional manner."',           a: '— Verified Customer · BestProsInTown' },
+  ];
+
+  var i = 0;
+  function show(idx) {
+    quote.classList.remove('on');
+    attr.classList.remove('on');
+    stars.classList.remove('on');
+    setTimeout(function() {
+      quote.textContent = steps[idx].q;
+      attr.textContent  = steps[idx].a;
+      quote.classList.add('on');
+      attr.classList.add('on');
+      stars.classList.add('on');
+    }, 300);
+  }
+  show(0);
+
+  var iv = setInterval(function() {
+    i++;
+    if (i >= steps.length) {
+      clearInterval(iv);
+      setTimeout(function() {
+        loader.classList.add('done');
+        document.getElementById('page').style.visibility = 'visible';
+        startHeroRating();
+      }, 1000);
+    } else {
+      show(i);
+    }
+  }, 1300);
+})();
+
+
+// ── HERO RATING COUNT-UP ──
+function startHeroRating() {
+  var el = document.getElementById('heroRating');
+  if (!el) return;
+  var dur = 2200;
+  var t0 = null;
+  function ease(t) { return 1 - Math.pow(2, -10 * t); }
+  function tick(ts) {
+    if (!t0) t0 = ts;
+    var p = Math.min((ts - t0) / dur, 1);
+    el.textContent = (5 * ease(p)).toFixed(1);
+    if (p < 1) requestAnimationFrame(tick); else el.textContent = '5.0';
+  }
+  setTimeout(function() { requestAnimationFrame(tick); }, 400);
+}
+
+
+// ── GRAIN CANVAS (warm amber tint) ──
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var canvas = document.getElementById('grain');
+  var ctx = canvas.getContext('2d');
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  function draw() {
+    var w = canvas.width, h = canvas.height;
+    var img = ctx.createImageData(w, h);
+    var d = img.data;
+    for (var j = 0; j < d.length; j += 4) {
+      var v = Math.random() * 255;
+      d[j]   = v;              // R (full)
+      d[j+1] = v * 0.8;       // G (warm)
+      d[j+2] = v * 0.4;       // B (dimmed — amber tint)
+      d[j+3] = 10;             // A (very subtle)
+    }
+    ctx.putImageData(img, 0, 0);
+    requestAnimationFrame(draw);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  draw();
+})();
+
+
+// ── SCROLL REVEALS ──
 (function(){
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var io = new IntersectionObserver(function(entries){
