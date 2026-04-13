@@ -44,11 +44,11 @@ h1 em{font-style:normal;color:var(--accent)}
 .hero-form input::placeholder,.hero-form textarea::placeholder{color:#9ca3af}
 .hero-form textarea{resize:none;height:82px}
 .hero-form button{background:var(--accent);color:var(--navy);border:none;border-radius:10px;padding:14px;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit;width:100%}
-.hero-right{position:relative;display:flex;align-items:center;justify-content:center;height:100%}
-.hero-blob{position:absolute;width:420px;height:420px;background:var(--accent);border-radius:60% 40% 30% 70% / 60% 30% 70% 40%;top:50%;left:50%;transform:translate(-45%,-50%)}
-.hero-circle{width:340px;height:340px;border-radius:50%;object-fit:cover;position:absolute;top:50%;left:50%;transform:translate(-38%,-50%);z-index:1;border:6px solid #fff;box-shadow:0 24px 48px rgba(0,0,0,.12)}
+.hero-right{position:relative;overflow:hidden}
+.hero-right img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-right::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to right,#fff 0%,rgba(255,255,255,.5) 22%,transparent 58%);pointer-events:none}
 .hero-wave{position:absolute;bottom:0;left:0;width:100%;line-height:0;z-index:3;pointer-events:none}
-.hero-wave svg{display:block;width:100%;height:48px}
+.hero-wave svg{display:block;width:100%;height:72px}
 
 /* PLACEHOLDERS */
 .photo-placeholder{background:rgba(255,255,255,.04);border:2px dashed rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:rgba(255,255,255,.25);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
@@ -153,12 +153,11 @@ footer{background:var(--trust-bg);padding:48px 64px;display:grid;grid-template-c
     </form>
   </div>
   <div class="hero-right">
-    <div class="hero-blob"></div>
-    <img class="hero-circle" src="../../assets/samples/Electricians/electrician-working-on-electrical-panel-circuit-breaker-box.jpg" alt="Licensed electrician at work">
+    <img src="../../assets/samples/Electricians/electrician-working-on-electrical-panel-circuit-breaker-box.jpg" alt="Licensed electrician at work">
   </div>
   <div class="hero-wave">
-    <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,20 C360,48 1080,0 1440,28 L1440,48 L0,48 Z" fill="#081523"/>
+    <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,32 C360,72 1080,8 1440,40 L1440,72 L0,72 Z" fill="#081523"/>
     </svg>
   </div>
 </section>
