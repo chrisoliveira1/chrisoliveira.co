@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All in 1 Auto Repair | Lantana, FL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #F5F5F0; }
+
+    nav {
+      height: 68px;
+      background: #1A1A1A;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      position: relative;
+      z-index: 10;
+    }
+    .nav-brand {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: #F5F5F0;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .nav-brand span { color: #F7941D; }
+    .nav-phone {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: #F5F5F0;
+      text-decoration: none;
+    }
+
+    .hero {
+      position: relative;
+      height: calc(100vh - 68px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        170deg,
+        rgba(26, 26, 26, 0.93) 0%,
+        rgba(26, 26, 26, 0.70) 50%,
+        rgba(26, 26, 26, 0.90) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 720px;
+      padding: 0 24px;
+    }
+    .hero-content h1 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: clamp(34px, 5.5vw, 62px);
+      color: #ffffff;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .hero-content p {
+      font-size: clamp(16px, 2vw, 19px);
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.5;
+      margin-bottom: 32px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #D4222A;
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 16px 48px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .cta-btn:hover { background: #b01d23; }
+
+    .trust-bar {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .trust-bar span {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: #F7941D;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+    .trust-bar .divider {
+      width: 1px;
+      height: 16px;
+      background: rgba(247, 148, 29, 0.35);
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-brand">All in 1 <span>Auto Repair</span></div>
+    <a href="tel:5614255575" class="nav-phone">(561) 425-5575</a>
+  </nav>
+  <section class="hero">
+    <img src="../../assets/samples/Auto repair/DSC_4115-scaled-e1696345331895-scaled.jpg" alt="Auto repair shop">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Lantana's One-Stop Auto Repair</h1>
+      <p>From oil changes to custom wheels, one team handles it all under one roof.</p>
+      <a href="#" class="cta-btn">Schedule Service</a>
+    </div>
+    <div class="trust-bar">
+      <span>Full-Service Shop</span>
+      <div class="divider"></div>
+      <span>Custom &amp; Collision</span>
+      <div class="divider"></div>
+      <span>Financing Available</span>
+      <div class="divider"></div>
+      <span>Lantana, FL</span>
+    </div>
+  </section>
+</body>
+</html>

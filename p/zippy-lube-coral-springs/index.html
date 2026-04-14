@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zippy Lube & Car Care | Coral Springs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #F7F7F5; }
+
+    nav {
+      height: 68px;
+      background: #1B3A5C;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      position: relative;
+      z-index: 10;
+    }
+    .nav-brand {
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: #F7F7F5;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .nav-brand span { color: #F5A623; }
+    .nav-phone {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: #F7F7F5;
+      text-decoration: none;
+    }
+
+    .hero {
+      position: relative;
+      height: calc(100vh - 68px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        150deg,
+        rgba(27, 58, 92, 0.94) 0%,
+        rgba(27, 58, 92, 0.70) 50%,
+        rgba(27, 58, 92, 0.92) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 720px;
+      padding: 0 24px;
+    }
+    .hero-content h1 {
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      font-weight: 700;
+      font-size: clamp(36px, 5.5vw, 64px);
+      color: #ffffff;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .hero-content p {
+      font-size: clamp(16px, 2vw, 19px);
+      color: rgba(255, 255, 255, 0.84);
+      line-height: 1.5;
+      margin-bottom: 32px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #D4272E;
+      color: #fff;
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 16px 48px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .cta-btn:hover { background: #b02025; }
+
+    .trust-bar {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .trust-bar span {
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #F5A623;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+    .trust-bar .divider {
+      width: 1px;
+      height: 16px;
+      background: rgba(245, 166, 35, 0.35);
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-brand">Zippy Lube <span>& Car Care</span></div>
+    <a href="tel:9547538667" class="nav-phone">(954) 753-8667</a>
+  </nav>
+  <section class="hero">
+    <img src="../../assets/samples/Auto repair/Boss-Auto-Repair-in-Olympia-Four-Wheel-Drive-Repair.jpg" alt="Auto repair shop">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Coral Springs' Neighborhood Car Care</h1>
+      <p>Quick oil changes and full-service repairs from the team your neighbors trust.</p>
+      <a href="#" class="cta-btn">Schedule Service</a>
+    </div>
+    <div class="trust-bar">
+      <span>ASE Certified</span>
+      <div class="divider"></div>
+      <span>Family Owned</span>
+      <div class="divider"></div>
+      <span>Since 1990</span>
+      <div class="divider"></div>
+      <span>Coral Springs</span>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Age Automotive | West Palm Beach Auto Repair</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f8f6f2; }
+
+    /* NAV */
+    nav {
+      height: 68px;
+      background: #1a2634;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      position: relative;
+      z-index: 10;
+    }
+    .nav-brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: #f8f6f2;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .nav-brand span { color: #d4a017; }
+    .nav-phone {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: #f8f6f2;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      height: calc(100vh - 68px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(26, 38, 52, 0.92) 0%,
+        rgba(26, 38, 52, 0.78) 50%,
+        rgba(26, 38, 52, 0.60) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 720px;
+      padding: 0 24px;
+    }
+    .hero-content h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: clamp(36px, 5.5vw, 64px);
+      color: #f8f6f2;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+    .hero-content p {
+      font-size: clamp(16px, 2vw, 20px);
+      color: rgba(248, 246, 242, 0.85);
+      line-height: 1.5;
+      margin-bottom: 32px;
+      font-weight: 400;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #c0392b;
+      color: #f8f6f2;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 16px 48px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .cta-btn:hover { background: #a93226; }
+
+    /* TRUST BAR */
+    .trust-bar {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .trust-bar span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: #d4a017;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+    .trust-bar .divider {
+      width: 1px;
+      height: 16px;
+      background: rgba(212, 160, 23, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-brand">New Age <span>Automotive</span></div>
+    <a href="tel:5618320967" class="nav-phone">(561) 832-0967</a>
+  </nav>
+  <section class="hero">
+    <img src="../../assets/samples/Auto repair/Boss-Auto-Repair-in-Olympia-Four-Wheel-Drive-Repair.jpg" alt="Auto repair shop">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>West Palm Beach's Trusted Auto Repair</h1>
+      <p>Expert diagnostics and honest service for every make and model.</p>
+      <a href="#" class="cta-btn">Schedule Service</a>
+    </div>
+    <div class="trust-bar">
+      <span>ASE Certified</span>
+      <div class="divider"></div>
+      <span>Family Owned</span>
+      <div class="divider"></div>
+      <span>Since 1973</span>
+      <div class="divider"></div>
+      <span>West Palm Beach</span>
+    </div>
+  </section>
+</body>
+</html>

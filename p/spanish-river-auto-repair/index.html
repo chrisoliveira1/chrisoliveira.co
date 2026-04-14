@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spanish River Auto Repair | Boca Raton</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f5f5f5; }
+
+    nav {
+      height: 68px;
+      background: #2b2b2b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      position: relative;
+      z-index: 10;
+    }
+    .nav-brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 21px;
+      color: #f5f5f5;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .nav-brand span { color: #f1c40f; }
+    .nav-phone {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: #f5f5f5;
+      text-decoration: none;
+    }
+
+    .hero {
+      position: relative;
+      height: calc(100vh - 68px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(43, 43, 43, 0.88) 0%,
+        rgba(43, 43, 43, 0.72) 60%,
+        rgba(43, 43, 43, 0.85) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 700px;
+      padding: 0 24px;
+    }
+    .hero-content h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: clamp(36px, 5.5vw, 62px);
+      color: #ffffff;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+    .hero-content p {
+      font-size: clamp(16px, 2vw, 19px);
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.5;
+      margin-bottom: 32px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #c0392b;
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 16px 48px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .cta-btn:hover { background: #a93226; }
+
+    .trust-bar {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .trust-bar span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: #f1c40f;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+    .trust-bar .divider {
+      width: 1px;
+      height: 16px;
+      background: rgba(241, 196, 15, 0.35);
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-brand">Spanish River <span>Auto Repair</span></div>
+    <a href="tel:5613956968" class="nav-phone">(561) 395-6968</a>
+  </nav>
+  <section class="hero">
+    <img src="../../assets/samples/Auto repair/DSC_4115-scaled-e1696345331895-scaled.jpg" alt="Auto repair shop">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Boca Raton's Neighborhood Auto Repair</h1>
+      <p>Reliable service and honest pricing from the team your neighbors trust.</p>
+      <a href="#" class="cta-btn">Schedule Service</a>
+    </div>
+    <div class="trust-bar">
+      <span>ASE Certified</span>
+      <div class="divider"></div>
+      <span>Family Owned</span>
+      <div class="divider"></div>
+      <span>Since 1987</span>
+      <div class="divider"></div>
+      <span>Boca Raton</span>
+    </div>
+  </section>
+</body>
+</html>
