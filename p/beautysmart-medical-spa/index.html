@@ -12,15 +12,13 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --berry:     #80304f;
-      --berry-light: rgba(128, 48, 79, 0.15);
-      --dark:      #333333;
-      --body:      #666666;
-      --light-bg:  #f7f7f7;
-      --purple:    #50485b;
-      --warm-dark: #3d4045;
-      --white:     #ffffff;
-      --nav-h:     68px;
+      --beige:        #f0eae5;
+      --beige-alt:    #e8e0d8;
+      --dark:         #2a2420;
+      --white:        #ffffff;
+      --accent:       #80304f;
+      --accent-light: #a85070;
+      --nav-h:        68px;
     }
 
     html { scroll-behavior: smooth; }
@@ -28,7 +26,7 @@
     body {
       font-family: 'Poppins', sans-serif;
       font-weight: 300;
-      background: var(--white);
+      background: var(--beige);
       color: var(--dark);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
@@ -46,7 +44,7 @@
       font-size: 0.75rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--berry);
+      color: var(--accent);
       margin-bottom: 1rem;
     }
 
@@ -56,7 +54,7 @@
       font-size: 0.8rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--berry);
+      color: var(--accent);
       margin-bottom: 0.75rem;
     }
 
@@ -84,11 +82,11 @@
       border: none;
     }
 
-    .pill-btn--berry {
-      background: var(--berry);
+    .pill-btn--accent {
+      background: var(--accent);
       color: var(--white);
     }
-    .pill-btn--berry:hover {
+    .pill-btn--accent:hover {
       background: #6b2842;
     }
 
@@ -105,21 +103,11 @@
     .pill-btn--outline-dark {
       background: transparent;
       color: var(--dark);
-      border: 1px solid rgba(0,0,0,0.25);
+      border: 1px solid rgba(42,36,32,0.25);
     }
     .pill-btn--outline-dark:hover {
       background: var(--dark);
       color: var(--white);
-    }
-
-    .pill-btn--glass {
-      background: rgba(255,255,255,0.12);
-      color: var(--white);
-      border: 1px solid rgba(255,255,255,0.25);
-      backdrop-filter: blur(6px);
-    }
-    .pill-btn--glass:hover {
-      background: rgba(255,255,255,0.22);
     }
 
     /* ── NAV ────────────────────────────────────────────────────────── */
@@ -129,19 +117,15 @@
       width: 100%;
       height: var(--nav-h);
       background: transparent;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      border-bottom: 1px solid transparent;
       z-index: 1000;
       display: flex;
       align-items: center;
-      transition: background 0.4s, border-color 0.4s, backdrop-filter 0.4s;
+      transition: background 0.4s, border-color 0.4s;
+      border-bottom: 1px solid transparent;
     }
     nav.nav-scrolled {
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
+      background: var(--beige);
+      border-bottom: 1px solid rgba(42,36,32,0.08);
     }
 
     .nav-inner {
@@ -182,26 +166,28 @@
     }
     .nav-links a:hover { color: var(--white); }
     .nav-scrolled .nav-links a { color: var(--dark); }
-    .nav-scrolled .nav-links a:hover { color: var(--berry); }
+    .nav-scrolled .nav-links a:hover { color: var(--accent); }
 
-    .nav-links .pill-btn--berry {
+    .nav-links .nav-book {
       padding: 0.55rem 1.6rem;
       font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      border-radius: 999px;
       background: transparent;
       color: var(--white);
       border: 1px solid rgba(255,255,255,0.5);
       transition: background 0.4s, color 0.4s, border-color 0.4s;
     }
-    .nav-links .pill-btn--berry:hover {
+    .nav-links .nav-book:hover {
       background: rgba(255,255,255,0.15);
-      color: var(--white);
     }
-    .nav-scrolled .nav-links .pill-btn--berry {
-      background: var(--berry);
+    .nav-scrolled .nav-links .nav-book {
+      background: var(--accent);
       color: var(--white);
-      border-color: var(--berry);
+      border-color: var(--accent);
     }
-    .nav-scrolled .nav-links .pill-btn--berry:hover {
+    .nav-scrolled .nav-links .nav-book:hover {
       background: #6b2842;
       border-color: #6b2842;
     }
@@ -229,13 +215,20 @@
         top: 0; right: -100%;
         width: 280px;
         height: 100vh;
-        background: var(--white);
+        background: var(--beige);
         flex-direction: column;
         justify-content: center;
         gap: 2rem;
         padding: 2rem;
         transition: right 0.35s ease;
         box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+      }
+
+      .nav-links a { color: var(--dark); }
+      .nav-links .nav-book {
+        background: var(--accent);
+        color: var(--white);
+        border-color: var(--accent);
       }
 
       #nav-toggle:checked ~ .nav-links {
@@ -255,7 +248,6 @@
 
     /* ── HERO ───────────────────────────────────────────────────────── */
     .hero {
-      margin-top: 0;
       height: 100vh;
       position: relative;
       display: flex;
@@ -280,8 +272,8 @@
       inset: 0;
       background: linear-gradient(
         180deg,
-        rgba(50, 44, 58, 0.55) 0%,
-        rgba(50, 44, 58, 0.7) 100%
+        rgba(42, 36, 32, 0.5) 0%,
+        rgba(42, 36, 32, 0.7) 100%
       );
       z-index: 1;
     }
@@ -357,7 +349,7 @@
       margin-bottom: 1.5rem;
     }
     .hero h1 .accent {
-      color: #c9849e;
+      color: var(--accent-light);
       font-family: 'Playfair Display', serif;
       font-style: italic;
       font-weight: 400;
@@ -376,7 +368,7 @@
 
     /* ── TRUST BAR ─────────────────────────────────────────────────── */
     .trust-bar {
-      background: var(--berry);
+      background: var(--dark);
       color: var(--white);
       overflow: hidden;
       padding: 1rem 0;
@@ -415,8 +407,8 @@
 
     /* ── ABOUT ──────────────────────────────────────────────────────── */
     .about {
-      background: var(--purple);
-      color: var(--white);
+      background: var(--beige);
+      color: var(--dark);
       padding: clamp(5rem, 10vw, 8rem) 2rem;
       position: relative;
       overflow: hidden;
@@ -426,7 +418,7 @@
       top: 50%;
       left: -1rem;
       transform: translateY(-50%);
-      color: var(--white);
+      color: var(--dark);
       opacity: 0.06;
     }
 
@@ -452,7 +444,7 @@
       border-radius: 8px;
     }
 
-    .about-text .section-number { color: rgba(255,255,255,0.5); }
+    .about-text .section-number { color: var(--accent); }
 
     .about-text h2 {
       font-family: 'Poppins', sans-serif;
@@ -460,10 +452,11 @@
       font-size: clamp(1.8rem, 3.5vw, 2.6rem);
       line-height: 1.25;
       margin-bottom: 1.5rem;
+      color: var(--dark);
     }
 
     .about-text p {
-      color: rgba(255,255,255,0.75);
+      color: rgba(42,36,32,0.7);
       font-size: 0.95rem;
       margin-bottom: 1.5rem;
       line-height: 1.8;
@@ -479,14 +472,14 @@
     .stat-block {
       text-align: center;
       padding: 1.2rem 0.5rem;
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid rgba(42,36,32,0.12);
       border-radius: 12px;
     }
 
     .stat-block .number {
       font-family: 'Playfair Display', serif;
       font-size: 1.6rem;
-      color: #c9849e;
+      color: var(--accent);
       display: block;
       margin-bottom: 0.3rem;
     }
@@ -495,7 +488,7 @@
       font-size: 0.7rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
+      color: rgba(42,36,32,0.5);
     }
 
     @media (max-width: 768px) {
@@ -508,7 +501,7 @@
 
     /* ── SERVICES ───────────────────────────────────────────────────── */
     .services {
-      background: var(--light-bg);
+      background: var(--beige-alt);
       padding: clamp(5rem, 10vw, 8rem) 2rem;
       position: relative;
       overflow: hidden;
@@ -522,9 +515,19 @@
       opacity: 0.04;
     }
 
-    .services-header {
+    .services-inner {
       max-width: 1100px;
-      margin: 0 auto 3.5rem;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .services-left {}
+
+    .services-header {
+      margin-bottom: 2.5rem;
     }
 
     .services-header h2 {
@@ -536,21 +539,19 @@
     }
 
     .services-header p {
-      color: var(--body);
+      color: rgba(42,36,32,0.6);
       font-size: 0.95rem;
       max-width: 500px;
     }
 
     .services-grid {
-      max-width: 1100px;
-      margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
     }
 
     .service-card {
-      background: var(--white);
+      background: var(--beige);
       border-radius: 12px;
       padding: 2.2rem 1.8rem;
       transition: transform 0.3s, box-shadow 0.3s;
@@ -559,13 +560,13 @@
 
     .service-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.06);
+      box-shadow: 0 16px 40px rgba(42,36,32,0.08);
     }
 
     .service-card .card-number {
       font-family: 'Playfair Display', serif;
       font-size: 2.2rem;
-      color: var(--berry);
+      color: var(--accent);
       opacity: 0.15;
       position: absolute;
       top: 1.5rem;
@@ -582,22 +583,41 @@
 
     .service-card p {
       font-size: 0.88rem;
-      color: var(--body);
+      color: rgba(42,36,32,0.6);
       line-height: 1.7;
     }
 
     .service-card .card-line {
       width: 30px;
       height: 2px;
-      background: var(--berry);
+      background: var(--accent);
       margin-bottom: 1.2rem;
       opacity: 0.4;
     }
 
+    .services-image {
+      border-radius: 8px;
+      overflow: hidden;
+      position: sticky;
+      top: calc(var(--nav-h) + 2rem);
+    }
+
+    .services-image img {
+      width: 100%;
+      height: 600px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
     @media (max-width: 900px) {
+      .services-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
       .services-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+      .services-image img { height: 360px; }
     }
     @media (max-width: 600px) {
       .services-grid {
@@ -607,7 +627,7 @@
 
     /* ── REVIEWS ────────────────────────────────────────────────────── */
     .reviews {
-      background: var(--warm-dark);
+      background: var(--dark);
       color: var(--white);
       padding: clamp(5rem, 10vw, 8rem) 2rem;
       position: relative;
@@ -646,7 +666,7 @@
     }
 
     .review-card {
-      background: rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 12px;
       padding: 2rem 1.8rem;
@@ -656,7 +676,7 @@
     .review-card .quote-mark {
       font-family: 'Playfair Display', serif;
       font-size: 3.5rem;
-      color: var(--berry);
+      color: var(--accent);
       line-height: 1;
       margin-bottom: 0.5rem;
       opacity: 0.7;
@@ -678,7 +698,7 @@
     }
 
     .review-card .stars {
-      color: #c9849e;
+      color: var(--accent-light);
       font-size: 0.85rem;
       margin-bottom: 1rem;
       letter-spacing: 2px;
@@ -693,11 +713,19 @@
 
     /* ── CTA ────────────────────────────────────────────────────────── */
     .cta {
-      background: url('../../assets/samples/medspa/cta.jpg') center/cover no-repeat;
       position: relative;
       padding: clamp(6rem, 12vw, 10rem) 2rem;
       text-align: center;
       color: var(--white);
+      overflow: hidden;
+    }
+
+    .cta-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .cta::before {
@@ -706,14 +734,15 @@
       inset: 0;
       background: linear-gradient(
         180deg,
-        rgba(80, 48, 79, 0.65) 0%,
-        rgba(61, 64, 69, 0.75) 100%
+        rgba(42, 36, 32, 0.6) 0%,
+        rgba(42, 36, 32, 0.75) 100%
       );
+      z-index: 1;
     }
 
     .cta-content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       max-width: 600px;
       margin: 0 auto;
     }
@@ -742,7 +771,7 @@
 
     /* ── FOOTER ─────────────────────────────────────────────────────── */
     footer {
-      background: #2a2630;
+      background: var(--dark);
       color: var(--white);
       padding: 4rem 2rem 2rem;
     }
@@ -771,7 +800,7 @@
       max-width: 320px;
     }
 
-    .footer-col h4 {
+    .footer-links h4 {
       font-family: 'Poppins', sans-serif;
       font-weight: 400;
       font-size: 0.78rem;
@@ -781,20 +810,20 @@
       color: rgba(255,255,255,0.6);
     }
 
-    .footer-col ul {
+    .footer-links ul {
       list-style: none;
     }
 
-    .footer-col ul li {
+    .footer-links ul li {
       margin-bottom: 0.6rem;
     }
 
-    .footer-col ul li a {
+    .footer-links ul li a {
       font-size: 0.85rem;
       color: rgba(255,255,255,0.5);
       transition: color 0.3s;
     }
-    .footer-col ul li a:hover { color: var(--white); }
+    .footer-links ul li a:hover { color: var(--white); }
 
     .footer-bottom {
       max-width: 1100px;
@@ -832,10 +861,10 @@
       <span></span><span></span><span></span>
     </label>
     <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
       <li><a href="#reviews">Reviews</a></li>
-      <li><a href="#contact" class="pill-btn pill-btn--berry">Book Now</a></li>
+      <li><a href="tel:+15619907294" class="nav-book">Book Now</a></li>
     </ul>
   </div>
 </nav>
@@ -846,7 +875,7 @@
     <source src="../../assets/samples/Spa/6629707-uhd_4096_2160_25fps.mp4" type="video/mp4" />
   </video>
   <div class="hero-content">
-    <p class="eyebrow">Boca Raton &nbsp;&middot;&nbsp; Medical Aesthetics</p>
+    <p class="eyebrow">BOCA RATON &nbsp;&middot;&nbsp; MEDICAL AESTHETICS</p>
     <h1>Where Medical Expertise Meets Aesthetic <span class="accent">Artistry</span></h1>
     <p>ARNP-led practice with an OBGYN background and over sixty-five years of combined experience. Clinically precise, personally delivered care in Boca Raton.</p>
     <a href="tel:+15619907294" class="squiggly-cta">
@@ -907,47 +936,54 @@
 <!-- ── SERVICES ───────────────────────────────────────────────────── -->
 <section class="services" id="services">
   <div class="decorative-label">The<br>Body</div>
-  <div class="services-header">
-    <p class="section-number">02. Treatments</p>
-    <h2>Medical-Grade Aesthetics,<br>Tailored to You</h2>
-    <p>From injectables to laser treatments, every service is delivered with clinical expertise and an artist's eye.</p>
-  </div>
-  <div class="services-grid">
-    <div class="service-card">
-      <span class="card-number">01</span>
-      <div class="card-line"></div>
-      <h3>Injectables &amp; PDO Threads</h3>
-      <p>Botox, dermal fillers, and PDO thread contour lifts for natural facial rejuvenation and volume restoration.</p>
+  <div class="services-inner">
+    <div class="services-left">
+      <div class="services-header">
+        <p class="section-number">02. Treatments</p>
+        <h2>Medical-Grade Aesthetics,<br>Tailored to You</h2>
+        <p>From injectables to laser treatments, every service is delivered with clinical expertise and an artist's eye.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="card-number">01</span>
+          <div class="card-line"></div>
+          <h3>Injectables &amp; PDO Threads</h3>
+          <p>Botox, dermal fillers, and PDO thread contour lifts for natural facial rejuvenation and volume restoration.</p>
+        </div>
+        <div class="service-card">
+          <span class="card-number">02</span>
+          <div class="card-line"></div>
+          <h3>Skin Rejuvenation</h3>
+          <p>Laser treatments, chemical peels, and microneedling to restore radiance, smooth texture, and even skin tone.</p>
+        </div>
+        <div class="service-card">
+          <span class="card-number">03</span>
+          <div class="card-line"></div>
+          <h3>Intimate Wellness</h3>
+          <p>Discreet, compassionate treatments designed to improve comfort, confidence, and quality of life.</p>
+        </div>
+        <div class="service-card">
+          <span class="card-number">04</span>
+          <div class="card-line"></div>
+          <h3>Weight Loss Programs</h3>
+          <p>Medically supervised weight management programs with personalized plans and ongoing clinical support.</p>
+        </div>
+        <div class="service-card">
+          <span class="card-number">05</span>
+          <div class="card-line"></div>
+          <h3>IV Therapy</h3>
+          <p>Custom vitamin and hydration infusions for energy, immunity, recovery, and overall wellness.</p>
+        </div>
+        <div class="service-card">
+          <span class="card-number">06</span>
+          <div class="card-line"></div>
+          <h3>Laser Hair Removal</h3>
+          <p>Advanced laser technology for long-lasting hair reduction. Safe, effective, and comfortable treatments.</p>
+        </div>
+      </div>
     </div>
-    <div class="service-card">
-      <span class="card-number">02</span>
-      <div class="card-line"></div>
-      <h3>Skin Rejuvenation</h3>
-      <p>Laser treatments, chemical peels, and microneedling to restore radiance, smooth texture, and even skin tone.</p>
-    </div>
-    <div class="service-card">
-      <span class="card-number">03</span>
-      <div class="card-line"></div>
-      <h3>Intimate Wellness</h3>
-      <p>Discreet, compassionate treatments designed to improve comfort, confidence, and quality of life.</p>
-    </div>
-    <div class="service-card">
-      <span class="card-number">04</span>
-      <div class="card-line"></div>
-      <h3>Weight Loss Programs</h3>
-      <p>Medically supervised weight management programs with personalized plans and ongoing clinical support.</p>
-    </div>
-    <div class="service-card">
-      <span class="card-number">05</span>
-      <div class="card-line"></div>
-      <h3>IV Therapy</h3>
-      <p>Custom vitamin and hydration infusions for energy, immunity, recovery, and overall wellness.</p>
-    </div>
-    <div class="service-card">
-      <span class="card-number">06</span>
-      <div class="card-line"></div>
-      <h3>Laser Hair Removal</h3>
-      <p>Advanced laser technology for long-lasting hair reduction. Safe, effective, and comfortable treatments.</p>
+    <div class="services-image">
+      <img src="../../assets/samples/medspa/detail-1.jpg" alt="BeautySmart treatment detail" />
     </div>
   </div>
 </section>
@@ -983,12 +1019,15 @@
 
 <!-- ── CTA ────────────────────────────────────────────────────────── -->
 <section class="cta" id="contact">
+  <video class="cta-video" autoplay muted loop playsinline>
+    <source src="../../assets/samples/Spa/6629707-uhd_4096_2160_25fps.mp4" type="video/mp4" />
+  </video>
   <div class="cta-content">
     <h2>Your Best Self<br>Starts Here</h2>
     <p>Schedule your consultation at BeautySmart Medical Spa and discover personalized, medical-grade care in Boca Raton.</p>
     <div class="cta-buttons">
-      <a href="tel:5619907294" class="pill-btn pill-btn--berry">Call (561) 990-7294</a>
-      <a href="mailto:info@beautysmartmd.com" class="pill-btn pill-btn--glass">Email Us</a>
+      <a href="tel:+15619907294" class="pill-btn pill-btn--accent">Schedule a Consultation</a>
+      <a href="tel:+15619907294" class="pill-btn pill-btn--outline">Call (561) 990-7294</a>
     </div>
   </div>
 </section>
@@ -1000,7 +1039,7 @@
       <p class="footer-logo">BeautySmart Medical Spa</p>
       <p>ARNP-led boutique medical spa in Boca Raton, FL. Female and family-owned with over sixty-five years of combined clinical experience.</p>
     </div>
-    <div class="footer-col">
+    <div class="footer-links">
       <h4>Services</h4>
       <ul>
         <li><a href="#services">Injectables &amp; PDO Threads</a></li>
@@ -1011,12 +1050,11 @@
         <li><a href="#services">Laser Hair Removal</a></li>
       </ul>
     </div>
-    <div class="footer-col">
+    <div class="footer-links">
       <h4>Contact</h4>
       <ul>
-        <li><a href="tel:5619907294">(561) 990-7294</a></li>
+        <li><a href="tel:+15619907294">(561) 990-7294</a></li>
         <li><a href="mailto:info@beautysmartmd.com">info@beautysmartmd.com</a></li>
-        <li><a href="https://beautysmartmd.com" target="_blank">beautysmartmd.com</a></li>
         <li><a href="#">Boca Raton, FL</a></li>
       </ul>
     </div>

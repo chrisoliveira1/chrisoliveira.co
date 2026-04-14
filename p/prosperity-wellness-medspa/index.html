@@ -6,25 +6,20 @@
 <title>Prosperity Wellness &amp; Medspa — Hallandale Beach</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Poppins:wght@200;300;400;500&display=swap">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --teal: #035772;
-  --teal-deep: #022e3d;
-  --mint: #7ddcd6;
-  --mint-soft: rgba(125,220,214,0.15);
-  --dark: #0e3c53;
-  --dark-bg: #071f2b;
-  --off-white: #f6f9f5;
+  --beige: #f0eae5;
+  --beige-alt: #e8e0d8;
+  --dark: #2a2420;
   --white: #ffffff;
-  --light: #eef5f4;
-  --muted: #5a7a7d;
   --nav-h: 68px;
+  --accent: #035772;
+  --accent-light: #7ddcd6;
 }
 html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; background: var(--off-white); color: var(--dark); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body { font-family: 'Poppins', sans-serif; background: var(--beige); color: var(--dark); -webkit-font-smoothing: antialiased; overflow-x: hidden; font-weight: 300; }
 
 /* ─── NAV ─── */
 nav {
@@ -33,59 +28,66 @@ nav {
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 48px;
   background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  transition: background 0.4s, border-color 0.4s;
   border-bottom: 1px solid transparent;
-  transition: background 0.4s, border-color 0.4s, backdrop-filter 0.4s;
 }
 nav.nav-scrolled {
-  background: rgba(246,249,245,0.97);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(3,87,114,0.1);
+  background: var(--beige);
+  border-bottom: 1px solid rgba(42,36,32,0.08);
 }
 .nav-logo {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--white); text-decoration: none; white-space: nowrap;
   transition: color 0.4s;
 }
 .nav-scrolled .nav-logo { color: var(--dark); }
-.nav-logo span { font-weight: 300; transition: color 0.4s; }
-.nav-scrolled .nav-logo span { color: var(--teal); }
 .nav-links { display: flex; gap: 32px; align-items: center; }
 .nav-links a {
   font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
   color: rgba(255,255,255,0.75); text-decoration: none; font-weight: 400;
-  transition: color 0.4s, opacity 0.2s;
+  transition: color 0.4s;
 }
-.nav-links a:hover { opacity: 1; }
-.nav-scrolled .nav-links a { color: var(--dark); opacity: 0.55; }
-.nav-scrolled .nav-links a:hover { opacity: 1; }
+.nav-links a:hover { color: var(--white); }
+.nav-scrolled .nav-links a { color: rgba(42,36,32,0.55); }
+.nav-scrolled .nav-links a:hover { color: var(--dark); }
 .nav-cta {
-  background: transparent; color: var(--white);
+  background: transparent; color: var(--white) !important;
   font-size: 11px; font-weight: 500; letter-spacing: 0.11em; text-transform: uppercase;
-  padding: 10px 22px; text-decoration: none; border-radius: 2px;
+  padding: 10px 24px; text-decoration: none; border-radius: 999px;
   border: 1px solid rgba(255,255,255,0.5);
-  opacity: 1 !important;
   transition: background 0.4s, color 0.4s, border-color 0.4s;
 }
-.nav-cta:hover { background: rgba(255,255,255,0.15); }
+.nav-cta:hover { background: rgba(255,255,255,0.12); }
 .nav-scrolled .nav-cta {
-  background: var(--teal); color: var(--white);
-  border: 1px solid var(--teal);
+  background: var(--accent) !important; color: var(--white) !important;
+  border: 1px solid var(--accent) !important;
 }
-.nav-scrolled .nav-cta:hover { background: var(--teal-deep); border-color: var(--teal-deep); }
+.nav-scrolled .nav-cta:hover { background: #024a62 !important; }
+
+/* Hamburger */
+.nav-toggle { display: none; }
+.nav-hamburger {
+  display: none;
+  flex-direction: column; gap: 5px;
+  cursor: pointer; z-index: 101;
+  width: 26px; height: 20px; justify-content: center;
+}
+.nav-hamburger span {
+  display: block; width: 100%; height: 1.5px;
+  background: var(--white); transition: background 0.4s, transform 0.3s, opacity 0.3s;
+}
+.nav-scrolled .nav-hamburger span { background: var(--dark); }
+.nav-toggle:checked ~ .nav-hamburger span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+.nav-toggle:checked ~ .nav-hamburger span:nth-child(2) { opacity: 0; }
+.nav-toggle:checked ~ .nav-hamburger span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
 /* ─── HERO ─── */
 .hero {
-  position: relative;
-  height: 100vh;
-  margin-top: 0;
-  overflow: hidden;
-  display: flex; align-items: center;
+  position: relative; height: 100vh; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
 }
-.hero-bg {
+.hero-video {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover; object-position: center 35%;
@@ -93,172 +95,194 @@ nav.nav-scrolled {
 }
 .hero-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to right, rgba(7,31,43,0.92) 38%, rgba(3,87,114,0.25) 100%);
+  background: rgba(42,36,32,0.55);
 }
 .hero-content {
   position: relative; z-index: 1;
-  padding: 0 72px; max-width: 700px;
+  text-align: center; max-width: 760px; padding: 0 24px;
 }
-.eyebrow {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--mint); margin-bottom: 20px; font-weight: 400;
+.hero-eyebrow {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: rgba(255,255,255,0.7); margin-bottom: 24px; font-weight: 400;
 }
 .hero-content h1 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(36px, 4.5vw, 56px);
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(34px, 5vw, 56px);
   font-weight: 300; line-height: 1.15; letter-spacing: 0.02em;
-  color: var(--white); margin-bottom: 22px;
+  color: var(--white); margin-bottom: 24px;
 }
-.hero-content h1 em { font-style: normal; color: var(--mint); font-weight: 400; }
+.hero-content h1 em {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-weight: 300;
+  color: var(--accent-light);
+}
 .hero-sub {
-  font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.68);
-  max-width: 500px; margin-bottom: 38px; font-weight: 300;
+  font-size: 15px; line-height: 1.9; color: rgba(255,255,255,0.65);
+  max-width: 560px; margin: 0 auto 44px; font-weight: 200;
 }
-.hero-btn {
-  display: inline-block;
-  background: var(--mint); color: var(--dark-bg);
-  font-family: 'Montserrat', sans-serif;
-  font-size: 11px; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase;
-  padding: 15px 36px; text-decoration: none; border-radius: 2px;
-  transition: background 0.2s;
-}
-.hero-btn:hover { background: #96e5e0; }
-
-/* ─── HERO VIDEO BG ─── */
-.hero-video {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center 35%;
-  display: block;
-}
-
-/* ─── SQUIGGLY CIRCLE BUTTON ─── */
 .squiggly-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 150px;
-  height: 150px;
-  text-decoration: none;
+  position: relative; display: inline-flex;
+  align-items: center; justify-content: center;
+  width: 150px; height: 150px; text-decoration: none;
 }
 .squiggly-btn svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
   animation: squiggly-rotate 18s linear infinite;
 }
 .squiggly-btn svg path {
-  stroke: rgba(255,255,255,0.85);
-  stroke-width: 1;
-  fill: none;
+  stroke: rgba(255,255,255,0.85); stroke-width: 1; fill: none;
   transition: stroke-width 0.3s, stroke 0.3s;
 }
-.squiggly-btn:hover svg path {
-  stroke-width: 1.8;
-  stroke: var(--mint);
-}
-.squiggly-btn:hover svg {
-  animation-duration: 6s;
-}
+.squiggly-btn:hover svg path { stroke-width: 1.8; stroke: var(--accent-light); }
+.squiggly-btn:hover svg { animation-duration: 6s; }
 .squiggly-btn-text {
-  position: relative;
-  z-index: 1;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--white);
-  transition: color 0.3s;
+  position: relative; z-index: 1;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px; font-weight: 400; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--white); transition: color 0.3s;
 }
-.squiggly-btn:hover .squiggly-btn-text {
-  color: var(--mint);
-}
+.squiggly-btn:hover .squiggly-btn-text { color: var(--accent-light); }
 @keyframes squiggly-rotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-/* ─── TRUST BAR ─── */
+/* ─── TRUST BAR (marquee) ─── */
 .trust-bar {
-  background: var(--teal-deep);
-  border-top: 1px solid rgba(125,220,214,0.15);
-  padding: 0 72px;
-  display: flex; align-items: stretch; justify-content: center;
+  background: var(--dark);
+  padding: 18px 0;
+  overflow: hidden;
+  position: relative;
 }
-.trust-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 20px 36px;
-  border-right: 1px solid rgba(125,220,214,0.12);
+.trust-track {
+  display: flex; gap: 0;
+  animation: marquee 20s linear infinite;
+  width: max-content;
 }
-.trust-item:last-child { border-right: none; }
-.trust-dot { color: var(--mint); font-size: 6px; line-height: 1; }
-.trust-label {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(255,255,255,0.5); font-weight: 400;
+.trust-track span {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); font-weight: 400;
+  white-space: nowrap; padding: 0 28px;
 }
-.trust-label strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+.trust-track span strong { color: rgba(255,255,255,0.8); font-weight: 500; }
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ─── SECTION SHARED ─── */
+.section-wrap { position: relative; overflow: hidden; }
+.deco-label {
+  position: absolute; top: 50%; left: 48px;
+  transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(64px, 8vw, 100px); font-weight: 300;
+  line-height: 1; color: var(--dark); opacity: 0.07;
+  white-space: pre-line; pointer-events: none;
+  z-index: 0;
+}
+.section-num {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--accent); font-weight: 500; margin-bottom: 16px;
+  display: block;
+}
+.section-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 300; line-height: 1.2; letter-spacing: 0.01em;
+  color: var(--dark); margin-bottom: 32px;
+}
+
+/* ─── ABOUT ─── */
+.about {
+  background: var(--beige);
+  padding: 120px 72px;
+}
+.about-inner {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  max-width: 1200px; margin: 0 auto;
+}
+.about-content {}
+.about-content p {
+  font-size: 15px; line-height: 1.9; color: rgba(42,36,32,0.65);
+  font-weight: 300; margin-bottom: 20px; max-width: 500px;
+}
+.about-content p:last-of-type { margin-bottom: 40px; }
+.about-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; border-top: 1px solid rgba(42,36,32,0.12);
+  padding-top: 32px;
+}
+.about-stat { text-align: center; }
+.about-stat-val {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 400;
+  color: var(--accent); margin-bottom: 4px;
+}
+.about-stat-lbl {
+  display: block;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(42,36,32,0.45); font-weight: 400;
+}
+.about-image-wrap {
+  position: relative; overflow: hidden;
+}
+.about-image {
+  width: 100%; height: 560px;
+  object-fit: cover; object-position: center top;
+  display: block;
+}
 
 /* ─── SERVICES ─── */
 .services {
-  background: var(--off-white);
-  padding: 100px 72px;
+  background: var(--beige-alt);
+  padding: 120px 72px;
 }
-.section-label {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
-  color: var(--teal); font-weight: 500; margin-bottom: 16px;
-  display: block;
+.services-inner {
+  position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto;
 }
-.services-header { max-width: 560px; margin-bottom: 64px; }
-.services-header h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(26px, 3.2vw, 40px);
-  font-weight: 300; line-height: 1.25; letter-spacing: 0.04em;
-  color: var(--dark);
+.services-top {
+  display: grid; grid-template-columns: 1fr 340px;
+  gap: 64px; align-items: start;
 }
-.services-header h2 span { color: var(--mint); }
-.services-layout {
-  display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: 64px;
-  align-items: start;
-}
+.services-header { margin-bottom: 56px; }
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2px;
 }
 .service-card {
-  background: var(--light);
+  background: var(--beige);
   padding: 36px 28px;
-  border: 1px solid rgba(3,87,114,0.08);
+  border: 1px solid rgba(42,36,32,0.06);
   transition: background 0.25s, border-color 0.25s;
+  position: relative;
 }
 .service-card:hover {
   background: var(--white);
-  border-color: rgba(3,87,114,0.2);
+  border-color: rgba(42,36,32,0.12);
 }
-.service-icon {
-  width: 36px; height: 36px;
-  background: var(--mint-soft);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 16px;
-  color: var(--teal); font-size: 16px;
+.service-num {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px; font-weight: 400; color: var(--accent);
+  margin-bottom: 14px; display: block; letter-spacing: 0.02em;
 }
 .service-card h3 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px; font-weight: 500; letter-spacing: 0.04em;
-  color: var(--dark); margin-bottom: 10px;
-  line-height: 1.3;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 400;
+  color: var(--dark); margin-bottom: 12px;
+  line-height: 1.2;
 }
 .service-card p {
-  font-size: 13px; line-height: 1.7; color: var(--muted); font-weight: 300;
+  font-size: 13px; line-height: 1.8; color: rgba(42,36,32,0.55); font-weight: 300;
 }
 .services-photo-wrap {
   position: sticky; top: calc(var(--nav-h) + 24px);
@@ -269,152 +293,82 @@ nav.nav-scrolled {
   display: block;
 }
 .services-photo-caption {
-  margin-top: 16px;
-  font-family: 'Montserrat', sans-serif;
+  margin-top: 14px;
   font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(14,60,83,0.35); font-weight: 400;
-}
-
-/* ─── ABOUT ─── */
-.about {
-  background: var(--light);
-  border-top: 1px solid rgba(3,87,114,0.08);
-  border-bottom: 1px solid rgba(3,87,114,0.08);
-}
-.about-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 640px;
-}
-.about-text {
-  padding: 96px 72px;
-  display: flex; flex-direction: column; justify-content: center;
-}
-.about-text h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(24px, 2.8vw, 36px);
-  font-weight: 300; line-height: 1.3; letter-spacing: 0.03em;
-  color: var(--dark);
-  margin-bottom: 28px;
-}
-.about-text p {
-  font-size: 15px; line-height: 1.85; color: var(--muted);
-  font-weight: 300; margin-bottom: 20px;
-  max-width: 480px;
-}
-.about-text p:last-of-type { margin-bottom: 48px; }
-.about-stats {
-  display: flex; gap: 0;
-  border-top: 1px solid rgba(3,87,114,0.12);
-  padding-top: 32px;
-}
-.about-stat {
-  padding-right: 28px; margin-right: 28px;
-  border-right: 1px solid rgba(3,87,114,0.12);
-}
-.about-stat:last-child { border-right: none; padding-right: 0; margin-right: 0; }
-.about-stat-val {
-  display: block;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 20px; font-weight: 400; letter-spacing: 0.02em;
-  color: var(--teal); margin-bottom: 4px;
-}
-.about-stat-lbl {
-  display: block;
-  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--muted); font-weight: 400;
-}
-.about-image-wrap {
-  position: relative; overflow: hidden;
-}
-.about-image {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center top;
-  display: block;
-}
-.about-image-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to right, rgba(238,245,244,0.15) 0%, transparent 40%);
-  pointer-events: none;
+  color: rgba(42,36,32,0.3); font-weight: 400;
 }
 
 /* ─── REVIEWS ─── */
 .reviews {
-  background: var(--dark-bg);
-  padding: 100px 72px;
+  background: var(--dark);
+  padding: 120px 72px;
 }
-.reviews-header {
-  text-align: center; margin-bottom: 60px;
+.reviews-inner {
+  position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto;
 }
-.reviews-header .section-label { justify-content: center; display: flex; }
-.reviews-header h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(24px, 2.8vw, 36px);
-  font-weight: 300; color: var(--white); letter-spacing: 0.04em;
-  margin-top: 8px;
-}
+.reviews .deco-label { color: var(--white); opacity: 0.06; }
+.reviews .section-num { color: var(--accent-light); }
+.reviews .section-heading { color: var(--white); }
+.reviews-header { margin-bottom: 64px; }
 .reviews-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2px;
-  margin-bottom: 60px;
+  margin-bottom: 64px;
 }
 .review-card {
-  background: rgba(3,87,114,0.25);
-  padding: 40px 36px;
-  border: 1px solid rgba(125,220,214,0.1);
+  background: rgba(255,255,255,0.04);
+  padding: 44px 36px;
+  border: 1px solid rgba(255,255,255,0.06);
   position: relative;
 }
 .review-card::before {
   content: '\201C';
-  font-family: Georgia, serif;
-  font-size: 72px; line-height: 1;
-  color: var(--mint); opacity: 0.25;
-  position: absolute; top: 24px; left: 30px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 80px; line-height: 1;
+  color: var(--accent-light); opacity: 0.3;
+  position: absolute; top: 20px; left: 28px;
   pointer-events: none;
 }
 .review-stars {
-  color: var(--mint);
-  font-size: 13px; letter-spacing: 0.1em;
-  margin-bottom: 20px; display: block;
+  color: var(--accent-light);
+  font-size: 14px; letter-spacing: 0.08em;
+  margin-bottom: 22px; display: block;
 }
 .review-text {
-  font-size: 15px; line-height: 1.8;
-  color: rgba(255,255,255,0.75); font-weight: 300;
-  font-style: italic;
-  margin-bottom: 28px;
-  padding-top: 8px;
+  font-size: 15px; line-height: 1.85;
+  color: rgba(255,255,255,0.7); font-weight: 200;
+  font-style: italic; margin-bottom: 28px; padding-top: 8px;
 }
 .review-author {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--mint); font-weight: 500;
+  color: var(--accent-light); font-weight: 500;
 }
-.review-banner {
+.review-summary {
   text-align: center;
-  border-top: 1px solid rgba(125,220,214,0.15);
+  border-top: 1px solid rgba(255,255,255,0.08);
   padding-top: 52px;
 }
-.review-banner-stars {
-  color: var(--mint);
-  font-size: 22px; letter-spacing: 0.12em;
+.review-summary-stars {
+  color: var(--accent-light);
+  font-size: 22px; letter-spacing: 0.1em;
   margin-bottom: 12px; display: block;
 }
-.review-banner-text {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(16px, 2vw, 22px);
-  font-weight: 300; color: rgba(255,255,255,0.85); letter-spacing: 0.06em;
+.review-summary-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 300; color: rgba(255,255,255,0.8); letter-spacing: 0.04em;
 }
 
 /* ─── CTA ─── */
 .cta-section {
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
-  min-height: 540px;
-  padding: 100px 40px;
+  min-height: 560px; padding: 120px 40px;
 }
-.cta-bg {
+.cta-video {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover; object-position: center;
@@ -422,151 +376,152 @@ nav.nav-scrolled {
 }
 .cta-overlay {
   position: absolute; inset: 0;
-  background: rgba(7,31,43,0.82);
+  background: rgba(42,36,32,0.78);
 }
 .cta-content {
   position: relative; z-index: 1;
   text-align: center; max-width: 600px;
 }
-.cta-content .section-label {
-  display: block; text-align: center;
-  margin-bottom: 14px; color: var(--mint);
-}
 .cta-content h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(28px, 3.5vw, 46px);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(30px, 4vw, 50px);
   font-weight: 300; color: var(--white);
-  line-height: 1.2; margin-bottom: 20px; letter-spacing: 0.04em;
+  line-height: 1.2; margin-bottom: 20px;
 }
 .cta-sub {
-  font-size: 15px; line-height: 1.8;
-  color: rgba(255,255,255,0.62); font-weight: 300;
+  font-size: 15px; line-height: 1.85;
+  color: rgba(255,255,255,0.6); font-weight: 200;
   margin-bottom: 44px;
 }
 .cta-buttons {
   display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
 }
-.btn-primary {
+.btn-pill {
   display: inline-block;
-  background: var(--mint); color: var(--dark-bg);
-  font-family: 'Montserrat', sans-serif;
-  font-size: 11px; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase;
-  padding: 15px 36px; text-decoration: none; border-radius: 2px;
-  transition: background 0.2s;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase;
+  padding: 15px 36px; text-decoration: none; border-radius: 999px;
+  transition: background 0.3s, border-color 0.3s;
 }
-.btn-primary:hover { background: #96e5e0; }
-.btn-outline {
-  display: inline-block;
+.btn-pill--filled {
+  background: var(--accent); color: var(--white);
+  border: 1px solid var(--accent);
+}
+.btn-pill--filled:hover { background: #024a62; border-color: #024a62; }
+.btn-pill--outline {
   background: transparent; color: var(--white);
-  font-family: 'Montserrat', sans-serif;
-  font-size: 11px; font-weight: 400; letter-spacing: 0.13em; text-transform: uppercase;
-  padding: 14px 34px; text-decoration: none; border-radius: 2px;
-  border: 1px solid rgba(255,255,255,0.35);
-  transition: border-color 0.2s, color 0.2s;
+  border: 1px solid rgba(255,255,255,0.4);
 }
-.btn-outline:hover { border-color: rgba(255,255,255,0.7); }
+.btn-pill--outline:hover { border-color: rgba(255,255,255,0.75); }
 
 /* ─── FOOTER ─── */
 footer {
-  background: var(--teal-deep);
-  border-top: 1px solid rgba(125,220,214,0.1);
-  padding: 56px 72px 0;
+  background: var(--dark);
+  padding: 64px 72px 0;
 }
 .footer-top {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  align-items: start;
-  gap: 40px;
+  align-items: start; gap: 40px;
   padding-bottom: 48px;
-  border-bottom: 1px solid rgba(125,220,214,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 .footer-logo {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 12px; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase;
   color: rgba(255,255,255,0.85); text-decoration: none;
 }
-.footer-logo span { color: var(--mint); font-weight: 300; }
 .footer-tagline {
-  font-size: 12px; color: rgba(255,255,255,0.3);
-  margin-top: 8px; letter-spacing: 0.04em; font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px; color: rgba(255,255,255,0.3);
+  margin-top: 10px; font-style: italic; font-weight: 300;
 }
-.footer-nav {
-  position: static !important; top: auto !important; left: auto !important; right: auto !important;
-  z-index: auto !important; height: auto !important; background: none !important;
-  border-bottom: none !important; backdrop-filter: none !important;
+.footer-links {
   display: flex; gap: 28px; align-items: center; justify-content: center;
 }
-.footer-nav a {
+.footer-links a {
   font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-  color: rgba(255,255,255,0.45); text-decoration: none; font-weight: 400;
+  color: rgba(255,255,255,0.4); text-decoration: none; font-weight: 400;
   transition: color 0.2s;
 }
-.footer-nav a:hover { color: var(--mint); }
+.footer-links a:hover { color: var(--accent-light); }
 .footer-contact { text-align: right; }
 .footer-contact a {
   display: block;
-  font-size: 15px; font-weight: 500;
-  color: var(--mint); text-decoration: none;
-  margin-bottom: 6px;
-  letter-spacing: 0.03em;
+  font-size: 15px; font-weight: 400;
+  color: var(--accent-light); text-decoration: none;
+  margin-bottom: 6px; letter-spacing: 0.03em;
 }
 .footer-contact span {
-  font-size: 12px; color: rgba(255,255,255,0.35);
-  letter-spacing: 0.04em;
+  font-size: 12px; color: rgba(255,255,255,0.3);
+  letter-spacing: 0.03em; line-height: 1.7;
 }
 .footer-bottom {
-  padding: 20px 0;
+  padding: 22px 0;
   text-align: center;
 }
 .footer-bottom p {
-  font-size: 11px; color: rgba(255,255,255,0.2);
+  font-size: 11px; color: rgba(255,255,255,0.18);
   letter-spacing: 0.06em;
 }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 1024px) {
-  .services-layout { grid-template-columns: 1fr; }
+  .services-top { grid-template-columns: 1fr; }
   .services-photo-wrap { display: none; }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
-  .about-stat-val { font-size: 17px; }
+  .about-stats { grid-template-columns: repeat(2, 1fr); gap: 20px; }
 }
 
 @media (max-width: 768px) {
-  nav { padding: 0 20px; }
-  .nav-links a:not(.nav-cta) { display: none; }
+  nav { padding: 0 24px; }
+  .nav-links {
+    position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
+    background: var(--beige); flex-direction: column; gap: 0;
+    padding: 100px 40px 40px; justify-content: flex-start;
+    transition: right 0.35s ease;
+    box-shadow: -4px 0 20px rgba(0,0,0,0.08);
+  }
+  .nav-toggle:checked ~ .nav-links { right: 0; }
+  .nav-links a {
+    color: var(--dark) !important; opacity: 1 !important;
+    padding: 16px 0; font-size: 13px;
+    border-bottom: 1px solid rgba(42,36,32,0.06);
+    width: 100%;
+  }
+  .nav-links .nav-cta {
+    margin-top: 20px; text-align: center;
+    background: var(--accent) !important; color: var(--white) !important;
+    border-color: var(--accent) !important;
+  }
+  .nav-hamburger { display: flex; }
 
-  .hero-content { padding: 0 24px; max-width: 100%; }
-  .hero-content h1 { font-size: clamp(30px, 8vw, 42px); }
-  .hero-sub { font-size: 14px; max-width: 100%; }
+  .hero-content h1 { font-size: clamp(28px, 8vw, 40px); }
+  .hero-sub { font-size: 14px; }
+  .squiggly-btn { width: 120px; height: 120px; }
 
-  .trust-bar { flex-wrap: wrap; padding: 0 16px; }
-  .trust-item { border-right: none; padding: 14px 16px; width: 50%; justify-content: center; }
+  .trust-track span { padding: 0 18px; font-size: 10px; }
 
-  .services { padding: 72px 24px; }
+  .about { padding: 80px 24px; }
+  .about-inner { grid-template-columns: 1fr; gap: 40px; }
+  .about-image { height: 340px; }
+  .about-content p { max-width: 100%; }
+
+  .services { padding: 80px 24px; }
   .services-grid { grid-template-columns: 1fr; gap: 2px; }
-  .services-header { margin-bottom: 40px; }
 
-  .about-inner { grid-template-columns: 1fr; }
-  .about-text { padding: 64px 24px; }
-  .about-text p { max-width: 100%; }
-  .about-image-wrap { height: 340px; }
-  .about-stats { flex-wrap: wrap; gap: 20px; }
-  .about-stat { border-right: none; padding-right: 0; margin-right: 0; }
-
-  .reviews { padding: 72px 24px; }
+  .reviews { padding: 80px 24px; }
   .reviews-grid { grid-template-columns: 1fr; }
 
   .cta-section { padding: 80px 24px; min-height: auto; }
   .cta-buttons { flex-direction: column; align-items: center; }
 
   footer { padding: 48px 24px 0; }
-  .footer-top { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+  .footer-top { grid-template-columns: 1fr; gap: 28px; text-align: center; }
   .footer-contact { text-align: center; }
-  .footer-nav { flex-wrap: wrap; gap: 16px; }
-}
+  .footer-links { flex-wrap: wrap; gap: 16px; justify-content: center; }
 
-@media (max-width: 480px) {
-  .trust-item { width: 100%; }
+  .deco-label { font-size: clamp(48px, 14vw, 72px); left: 24px; }
 }
 </style>
 </head>
@@ -574,7 +529,11 @@ footer {
 
 <!-- ─── NAV ─── -->
 <nav>
-  <a href="#" class="nav-logo">Prosperity <span>Wellness &amp; Medspa</span></a>
+  <a href="#" class="nav-logo">Prosperity Wellness &amp; Medspa</a>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+  <label for="nav-toggle" class="nav-hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </label>
   <div class="nav-links">
     <a href="#services">Services</a>
     <a href="#about">About</a>
@@ -590,7 +549,7 @@ footer {
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="eyebrow">Hallandale Beach &bull; Wellness &amp; Aesthetics</p>
+    <p class="hero-eyebrow">Hallandale Beach &middot; Wellness &amp; Aesthetics</p>
     <h1>Elevating Beauty, <em>Inspiring Wellness</em></h1>
     <p class="hero-sub">Prosperity Wellness &amp; Medspa is Hallandale Beach's sanctuary for luxurious facials, advanced laser treatments, body contouring, and aesthetic injectables. Indulgence meets innovation — backed by 126 five-star reviews.</p>
     <a href="tel:+19543930300" class="squiggly-btn">
@@ -604,87 +563,38 @@ footer {
 
 <!-- ─── TRUST BAR ─── -->
 <div class="trust-bar">
-  <div class="trust-item">
-    <span class="trust-dot">&#9679;</span>
-    <span class="trust-label"><strong>4.9&#9733;</strong> Rated</span>
-  </div>
-  <div class="trust-item">
-    <span class="trust-dot">&#9679;</span>
-    <span class="trust-label"><strong>126</strong> Reviews</span>
-  </div>
-  <div class="trust-item">
-    <span class="trust-dot">&#9679;</span>
-    <span class="trust-label">Licensed Staff</span>
-  </div>
-  <div class="trust-item">
-    <span class="trust-dot">&#9679;</span>
-    <span class="trust-label">Medical-Grade Technology</span>
-  </div>
-  <div class="trust-item">
-    <span class="trust-dot">&#9679;</span>
-    <span class="trust-label">Hallandale Beach</span>
+  <div class="trust-track">
+    <span><strong>4.9&#9733;</strong> Rated</span>
+    <span>&bull;</span>
+    <span><strong>126</strong> Reviews</span>
+    <span>&bull;</span>
+    <span>Licensed Staff</span>
+    <span>&bull;</span>
+    <span>Medical-Grade</span>
+    <span>&bull;</span>
+    <span>Hallandale Beach</span>
+    <span>&bull;</span>
+    <span><strong>4.9&#9733;</strong> Rated</span>
+    <span>&bull;</span>
+    <span><strong>126</strong> Reviews</span>
+    <span>&bull;</span>
+    <span>Licensed Staff</span>
+    <span>&bull;</span>
+    <span>Medical-Grade</span>
+    <span>&bull;</span>
+    <span>Hallandale Beach</span>
+    <span>&bull;</span>
   </div>
 </div>
 
-<!-- ─── SERVICES ─── -->
-<section class="services" id="services">
-  <div class="services-header">
-    <span class="section-label">Our Services</span>
-    <h2>Our <span>Services</span></h2>
-  </div>
-  <div class="services-layout">
-    <div class="services-grid">
-
-      <div class="service-card">
-        <div class="service-icon">&#10022;</div>
-        <h3>Facial Treatments</h3>
-        <p>Rejuvenating facials customized to your skin type, from deep cleansing to medical-grade resurfacing.</p>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">&#9672;</div>
-        <h3>Massage Therapy</h3>
-        <p>Medical-grade massage designed to relieve tension, boost circulation, and restore total body balance.</p>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">&#9670;</div>
-        <h3>Body Contouring</h3>
-        <p>Non-invasive sculpting and anti-cellulite treatments that reshape and firm without surgery.</p>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">&#9728;</div>
-        <h3>Laser Treatments</h3>
-        <p>State-of-the-art laser skin resurfacing, skin tightening, and rejuvenation using medical-grade technology.</p>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">&#10023;</div>
-        <h3>Laser Hair Removal</h3>
-        <p>Permanent hair reduction with advanced laser systems. Safe, effective, and comfortable for all skin types.</p>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">&#10025;</div>
-        <h3>Aesthetic Injectables</h3>
-        <p>Botox, dermal fillers, and facial contouring administered by licensed professionals with precision and care.</p>
-      </div>
-
-    </div>
-    <div class="services-photo-wrap">
-      <img class="services-photo" src="../../assets/samples/medspa/space-1.jpg" alt="Treatment space at Prosperity Wellness and Medspa" loading="lazy">
-      <p class="services-photo-caption">Hallandale Beach, FL</p>
-    </div>
-  </div>
-</section>
-
 <!-- ─── ABOUT ─── -->
-<section class="about" id="about">
+<section class="about section-wrap" id="about">
+  <div class="deco-label">The
+Philosophy</div>
   <div class="about-inner">
-    <div class="about-text">
-      <span class="section-label">About Us</span>
-      <h2>Elevating Your Wellness Journey</h2>
+    <div class="about-content">
+      <span class="section-num">01. About Us</span>
+      <h2 class="section-heading">Elevating Your Wellness Journey</h2>
       <p>Welcome to Prosperity Wellness &amp; Medspa, where indulgence meets innovation. Our sanctuary is dedicated to your well-being, offering an array of luxurious services from rejuvenating facials to advanced laser treatments, body contouring, aesthetics, and more.</p>
       <p>We take pride in offering the latest in skincare technology. Our spa boasts state-of-the-art, medical-grade laser and cosmetology machines, with a fully licensed team ensuring you receive expert care you can trust.</p>
       <div class="about-stats">
@@ -707,56 +617,117 @@ footer {
       </div>
     </div>
     <div class="about-image-wrap">
-      <img class="about-image" src="../../assets/samples/medspa/people-1.jpg" alt="Treatment care at Prosperity Wellness and Medspa" loading="lazy">
-      <div class="about-image-overlay"></div>
+      <img class="about-image" src="../../assets/samples/medspa/people-2.jpg" alt="Wellness experience at Prosperity Wellness and Medspa" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section class="services section-wrap" id="services">
+  <div class="deco-label">The
+Body</div>
+  <div class="services-inner">
+    <div class="services-header">
+      <span class="section-num">02. Treatments</span>
+      <h2 class="section-heading">Our Services</h2>
+    </div>
+    <div class="services-top">
+      <div class="services-grid">
+
+        <div class="service-card">
+          <span class="service-num">01</span>
+          <h3>Facial Treatments</h3>
+          <p>Rejuvenating facials customized to your skin type, from deep cleansing to medical-grade resurfacing.</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-num">02</span>
+          <h3>Massage Therapy</h3>
+          <p>Medical-grade massage designed to relieve tension, boost circulation, and restore total body balance.</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-num">03</span>
+          <h3>Body Contouring</h3>
+          <p>Non-invasive sculpting and anti-cellulite treatments that reshape and firm without surgery.</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-num">04</span>
+          <h3>Laser Treatments</h3>
+          <p>State-of-the-art laser skin resurfacing, skin tightening, and rejuvenation using medical-grade technology.</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-num">05</span>
+          <h3>Laser Hair Removal</h3>
+          <p>Permanent hair reduction with advanced laser systems. Safe, effective, and comfortable for all skin types.</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-num">06</span>
+          <h3>Aesthetic Injectables</h3>
+          <p>Botox, dermal fillers, and facial contouring administered by licensed professionals with precision and care.</p>
+        </div>
+
+      </div>
+      <div class="services-photo-wrap">
+        <img class="services-photo" src="../../assets/samples/medspa/interior-1.jpg" alt="Treatment room at Prosperity Wellness and Medspa" loading="lazy">
+        <p class="services-photo-caption">Hallandale Beach, FL</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ─── REVIEWS ─── -->
-<section class="reviews" id="reviews">
-  <div class="reviews-header">
-    <span class="section-label">Client Reviews</span>
-    <h2>See What Our Clients Are Saying</h2>
-  </div>
-  <div class="reviews-grid">
-
-    <div class="review-card">
-      <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <p class="review-text">"Larisa makes you feel like family. The treatments are luxurious, the technology is top-notch, and the results speak for themselves."</p>
-      <span class="review-author">Maria D. &mdash; Hallandale Beach</span>
+<section class="reviews section-wrap" id="reviews">
+  <div class="deco-label">The
+Voice</div>
+  <div class="reviews-inner">
+    <div class="reviews-header">
+      <span class="section-num">03. Reviews</span>
+      <h2 class="section-heading">What Our Clients Say</h2>
     </div>
+    <div class="reviews-grid">
 
-    <div class="review-card">
-      <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <p class="review-text">"Best med spa in the area. The laser treatments were explained clearly, the staff was professional, and the pricing was honest."</p>
-      <span class="review-author">Jennifer R. &mdash; Hollywood</span>
+      <div class="review-card">
+        <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <p class="review-text">"Larisa makes you feel like family. The treatments are luxurious, the technology is top-notch, and the results speak for themselves."</p>
+        <span class="review-author">Maria D. &mdash; Hallandale Beach</span>
+      </div>
+
+      <div class="review-card">
+        <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <p class="review-text">"Best med spa in the area. The laser treatments were explained clearly, the staff was professional, and the pricing was honest."</p>
+        <span class="review-author">Jennifer R. &mdash; Hollywood</span>
+      </div>
+
+      <div class="review-card">
+        <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <p class="review-text">"A true sanctuary. I've been coming for over a year and every visit feels like the first. They genuinely care about your experience."</p>
+        <span class="review-author">Sandra M. &mdash; Aventura</span>
+      </div>
+
     </div>
-
-    <div class="review-card">
-      <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <p class="review-text">"A true sanctuary. I've been coming for over a year and every visit feels like the first. They genuinely care about your experience."</p>
-      <span class="review-author">Sandra M. &mdash; Aventura</span>
+    <div class="review-summary">
+      <span class="review-summary-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <p class="review-summary-text">4.9 &mdash; Rated by 126 clients</p>
     </div>
-
-  </div>
-  <div class="review-banner">
-    <span class="review-banner-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-    <p class="review-banner-text">4.9 &mdash; Rated by 126 clients</p>
   </div>
 </section>
 
 <!-- ─── CTA ─── -->
 <section class="cta-section">
-  <img class="cta-bg" src="../../assets/samples/medspa/cta.jpg" alt="Prosperity Wellness and Medspa" loading="lazy">
+  <video class="cta-video" autoplay muted loop playsinline>
+    <source src="../../assets/samples/Spa/6629707-uhd_4096_2160_25fps.mp4" type="video/mp4">
+  </video>
   <div class="cta-overlay"></div>
   <div class="cta-content">
-    <span class="section-label">Ready to start?</span>
-    <h2>Your wellness journey begins here.</h2>
+    <h2>Your Transformation Starts Here</h2>
     <p class="cta-sub">Book a consultation or call us. No pressure, no upsells — just a conversation about what's possible for your skin, your body, and your confidence.</p>
     <div class="cta-buttons">
-      <a href="tel:+19543930300" class="btn-primary">Book Online</a>
-      <a href="tel:+19543930300" class="btn-outline">Call (954) 393-0300</a>
+      <a href="tel:+19543930300" class="btn-pill btn-pill--filled">Book Now</a>
+      <a href="tel:+19543930300" class="btn-pill btn-pill--outline">Call (954) 393-0300</a>
     </div>
   </div>
 </section>
@@ -765,15 +736,15 @@ footer {
 <footer>
   <div class="footer-top">
     <div>
-      <a href="#" class="footer-logo">Prosperity <span>Wellness &amp; Medspa</span></a>
+      <a href="#" class="footer-logo">Prosperity Wellness &amp; Medspa</a>
       <p class="footer-tagline">"Elevating Beauty, Inspiring Wellness"</p>
     </div>
-    <nav class="footer-nav" aria-label="Footer navigation">
+    <div class="footer-links">
       <a href="#services">Services</a>
       <a href="#about">About</a>
       <a href="#reviews">Reviews</a>
       <a href="tel:+19543930300">Book Now</a>
-    </nav>
+    </div>
     <div class="footer-contact">
       <a href="tel:+19543930300">(954) 393-0300</a>
       <span>1250 E Hallandale Beach Blvd, #705</span><br>
