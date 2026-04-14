@@ -32,6 +32,13 @@ nav {
   height: var(--nav-h);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 48px;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid transparent;
+  transition: background 0.4s, border-color 0.4s, backdrop-filter 0.4s;
+}
+nav.nav-scrolled {
   background: rgba(246,249,245,0.97);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -40,30 +47,41 @@ nav {
 .nav-logo {
   font-family: 'Montserrat', sans-serif;
   font-size: 14px; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--dark); text-decoration: none; white-space: nowrap;
+  color: var(--white); text-decoration: none; white-space: nowrap;
+  transition: color 0.4s;
 }
-.nav-logo span { color: var(--teal); font-weight: 300; }
+.nav-scrolled .nav-logo { color: var(--dark); }
+.nav-logo span { font-weight: 300; transition: color 0.4s; }
+.nav-scrolled .nav-logo span { color: var(--teal); }
 .nav-links { display: flex; gap: 32px; align-items: center; }
 .nav-links a {
   font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--dark); text-decoration: none; font-weight: 400; opacity: 0.55;
-  transition: opacity 0.2s;
+  color: rgba(255,255,255,0.75); text-decoration: none; font-weight: 400;
+  transition: color 0.4s, opacity 0.2s;
 }
 .nav-links a:hover { opacity: 1; }
+.nav-scrolled .nav-links a { color: var(--dark); opacity: 0.55; }
+.nav-scrolled .nav-links a:hover { opacity: 1; }
 .nav-cta {
-  background: var(--teal); color: var(--white);
+  background: transparent; color: var(--white);
   font-size: 11px; font-weight: 500; letter-spacing: 0.11em; text-transform: uppercase;
   padding: 10px 22px; text-decoration: none; border-radius: 2px;
+  border: 1px solid rgba(255,255,255,0.5);
   opacity: 1 !important;
-  transition: background 0.2s;
+  transition: background 0.4s, color 0.4s, border-color 0.4s;
 }
-.nav-cta:hover { background: var(--teal-deep); }
+.nav-cta:hover { background: rgba(255,255,255,0.15); }
+.nav-scrolled .nav-cta {
+  background: var(--teal); color: var(--white);
+  border: 1px solid var(--teal);
+}
+.nav-scrolled .nav-cta:hover { background: var(--teal-deep); border-color: var(--teal-deep); }
 
 /* ─── HERO ─── */
 .hero {
   position: relative;
-  height: calc(100vh - var(--nav-h));
-  margin-top: var(--nav-h);
+  height: 100vh;
+  margin-top: 0;
   overflow: hidden;
   display: flex; align-items: center;
 }
@@ -763,6 +781,12 @@ footer {
     <p>&copy; 2026 Prosperity Wellness &amp; Medspa &middot; All rights reserved</p>
   </div>
 </footer>
+
+<script>
+window.addEventListener('scroll', function() {
+  document.querySelector('nav').classList.toggle('nav-scrolled', window.scrollY > 60);
+});
+</script>
 
 </body>
 </html>

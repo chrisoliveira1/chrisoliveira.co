@@ -126,7 +126,14 @@ nav {
   height: var(--nav-h);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 clamp(24px, 4vw, 56px);
-  background: rgba(63,63,63,0.85);
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid transparent;
+  transition: background 0.4s, border-color 0.4s, backdrop-filter 0.4s;
+}
+nav.nav-scrolled {
+  background: rgba(63,63,63,0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -155,13 +162,33 @@ nav {
 .nav-links .btn-pill {
   padding: 10px 28px;
   font-size: 0.72rem;
+  transition: background 0.4s, color 0.4s, border-color 0.4s;
+}
+/* Transparent state: white outline pill */
+.nav-links .btn-pill-glass {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.5);
+  color: var(--white);
+}
+.nav-links .btn-pill-glass:hover {
+  background: rgba(255,255,255,0.15);
+}
+/* Scrolled state: sage filled pill */
+.nav-scrolled .nav-links .btn-pill-glass {
+  background: var(--sage);
+  border-color: var(--sage);
+  color: var(--white);
+}
+.nav-scrolled .nav-links .btn-pill-glass:hover {
+  background: #5f7d74;
+  border-color: #5f7d74;
 }
 
 /* ── Hero ──────────────────────────────────────────────── */
 .hero {
   position: relative;
-  height: calc(100vh - var(--nav-h));
-  margin-top: var(--nav-h);
+  height: 100vh;
+  margin-top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -983,6 +1010,12 @@ footer {
     &copy; 2026 Advanced Med Spa. All rights reserved.
   </div>
 </footer>
+
+<script>
+window.addEventListener('scroll', function() {
+  document.querySelector('nav').classList.toggle('nav-scrolled', window.scrollY > 60);
+});
+</script>
 
 </body>
 </html>
