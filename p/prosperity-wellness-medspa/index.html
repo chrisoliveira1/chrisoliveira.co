@@ -9,124 +9,492 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --champagne: #c8a96e;
-    --champagne-light: #e8d5a8;
-    --warm-dark: #2a2218;
-    --dark-mid: #3d3225;
-    --cream: #fdfaf4;
-    --white: #ffffff;
-    --sand: #f5efe3;
-    --nav-h: 68px;
-  }
-  body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--warm-dark); -webkit-font-smoothing: antialiased; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --champagne: #c8a96e;
+  --champagne-light: #e8d5a8;
+  --warm-dark: #2a2218;
+  --dark-mid: #3d3225;
+  --cream: #fdfaf4;
+  --white: #ffffff;
+  --sand: #f5efe3;
+  --nav-h: 68px;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--warm-dark); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    height: var(--nav-h);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 48px;
-    background: rgba(253,250,244,0.97);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(200,169,110,0.22);
-  }
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px; font-weight: 400; letter-spacing: 0.05em;
-    color: var(--warm-dark); text-decoration: none;
-  }
-  .nav-logo span { font-style: italic; color: var(--champagne); }
-  .nav-links { display: flex; gap: 32px; align-items: center; }
-  .nav-links a { font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--warm-dark); text-decoration: none; font-weight: 400; opacity: 0.6; }
-  .nav-cta {
-    background: var(--champagne); color: var(--warm-dark);
-    font-size: 11px; font-weight: 600; letter-spacing: 0.11em; text-transform: uppercase;
-    padding: 10px 22px; text-decoration: none; border-radius: 2px;
-  }
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  background: rgba(253,250,244,0.97);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(200,169,110,0.22);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 400; letter-spacing: 0.03em;
+  color: var(--warm-dark); text-decoration: none; white-space: nowrap;
+}
+.nav-logo em { font-style: italic; color: var(--champagne); }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--warm-dark); text-decoration: none; font-weight: 400; opacity: 0.6;
+  transition: opacity 0.2s;
+}
+.nav-links a:hover { opacity: 1; }
+.nav-cta {
+  background: var(--champagne); color: var(--warm-dark);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.11em; text-transform: uppercase;
+  padding: 10px 22px; text-decoration: none; border-radius: 2px;
+  opacity: 1 !important;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--champagne-light); }
 
-  .hero {
-    position: relative;
-    height: calc(100vh - var(--nav-h));
-    margin-top: var(--nav-h);
-    overflow: hidden;
-    display: flex; align-items: center;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: center 35%;
-    display: block;
-  }
-  .hero-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to right, rgba(42,34,24,0.91) 38%, rgba(61,50,37,0.55) 100%);
-  }
-  .hero-content {
-    position: relative; z-index: 1;
-    padding: 0 72px; max-width: 660px;
-  }
-  .eyebrow {
-    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--champagne-light); margin-bottom: 18px; font-weight: 400;
-  }
-  .hero-content h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(38px, 5vw, 62px);
-    font-weight: 400; line-height: 1.1;
-    color: var(--white); margin-bottom: 20px;
-  }
-  .hero-content h1 em { font-style: italic; color: var(--champagne-light); }
-  .hero-sub {
-    font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.72);
-    max-width: 460px; margin-bottom: 36px; font-weight: 300;
-  }
-  .hero-btn {
-    display: inline-block;
-    background: var(--champagne); color: var(--warm-dark);
-    font-size: 11px; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase;
-    padding: 14px 34px; text-decoration: none; border-radius: 2px;
-  }
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  height: calc(100vh - var(--nav-h));
+  margin-top: var(--nav-h);
+  overflow: hidden;
+  display: flex; align-items: center;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 35%;
+  display: block;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(42,34,24,0.91) 38%, rgba(42,34,24,0.28) 100%);
+}
+.hero-content {
+  position: relative; z-index: 1;
+  padding: 0 72px; max-width: 680px;
+}
+.eyebrow {
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--champagne-light); margin-bottom: 18px; font-weight: 400;
+}
+.hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 400; line-height: 1.1;
+  color: var(--white); margin-bottom: 22px;
+}
+.hero-content h1 em { font-style: italic; color: var(--champagne-light); }
+.hero-sub {
+  font-size: 15px; line-height: 1.75; color: rgba(255,255,255,0.72);
+  max-width: 480px; margin-bottom: 38px; font-weight: 300;
+}
+.hero-btn {
+  display: inline-block;
+  background: var(--champagne); color: var(--warm-dark);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase;
+  padding: 15px 36px; text-decoration: none; border-radius: 2px;
+  transition: background 0.2s;
+}
+.hero-btn:hover { background: var(--champagne-light); }
 
-  .trust-bar {
-    background: var(--dark-mid);
-    border-top: 1px solid rgba(200,169,110,0.2);
-    padding: 18px 72px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .trust-item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 0 32px;
-    border-right: 1px solid rgba(200,169,110,0.2);
-  }
-  .trust-item:last-child { border-right: none; }
-  .trust-icon { color: var(--champagne); font-size: 14px; }
-  .trust-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+/* ─── TRUST BAR ─── */
+.trust-bar {
+  background: var(--dark-mid);
+  border-top: 1px solid rgba(200,169,110,0.2);
+  padding: 0 72px;
+  display: flex; align-items: stretch; justify-content: center;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 20px 36px;
+  border-right: 1px solid rgba(200,169,110,0.18);
+}
+.trust-item:last-child { border-right: none; }
+.trust-dot { color: var(--champagne); font-size: 8px; line-height: 1; }
+.trust-label {
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); font-weight: 400;
+}
+.trust-label strong { color: rgba(255,255,255,0.9); font-weight: 500; }
 
-  @media (max-width: 768px) {
-    nav { padding: 0 20px; }
-    .nav-links { display: none; }
-    .hero-content { padding: 0 24px; }
-    .hero-content h1 { font-size: 34px; }
-    .trust-bar { flex-wrap: wrap; padding: 16px 20px; gap: 8px; }
-    .trust-item { border-right: none; padding: 6px 12px; }
-  }
+/* ─── SERVICES ─── */
+.services {
+  background: var(--cream);
+  padding: 100px 72px;
+}
+.section-label {
+  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--champagne); font-weight: 500; margin-bottom: 16px;
+  display: block;
+}
+.services-header { max-width: 560px; margin-bottom: 64px; }
+.services-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 3.5vw, 46px);
+  font-weight: 400; line-height: 1.2;
+  color: var(--warm-dark);
+}
+.services-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 64px;
+  align-items: start;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+.service-card {
+  background: var(--sand);
+  padding: 36px 28px;
+  border: 1px solid rgba(200,169,110,0.12);
+  transition: background 0.25s, border-color 0.25s;
+}
+.service-card:hover {
+  background: var(--white);
+  border-color: rgba(200,169,110,0.35);
+}
+.service-icon {
+  font-size: 22px; margin-bottom: 14px; display: block;
+  color: var(--champagne);
+}
+.service-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 500;
+  color: var(--warm-dark); margin-bottom: 10px;
+  line-height: 1.25;
+}
+.service-card p {
+  font-size: 13px; line-height: 1.65; color: rgba(42,34,24,0.65); font-weight: 300;
+}
+.services-photo-wrap {
+  position: sticky; top: calc(var(--nav-h) + 24px);
+}
+.services-photo {
+  width: 100%; height: 480px;
+  object-fit: cover; object-position: center;
+  display: block;
+  border-radius: 1px;
+}
+.services-photo-caption {
+  margin-top: 16px;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(42,34,24,0.4); font-weight: 400;
+}
+
+/* ─── ABOUT ─── */
+.about {
+  background: var(--sand);
+  border-top: 1px solid rgba(200,169,110,0.15);
+  border-bottom: 1px solid rgba(200,169,110,0.15);
+}
+.about-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 640px;
+}
+.about-text {
+  padding: 96px 72px 96px 72px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.about-text h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 3vw, 42px);
+  font-weight: 400; line-height: 1.2;
+  color: var(--warm-dark);
+  margin-bottom: 28px;
+}
+.about-text p {
+  font-size: 15px; line-height: 1.8; color: rgba(42,34,24,0.72);
+  font-weight: 300; margin-bottom: 20px;
+  max-width: 480px;
+}
+.about-text p:last-of-type { margin-bottom: 48px; }
+.about-stats {
+  display: flex; gap: 0;
+  border-top: 1px solid rgba(200,169,110,0.25);
+  padding-top: 32px;
+}
+.about-stat {
+  padding-right: 28px; margin-right: 28px;
+  border-right: 1px solid rgba(200,169,110,0.25);
+}
+.about-stat:last-child { border-right: none; padding-right: 0; margin-right: 0; }
+.about-stat-val {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 400;
+  color: var(--champagne); margin-bottom: 4px;
+}
+.about-stat-lbl {
+  display: block;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(42,34,24,0.5); font-weight: 400;
+}
+.about-image-wrap {
+  position: relative; overflow: hidden;
+}
+.about-image {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  display: block;
+}
+.about-image-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(245,239,227,0.18) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+/* ─── REVIEWS ─── */
+.reviews {
+  background: var(--warm-dark);
+  padding: 100px 72px;
+}
+.reviews-header {
+  text-align: center; margin-bottom: 60px;
+}
+.reviews-header .section-label { justify-content: center; display: flex; }
+.reviews-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 400; color: var(--white);
+  margin-top: 8px;
+}
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 60px;
+}
+.review-card {
+  background: #332a1e;
+  padding: 40px 36px;
+  border: 1px solid rgba(200,169,110,0.12);
+  position: relative;
+}
+.review-card::before {
+  content: '\201C';
+  font-family: 'Playfair Display', serif;
+  font-size: 72px; line-height: 1;
+  color: var(--champagne); opacity: 0.35;
+  position: absolute; top: 24px; left: 30px;
+  pointer-events: none;
+}
+.review-stars {
+  color: var(--champagne);
+  font-size: 13px; letter-spacing: 0.1em;
+  margin-bottom: 20px; display: block;
+}
+.review-text {
+  font-size: 15px; line-height: 1.75;
+  color: rgba(255,255,255,0.78); font-weight: 300;
+  font-style: italic;
+  margin-bottom: 28px;
+  padding-top: 8px;
+}
+.review-author {
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--champagne-light); font-weight: 500;
+}
+.review-banner {
+  text-align: center;
+  border-top: 1px solid rgba(200,169,110,0.18);
+  padding-top: 52px;
+}
+.review-banner-stars {
+  color: var(--champagne);
+  font-size: 22px; letter-spacing: 0.12em;
+  margin-bottom: 12px; display: block;
+}
+.review-banner-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(18px, 2vw, 26px);
+  font-weight: 400; color: rgba(255,255,255,0.9);
+}
+
+/* ─── CTA ─── */
+.cta-section {
+  position: relative;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 540px;
+  padding: 100px 40px;
+}
+.cta-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  display: block;
+}
+.cta-overlay {
+  position: absolute; inset: 0;
+  background: rgba(42,34,24,0.78);
+}
+.cta-content {
+  position: relative; z-index: 1;
+  text-align: center; max-width: 600px;
+}
+.cta-content .section-label {
+  display: block; text-align: center;
+  margin-bottom: 14px;
+}
+.cta-content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 4vw, 52px);
+  font-weight: 400; color: var(--white);
+  line-height: 1.15; margin-bottom: 20px;
+}
+.cta-sub {
+  font-size: 15px; line-height: 1.75;
+  color: rgba(255,255,255,0.68); font-weight: 300;
+  margin-bottom: 44px;
+}
+.cta-buttons {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-block;
+  background: var(--champagne); color: var(--warm-dark);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase;
+  padding: 15px 36px; text-decoration: none; border-radius: 2px;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: var(--champagne-light); }
+.btn-outline {
+  display: inline-block;
+  background: transparent; color: var(--white);
+  font-size: 11px; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase;
+  padding: 14px 34px; text-decoration: none; border-radius: 2px;
+  border: 1px solid rgba(255,255,255,0.45);
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-outline:hover { border-color: rgba(255,255,255,0.8); color: var(--white); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--dark-mid);
+  border-top: 1px solid rgba(200,169,110,0.18);
+  padding: 56px 72px 0;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  gap: 40px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(200,169,110,0.12);
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px; font-weight: 400;
+  color: rgba(255,255,255,0.9); text-decoration: none;
+  letter-spacing: 0.03em;
+}
+.footer-logo em { font-style: italic; color: var(--champagne); }
+.footer-tagline {
+  font-size: 12px; color: rgba(255,255,255,0.35);
+  margin-top: 8px; letter-spacing: 0.06em;
+}
+.footer-nav {
+  display: flex; gap: 28px; align-items: center; justify-content: center;
+}
+.footer-nav a {
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); text-decoration: none; font-weight: 400;
+  transition: color 0.2s;
+}
+.footer-nav a:hover { color: var(--champagne-light); }
+.footer-contact { text-align: right; }
+.footer-contact a {
+  display: block;
+  font-size: 15px; font-weight: 500;
+  color: var(--champagne-light); text-decoration: none;
+  margin-bottom: 6px;
+  letter-spacing: 0.03em;
+}
+.footer-contact span {
+  font-size: 12px; color: rgba(255,255,255,0.4);
+  letter-spacing: 0.06em;
+}
+.footer-bottom {
+  padding: 20px 0;
+  text-align: center;
+}
+.footer-bottom p {
+  font-size: 11px; color: rgba(255,255,255,0.25);
+  letter-spacing: 0.08em;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .services-layout { grid-template-columns: 1fr; }
+  .services-photo-wrap { display: none; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-stat-val { font-size: 18px; }
+}
+
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links a:not(.nav-cta) { display: none; }
+
+  .hero-content { padding: 0 24px; max-width: 100%; }
+  .hero-content h1 { font-size: clamp(32px, 8vw, 44px); }
+  .hero-sub { font-size: 14px; max-width: 100%; }
+
+  .trust-bar { flex-wrap: wrap; padding: 0 16px; }
+  .trust-item { border-right: none; padding: 14px 16px; width: 50%; justify-content: center; }
+
+  .services { padding: 72px 24px; }
+  .services-grid { grid-template-columns: 1fr; gap: 2px; }
+  .services-header { margin-bottom: 40px; }
+
+  .about-inner { grid-template-columns: 1fr; }
+  .about-text { padding: 64px 24px; }
+  .about-text p { max-width: 100%; }
+  .about-image-wrap { height: 340px; }
+  .about-stats { flex-wrap: wrap; gap: 20px; }
+  .about-stat { border-right: none; padding-right: 0; margin-right: 0; }
+
+  .reviews { padding: 72px 24px; }
+  .reviews-grid { grid-template-columns: 1fr; }
+
+  .cta-section { padding: 80px 24px; min-height: auto; }
+  .cta-buttons { flex-direction: column; align-items: center; }
+
+  footer { padding: 48px 24px 0; }
+  .footer-top { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+  .footer-contact { text-align: center; }
+  .footer-nav { flex-wrap: wrap; gap: 16px; }
+}
+
+@media (max-width: 480px) {
+  .trust-item { width: 100%; }
+  .services-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
 
+<!-- ─── NAV ─── -->
 <nav>
-  <a href="#" class="nav-logo">Prosperity <span>Wellness &amp; Medspa</span></a>
+  <a href="#" class="nav-logo">Prosperity <em>Wellness &amp; Medspa</em></a>
   <div class="nav-links">
-    <a href="#">Services</a>
-    <a href="#">About</a>
-    <a href="#">Gallery</a>
-    <a href="#" class="nav-cta">Book Now</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#reviews">Reviews</a>
+    <a href="tel:+19543930300" class="nav-cta">Book Now</a>
   </div>
 </nav>
 
+<!-- ─── HERO ─── -->
 <section class="hero">
-  <img class="hero-bg" src="../../assets/samples/medspa/interior-2.jpg" alt="Warm welcoming environment at Prosperity Wellness Medspa Hallandale Beach" loading="eager">
+  <img class="hero-bg" src="../../assets/samples/medspa/interior-2.jpg" alt="Warm welcoming interior at Prosperity Wellness &amp; Medspa, Hallandale Beach" loading="eager">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="eyebrow">Hallandale Beach &bull; Wellness &amp; Aesthetics</p>
@@ -136,24 +504,187 @@
   </div>
 </section>
 
+<!-- ─── TRUST BAR ─── -->
 <div class="trust-bar">
   <div class="trust-item">
-    <span class="trust-icon">&#10022;</span>
-    <span class="trust-label">4.9★ Rated</span>
+    <span class="trust-dot">&#9679;</span>
+    <span class="trust-label"><strong>4.9&#9733;</strong> Rated</span>
   </div>
   <div class="trust-item">
-    <span class="trust-icon">&#10022;</span>
-    <span class="trust-label">126 Reviews</span>
+    <span class="trust-dot">&#9679;</span>
+    <span class="trust-label"><strong>126</strong> Reviews</span>
   </div>
   <div class="trust-item">
-    <span class="trust-icon">&#10022;</span>
+    <span class="trust-dot">&#9679;</span>
     <span class="trust-label">Expert Care</span>
   </div>
   <div class="trust-item">
-    <span class="trust-icon">&#10022;</span>
+    <span class="trust-dot">&#9679;</span>
+    <span class="trust-label">Since 2014</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-dot">&#9679;</span>
     <span class="trust-label">Hallandale Beach</span>
   </div>
 </div>
+
+<!-- ─── SERVICES ─── -->
+<section class="services" id="services">
+  <div class="services-header">
+    <span class="section-label">Our Services</span>
+    <h2>Feel Your Best,<br>Inside &amp; Out</h2>
+  </div>
+  <div class="services-layout">
+    <div class="services-grid">
+
+      <div class="service-card">
+        <span class="service-icon">&#10025;</span>
+        <h3>Botox &amp; Neurotoxins</h3>
+        <p>Smooth fine lines and restore youthful expression, naturally.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">&#9672;</span>
+        <h3>Dermal Fillers</h3>
+        <p>Restore volume and contour with precision and a gentle touch.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">&#10052;</span>
+        <h3>HydraFacial</h3>
+        <p>Deep cleanse, extract, and hydrate in one transformative treatment.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">&#9670;</span>
+        <h3>Body Contouring</h3>
+        <p>Sculpt and tone without surgery or downtime.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">&#10022;</span>
+        <h3>IV Wellness Therapy</h3>
+        <p>Replenish nutrients, boost energy, and restore balance from within.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">&#9728;</span>
+        <h3>Laser Skin Rejuvenation</h3>
+        <p>Fade discoloration, tighten pores, and renew your natural radiance.</p>
+      </div>
+
+    </div>
+    <div class="services-photo-wrap">
+      <img class="services-photo" src="../../assets/samples/medspa/space-1.jpg" alt="Serene treatment space at Prosperity Wellness &amp; Medspa" loading="lazy">
+      <p class="services-photo-caption">Hallandale Beach, FL</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <span class="section-label">About Prosperity</span>
+      <h2>Built on Warmth.<br>Backed by Results.</h2>
+      <p>Prosperity Wellness &amp; Medspa was built with one belief: every client deserves to feel genuinely welcome — not rushed, not upsold, just cared for. Larisa and her team bring that warmth to every treatment, every visit, every result.</p>
+      <p>With 126 five-star reviews and a loyal Hallandale Beach following, Prosperity has become the kind of place people don't just visit — they recommend to everyone they love.</p>
+      <div class="about-stats">
+        <div class="about-stat">
+          <span class="about-stat-val">126</span>
+          <span class="about-stat-lbl">Reviews</span>
+        </div>
+        <div class="about-stat">
+          <span class="about-stat-val">4.9&#9733;</span>
+          <span class="about-stat-lbl">Average</span>
+        </div>
+        <div class="about-stat">
+          <span class="about-stat-val">Licensed</span>
+          <span class="about-stat-lbl">Practitioners</span>
+        </div>
+        <div class="about-stat">
+          <span class="about-stat-val">Local</span>
+          <span class="about-stat-lbl">Hallandale Beach</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-image-wrap">
+      <img class="about-image" src="../../assets/samples/medspa/people-1.jpg" alt="Treatment care at Prosperity Wellness &amp; Medspa" loading="lazy">
+      <div class="about-image-overlay"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── REVIEWS ─── -->
+<section class="reviews" id="reviews">
+  <div class="reviews-header">
+    <span class="section-label">What Clients Say</span>
+    <h2>The Reputation Speaks for Itself</h2>
+  </div>
+  <div class="reviews-grid">
+
+    <div class="review-card">
+      <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <p class="review-text">"Larisa makes you feel like family. I've never left without feeling completely refreshed — and the results are real."</p>
+      <span class="review-author">Maria D. &mdash; Hallandale Beach</span>
+    </div>
+
+    <div class="review-card">
+      <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <p class="review-text">"Best med spa in the area. Honest pricing, no pressure, and the treatments actually work. I send everyone here."</p>
+      <span class="review-author">Jennifer R. &mdash; Hollywood</span>
+    </div>
+
+    <div class="review-card">
+      <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <p class="review-text">"I've been coming for two years and I've never had a bad visit. The team genuinely cares about you."</p>
+      <span class="review-author">Sandra M. &mdash; Aventura</span>
+    </div>
+
+  </div>
+  <div class="review-banner">
+    <span class="review-banner-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+    <p class="review-banner-text">4.9 &mdash; Rated by 126 clients</p>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section">
+  <img class="cta-bg" src="../../assets/samples/medspa/cta.jpg" alt="Prosperity Wellness &amp; Medspa" loading="lazy">
+  <div class="cta-overlay"></div>
+  <div class="cta-content">
+    <span class="section-label">Ready to start?</span>
+    <h2>Your best skin is waiting.</h2>
+    <p class="cta-sub">Book a consultation or call us — no pressure, just a conversation about what's possible.</p>
+    <div class="cta-buttons">
+      <a href="tel:+19543930300" class="btn-primary">Book Online</a>
+      <a href="tel:+19543930300" class="btn-outline">Call (954) 393-0300</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="#" class="footer-logo">Prosperity <em>Wellness &amp; Medspa</em></a>
+      <p class="footer-tagline">Hallandale Beach, FL &bull; Est. 2014</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#reviews">Reviews</a>
+      <a href="tel:+19543930300">Book Now</a>
+    </nav>
+    <div class="footer-contact">
+      <a href="tel:+19543930300">(954) 393-0300</a>
+      <span>Hallandale Beach, FL</span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Prosperity Wellness &amp; Medspa &middot; All rights reserved</p>
+  </div>
+</footer>
 
 </body>
 </html>
