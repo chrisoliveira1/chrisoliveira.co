@@ -107,6 +107,63 @@ nav {
 }
 .hero-btn:hover { background: #96e5e0; }
 
+/* ─── HERO VIDEO BG ─── */
+.hero-video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 35%;
+  display: block;
+}
+
+/* ─── SQUIGGLY CIRCLE BUTTON ─── */
+.squiggly-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  text-decoration: none;
+}
+.squiggly-btn svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: squiggly-rotate 18s linear infinite;
+}
+.squiggly-btn svg path {
+  stroke: rgba(255,255,255,0.85);
+  stroke-width: 1;
+  fill: none;
+  transition: stroke-width 0.3s, stroke 0.3s;
+}
+.squiggly-btn:hover svg path {
+  stroke-width: 1.8;
+  stroke: var(--mint);
+}
+.squiggly-btn:hover svg {
+  animation-duration: 6s;
+}
+.squiggly-btn-text {
+  position: relative;
+  z-index: 1;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white);
+  transition: color 0.3s;
+}
+.squiggly-btn:hover .squiggly-btn-text {
+  color: var(--mint);
+}
+@keyframes squiggly-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 /* ─── TRUST BAR ─── */
 .trust-bar {
   background: var(--teal-deep);
@@ -507,13 +564,20 @@ footer {
 
 <!-- ─── HERO ─── -->
 <section class="hero">
-  <img class="hero-bg" src="../../assets/samples/medspa/interior-2.jpg" alt="Welcoming interior at Prosperity Wellness and Medspa Hallandale Beach" loading="eager">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="../../assets/samples/Spa/6629707-uhd_4096_2160_25fps.mp4" type="video/mp4">
+  </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="eyebrow">Hallandale Beach &bull; Wellness &amp; Aesthetics</p>
     <h1>Elevating Beauty, <em>Inspiring Wellness</em></h1>
     <p class="hero-sub">Prosperity Wellness &amp; Medspa is Hallandale Beach's sanctuary for luxurious facials, advanced laser treatments, body contouring, and aesthetic injectables. Indulgence meets innovation — backed by 126 five-star reviews.</p>
-    <a href="tel:+19543930300" class="hero-btn">Book Now</a>
+    <a href="tel:+19543930300" class="squiggly-btn">
+      <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+        <path d="M75 8 C95 6, 118 18, 130 35 C142 52, 146 72, 140 90 C134 108, 120 128, 100 138 C80 148, 55 146, 38 135 C21 124, 8 108, 6 88 C4 68, 10 45, 22 30 C34 15, 55 10, 75 8 Z"/>
+      </svg>
+      <span class="squiggly-btn-text">Book Now</span>
+    </a>
   </div>
 </section>
 

@@ -226,13 +226,21 @@
     .hero {
       margin-top: var(--nav-h);
       height: calc(100vh - var(--nav-h));
-      background: url('../../assets/samples/medspa/hero.jpg') center/cover no-repeat;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: var(--white);
+      overflow: hidden;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .hero::before {
@@ -244,13 +252,63 @@
         rgba(50, 44, 58, 0.55) 0%,
         rgba(50, 44, 58, 0.7) 100%
       );
+      z-index: 1;
     }
 
     .hero-content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       max-width: 720px;
       padding: 2rem;
+    }
+
+    /* ── Squiggly Circle CTA ───────────────────────────────────────── */
+    .squiggly-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 150px;
+      height: 150px;
+    }
+
+    .squiggly-cta svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      animation: spin 18s linear infinite;
+    }
+
+    .squiggly-cta:hover svg {
+      animation-duration: 8s;
+    }
+
+    .squiggly-cta svg path {
+      stroke: rgba(255, 255, 255, 0.7);
+      stroke-width: 1;
+      fill: none;
+      transition: stroke 0.3s ease;
+    }
+
+    .squiggly-cta:hover svg path {
+      stroke: rgba(255, 255, 255, 1);
+    }
+
+    .squiggly-cta-text {
+      position: relative;
+      z-index: 1;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .hero .eyebrow {
@@ -753,11 +811,19 @@
 
 <!-- ── HERO ───────────────────────────────────────────────────────── -->
 <section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="../../assets/samples/Spa/6629707-uhd_4096_2160_25fps.mp4" type="video/mp4" />
+  </video>
   <div class="hero-content">
     <p class="eyebrow">Boca Raton &nbsp;&middot;&nbsp; Medical Aesthetics</p>
     <h1>Where Medical Expertise Meets Aesthetic <span class="accent">Artistry</span></h1>
     <p>ARNP-led practice with an OBGYN background and over sixty-five years of combined experience. Clinically precise, personally delivered care in Boca Raton.</p>
-    <a href="#contact" class="pill-btn pill-btn--berry">Schedule a Consultation</a>
+    <a href="tel:+15619907294" class="squiggly-cta">
+      <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+        <path d="M75 5 C95 3, 120 10, 135 25 C150 42, 148 60, 147 75 C146 92, 142 115, 128 130 C112 147, 90 148, 75 147 C58 146, 35 143, 20 128 C5 113, 3 92, 4 75 C5 58, 8 35, 22 20 C38 5, 55 7, 75 5Z" />
+      </svg>
+      <span class="squiggly-cta-text">Book Now</span>
+    </a>
   </div>
 </section>
 
