@@ -411,62 +411,55 @@ nav.nav-scrolled .nav-links .nav-cta:hover {
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   line-height: 1.2;
 }
-.services-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(40px, 4vw, 80px);
-  max-width: 1200px;
+.services-list {
+  max-width: 1000px;
   margin: 0 auto;
-  align-items: start;
 }
-.services-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
+.service-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 36px 0;
+  border-bottom: 1px solid rgba(42,36,32,0.08);
+  gap: 40px;
 }
-.service-card {
-  background: rgba(255,255,255,0.5);
-  border: 1px solid rgba(42,36,32,0.06);
-  border-radius: 16px;
-  padding: clamp(24px, 2.5vw, 32px);
-  transition: all 0.3s ease;
+.service-row:first-child {
+  border-top: 1px solid rgba(42,36,32,0.08);
 }
-.service-card:hover {
-  background: rgba(255,255,255,0.85);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(42,36,32,0.06);
+.service-left {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  flex-shrink: 0;
 }
-.service-card .card-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: 1.4rem;
-  color: var(--accent);
-  margin-bottom: 12px;
-}
-.service-card h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 400;
-  font-size: clamp(1.05rem, 1.2vw, 1.2rem);
-  margin-bottom: 8px;
-  line-height: 1.3;
-}
-.service-card p {
+.service-num {
   font-family: 'Poppins', sans-serif;
-  font-weight: 200;
-  font-size: 0.82rem;
-  color: rgba(42,36,32,0.6);
-  line-height: 1.7;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--accent);
+  letter-spacing: 0.02em;
 }
-.services-image {
-  border-radius: 16px;
-  overflow: hidden;
-  position: relative;
+.service-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 300;
+  color: var(--dark);
+  line-height: 1.2;
 }
-.services-image img {
+.service-desc {
+  font-size: 13px;
+  line-height: 1.8;
+  color: rgba(42,36,32,0.5);
+  font-weight: 300;
+  max-width: 360px;
+  text-align: right;
+}
+.services-break-image {
   width: 100%;
-  height: 100%;
+  height: 400px;
   object-fit: cover;
-  min-height: 500px;
+  margin: 48px 0;
+  display: block;
 }
 
 /* ── Reviews Section ───────────────────────────────────── */
@@ -694,18 +687,16 @@ footer {
     min-height: 280px;
     max-height: 360px;
   }
-  .services-layout {
-    grid-template-columns: 1fr;
+  .service-row {
+    flex-direction: column;
+    gap: 8px;
   }
-  .services-image {
-    order: -1;
+  .service-desc {
+    text-align: left;
+    max-width: 100%;
   }
-  .services-image img {
-    min-height: 280px;
-    max-height: 360px;
-  }
-  .services-grid {
-    grid-template-columns: 1fr;
+  .services-break-image {
+    height: 280px;
   }
   .reviews-grid {
     grid-template-columns: 1fr;
@@ -848,7 +839,7 @@ footer {
   <div class="about-grid">
     <div class="about-left">
       <div class="about-image">
-        <img src="../../assets/samples/medspa/people-2.jpg" alt="Advanced Med Spa team">
+        <img src="../../assets/samples/Spa/eb823eccf5222d026957087c7be0e5a3.jpg" alt="Facial treatment at Advanced Med Spa">
       </div>
     </div>
     <div class="about-right">
@@ -890,41 +881,51 @@ footer {
     <p class="section-number">02. Treatments</p>
     <h2>Our Signature Services</h2>
   </div>
-  <div class="services-layout">
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="card-num">01</div>
-        <h3>Brazilian Lymphatic Massage</h3>
-        <p>Our signature 3-in-1 treatment combining lymphatic drainage, body sculpting, and detoxification in one powerful session.</p>
+  <div class="services-list">
+    <div class="service-row">
+      <div class="service-left">
+        <span class="service-num">01</span>
+        <h3 class="service-name">Brazilian Lymphatic Massage</h3>
       </div>
-      <div class="service-card">
-        <div class="card-num">02</div>
-        <h3>Body Contouring</h3>
-        <p>Advanced CryoContour and AMS Tone technologies for non-invasive sculpting with zero downtime and immediate results.</p>
-      </div>
-      <div class="service-card">
-        <div class="card-num">03</div>
-        <h3>Weight Loss Programs</h3>
-        <p>Personalized protocols including Detox Plus, Body In Shape, and SlimLife -- designed around your body's unique needs.</p>
-      </div>
-      <div class="service-card">
-        <div class="card-num">04</div>
-        <h3>Facials &amp; Skin Detox</h3>
-        <p>Facial Detox and Facial Drainage treatments that purify, brighten, and rejuvenate from the deepest layers outward.</p>
-      </div>
-      <div class="service-card">
-        <div class="card-num">05</div>
-        <h3>Injectables</h3>
-        <p>Precision fat dissolving injections and fillers administered by our licensed medical team for subtle, natural enhancement.</p>
-      </div>
-      <div class="service-card">
-        <div class="card-num">06</div>
-        <h3>Deep Tissue &amp; Prenatal</h3>
-        <p>Therapeutic massage tailored for deep tension relief and specialized prenatal care with a Brazilian touch.</p>
-      </div>
+      <p class="service-desc">Our signature 3-in-1 treatment combining lymphatic drainage, body sculpting, and detoxification in one powerful session.</p>
     </div>
-    <div class="services-image">
-      <img src="../../assets/samples/medspa/space-1.jpg" alt="Advanced Med Spa treatment room">
+    <div class="service-row">
+      <div class="service-left">
+        <span class="service-num">02</span>
+        <h3 class="service-name">Body Contouring</h3>
+      </div>
+      <p class="service-desc">Advanced CryoContour and AMS Tone technologies for non-invasive sculpting with zero downtime and immediate results.</p>
+    </div>
+    <div class="service-row">
+      <div class="service-left">
+        <span class="service-num">03</span>
+        <h3 class="service-name">Weight Loss Programs</h3>
+      </div>
+      <p class="service-desc">Personalized protocols including Detox Plus, Body In Shape, and SlimLife — designed around your body's unique needs.</p>
+    </div>
+
+    <img class="services-break-image" src="../../assets/samples/Spa/dc28cfe7895d7237bb9381bfcf681d49.jpg" alt="Massage therapy at Advanced Med Spa" loading="lazy">
+
+    <div class="service-row">
+      <div class="service-left">
+        <span class="service-num">04</span>
+        <h3 class="service-name">Facials &amp; Skin Detox</h3>
+      </div>
+      <p class="service-desc">Facial Detox and Facial Drainage treatments that purify, brighten, and rejuvenate from the deepest layers outward.</p>
+    </div>
+    <div class="service-row">
+      <div class="service-left">
+        <span class="service-num">05</span>
+        <h3 class="service-name">Injectables</h3>
+      </div>
+      <p class="service-desc">Precision fat dissolving injections and fillers administered by our licensed medical team for subtle, natural enhancement.</p>
+    </div>
+    <div class="service-row">
+      <div class="service-left">
+        <span class="service-num">06</span>
+        <h3 class="service-name">Deep Tissue &amp; Prenatal</h3>
+      </div>
+      <p class="service-desc">Therapeutic massage tailored for deep tension relief and specialized prenatal care with a Brazilian touch.</p>
     </div>
   </div>
 </section>

@@ -249,53 +249,56 @@ nav.nav-scrolled {
   position: relative; z-index: 1;
   max-width: 1200px; margin: 0 auto;
 }
-.services-top {
-  display: grid; grid-template-columns: 1fr 340px;
-  gap: 64px; align-items: start;
-}
 .services-header { margin-bottom: 56px; }
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
+.services-list {
+  max-width: 1000px;
+  margin: 0 auto;
 }
-.service-card {
-  background: var(--beige);
-  padding: 36px 28px;
-  border: 1px solid rgba(42,36,32,0.06);
-  transition: background 0.25s, border-color 0.25s;
-  position: relative;
+.service-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 36px 0;
+  border-bottom: 1px solid rgba(42,36,32,0.08);
+  gap: 40px;
 }
-.service-card:hover {
-  background: var(--white);
-  border-color: rgba(42,36,32,0.12);
+.service-row:first-child {
+  border-top: 1px solid rgba(42,36,32,0.08);
+}
+.service-left {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  flex-shrink: 0;
 }
 .service-num {
   font-family: 'Poppins', sans-serif;
-  font-size: 12px; font-weight: 400; color: var(--accent);
-  margin-bottom: 14px; display: block; letter-spacing: 0.02em;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--accent);
+  letter-spacing: 0.02em;
 }
-.service-card h3 {
+.service-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 22px; font-weight: 400;
-  color: var(--dark); margin-bottom: 12px;
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 300;
+  color: var(--dark);
   line-height: 1.2;
 }
-.service-card p {
-  font-size: 13px; line-height: 1.8; color: rgba(42,36,32,0.55); font-weight: 300;
+.service-desc {
+  font-size: 13px;
+  line-height: 1.8;
+  color: rgba(42,36,32,0.5);
+  font-weight: 300;
+  max-width: 360px;
+  text-align: right;
 }
-.services-photo-wrap {
-  position: sticky; top: calc(var(--nav-h) + 24px);
-}
-.services-photo {
-  width: 100%; height: 480px;
-  object-fit: cover; object-position: center;
+.services-break-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  margin: 48px 0;
   display: block;
-}
-.services-photo-caption {
-  margin-top: 14px;
-  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(42,36,32,0.3); font-weight: 400;
 }
 
 /* ─── REVIEWS ─── */
@@ -467,9 +470,6 @@ footer {
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 1024px) {
-  .services-top { grid-template-columns: 1fr; }
-  .services-photo-wrap { display: none; }
-  .services-grid { grid-template-columns: repeat(2, 1fr); }
   .about-stats { grid-template-columns: repeat(2, 1fr); gap: 20px; }
 }
 
@@ -508,7 +508,9 @@ footer {
   .about-content p { max-width: 100%; }
 
   .services { padding: 80px 24px; }
-  .services-grid { grid-template-columns: 1fr; gap: 2px; }
+  .service-row { flex-direction: column; gap: 8px; }
+  .service-desc { text-align: left; max-width: 100%; }
+  .services-break-image { height: 280px; }
 
   .reviews { padding: 80px 24px; }
   .reviews-grid { grid-template-columns: 1fr; }
@@ -617,7 +619,7 @@ Philosophy</div>
       </div>
     </div>
     <div class="about-image-wrap">
-      <img class="about-image" src="../../assets/samples/medspa/people-2.jpg" alt="Wellness experience at Prosperity Wellness and Medspa" loading="lazy">
+      <img class="about-image" src="../../assets/samples/Spa/dc28cfe7895d7237bb9381bfcf681d49.jpg" alt="Massage therapy at Prosperity Wellness and Medspa" loading="lazy">
     </div>
   </div>
 </section>
@@ -631,49 +633,51 @@ Body</div>
       <span class="section-num">02. Treatments</span>
       <h2 class="section-heading">Our Services</h2>
     </div>
-    <div class="services-top">
-      <div class="services-grid">
-
-        <div class="service-card">
+    <div class="services-list">
+      <div class="service-row">
+        <div class="service-left">
           <span class="service-num">01</span>
-          <h3>Facial Treatments</h3>
-          <p>Rejuvenating facials customized to your skin type, from deep cleansing to medical-grade resurfacing.</p>
+          <h3 class="service-name">Facial Treatments</h3>
         </div>
-
-        <div class="service-card">
-          <span class="service-num">02</span>
-          <h3>Massage Therapy</h3>
-          <p>Medical-grade massage designed to relieve tension, boost circulation, and restore total body balance.</p>
-        </div>
-
-        <div class="service-card">
-          <span class="service-num">03</span>
-          <h3>Body Contouring</h3>
-          <p>Non-invasive sculpting and anti-cellulite treatments that reshape and firm without surgery.</p>
-        </div>
-
-        <div class="service-card">
-          <span class="service-num">04</span>
-          <h3>Laser Treatments</h3>
-          <p>State-of-the-art laser skin resurfacing, skin tightening, and rejuvenation using medical-grade technology.</p>
-        </div>
-
-        <div class="service-card">
-          <span class="service-num">05</span>
-          <h3>Laser Hair Removal</h3>
-          <p>Permanent hair reduction with advanced laser systems. Safe, effective, and comfortable for all skin types.</p>
-        </div>
-
-        <div class="service-card">
-          <span class="service-num">06</span>
-          <h3>Aesthetic Injectables</h3>
-          <p>Botox, dermal fillers, and facial contouring administered by licensed professionals with precision and care.</p>
-        </div>
-
+        <p class="service-desc">Rejuvenating facials customized to your skin type, from deep cleansing to medical-grade resurfacing.</p>
       </div>
-      <div class="services-photo-wrap">
-        <img class="services-photo" src="../../assets/samples/medspa/interior-1.jpg" alt="Treatment room at Prosperity Wellness and Medspa" loading="lazy">
-        <p class="services-photo-caption">Hallandale Beach, FL</p>
+      <div class="service-row">
+        <div class="service-left">
+          <span class="service-num">02</span>
+          <h3 class="service-name">Massage Therapy</h3>
+        </div>
+        <p class="service-desc">Medical-grade massage designed to relieve tension, boost circulation, and restore total body balance.</p>
+      </div>
+      <div class="service-row">
+        <div class="service-left">
+          <span class="service-num">03</span>
+          <h3 class="service-name">Body Contouring</h3>
+        </div>
+        <p class="service-desc">Non-invasive sculpting and anti-cellulite treatments that reshape and firm without surgery.</p>
+      </div>
+
+      <img class="services-break-image" src="../../assets/samples/Spa/01a74cbd2c55195b0e7ea4a9f033bf02.jpg" alt="Spa treatment with essential oils" loading="lazy">
+
+      <div class="service-row">
+        <div class="service-left">
+          <span class="service-num">04</span>
+          <h3 class="service-name">Laser Treatments</h3>
+        </div>
+        <p class="service-desc">State-of-the-art laser skin resurfacing, skin tightening, and rejuvenation using medical-grade technology.</p>
+      </div>
+      <div class="service-row">
+        <div class="service-left">
+          <span class="service-num">05</span>
+          <h3 class="service-name">Laser Hair Removal</h3>
+        </div>
+        <p class="service-desc">Permanent hair reduction with advanced laser systems. Safe, effective, and comfortable for all skin types.</p>
+      </div>
+      <div class="service-row">
+        <div class="service-left">
+          <span class="service-num">06</span>
+          <h3 class="service-name">Aesthetic Injectables</h3>
+        </div>
+        <p class="service-desc">Botox, dermal fillers, and facial contouring administered by licensed professionals with precision and care.</p>
       </div>
     </div>
   </div>
