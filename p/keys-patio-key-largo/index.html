@@ -34,17 +34,6 @@
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--dark)}
 
-/* PAGE hidden until loader done */
-#page{visibility:hidden}
-
-/* LOADER */
-#loader{position:fixed;inset:0;background:var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 clamp(32px,8vw,120px);z-index:999999;transition:opacity .9s ease,visibility .9s ease}
-#loader.done{opacity:0;visibility:hidden;pointer-events:none}
-#loader-stars{color:var(--orange);font-size:.9rem;letter-spacing:4px;margin-bottom:20px;opacity:0;transition:opacity .4s ease}
-#loader-stars.on{opacity:1}
-#loader-quote{font-family:'DM Serif Display',serif;font-size:clamp(1.3rem,3.2vw,2.4rem);font-weight:400;font-style:italic;line-height:1.35;color:var(--dark);letter-spacing:-.01em;max-width:700px;text-align:center;opacity:0;transform:translateY(14px);transition:opacity .4s ease,transform .4s ease}
-#loader-quote.on{opacity:1;transform:translateY(0)}
-
 /* NAV */
 nav{height:68px;background:var(--cream);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(24px,5vw,80px);position:sticky;top:0;z-index:100;border-bottom:1px solid var(--line)}
 .nav-logo{display:flex;align-items:center;text-decoration:none}
@@ -224,14 +213,8 @@ footer{padding:32px clamp(24px,5vw,80px);display:flex;align-items:center;justify
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div id="loader-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-  <div id="loader-quote">"Missy and her husband's personal input through the entire process including delivery and set up were invaluable."<span style="display:block;margin-top:12px;font-style:normal;font-family:'Inter',sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)">— Timothy</span></div>
-</div>
-
 <!-- PAGE -->
-<div id="page">
+<div id="page" style="visibility:visible">
 
 <!-- NAV -->
 <nav>
@@ -427,44 +410,25 @@ footer{padding:32px clamp(24px,5vw,80px);display:flex;align-items:center;justify
 </div><!-- /page -->
 
 <script>
-// LOADER
-(function(){
-  var stars=document.getElementById('loader-stars');
-  var quote=document.getElementById('loader-quote');
-  var loader=document.getElementById('loader');
-  var page=document.getElementById('page');
-  setTimeout(function(){stars.classList.add('on')},200);
-  setTimeout(function(){quote.classList.add('on')},500);
-  setTimeout(function(){
-    loader.classList.add('done');
-    page.style.visibility='visible';
-    startCounter();
-  },2600);
-})();
-
-
 // RATING + STARS ANIMATION
-function startCounter(){
+(function(){
   var el=document.getElementById('heroRating');
   var stars=document.querySelectorAll('.hero-badge-star');
   if(!el)return;
-  // Animate rating number from 0.0 to 5.0
   var dur=1200;
   var t0=null;
   function ease(t){return 1-Math.pow(2,-10*t)}
   function tick(ts){
     if(!t0)t0=ts;
     var p=Math.min((ts-t0)/dur,1);
-    var val=(5*ease(p)).toFixed(1);
-    el.textContent=val;
+    el.textContent=(5*ease(p)).toFixed(1);
     if(p<1)requestAnimationFrame(tick);else el.textContent='5.0';
   }
   setTimeout(function(){requestAnimationFrame(tick)},400);
-  // Pop stars in one by one
   stars.forEach(function(s,i){
     setTimeout(function(){s.classList.add('on')},500+i*120);
   });
-}
+})();
 </script>
 </body>
 </html>
