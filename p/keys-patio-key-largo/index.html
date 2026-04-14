@@ -132,23 +132,18 @@ nav{height:68px;background:var(--cream);display:flex;align-items:center;justify-
 .quality-spec-text h3{font-size:.82rem;font-weight:700;color:var(--dark);margin-bottom:2px}
 .quality-spec-text p{font-size:.75rem;color:var(--muted);line-height:1.5;font-weight:500}
 
-/* REVIEWS */
-.reviews-section{padding:56px clamp(24px,5vw,80px)}
-.reviews-section h2{font-family:'DM Serif Display',serif;font-size:clamp(1.5rem,2.4vw,2rem);font-weight:400;color:var(--dark);text-align:center;margin-bottom:40px;letter-spacing:-.02em}
-.carousel-wrap{position:relative;max-width:640px;margin:0 auto;overflow:hidden}
-.carousel-track{display:flex;transition:transform .45s cubic-bezier(.22,1,.36,1)}
-.review-card{flex:0 0 100%;padding:0 20px}
-.review-card-inner{background:var(--white);border-radius:20px;padding:32px;border:1px solid var(--line)}
-.review-stars{color:var(--teal);font-size:.85rem;letter-spacing:2px;margin-bottom:12px}
-.review-text{font-size:.95rem;line-height:1.7;color:var(--dark);margin-bottom:16px;font-style:italic}
-.review-name{font-weight:700;font-size:.82rem;color:var(--dark)}
-.carousel-nav{display:flex;justify-content:center;gap:12px;margin-top:24px}
-.carousel-btn{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--dark)}
-.carousel-btn:hover{background:var(--teal);border-color:var(--teal);color:var(--white)}
-.carousel-btn svg{width:14px;height:14px;fill:currentColor}
-.carousel-dots{display:flex;gap:6px;align-items:center;margin:0 8px}
-.carousel-dot{width:7px;height:7px;border-radius:50%;background:var(--line);transition:all .3s}
-.carousel-dot.active{background:var(--teal);transform:scale(1.2)}
+/* REVIEWS STRIP */
+.reviews-strip{padding:24px 0 32px;overflow:hidden;position:relative}
+.reviews-strip::before,.reviews-strip::after{content:'';position:absolute;top:0;bottom:0;width:60px;z-index:2;pointer-events:none}
+.reviews-strip::before{left:0;background:linear-gradient(to right,var(--cream),transparent)}
+.reviews-strip::after{right:0;background:linear-gradient(to left,var(--cream),transparent)}
+.reviews-scroll{display:flex;gap:16px;animation:scrollReviews 40s linear infinite;width:max-content}
+.reviews-scroll:hover{animation-play-state:paused}
+@keyframes scrollReviews{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.review-card{flex-shrink:0;width:340px;background:var(--white);border-radius:16px;padding:24px;border:1px solid var(--line)}
+.review-stars{color:var(--orange);font-size:.8rem;letter-spacing:2px;margin-bottom:10px}
+.review-text{font-size:.85rem;line-height:1.65;color:var(--dark);margin-bottom:12px;font-style:italic}
+.review-name{font-weight:700;font-size:.78rem;color:var(--dark);letter-spacing:.01em}
 
 /* ABOUT */
 .about{padding:80px clamp(24px,5vw,80px);display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
@@ -194,7 +189,6 @@ footer{padding:32px clamp(24px,5vw,80px);display:flex;align-items:center;justify
   .quality-photo{min-height:260px}
   .quality-content{padding:32px}
   .about{grid-template-columns:1fr;gap:32px}
-  .stats{flex-wrap:wrap;justify-content:center}
   .section-header{flex-direction:column;gap:16px;align-items:flex-start}
 }
 @media(max-width:640px){
@@ -212,8 +206,6 @@ footer{padding:32px clamp(24px,5vw,80px);display:flex;align-items:center;justify
   .btn-pill,.btn-ghost{justify-content:center;text-align:center}
   .btn-ghost{background:var(--teal);color:var(--white);border-color:var(--teal)}
   .btn-ghost:hover{background:var(--teal-hover);color:var(--white);border-color:var(--teal-hover)}
-  .stats{gap:24px;padding:32px 20px}
-  .stat{flex:1;min-width:90px}
   .featured-band{margin:0 20px;border-radius:20px}
   .featured-copy{padding:32px 24px}
   .categories{padding:48px 20px}
@@ -222,7 +214,7 @@ footer{padding:32px clamp(24px,5vw,80px);display:flex;align-items:center;justify
   .quality-split{border-radius:24px}
   .quality-photo{min-height:220px}
   .quality-content{padding:28px 20px}
-  .reviews-section{padding:48px 20px}
+  .review-card{width:280px;padding:20px}
   .about{padding:48px 20px}
   .cta-section{margin:0 20px 48px;padding:48px 24px;border-radius:24px}
   footer{padding:24px 20px;flex-direction:column;gap:16px;text-align:center}
@@ -263,10 +255,7 @@ footer{padding:32px clamp(24px,5vw,80px);display:flex;align-items:center;justify
     <p class="hero-sub">High-quality, durable outdoor furniture designed to withstand Florida's harsh saltwater environment. Handcrafted from eco-friendly recycled poly lumber in 27 colors.</p>
     <div class="cta-row">
       <a href="#collections" class="btn-pill btn-pill-orange">Shop Collections</a>
-      <a href="tel:9543363108" class="btn-ghost">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        Call Jamie
-      </a>
+      <a href="#contact" class="btn-ghost">Contact Us</a>
     </div>
   </div>
   <div class="hero-photos">
@@ -295,6 +284,26 @@ footer{padding:32px clamp(24px,5vw,80px);display:flex;align-items:center;justify
   </div>
 </section>
 
+<!-- REVIEWS STRIP -->
+<section class="reviews-strip" id="reviews">
+  <div class="reviews-scroll">
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Missy and her husband's personal input through the entire process including delivery and set up were invaluable. This is a true family operation where every customer is treated like family."</p><div class="review-name">Timothy</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"We met Missy and Jamie at the Marathon Seafood Festival. The furniture is beautiful, well-made, and the colors are vibrant. Couldn't be happier with our purchase."</p><div class="review-name">Dennis</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"We absolutely love our new patio furniture. The quality is outstanding and it looks amazing by the pool. Delivery was seamless and Jamie made sure everything was perfect."</p><div class="review-name">Martha</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Steve and I searched for outdoor furniture for months. Nothing compared to the quality and craftsmanship of Keys Patio. Worth every penny."</p><div class="review-name">Sandy</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Beautiful surfboard table — everyone who visits asks about it. Jamie helped us pick the perfect colors to match our deck. True artisans."</p><div class="review-name">Debby</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Best outdoor furniture we've ever owned. Survived two hurricane seasons without a scratch. The recycled poly lumber is the real deal."</p><div class="review-name">Bruce</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"From the first conversation to delivery day, Jamie and Missy made us feel like family. The fire table is the centerpiece of our backyard."</p><div class="review-name">Ron</div></div>
+    <!-- duplicate set for seamless loop -->
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Missy and her husband's personal input through the entire process including delivery and set up were invaluable. This is a true family operation where every customer is treated like family."</p><div class="review-name">Timothy</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"We met Missy and Jamie at the Marathon Seafood Festival. The furniture is beautiful, well-made, and the colors are vibrant. Couldn't be happier with our purchase."</p><div class="review-name">Dennis</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"We absolutely love our new patio furniture. The quality is outstanding and it looks amazing by the pool. Delivery was seamless and Jamie made sure everything was perfect."</p><div class="review-name">Martha</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Steve and I searched for outdoor furniture for months. Nothing compared to the quality and craftsmanship of Keys Patio. Worth every penny."</p><div class="review-name">Sandy</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Beautiful surfboard table — everyone who visits asks about it. Jamie helped us pick the perfect colors to match our deck. True artisans."</p><div class="review-name">Debby</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Best outdoor furniture we've ever owned. Survived two hurricane seasons without a scratch. The recycled poly lumber is the real deal."</p><div class="review-name">Bruce</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"From the first conversation to delivery day, Jamie and Missy made us feel like family. The fire table is the centerpiece of our backyard."</p><div class="review-name">Ron</div></div>
+  </div>
+</section>
 
 <!-- FEATURED BAND -->
 <section class="featured-band">
@@ -320,7 +329,7 @@ footer{padding:32px clamp(24px,5vw,80px);display:flex;align-items:center;justify
   <div class="cat-grid">
     <div class="cat-card">
       <div class="cat-circle">
-        <img src="https://img1.wsimg.com/isteam/ip/f95bdbdc-f767-463a-95a0-39045cf18466/Close%20Up%20Ice%20Pit%20on%20Gray%20Navy.JPG/:/rs=w:500,m" alt="Close-up of fire and ice pit table" loading="lazy">
+        <img src="https://img1.wsimg.com/isteam/ip/f95bdbdc-f767-463a-95a0-39045cf18466/Light%20Gray%20Fire%20table%20with%20circle%20of%20GB%20chairs.JPG/:/rs=w:500,m" alt="Fire table with chairs around it" loading="lazy">
       </div>
       <div class="cat-name">Fire &amp; Ice Tables</div>
     </div>
@@ -376,48 +385,6 @@ footer{padding:32px clamp(24px,5vw,80px);display:flex;align-items:center;justify
   </div>
 </section>
 
-<!-- REVIEWS -->
-<section class="reviews-section" id="reviews">
-  <h2>What Customers Say</h2>
-  <div class="carousel-wrap">
-    <div class="carousel-track" id="carouselTrack">
-      <div class="review-card">
-        <div class="review-card-inner">
-          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="review-text">"Missy and her husband's personal input through the entire process including delivery and set up were invaluable. This is a true family operation where every customer is treated like family."</p>
-          <div class="review-name">Timothy</div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-card-inner">
-          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="review-text">"We met Missy and Jamie at the Marathon Seafood Festival. The furniture is beautiful, well-made, and the colors are vibrant. Couldn't be happier with our purchase."</p>
-          <div class="review-name">Dennis</div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-card-inner">
-          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="review-text">"We absolutely love our new patio furniture. The quality is outstanding and it looks amazing by the pool. Delivery was seamless and Jamie made sure everything was perfect."</p>
-          <div class="review-name">Martha</div>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-nav">
-      <button class="carousel-btn" id="prevBtn" aria-label="Previous review">
-        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <div class="carousel-dots" id="carouselDots">
-        <span class="carousel-dot active"></span>
-        <span class="carousel-dot"></span>
-        <span class="carousel-dot"></span>
-      </div>
-      <button class="carousel-btn" id="nextBtn" aria-label="Next review">
-        <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
-    </div>
-  </div>
-</section>
 
 <!-- ABOUT -->
 <section class="about" id="about">
@@ -475,22 +442,6 @@ footer{padding:32px clamp(24px,5vw,80px);display:flex;align-items:center;justify
   },2600);
 })();
 
-// CAROUSEL
-(function(){
-  var track=document.getElementById('carouselTrack');
-  var dots=document.querySelectorAll('.carousel-dot');
-  var prev=document.getElementById('prevBtn');
-  var next=document.getElementById('nextBtn');
-  var idx=0,total=3;
-  function go(i){
-    idx=((i%total)+total)%total;
-    track.style.transform='translateX(-'+idx*100+'%)';
-    dots.forEach(function(d,n){d.classList.toggle('active',n===idx)});
-  }
-  prev.addEventListener('click',function(){go(idx-1)});
-  next.addEventListener('click',function(){go(idx+1)});
-  setInterval(function(){go(idx+1)},6000);
-})();
 
 // RATING + STARS ANIMATION
 function startCounter(){
