@@ -3,652 +3,932 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Advanced Med Spa — Deerfield Beach</title>
+<title>Advanced Med Spa — Deerfield Beach | Integrative Aesthetics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Karla:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
 /* ── Reset & Custom Properties ─────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --charcoal: #414547;
-  --charcoal-deep: #242729;
-  --charcoal-light: #6a6e70;
+  --beige: #f0eae5;
+  --beige-alt: #f1e9e6;
+  --brown: #453730;
+  --sage: #718e85;
+  --charcoal: #3f3f3f;
   --white: #ffffff;
-  --off-white: #f8f8f7;
-  --warm-light: #f0ede9;
-  --accent: #c4a882;
   --nav-h: 68px;
 }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Inter', sans-serif;
-  background: var(--off-white);
-  color: var(--charcoal-deep);
+  font-family: 'Karla', sans-serif;
+  font-weight: 300;
+  background: var(--beige);
+  color: var(--brown);
   -webkit-font-smoothing: antialiased;
+  line-height: 1.7;
 }
 img { display: block; max-width: 100%; }
-a { text-decoration: none; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
 
-/* ── Nav ────────────────────────────────────────────────── */
+/* ── Typography ────────────────────────────────────────── */
+.font-display {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+}
+.section-number {
+  font-family: 'Karla', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.7rem, 0.8vw, 0.85rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  opacity: 0.7;
+}
+.decorative-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(4.5rem, 8vw, 7.5rem);
+  line-height: 0.95;
+  opacity: 0.08;
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Pill Buttons ──────────────────────────────────────── */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 36px;
+  border-radius: 999px;
+  font-family: 'Karla', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+.btn-pill-filled {
+  background: var(--brown);
+  color: var(--beige);
+}
+.btn-pill-filled:hover {
+  background: var(--sage);
+  color: var(--white);
+}
+.btn-pill-outline {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.4);
+}
+.btn-pill-outline:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.7);
+}
+.btn-pill-outline-dark {
+  background: transparent;
+  color: var(--brown);
+  border: 1px solid rgba(69,55,48,0.3);
+}
+.btn-pill-outline-dark:hover {
+  background: var(--brown);
+  color: var(--beige);
+}
+.btn-pill-sage {
+  background: var(--sage);
+  color: var(--white);
+}
+.btn-pill-sage:hover {
+  background: #5f7d74;
+}
+.btn-pill-glass {
+  background: rgba(255,255,255,0.12);
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.btn-pill-glass:hover {
+  background: rgba(255,255,255,0.22);
+}
+
+/* ── Nav ───────────────────────────────────────────────── */
+.nav-toggle { display: none; }
+.hamburger { display: none; }
+
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   height: var(--nav-h);
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 48px;
-  background: var(--charcoal-deep);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 0 clamp(24px, 4vw, 56px);
+  background: rgba(63,63,63,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 .nav-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase;
+  font-family: 'Karla', sans-serif;
+  font-size: clamp(0.65rem, 1vw, 0.8rem);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
   color: var(--white);
 }
-.nav-logo strong { font-weight: 400; }
-.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links {
+  display: flex; gap: clamp(20px, 2.5vw, 36px); align-items: center;
+}
 .nav-links a {
-  font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase;
-  color: rgba(255,255,255,0.55); font-weight: 400;
-  transition: color 0.2s;
+  font-family: 'Karla', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  transition: color 0.3s;
 }
-.nav-links a:hover { color: rgba(255,255,255,0.85); }
-.nav-cta {
-  background: var(--white); color: var(--charcoal-deep);
-  font-size: 11px; font-weight: 500; letter-spacing: 0.11em; text-transform: uppercase;
-  padding: 10px 22px; border-radius: 2px;
-  transition: opacity 0.2s;
+.nav-links a:hover { color: var(--white); }
+.nav-links .btn-pill {
+  padding: 10px 28px;
+  font-size: 0.72rem;
 }
-.nav-cta:hover { opacity: 0.88; }
 
-/* ── Hero ───────────────────────────────────────────────── */
+/* ── Hero ──────────────────────────────────────────────── */
 .hero {
   position: relative;
   height: calc(100vh - var(--nav-h));
   margin-top: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   overflow: hidden;
-  display: flex; align-items: center;
 }
 .hero-bg {
   position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center;
-  filter: brightness(0.45) saturate(0.7);
+  background: url('../../assets/samples/Spa/b1073264b08e0974f6850c3327480103.jpg') center/cover no-repeat;
 }
-.hero-overlay {
+.hero-bg::after {
+  content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(to right, rgba(36,39,41,0.95) 40%, rgba(65,69,71,0.45) 100%);
+  background: linear-gradient(180deg, rgba(45,38,33,0.65) 0%, rgba(45,38,33,0.75) 100%);
 }
 .hero-content {
-  position: relative; z-index: 1;
-  padding: 0 72px; max-width: 700px;
+  position: relative; z-index: 2;
+  max-width: 760px;
+  padding: 0 24px;
 }
-.eyebrow {
-  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
-  color: rgba(255,255,255,0.5); margin-bottom: 18px; font-weight: 400;
+.hero-eyebrow {
+  font-family: 'Karla', sans-serif;
+  font-size: clamp(0.6rem, 0.8vw, 0.78rem);
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 2rem;
 }
-.hero-content h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(38px, 5vw, 64px);
-  font-weight: 300; line-height: 1.1;
-  color: var(--white); margin-bottom: 20px;
-}
-.hero-content h1 em { font-style: italic; color: rgba(255,255,255,0.75); font-weight: 400; }
-.hero-sub {
-  font-size: 15px; line-height: 1.75; color: rgba(255,255,255,0.65);
-  max-width: 480px; margin-bottom: 38px; font-weight: 300;
-}
-.btn-primary {
+.hero-eyebrow span {
   display: inline-block;
-  background: var(--white); color: var(--charcoal-deep);
-  font-size: 11px; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase;
-  padding: 14px 34px; border-radius: 2px;
-  transition: opacity 0.2s;
+  margin: 0 0.6em;
+  opacity: 0.4;
 }
-.btn-primary:hover { opacity: 0.88; }
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--sage);
+}
+.hero-sub {
+  font-size: clamp(0.88rem, 1vw, 1rem);
+  color: rgba(255,255,255,0.65);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-/* ── Trust Bar ──────────────────────────────────────────── */
+/* ── Trust Bar / Marquee ───────────────────────────────── */
 .trust-bar {
-  background: var(--charcoal);
-  border-top: 1px solid rgba(255,255,255,0.06);
-  padding: 18px 72px;
-  display: flex; align-items: center; justify-content: center;
-  flex-wrap: wrap; gap: 0;
+  background: var(--brown);
+  padding: 18px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.trust-track {
+  display: inline-flex;
+  animation: marquee 30s linear infinite;
+}
+.trust-track .trust-set {
+  display: inline-flex;
+  gap: 0;
 }
 .trust-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 6px 32px;
-  border-right: 1px solid rgba(255,255,255,0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 clamp(24px, 3vw, 48px);
+  font-family: 'Karla', sans-serif;
+  font-size: clamp(0.68rem, 0.8vw, 0.78rem);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(240,234,229,0.7);
 }
-.trust-item:last-child { border-right: none; }
-.trust-diamond { color: var(--accent); font-size: 9px; line-height: 1; }
-.trust-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
-
-/* ── Section Shared ─────────────────────────────────────── */
-.section-eyebrow {
-  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-  margin-bottom: 14px; font-weight: 400;
+.trust-item::after {
+  content: '\2022';
+  margin-left: clamp(24px, 3vw, 48px);
+  opacity: 0.3;
 }
-.section-h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(32px, 4vw, 52px);
-  font-weight: 300; line-height: 1.15;
-  margin-bottom: 22px;
-}
-.section-body {
-  font-size: 15px; line-height: 1.8; font-weight: 300;
-  color: var(--charcoal-light);
-  max-width: 560px;
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-/* ── Method Section ─────────────────────────────────────── */
-.method {
-  background: var(--off-white);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 600px;
-}
-.method-content {
-  padding: clamp(60px, 8vw, 100px) clamp(40px, 6vw, 80px);
-  display: flex; flex-direction: column; justify-content: center;
-}
-.method-content .section-eyebrow { color: var(--accent); }
-.method-content .section-h2 { color: var(--charcoal-deep); }
-.method-content .section-body { margin-bottom: 48px; }
-.method-pillars {
-  display: flex; flex-direction: column; gap: 30px;
-}
-.pillar {
-  display: flex; gap: 20px; align-items: flex-start;
-}
-.pillar-icon {
-  flex-shrink: 0;
-  width: 40px; height: 40px;
-  border: 1px solid rgba(196,168,130,0.4);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--accent); font-size: 14px;
-  margin-top: 2px;
-}
-.pillar-text h4 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 19px; font-weight: 400; color: var(--charcoal-deep);
-  margin-bottom: 5px; letter-spacing: 0.01em;
-}
-.pillar-text p {
-  font-size: 13.5px; line-height: 1.7; color: var(--charcoal-light); font-weight: 300;
-}
-.method-image {
-  position: relative; overflow: hidden;
-}
-.method-image img {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center;
-}
-
-/* ── Services Section ───────────────────────────────────── */
-.services {
-  background: var(--charcoal-deep);
-  padding: clamp(72px, 10vw, 120px) clamp(40px, 6vw, 96px);
-}
-.services-header {
-  text-align: center;
-  margin-bottom: 64px;
-}
-.services-header .section-eyebrow {
-  color: var(--accent);
-}
-.services-header .section-h2 { color: var(--white); margin-bottom: 0; }
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 3px;
+/* ── About Section ─────────────────────────────────────── */
+.about {
+  background: var(--charcoal);
+  color: rgba(240,234,229,0.9);
+  padding: clamp(80px, 10vw, 140px) clamp(24px, 5vw, 80px);
+  position: relative;
   overflow: hidden;
 }
-.service-card {
-  background: rgba(255,255,255,0.02);
-  padding: 40px 36px;
-  transition: background 0.25s;
+.about .decorative-label {
+  top: clamp(40px, 6vw, 80px);
+  left: clamp(24px, 5vw, 80px);
+  color: var(--white);
+  opacity: 0.05;
 }
-.service-card:hover { background: rgba(255,255,255,0.05); }
-.service-num {
-  font-size: 11px; letter-spacing: 0.16em; color: var(--accent);
-  text-transform: uppercase; margin-bottom: 16px; font-weight: 400;
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 5vw, 100px);
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+.about-left {
+  position: relative;
+  padding-top: clamp(60px, 10vw, 160px);
+}
+.about-left .deco-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(4rem, 7vw, 7rem);
+  line-height: 0.95;
+  color: rgba(255,255,255,0.06);
+}
+.about-right {
+  padding-top: clamp(20px, 3vw, 40px);
+}
+.about-right .section-number {
+  color: var(--sage);
+}
+.about-right h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.2;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+.about-right p {
+  font-size: clamp(0.88rem, 0.95vw, 0.95rem);
+  line-height: 1.9;
+  color: rgba(240,234,229,0.65);
+  margin-bottom: 1.5rem;
+}
+.stat-row {
+  display: flex;
+  gap: clamp(24px, 3vw, 48px);
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.stat-block .stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  color: var(--sage);
+  line-height: 1;
+}
+.stat-block .stat-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(240,234,229,0.45);
+  margin-top: 6px;
+}
+
+/* ── Services Section ──────────────────────────────────── */
+.services {
+  background: var(--beige-alt);
+  padding: clamp(80px, 10vw, 140px) clamp(24px, 5vw, 80px);
+  position: relative;
+  overflow: hidden;
+}
+.services .decorative-label {
+  top: clamp(40px, 5vw, 60px);
+  right: clamp(24px, 5vw, 80px);
+  text-align: right;
+  color: var(--brown);
+  opacity: 0.06;
+}
+.services-header {
+  max-width: 1200px;
+  margin: 0 auto clamp(40px, 5vw, 70px);
+}
+.services-header .section-number {
+  color: var(--sage);
+}
+.services-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.2;
+}
+.services-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 4vw, 80px);
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.service-card {
+  background: rgba(255,255,255,0.5);
+  border: 1px solid rgba(69,55,48,0.08);
+  border-radius: 16px;
+  padding: clamp(24px, 2.5vw, 32px);
+  transition: all 0.3s ease;
+}
+.service-card:hover {
+  background: rgba(255,255,255,0.85);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(69,55,48,0.06);
+}
+.service-card .card-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1.4rem;
+  color: var(--sage);
+  margin-bottom: 12px;
 }
 .service-card h3 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(20px, 2vw, 24px); font-weight: 400;
-  color: var(--white); margin-bottom: 12px; line-height: 1.2;
+  font-weight: 400;
+  font-size: clamp(1.05rem, 1.2vw, 1.2rem);
+  margin-bottom: 8px;
+  line-height: 1.3;
 }
 .service-card p {
-  font-size: 13.5px; line-height: 1.75; color: rgba(255,255,255,0.45); font-weight: 300;
+  font-size: 0.82rem;
+  color: rgba(69,55,48,0.6);
+  line-height: 1.7;
+}
+.services-image {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+.services-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 500px;
 }
 
-/* ── About Section ──────────────────────────────────────── */
-.about {
-  background: var(--warm-light);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 680px;
-}
-.about-image {
-  position: relative; overflow: hidden;
-}
-.about-image img {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center top;
-}
-.about-content {
-  padding: clamp(60px, 8vw, 100px) clamp(40px, 6vw, 80px);
-  display: flex; flex-direction: column; justify-content: center;
-}
-.about-content .section-eyebrow { color: var(--accent); }
-.about-content .section-h2 { color: var(--charcoal-deep); margin-bottom: 26px; }
-.about-content .section-body { max-width: 100%; margin-bottom: 20px; }
-.about-content .section-body + .section-body { margin-bottom: 40px; }
-.badges {
-  display: flex; flex-wrap: wrap; gap: 10px;
-}
-.badge {
-  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--charcoal); font-weight: 400;
-  padding: 8px 16px;
-  border: 1px solid rgba(65,69,71,0.2);
-  border-radius: 2px;
-}
-
-/* ── Reviews Section ────────────────────────────────────── */
+/* ── Reviews Section ───────────────────────────────────── */
 .reviews {
-  background: var(--charcoal-deep);
-  padding: clamp(72px, 10vw, 120px) clamp(40px, 6vw, 96px);
+  background: var(--charcoal);
+  color: var(--white);
+  padding: clamp(80px, 10vw, 140px) clamp(24px, 5vw, 80px);
+  position: relative;
+  overflow: hidden;
+}
+.reviews .decorative-label {
+  bottom: clamp(30px, 4vw, 60px);
+  right: clamp(24px, 5vw, 80px);
+  text-align: right;
+  color: var(--white);
+  opacity: 0.04;
+}
+.reviews-inner {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .reviews-header {
-  text-align: center;
-  margin-bottom: 56px;
+  margin-bottom: clamp(40px, 5vw, 70px);
 }
-.reviews-header .section-eyebrow { color: var(--accent); }
-.reviews-header .section-h2 { color: var(--white); margin-bottom: 0; }
-.services-header .section-h2 { color: var(--white); }
+.reviews-header .section-number {
+  color: var(--sage);
+}
+.reviews-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.2;
+}
 .reviews-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  margin-bottom: 52px;
+  margin-bottom: clamp(40px, 5vw, 60px);
 }
 .review-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 3px;
-  padding: 40px 36px;
-  position: relative;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px 999px 999px 20px;
+  padding: clamp(28px, 3vw, 40px);
+  background: rgba(255,255,255,0.04);
+  transition: all 0.3s ease;
 }
-.review-quote-mark {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 80px; line-height: 0.6;
-  color: var(--accent); opacity: 0.5;
-  margin-bottom: 20px;
-  display: block;
+.review-card:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.2);
+}
+.review-stars {
+  color: var(--sage);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
 }
 .review-card blockquote {
-  font-size: 15px; line-height: 1.75; font-weight: 300;
-  color: rgba(255,255,255,0.7);
-  font-style: italic;
-  margin-bottom: 24px;
   font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(1rem, 1.1vw, 1.1rem);
+  font-style: italic;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 20px;
 }
-.review-attribution {
-  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-  color: rgba(255,255,255,0.35); font-weight: 400;
+.review-author {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
 }
-.reviews-rating {
+.review-summary {
   text-align: center;
-  font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(255,255,255,0.35); font-weight: 300;
+  padding-top: clamp(30px, 4vw, 50px);
+  border-top: 1px solid rgba(255,255,255,0.08);
 }
-.reviews-rating span { color: var(--accent); }
+.review-summary .big-rating {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  color: var(--sage);
+  line-height: 1;
+}
+.review-summary p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
 
-/* ── CTA Section ────────────────────────────────────────── */
-.cta-section {
+/* ── CTA Section ───────────────────────────────────────── */
+.cta {
   position: relative;
-  min-height: 520px;
-  display: flex; align-items: center; justify-content: center;
+  padding: clamp(100px, 12vw, 180px) clamp(24px, 5vw, 80px);
   text-align: center;
   overflow: hidden;
 }
 .cta-bg {
   position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center;
+  background: url('../../assets/samples/medspa/cta.jpg') center/cover no-repeat;
 }
-.cta-overlay {
+.cta-bg::after {
+  content: '';
   position: absolute; inset: 0;
-  background: rgba(36,39,41,0.82);
+  background: linear-gradient(180deg, rgba(45,38,33,0.7) 0%, rgba(45,38,33,0.8) 100%);
 }
 .cta-content {
-  position: relative; z-index: 1;
-  padding: clamp(60px, 8vw, 100px) clamp(40px, 6vw, 80px);
-  max-width: 680px;
+  position: relative; z-index: 2;
+  max-width: 640px;
+  margin: 0 auto;
 }
-.cta-content .eyebrow { color: rgba(255,255,255,0.45); margin-bottom: 16px; }
-.cta-content h2 {
+.cta-content .section-number {
+  color: var(--sage);
+}
+.cta h2 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(36px, 5vw, 58px);
-  font-weight: 300; line-height: 1.1;
-  color: var(--white); margin-bottom: 18px;
+  font-weight: 300;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 1.2rem;
 }
-.cta-content p {
-  font-size: 15px; line-height: 1.75; font-weight: 300;
+.cta p {
+  font-size: clamp(0.88rem, 0.95vw, 0.95rem);
   color: rgba(255,255,255,0.6);
-  margin-bottom: 40px;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
 }
 .cta-buttons {
-  display: flex; align-items: center; justify-content: center;
-  gap: 16px; flex-wrap: wrap;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
-.btn-outline-white {
-  display: inline-block;
-  border: 1px solid rgba(255,255,255,0.5);
-  color: rgba(255,255,255,0.8);
-  font-size: 11px; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase;
-  padding: 14px 30px; border-radius: 2px;
-  transition: border-color 0.2s, color 0.2s;
-}
-.btn-outline-white:hover { border-color: var(--white); color: var(--white); }
 
-/* ── Footer ─────────────────────────────────────────────── */
+/* ── Footer ────────────────────────────────────────────── */
 footer {
-  background: var(--charcoal-deep);
-  border-top: 1px solid rgba(255,255,255,0.07);
-  padding: 56px 72px 32px;
+  background: #2c2424;
+  color: rgba(240,234,229,0.6);
+  padding: clamp(50px, 6vw, 80px) clamp(24px, 5vw, 80px) clamp(30px, 4vw, 50px);
 }
-.footer-top {
+.footer-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 40px;
-  margin-bottom: 48px;
-  align-items: start;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: clamp(30px, 4vw, 60px);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: clamp(30px, 4vw, 50px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.footer-logo-block .footer-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--white); display: block; margin-bottom: 10px;
+.footer-brand .footer-logo {
+  font-family: 'Karla', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(240,234,229,0.8);
+  margin-bottom: 1rem;
 }
-.footer-logo-block .footer-logo strong { font-weight: 400; }
-.footer-tagline {
-  font-size: 12px; color: rgba(255,255,255,0.35); font-weight: 300; line-height: 1.6;
+.footer-brand p {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  max-width: 300px;
 }
-.footer-nav {
-  display: flex; flex-direction: column; gap: 12px; align-items: center;
+.footer-nav h4,
+.footer-contact h4 {
+  font-family: 'Karla', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(240,234,229,0.4);
+  margin-bottom: 1.2rem;
 }
+.footer-nav ul { display: flex; flex-direction: column; gap: 10px; }
 .footer-nav a {
-  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-  color: rgba(255,255,255,0.45); font-weight: 400;
-  transition: color 0.2s;
+  font-size: 0.85rem;
+  transition: color 0.3s;
 }
-.footer-nav a:hover { color: rgba(255,255,255,0.75); }
-.footer-contact { text-align: right; }
-.footer-contact a {
-  display: block; font-size: 14px; color: rgba(255,255,255,0.7);
-  font-weight: 300; margin-bottom: 8px;
-  transition: color 0.2s;
+.footer-nav a:hover { color: var(--sage); }
+.footer-contact p {
+  font-size: 0.85rem;
+  line-height: 1.8;
 }
-.footer-contact a:hover { color: var(--white); }
-.footer-location {
-  font-size: 12px; color: rgba(255,255,255,0.35); font-weight: 300;
-}
+.footer-contact a:hover { color: var(--sage); }
 .footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.07);
-  padding-top: 24px;
-  font-size: 11px; letter-spacing: 0.06em;
-  color: rgba(255,255,255,0.25); font-weight: 300;
-  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: clamp(20px, 2.5vw, 30px);
+  font-size: 0.72rem;
+  color: rgba(240,234,229,0.3);
+  letter-spacing: 0.05em;
 }
 
-/* ── Responsive ─────────────────────────────────────────── */
-@media (max-width: 1024px) {
-  .services-grid { grid-template-columns: repeat(2, 1fr); }
-  .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+/* ── Mobile ────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .about-left { padding-top: 0; }
+  .about-left .deco-text {
+    font-size: clamp(3rem, 12vw, 5rem);
+  }
+  .services-layout {
+    grid-template-columns: 1fr;
+  }
+  .services-image {
+    order: -1;
+  }
+  .services-image img {
+    min-height: 280px;
+    max-height: 360px;
+  }
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .stat-row {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
 }
 
-@media (max-width: 768px) {
-  nav { padding: 0 20px; }
-  .nav-links { display: none; }
-  .hero-content { padding: 0 24px; }
-  .trust-bar { padding: 14px 20px; }
-  .trust-item { padding: 6px 16px; border-right: none; }
-
-  .method { grid-template-columns: 1fr; }
-  .method-image { height: 340px; order: -1; }
-  .method-content { padding: 52px 28px; }
-  .method-content .section-body { max-width: 100%; }
-
-  .services { padding: 60px 24px; }
-  .services-grid { grid-template-columns: 1fr; gap: 1px; }
-  .service-card { padding: 32px 24px; }
-
-  .about { grid-template-columns: 1fr; }
-  .about-image { height: 360px; }
-  .about-content { padding: 52px 28px; }
-
-  .reviews { padding: 60px 24px; }
-  .reviews-grid { grid-template-columns: 1fr; gap: 16px; }
-  .review-card { padding: 32px 24px; }
-
-  .cta-content { padding: 60px 24px; }
-  .cta-buttons { flex-direction: column; align-items: stretch; text-align: center; }
-  .btn-outline-white, .btn-primary { text-align: center; }
-
-  footer { padding: 48px 24px 24px; }
-  .footer-top { grid-template-columns: 1fr; gap: 32px; }
-  .footer-contact { text-align: left; }
-  .footer-nav { align-items: flex-start; }
+@media (max-width: 640px) {
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 110;
+    padding: 8px;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--white);
+    transition: all 0.3s ease;
+  }
+  .nav-links {
+    position: fixed;
+    top: 0; right: 0;
+    width: 280px;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+    background: rgba(44,36,36,0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+    padding: 60px 40px;
+  }
+  .nav-toggle:checked ~ .nav-links {
+    transform: translateX(0);
+  }
+  .nav-toggle:checked ~ .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 5px);
+  }
+  .nav-toggle:checked ~ .hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle:checked ~ .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -5px);
+  }
+  .nav-links a {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+  }
+  .review-card {
+    border-radius: 24px;
+  }
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </style>
 </head>
 <body>
 
-<!-- ── Nav ─────────────────────────────────────────────── -->
+<!-- ─── Nav ────────────────────────────────────────────── -->
 <nav>
-  <a href="#" class="nav-logo">Advanced <strong>Med Spa</strong></a>
+  <a href="#" class="nav-logo">Advanced Med Spa</a>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+  <label for="nav-toggle" class="hamburger">
+    <span></span><span></span><span></span>
+  </label>
   <div class="nav-links">
     <a href="#services">Services</a>
     <a href="#about">About</a>
-    <a href="#reviews">Results</a>
-    <a href="tel:+15613320225" class="nav-cta">Book Now</a>
+    <a href="#reviews">Reviews</a>
+    <a href="https://advancedmedspaofficial.janeapp.com/" class="btn-pill btn-pill-glass">Book Now</a>
   </div>
 </nav>
 
-<!-- ── Hero ────────────────────────────────────────────── -->
+<!-- ─── Hero ───────────────────────────────────────────── -->
 <section class="hero">
-  <img class="hero-bg" src="../../assets/samples/medspa/detail-2.jpg" alt="Advanced Med Spa — precision aesthetic treatments in Deerfield Beach" loading="eager">
-  <div class="hero-overlay"></div>
+  <div class="hero-bg"></div>
   <div class="hero-content">
-    <p class="eyebrow">Deerfield Beach &bull; Integrative Aesthetics</p>
-    <h1>The Best Investment <em>You Can Make in Yourself</em></h1>
-    <p class="hero-sub">Advanced Med Spa brings Brazilian-style integrative aesthetics to Deerfield Beach — lymphatic detox, body contouring, and skin treatments with a 4.9-star reputation built one honest result at a time.</p>
-    <a href="tel:+15613320225" class="btn-primary">Book a Session</a>
+    <p class="hero-eyebrow">Deerfield Beach <span>&middot;</span> Integrative Aesthetics</p>
+    <h1>Taking Care of You<br>From the <em>Inside-Out</em></h1>
+    <p class="hero-sub">
+      South Florida's destination for Brazilian-style integrative aesthetics.
+      Personalized protocols, no downtime, and a 4.9-star reputation
+      built one transformation at a time.
+    </p>
+    <a href="https://advancedmedspaofficial.janeapp.com/" class="btn-pill btn-pill-sage">Book Your Session</a>
   </div>
 </section>
 
-<!-- ── Trust Bar ─────────────────────────────────────────── -->
+<!-- ─── Trust Bar ──────────────────────────────────────── -->
 <div class="trust-bar">
-  <div class="trust-item">
-    <span class="trust-diamond">&#9670;</span>
-    <span class="trust-label">4.9&#9733; Rated</span>
-  </div>
-  <div class="trust-item">
-    <span class="trust-diamond">&#9670;</span>
-    <span class="trust-label">Integrative Care</span>
-  </div>
-  <div class="trust-item">
-    <span class="trust-diamond">&#9670;</span>
-    <span class="trust-label">Brazilian Method</span>
-  </div>
-  <div class="trust-item">
-    <span class="trust-diamond">&#9670;</span>
-    <span class="trust-label">Deerfield Beach</span>
+  <div class="trust-track">
+    <div class="trust-set">
+      <span class="trust-item">4.9&#9733; Rated</span>
+      <span class="trust-item">Since 2019</span>
+      <span class="trust-item">Brazilian Method</span>
+      <span class="trust-item">No Downtime</span>
+      <span class="trust-item">Deerfield Beach</span>
+      <span class="trust-item">Licensed Medical Team</span>
+    </div>
+    <div class="trust-set">
+      <span class="trust-item">4.9&#9733; Rated</span>
+      <span class="trust-item">Since 2019</span>
+      <span class="trust-item">Brazilian Method</span>
+      <span class="trust-item">No Downtime</span>
+      <span class="trust-item">Deerfield Beach</span>
+      <span class="trust-item">Licensed Medical Team</span>
+    </div>
   </div>
 </div>
 
-<!-- ── Signature Method ───────────────────────────────────── -->
-<section class="method">
-  <div class="method-content">
-    <p class="section-eyebrow">The Brazilian Method</p>
-    <h2 class="section-h2">Holistic Beauty.<br>Lasting Results.</h2>
-    <p class="section-body">Advanced Med Spa's approach to aesthetics goes beyond the surface. Rooted in the Brazilian tradition of whole-body wellness, every treatment considers lymphatic health, circulation, and the body's natural rhythms — because real transformation starts from the inside.</p>
-    <div class="method-pillars">
-      <div class="pillar">
-        <div class="pillar-icon">&#9670;</div>
-        <div class="pillar-text">
-          <h4>Detox &amp; Drainage</h4>
-          <p>Brazilian lymphatic massage that clears, energizes, and reduces inflammation at the cellular level.</p>
-        </div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">&#9670;</div>
-        <div class="pillar-text">
-          <h4>Sculpt &amp; Contour</h4>
-          <p>Advanced body contouring techniques that reshape and firm without surgery or downtime.</p>
-        </div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">&#9670;</div>
-        <div class="pillar-text">
-          <h4>Renew &amp; Rejuvenate</h4>
-          <p>Skin treatments that restore clarity, texture, and luminosity through a layered, integrative approach.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="method-image">
-    <img src="../../assets/samples/Spa/b1073264b08e0974f6850c3327480103.jpg" alt="Serene spa environment at Advanced Med Spa" loading="lazy">
-  </div>
-</section>
-
-<!-- ── Services ───────────────────────────────────────────── -->
-<section class="services" id="services">
-  <div class="services-header">
-    <p class="section-eyebrow">Treatments</p>
-    <h2 class="section-h2">Every Treatment, Purposefully Designed</h2>
-  </div>
-  <div class="services-grid">
-    <div class="service-card">
-      <p class="service-num">01</p>
-      <h3>Lymphatic Drainage</h3>
-      <p>Deep detox massage that restores flow, reduces swelling, and energizes the body from the inside out.</p>
-    </div>
-    <div class="service-card">
-      <p class="service-num">02</p>
-      <h3>Body Sculpting</h3>
-      <p>Non-invasive fat reduction and muscle toning for visible, lasting results without surgery or recovery time.</p>
-    </div>
-    <div class="service-card">
-      <p class="service-num">03</p>
-      <h3>Skin Resurfacing</h3>
-      <p>Laser and chemical treatments that erase texture, tone, and early signs of aging for radiant clarity.</p>
-    </div>
-    <div class="service-card">
-      <p class="service-num">04</p>
-      <h3>Facial Contouring</h3>
-      <p>Lift, define, and volumize using advanced injectable and non-invasive techniques tailored to your structure.</p>
-    </div>
-    <div class="service-card">
-      <p class="service-num">05</p>
-      <h3>Brazilian Lymphatic Massage</h3>
-      <p>The signature full-body treatment rooted in fifty years of Brazilian wellness tradition — deeply restorative.</p>
-    </div>
-    <div class="service-card">
-      <p class="service-num">06</p>
-      <h3>Detox Recovery</h3>
-      <p>IV drips, infrared, and regenerative therapies that flush, restore, and rebuild at the cellular level.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ── About ──────────────────────────────────────────────── -->
+<!-- ─── About ──────────────────────────────────────────── -->
 <section class="about" id="about">
-  <div class="about-image">
-    <img src="../../assets/samples/medspa/people-2.jpg" alt="Advanced Med Spa treatment experience" loading="lazy">
-  </div>
-  <div class="about-content">
-    <p class="section-eyebrow">Our Philosophy</p>
-    <h2 class="section-h2">Where Science<br>Meets Tradition</h2>
-    <p class="section-body">Giovana founded Advanced Med Spa on the belief that true beauty is holistic — that the healthiest, most radiant version of yourself can only emerge when body, skin, and spirit are treated as one. Every technique at Advanced is drawn from Brazil's rich tradition of integrative wellness, updated with the latest in aesthetic medicine.</p>
-    <p class="section-body">With a 4.9-star reputation in Deerfield Beach and a loyal client community, Advanced Med Spa has become the destination for clients who want results they can see — and feel.</p>
-    <div class="badges">
-      <span class="badge">4.9&#9733; Rating</span>
-      <span class="badge">Brazilian Method Certified</span>
-      <span class="badge">Licensed Aestheticians</span>
-      <span class="badge">Deerfield Beach</span>
+  <div class="about-grid">
+    <div class="about-left">
+      <div class="deco-text">The<br>Philosophy</div>
+    </div>
+    <div class="about-right">
+      <p class="section-number">01. About Us</p>
+      <h2>Where Science Meets<br>Brazilian Tradition</h2>
+      <p>
+        Founded by Giovana in 2019, Advanced Med Spa brings the art of
+        Brazilian integrative aesthetics to Deerfield Beach. Our comprehensive
+        approach combines cutting-edge techniques with personalized attention,
+        treating the body as a whole rather than focusing on isolated concerns.
+      </p>
+      <p>
+        Every protocol is built around you. Our fully licensed, multidisciplinary
+        medical team designs treatments that deliver visible results from the
+        very first session -- with zero downtime and lasting transformation.
+      </p>
+      <div class="stat-row">
+        <div class="stat-block">
+          <div class="stat-num">4.9</div>
+          <div class="stat-label">Star Rating</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">Since 2019</div>
+          <div class="stat-label">Established</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Personalized</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ── Reviews ────────────────────────────────────────────── -->
+<!-- ─── Services ───────────────────────────────────────── -->
+<section class="services" id="services">
+  <div class="decorative-label">The<br>Body</div>
+  <div class="services-header">
+    <p class="section-number">02. Treatments</p>
+    <h2>Our Signature Services</h2>
+  </div>
+  <div class="services-layout">
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="card-num">01</div>
+        <h3>Brazilian Lymphatic Massage</h3>
+        <p>Our signature 3-in-1 treatment combining lymphatic drainage, body sculpting, and detoxification in one powerful session.</p>
+      </div>
+      <div class="service-card">
+        <div class="card-num">02</div>
+        <h3>Body Contouring</h3>
+        <p>Advanced CryoContour and AMS Tone technologies for non-invasive sculpting with zero downtime and immediate results.</p>
+      </div>
+      <div class="service-card">
+        <div class="card-num">03</div>
+        <h3>Weight Loss Programs</h3>
+        <p>Personalized protocols including Detox Plus, Body In Shape, and SlimLife -- designed around your body's unique needs.</p>
+      </div>
+      <div class="service-card">
+        <div class="card-num">04</div>
+        <h3>Facials &amp; Skin Detox</h3>
+        <p>Facial Detox and Facial Drainage treatments that purify, brighten, and rejuvenate from the deepest layers outward.</p>
+      </div>
+      <div class="service-card">
+        <div class="card-num">05</div>
+        <h3>Injectables</h3>
+        <p>Precision fat dissolving injections and fillers administered by our licensed medical team for subtle, natural enhancement.</p>
+      </div>
+      <div class="service-card">
+        <div class="card-num">06</div>
+        <h3>Deep Tissue &amp; Prenatal</h3>
+        <p>Therapeutic massage tailored for deep tension relief and specialized prenatal care with a Brazilian touch.</p>
+      </div>
+    </div>
+    <div class="services-image">
+      <img src="../../assets/samples/medspa/interior-1.jpg" alt="Advanced Med Spa treatment room">
+    </div>
+  </div>
+</section>
+
+<!-- ─── Reviews ────────────────────────────────────────── -->
 <section class="reviews" id="reviews">
-  <div class="reviews-header">
-    <p class="section-eyebrow">Client Results</p>
-    <h2 class="section-h2">What Our Clients Say</h2>
+  <div class="decorative-label">The<br>Voice</div>
+  <div class="reviews-inner">
+    <div class="reviews-header">
+      <p class="section-number">03. Reviews</p>
+      <h2>What Our Clients Say</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>
+          "I've been going to Advanced Med Spa for months and the results
+          speak for themselves. Giovana and her team truly care about each
+          client. The lymphatic massage is life-changing."
+        </blockquote>
+        <div class="review-author">Maria S.</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>
+          "Best med spa in South Florida, hands down. Their body contouring
+          treatments gave me visible results after the very first session.
+          Professional, clean, and so welcoming."
+        </blockquote>
+        <div class="review-author">Jessica R.</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>
+          "The integrative approach here is what sets them apart. They don't
+          just treat the surface -- they look at everything holistically.
+          I feel like a completely new person."
+        </blockquote>
+        <div class="review-author">Ana L.</div>
+      </div>
+    </div>
+    <div class="review-summary">
+      <div class="big-rating">4.9</div>
+      <p>Average rating across all platforms</p>
+    </div>
   </div>
-  <div class="reviews-grid">
-    <div class="review-card">
-      <span class="review-quote-mark">&ldquo;</span>
-      <blockquote>Giovana changed the way I think about my body. The lymphatic drainage treatments are transformative — I feel lighter, cleaner, and more energized than I have in years.</blockquote>
-      <p class="review-attribution">Carolina A. &mdash; Boca Raton</p>
-    </div>
-    <div class="review-card">
-      <span class="review-quote-mark">&ldquo;</span>
-      <blockquote>The results at Advanced Med Spa are the real thing. My skin has never looked better and the contouring actually worked.</blockquote>
-      <p class="review-attribution">Priya M. &mdash; Delray Beach</p>
-    </div>
-    <div class="review-card">
-      <span class="review-quote-mark">&ldquo;</span>
-      <blockquote>I've tried other spas in South Florida but nothing compares. The Brazilian approach is different — it works with your body, not against it.</blockquote>
-      <p class="review-attribution">Valentina R. &mdash; Pompano Beach</p>
-    </div>
-  </div>
-  <p class="reviews-rating">
-    <span>4.9 &#9733;&#9733;&#9733;&#9733;&#9733;</span> &nbsp;&mdash;&nbsp; Trusted by Deerfield Beach and beyond
-  </p>
 </section>
 
-<!-- ── CTA ────────────────────────────────────────────────── -->
-<section class="cta-section">
-  <img class="cta-bg" src="../../assets/samples/medspa/cta.jpg" alt="Book your session at Advanced Med Spa" loading="lazy">
-  <div class="cta-overlay"></div>
+<!-- ─── CTA ────────────────────────────────────────────── -->
+<section class="cta">
+  <div class="cta-bg"></div>
   <div class="cta-content">
-    <p class="eyebrow">Begin your transformation</p>
-    <h2>Your skin. Your body.<br>Your way.</h2>
-    <p>Book a consultation with Giovana and discover what the Brazilian method can do for you.</p>
+    <p class="section-number">Your Next Step</p>
+    <h2>Your Transformation<br>Starts Here</h2>
+    <p>
+      Experience Brazilian-style integrative aesthetics designed around you.
+      Book a session and feel the difference from day one.
+    </p>
     <div class="cta-buttons">
-      <a href="tel:+15613320225" class="btn-primary">Book a Session</a>
-      <a href="tel:+15613320225" class="btn-outline-white">Call (561) 332-0225</a>
+      <a href="https://advancedmedspaofficial.janeapp.com/" class="btn-pill btn-pill-sage">Book a Session</a>
+      <a href="tel:5613320225" class="btn-pill btn-pill-outline">Call (561) 332-0225</a>
     </div>
   </div>
 </section>
 
-<!-- ── Footer ─────────────────────────────────────────────── -->
+<!-- ─── Footer ─────────────────────────────────────────── -->
 <footer>
-  <div class="footer-top">
-    <div class="footer-logo-block">
-      <span class="footer-logo">Advanced <strong>Med Spa</strong></span>
-      <p class="footer-tagline">Brazilian-style integrative aesthetics.<br>Deerfield Beach, Florida.</p>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Advanced Med Spa</div>
+      <p>Your go-to Brazilian-style integrative aesthetics clinic for body detox. Taking care of you from the inside-out.</p>
     </div>
-    <nav class="footer-nav" aria-label="Footer navigation">
-      <a href="#services">Services</a>
-      <a href="#about">About</a>
-      <a href="#reviews">Results</a>
-      <a href="tel:+15613320225">Book Now</a>
-    </nav>
+    <div class="footer-nav">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="https://advancedmedspaofficial.janeapp.com/">Book Online</a></li>
+      </ul>
+    </div>
     <div class="footer-contact">
-      <a href="tel:+15613320225">(561) 332-0225</a>
-      <p class="footer-location">Deerfield Beach, FL</p>
+      <h4>Contact</h4>
+      <p>
+        Deerfield Beach, FL<br>
+        <a href="tel:5613320225">(561) 332-0225</a><br>
+        <a href="mailto:office@advancedmedspaofficial.com">office@advancedmedspaofficial.com</a>
+      </p>
     </div>
   </div>
-  <p class="footer-bottom">&copy; 2026 Advanced Med Spa &middot; Deerfield Beach, FL</p>
+  <div class="footer-bottom">
+    &copy; 2026 Advanced Med Spa. All rights reserved.
+  </div>
 </footer>
 
 </body>
