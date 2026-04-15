@@ -688,7 +688,7 @@ footer {
           <div class="stat-label">Customized</div>
         </div>
         <div class="stat-block">
-          <div class="stat-num">5.0</div>
+          <div class="stat-num" data-count="5.0" data-decimals="1">0.0</div>
           <div class="stat-label">Angi Rating</div>
         </div>
       </div>
@@ -867,6 +867,30 @@ const nav = document.querySelector('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('nav-scrolled', window.scrollY > 40);
 });
+
+// Count-up animation
+const countEls = document.querySelectorAll('[data-count]');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = +el.dataset.count;
+    const decimals = +(el.dataset.decimals || 0);
+    const suffix = el.dataset.suffix || '';
+    const duration = 2000;
+    const start = performance.now();
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const current = ease * target;
+      el.textContent = (decimals ? current.toFixed(decimals) : Math.round(current).toLocaleString()) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+    observer.unobserve(el);
+  });
+}, { threshold: 0.5 });
+countEls.forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
