@@ -181,12 +181,35 @@ nav.nav-scrolled .nav-links .nav-cta:hover {
 .hero-sub {
   font-family: 'Outfit', sans-serif;
   font-weight: 200;
-  font-size: clamp(0.88rem, 1vw, 1rem);
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
   color: rgba(255,255,255,0.6);
   line-height: 1.8;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   max-width: 540px;
   margin-left: auto; margin-right: auto;
+}
+.hero-stat {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin-bottom: 2.2rem;
+}
+.hero-stat-star {
+  color: var(--terracotta-light);
+  font-size: 0.75rem;
+}
+.hero-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 1.05rem;
+  color: var(--white);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
 }
 .hero-buttons {
   display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
@@ -617,6 +640,11 @@ footer {
       delivers diverse landscaping services for residential and commercial
       properties across South Florida.
     </p>
+    <div class="hero-stat">
+      <span class="hero-stat-star">&#9733;</span>
+      <span class="hero-stat-num">5.0</span>
+      <span class="hero-stat-label">Angi Rating</span>
+    </div>
     <div class="hero-buttons">
       <a href="tel:5613039970" class="btn-pill btn-pill-terra">Call (561) 303-9970</a>
       <a href="mailto:info@amartinezlandscaping.com" class="btn-pill btn-pill-outline">Request Estimate</a>
@@ -877,6 +905,7 @@ const observer = new IntersectionObserver((entries) => {
     const target = +el.dataset.count;
     const decimals = +(el.dataset.decimals || 0);
     const suffix = el.dataset.suffix || '';
+    el.textContent = (decimals ? (0).toFixed(decimals) : '0') + suffix;
     const duration = 2000;
     const start = performance.now();
     const step = (now) => {

@@ -193,9 +193,32 @@ nav.nav-scrolled .nav-links .nav-cta:hover {
   font-size: clamp(0.88rem, 1vw, 1rem);
   color: rgba(255,255,255,0.6);
   line-height: 1.8;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   max-width: 540px;
   margin-left: auto; margin-right: auto;
+}
+.hero-stat {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin-bottom: 2.2rem;
+}
+.hero-stat-star {
+  color: var(--gold);
+  font-size: 0.75rem;
+}
+.hero-stat-num {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400;
+  font-size: 1.05rem;
+  color: var(--white);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
 }
 .hero-buttons {
   display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
@@ -650,6 +673,11 @@ footer {
       home and business owners across the Palm Beaches for more
       than three decades.
     </p>
+    <div class="hero-stat">
+      <span class="hero-stat-star">&#9733;</span>
+      <span class="hero-stat-num">1,600+</span>
+      <span class="hero-stat-label">Clients Served</span>
+    </div>
     <div class="hero-buttons">
       <a href="tel:5617799760" class="btn-pill btn-pill-gold">Call (561) 779-9760</a>
       <a href="mailto:rchlawnmaintenance@gmail.com" class="btn-pill btn-pill-outline">Request Estimate</a>
@@ -908,6 +936,7 @@ const observer = new IntersectionObserver((entries) => {
     const el = entry.target;
     const target = +el.dataset.count;
     const suffix = el.dataset.suffix || '';
+    el.textContent = '0' + suffix;
     const duration = 2000;
     const start = performance.now();
     const step = (now) => {
