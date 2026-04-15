@@ -12,7 +12,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
-/* ── Reset & Custom Properties ─────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --cream: #f7f4ef;
@@ -38,7 +37,6 @@ img { display: block; max-width: 100%; }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 
-/* ── Typography ────────────────────────────────────────── */
 .section-number {
   font-family: 'Outfit', sans-serif;
   font-weight: 300;
@@ -59,7 +57,7 @@ ul { list-style: none; }
   user-select: none;
 }
 
-/* ── Pill Buttons ──────────────────────────────────────── */
+/* ── Buttons ──────────────────────────────────────────── */
 .btn-pill {
   display: inline-flex;
   align-items: center;
@@ -75,13 +73,8 @@ ul { list-style: none; }
   cursor: pointer;
   border: none;
 }
-.btn-pill-terra {
-  background: var(--terracotta);
-  color: var(--white);
-}
-.btn-pill-terra:hover {
-  background: var(--terracotta-light);
-}
+.btn-pill-terra { background: var(--terracotta); color: var(--white); }
+.btn-pill-terra:hover { background: var(--terracotta-light); }
 .btn-pill-outline {
   background: transparent;
   color: var(--white);
@@ -95,7 +88,6 @@ ul { list-style: none; }
 /* ── Nav ───────────────────────────────────────────────── */
 .nav-toggle { display: none; }
 .hamburger { display: none; }
-
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   height: var(--nav-h);
@@ -118,59 +110,41 @@ nav.nav-scrolled {
   color: var(--white);
   transition: color 0.4s;
 }
-nav.nav-scrolled .nav-logo {
-  color: var(--dark);
-}
+nav.nav-scrolled .nav-logo { color: var(--dark); }
 .nav-links {
   display: flex; gap: clamp(20px, 2.5vw, 36px); align-items: center;
 }
 .nav-links a {
   font-family: 'Outfit', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 300;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 0.78rem; font-weight: 300;
+  letter-spacing: 0.1em; text-transform: uppercase;
   color: rgba(255,255,255,0.7);
   transition: color 0.4s;
 }
 .nav-links a:hover { color: var(--white); }
-nav.nav-scrolled .nav-links a {
-  color: rgba(28,35,24,0.6);
-}
-nav.nav-scrolled .nav-links a:hover {
-  color: var(--dark);
-}
+nav.nav-scrolled .nav-links a { color: rgba(28,35,24,0.6); }
+nav.nav-scrolled .nav-links a:hover { color: var(--dark); }
 .nav-links .nav-cta {
-  padding: 10px 28px;
-  font-size: 0.72rem;
+  padding: 10px 28px; font-size: 0.72rem;
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,0.5);
-  color: var(--white);
-  background: transparent;
+  color: var(--white); background: transparent;
   transition: all 0.4s;
 }
-.nav-links .nav-cta:hover {
-  background: rgba(255,255,255,0.15);
-}
+.nav-links .nav-cta:hover { background: rgba(255,255,255,0.15); }
 nav.nav-scrolled .nav-links .nav-cta {
-  background: var(--olive);
-  border-color: var(--olive);
-  color: var(--white);
+  background: var(--olive); border-color: var(--olive); color: var(--white);
 }
 nav.nav-scrolled .nav-links .nav-cta:hover {
-  background: var(--olive-light);
-  border-color: var(--olive-light);
+  background: var(--olive-light); border-color: var(--olive-light);
 }
 
 /* ── Hero ──────────────────────────────────────────────── */
 .hero {
   position: relative;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; overflow: hidden;
 }
 .hero-video {
   position: absolute; inset: 0;
@@ -179,28 +153,22 @@ nav.nav-scrolled .nav-links .nav-cta:hover {
 }
 .hero-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(28,35,24,0.5) 0%, rgba(28,35,24,0.7) 100%);
+  background: linear-gradient(180deg, rgba(10,14,8,0.6) 0%, rgba(10,14,8,0.78) 100%);
   z-index: 1;
 }
 .hero-content {
   position: relative; z-index: 2;
-  max-width: 760px;
-  padding: 0 24px;
+  max-width: 760px; padding: 0 24px;
 }
 .hero-eyebrow {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(0.6rem, 0.8vw, 0.78rem);
-  font-weight: 300;
-  letter-spacing: 0.3em;
+  font-weight: 300; letter-spacing: 0.3em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.6);
   margin-bottom: 2rem;
 }
-.hero-eyebrow span {
-  display: inline-block;
-  margin: 0 0.6em;
-  opacity: 0.4;
-}
+.hero-eyebrow span { display: inline-block; margin: 0 0.6em; opacity: 0.4; }
 .hero h1 {
   font-family: 'Playfair Display', serif;
   font-weight: 400;
@@ -209,72 +177,65 @@ nav.nav-scrolled .nav-links .nav-cta:hover {
   color: var(--white);
   margin-bottom: 1.5rem;
 }
-.hero h1 em {
-  font-style: italic;
-  color: var(--terracotta-light);
-}
+.hero h1 em { font-style: italic; color: var(--terracotta-light); }
 .hero-sub {
   font-family: 'Outfit', sans-serif;
   font-weight: 200;
   font-size: clamp(0.88rem, 1vw, 1rem);
-  color: rgba(255,255,255,0.65);
+  color: rgba(255,255,255,0.6);
   line-height: 1.8;
   margin-bottom: 2.5rem;
   max-width: 540px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: auto; margin-right: auto;
 }
 .hero-buttons {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
 }
 
-/* ── Trust Bar / Marquee ───────────────────────────────── */
-.trust-bar {
+/* ── Trust Badges ─────────────────────────────────────── */
+.trust-badges {
   background: var(--dark);
-  padding: 18px 0;
-  overflow: hidden;
-  white-space: nowrap;
+  padding: clamp(36px, 5vw, 56px) clamp(24px, 5vw, 80px);
 }
-.trust-track {
-  display: inline-flex;
-  animation: marquee 30s linear infinite;
+.trust-badges-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+  text-align: center;
 }
-.trust-track .trust-set {
-  display: inline-flex;
-  gap: 0;
+.trust-badge {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 12px;
 }
-.trust-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 clamp(24px, 3vw, 48px);
+.trust-badge-icon {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: rgba(181,112,77,0.12);
+  display: flex; align-items: center; justify-content: center;
+}
+.trust-badge-icon svg {
+  width: 22px; height: 22px;
+  stroke: var(--terracotta);
+  fill: none; stroke-width: 1.5;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.trust-badge-label {
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(0.68rem, 0.8vw, 0.78rem);
-  font-weight: 300;
-  letter-spacing: 0.15em;
+  font-size: 0.72rem; font-weight: 400;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(247,244,239,0.7);
-}
-.trust-item::after {
-  content: '\2022';
-  margin-left: clamp(24px, 3vw, 48px);
-  opacity: 0.3;
-}
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  line-height: 1.5;
 }
 
-/* ── About Section ─────────────────────────────────────── */
+/* ── About ────────────────────────────────────────────── */
 .about {
   background: var(--cream);
   color: var(--dark);
   padding: clamp(80px, 10vw, 140px) clamp(24px, 5vw, 80px);
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
 }
 .about .decorative-label {
   top: clamp(40px, 6vw, 80px);
@@ -286,35 +247,20 @@ nav.nav-scrolled .nav-links .nav-cta:hover {
   grid-template-columns: 1fr 1fr;
   gap: clamp(40px, 5vw, 100px);
   max-width: 1200px;
-  margin: 0 auto;
-  align-items: start;
+  margin: 0 auto; align-items: start;
 }
-.about-left {
-  position: relative;
-}
-.about-image {
-  border-radius: 16px;
-  overflow: hidden;
-}
+.about-image { border-radius: 16px; overflow: hidden; }
 .about-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  min-height: 460px;
+  width: 100%; height: 100%;
+  object-fit: cover; min-height: 460px;
 }
-.about-right {
-  padding-top: clamp(20px, 3vw, 40px);
-}
-.about-right .section-number {
-  color: var(--olive);
-}
+.about-right { padding-top: clamp(20px, 3vw, 40px); }
+.about-right .section-number { color: var(--olive); }
 .about-right h2 {
   font-family: 'Playfair Display', serif;
   font-weight: 400;
   font-size: clamp(1.8rem, 3vw, 2.6rem);
-  line-height: 1.2;
-  color: var(--dark);
-  margin-bottom: 1.5rem;
+  line-height: 1.2; margin-bottom: 1.5rem;
 }
 .about-right p {
   font-family: 'Outfit', sans-serif;
@@ -327,32 +273,28 @@ nav.nav-scrolled .nav-links .nav-cta:hover {
 .stat-row {
   display: flex;
   gap: clamp(24px, 3vw, 48px);
-  margin-top: 2.5rem;
-  padding-top: 2.5rem;
+  margin-top: 2.5rem; padding-top: 2.5rem;
   border-top: 1px solid rgba(28,35,24,0.1);
 }
 .stat-block .stat-num {
   font-family: 'Playfair Display', serif;
   font-weight: 400;
   font-size: clamp(2rem, 3vw, 2.8rem);
-  color: var(--olive);
-  line-height: 1;
+  color: var(--olive); line-height: 1;
 }
 .stat-block .stat-label {
   font-family: 'Outfit', sans-serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  font-size: 0.72rem; letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(28,35,24,0.45);
   margin-top: 6px;
 }
 
-/* ── Services Section ──────────────────────────────────── */
+/* ── Services — Photo Cards ───────────────────────────── */
 .services {
   background: var(--cream-alt);
   padding: clamp(80px, 10vw, 140px) clamp(24px, 5vw, 80px);
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
 }
 .services .decorative-label {
   top: clamp(40px, 5vw, 60px);
@@ -364,92 +306,90 @@ nav.nav-scrolled .nav-links .nav-cta:hover {
   max-width: 1200px;
   margin: 0 auto clamp(40px, 5vw, 70px);
 }
-.services-header .section-number {
-  color: var(--olive);
-}
+.services-header .section-number { color: var(--olive); }
 .services-header h2 {
   font-family: 'Playfair Display', serif;
   font-weight: 400;
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   line-height: 1.2;
 }
-.services-list {
-  max-width: 1000px;
+.services-grid {
+  max-width: 1200px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
-.service-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 36px 0;
-  border-bottom: 1px solid rgba(28,35,24,0.08);
-  gap: 40px;
+.service-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  cursor: default;
 }
-.service-row:first-child {
-  border-top: 1px solid rgba(28,35,24,0.08);
-}
-.service-left {
-  display: flex;
-  align-items: baseline;
-  gap: 20px;
-  flex-shrink: 0;
-}
-.service-num {
-  font-family: 'Outfit', sans-serif;
-  font-size: 11px;
-  font-weight: 400;
-  color: var(--olive);
-  letter-spacing: 0.02em;
-}
-.service-name {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(24px, 2.5vw, 32px);
-  font-weight: 400;
-  color: var(--dark);
-  line-height: 1.2;
-}
-.service-desc {
-  font-size: 13px;
-  line-height: 1.8;
-  color: rgba(28,35,24,0.5);
-  font-weight: 300;
-  max-width: 360px;
-  text-align: right;
-}
-.services-break-image {
-  width: 100%;
-  height: 400px;
+.service-card img {
+  width: 100%; height: 100%;
   object-fit: cover;
-  margin: 48px 0;
-  display: block;
-  border-radius: 12px;
+  transition: transform 0.6s ease;
+}
+.service-card:hover img { transform: scale(1.05); }
+.service-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(10,14,8,0.85) 0%, rgba(10,14,8,0.15) 55%);
+  z-index: 1;
+}
+.service-card-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: clamp(24px, 3vw, 36px);
+  z-index: 2;
+}
+.service-card-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px; font-weight: 400;
+  color: var(--terracotta);
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.service-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+.service-card p {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 200;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.6);
+}
+.services-row-2 {
+  max-width: 1200px;
+  margin: 24px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
-/* ── Reviews Section ───────────────────────────────────── */
+/* ── Reviews ──────────────────────────────────────────── */
 .reviews {
   background: var(--dark);
   color: var(--white);
   padding: clamp(80px, 10vw, 140px) clamp(24px, 5vw, 80px);
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
 }
 .reviews .decorative-label {
   bottom: clamp(30px, 4vw, 60px);
   right: clamp(24px, 5vw, 80px);
   text-align: right;
-  color: var(--white);
-  opacity: 0.04;
+  color: var(--white); opacity: 0.04;
 }
-.reviews-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.reviews-header {
-  margin-bottom: clamp(40px, 5vw, 70px);
-}
-.reviews-header .section-number {
-  color: var(--terracotta);
-}
+.reviews-inner { max-width: 1200px; margin: 0 auto; }
+.reviews-header { margin-bottom: clamp(40px, 5vw, 70px); }
+.reviews-header .section-number { color: var(--terracotta); }
 .reviews-header h2 {
   font-family: 'Playfair Display', serif;
   font-weight: 400;
@@ -475,25 +415,21 @@ nav.nav-scrolled .nav-links .nav-cta:hover {
 }
 .review-quote-mark {
   font-family: 'Playfair Display', serif;
-  font-size: 4rem;
-  line-height: 1;
-  color: var(--terracotta);
-  opacity: 0.5;
+  font-size: 4rem; line-height: 1;
+  color: var(--terracotta); opacity: 0.5;
   margin-bottom: -10px;
 }
 .review-card blockquote {
   font-family: 'Playfair Display', serif;
   font-weight: 400;
   font-size: clamp(1rem, 1.1vw, 1.1rem);
-  font-style: italic;
-  line-height: 1.7;
+  font-style: italic; line-height: 1.7;
   color: rgba(255,255,255,0.8);
   margin-bottom: 20px;
 }
 .review-author {
   font-family: 'Outfit', sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
+  font-size: 0.75rem; letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.4);
 }
@@ -506,8 +442,7 @@ nav.nav-scrolled .nav-links .nav-cta:hover {
   font-family: 'Playfair Display', serif;
   font-weight: 400;
   font-size: clamp(3rem, 5vw, 4.5rem);
-  color: var(--terracotta);
-  line-height: 1;
+  color: var(--terracotta); line-height: 1;
 }
 .review-summary p {
   font-family: 'Outfit', sans-serif;
@@ -518,12 +453,11 @@ nav.nav-scrolled .nav-links .nav-cta:hover {
   margin-top: 8px;
 }
 
-/* ── CTA Section ───────────────────────────────────────── */
+/* ── CTA ──────────────────────────────────────────────── */
 .cta {
   position: relative;
   padding: clamp(100px, 12vw, 180px) clamp(24px, 5vw, 80px);
-  text-align: center;
-  overflow: hidden;
+  text-align: center; overflow: hidden;
 }
 .cta-video {
   position: absolute; inset: 0;
@@ -532,17 +466,14 @@ nav.nav-scrolled .nav-links .nav-cta:hover {
 }
 .cta-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(28,35,24,0.7) 0%, rgba(28,35,24,0.8) 100%);
+  background: linear-gradient(180deg, rgba(10,14,8,0.72) 0%, rgba(10,14,8,0.85) 100%);
   z-index: 1;
 }
 .cta-content {
   position: relative; z-index: 2;
-  max-width: 640px;
-  margin: 0 auto;
+  max-width: 640px; margin: 0 auto;
 }
-.cta-content .section-number {
-  color: var(--terracotta);
-}
+.cta-content .section-number { color: var(--terracotta); }
 .cta h2 {
   font-family: 'Playfair Display', serif;
   font-weight: 400;
@@ -560,13 +491,10 @@ nav.nav-scrolled .nav-links .nav-cta:hover {
   margin-bottom: 2.5rem;
 }
 .cta-buttons {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
 }
 
-/* ── Footer ────────────────────────────────────────────── */
+/* ── Footer ───────────────────────────────────────────── */
 footer {
   background: var(--dark);
   color: rgba(247,244,239,0.6);
@@ -583,154 +511,78 @@ footer {
 }
 .footer-brand .footer-logo {
   font-family: 'Outfit', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
   color: rgba(247,244,239,0.8);
   margin-bottom: 1rem;
 }
 .footer-brand p {
   font-family: 'Outfit', sans-serif;
-  font-weight: 200;
-  font-size: 0.85rem;
-  line-height: 1.7;
-  max-width: 300px;
+  font-weight: 200; font-size: 0.85rem;
+  line-height: 1.7; max-width: 300px;
 }
-.footer-links h4 {
+.footer-links h4, .footer-contact h4 {
   font-family: 'Outfit', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-size: 0.7rem; font-weight: 400;
+  letter-spacing: 0.18em; text-transform: uppercase;
   color: rgba(247,244,239,0.4);
   margin-bottom: 1.2rem;
 }
 .footer-links ul { display: flex; flex-direction: column; gap: 10px; }
-.footer-links a {
+.footer-links a, .footer-contact p {
   font-family: 'Outfit', sans-serif;
-  font-weight: 300;
-  font-size: 0.85rem;
+  font-weight: 300; font-size: 0.85rem;
   transition: color 0.3s;
 }
-.footer-links a:hover { color: var(--terracotta); }
-.footer-contact h4 {
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(247,244,239,0.4);
-  margin-bottom: 1.2rem;
-}
-.footer-contact p {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 300;
-  font-size: 0.85rem;
-  line-height: 1.8;
-}
-.footer-contact a:hover { color: var(--terracotta); }
+.footer-contact p { line-height: 1.8; }
+.footer-links a:hover, .footer-contact a:hover { color: var(--terracotta); }
 .footer-bottom {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1200px; margin: 0 auto;
   padding-top: clamp(20px, 2.5vw, 30px);
   font-size: 0.72rem;
   color: rgba(247,244,239,0.3);
   letter-spacing: 0.05em;
 }
 
-/* ── Mobile ────────────────────────────────────────────── */
+/* ── Mobile ───────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  .about-image img {
-    min-height: 280px;
-    max-height: 360px;
-  }
-  .service-row {
-    flex-direction: column;
-    gap: 8px;
-  }
-  .service-desc {
-    text-align: left;
-    max-width: 100%;
-  }
-  .services-break-image {
-    height: 280px;
-  }
-  .reviews-grid {
-    grid-template-columns: 1fr;
-  }
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .stat-row {
-    flex-wrap: wrap;
-    gap: 20px;
-  }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-image img { min-height: 280px; max-height: 360px; }
+  .services-grid, .services-row-2 { grid-template-columns: 1fr; }
+  .service-card { aspect-ratio: 4/3; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .trust-badges-inner { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .stat-row { flex-wrap: wrap; gap: 20px; }
 }
-
 @media (max-width: 768px) {
   .hamburger {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    z-index: 110;
-    padding: 8px;
+    display: flex; flex-direction: column; gap: 5px;
+    cursor: pointer; z-index: 110; padding: 8px;
   }
   .hamburger span {
-    display: block;
-    width: 22px;
-    height: 1.5px;
-    background: var(--white);
-    transition: all 0.3s ease;
+    display: block; width: 22px; height: 1.5px;
+    background: var(--white); transition: all 0.3s ease;
   }
-  nav.nav-scrolled .hamburger span {
-    background: var(--dark);
-  }
+  nav.nav-scrolled .hamburger span { background: var(--dark); }
   .nav-links {
-    position: fixed;
-    top: 0; right: 0;
-    width: 280px;
-    height: 100vh;
-    flex-direction: column;
-    justify-content: center;
-    gap: 28px;
+    position: fixed; top: 0; right: 0;
+    width: 280px; height: 100vh;
+    flex-direction: column; justify-content: center; gap: 28px;
     background: rgba(28,35,24,0.97);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     transform: translateX(100%);
     transition: transform 0.4s ease;
     padding: 60px 40px;
   }
-  .nav-toggle:checked ~ .nav-links {
-    transform: translateX(0);
-  }
-  .nav-toggle:checked ~ .hamburger span:nth-child(1) {
-    transform: rotate(45deg) translate(4px, 5px);
-  }
-  .nav-toggle:checked ~ .hamburger span:nth-child(2) {
-    opacity: 0;
-  }
-  .nav-toggle:checked ~ .hamburger span:nth-child(3) {
-    transform: rotate(-45deg) translate(4px, -5px);
-  }
-  .nav-links a {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.8) !important;
-  }
-  .hero h1 {
-    font-size: clamp(2rem, 8vw, 2.8rem);
-  }
-  .hero-buttons,
-  .cta-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
+  .nav-toggle:checked ~ .nav-links { transform: translateX(0); }
+  .nav-toggle:checked ~ .hamburger span:nth-child(1) { transform: rotate(45deg) translate(4px, 5px); }
+  .nav-toggle:checked ~ .hamburger span:nth-child(2) { opacity: 0; }
+  .nav-toggle:checked ~ .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(4px, -5px); }
+  .nav-links a { font-size: 0.9rem; color: rgba(255,255,255,0.8) !important; }
+  .hero h1 { font-size: clamp(2rem, 8vw, 2.8rem); }
+  .hero-buttons, .cta-buttons { flex-direction: column; align-items: center; }
+  .trust-badges-inner { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
@@ -772,27 +624,35 @@ footer {
   </div>
 </section>
 
-<!-- ─── Trust Bar ──────────────────────────────────────── -->
-<div class="trust-bar">
-  <div class="trust-track">
-    <div class="trust-set">
-      <span class="trust-item">Latinx-Owned</span>
-      <span class="trust-item">Since 2013</span>
-      <span class="trust-item">Residential &amp; Commercial</span>
-      <span class="trust-item">Licensed &amp; Insured</span>
-      <span class="trust-item">Boynton Beach</span>
-      <span class="trust-item">Free Estimates</span>
+<!-- ─── Trust Badges ──────────────────────────────────── -->
+<section class="trust-badges">
+  <div class="trust-badges-inner">
+    <div class="trust-badge">
+      <div class="trust-badge-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <div class="trust-badge-label">Residential<br>&amp; Commercial</div>
     </div>
-    <div class="trust-set">
-      <span class="trust-item">Latinx-Owned</span>
-      <span class="trust-item">Since 2013</span>
-      <span class="trust-item">Residential &amp; Commercial</span>
-      <span class="trust-item">Licensed &amp; Insured</span>
-      <span class="trust-item">Boynton Beach</span>
-      <span class="trust-item">Free Estimates</span>
+    <div class="trust-badge">
+      <div class="trust-badge-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="trust-badge-label">Licensed<br>&amp; Insured</div>
+    </div>
+    <div class="trust-badge">
+      <div class="trust-badge-icon">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      </div>
+      <div class="trust-badge-label">Latinx-Owned<br>Since 2013</div>
+    </div>
+    <div class="trust-badge">
+      <div class="trust-badge-icon">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="trust-badge-label">100%<br>Customized</div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- ─── About ──────────────────────────────────────────── -->
 <section class="about" id="about">
@@ -843,51 +703,62 @@ footer {
     <p class="section-number">02. Services</p>
     <h2>What We Do</h2>
   </div>
-  <div class="services-list">
-    <div class="service-row">
-      <div class="service-left">
-        <span class="service-num">01</span>
-        <h3 class="service-name">Landscape Design &amp; Install</h3>
+  <div class="services-grid">
+    <div class="service-card">
+      <img src="https://amartinezlandscaping.com/wp-content/uploads/sites/1447/2020/05/slider-1.jpg" alt="Landscape design">
+      <div class="service-card-overlay"></div>
+      <div class="service-card-content">
+        <div class="service-card-num">01</div>
+        <h3>Landscape Design &amp; Install</h3>
+        <p>Custom garden design and full installation — from classical elegance to modern outdoor living.</p>
       </div>
-      <p class="service-desc">Custom garden design, landscape construction, and full installation — from classical elegance to modern outdoor living spaces.</p>
     </div>
-    <div class="service-row">
-      <div class="service-left">
-        <span class="service-num">02</span>
-        <h3 class="service-name">Hardscaping</h3>
+    <div class="service-card">
+      <img src="https://amartinezlandscaping.com/wp-content/uploads/sites/1447/2020/05/slider-2.jpg" alt="Hardscaping">
+      <div class="service-card-overlay"></div>
+      <div class="service-card-content">
+        <div class="service-card-num">02</div>
+        <h3>Hardscaping</h3>
+        <p>Brick pavers, retaining walls, patios, outdoor kitchens, pergolas, and water features.</p>
       </div>
-      <p class="service-desc">Brick pavers, retaining walls, patios, outdoor kitchens, pergolas, and water features that extend your living space outdoors.</p>
     </div>
-    <div class="service-row">
-      <div class="service-left">
-        <span class="service-num">03</span>
-        <h3 class="service-name">Lawn Care &amp; Maintenance</h3>
+    <div class="service-card">
+      <img src="https://amartinezlandscaping.com/wp-content/uploads/sites/1447/2020/05/slider-3.jpg" alt="Lawn care">
+      <div class="service-card-overlay"></div>
+      <div class="service-card-content">
+        <div class="service-card-num">03</div>
+        <h3>Lawn Care &amp; Maintenance</h3>
+        <p>Mowing, fertilization, weed control, dethatching, and seasonal clean-ups.</p>
       </div>
-      <p class="service-desc">Residential and commercial mowing, fertilization, weed control, dethatching, and seasonal clean-ups to keep your turf flawless.</p>
     </div>
-
-    <img class="services-break-image" src="../../assets/samples/Landscapers/landscapers-mainscape.jpg" alt="A Martinez Landscaping crew maintaining property" loading="lazy">
-
-    <div class="service-row">
-      <div class="service-left">
-        <span class="service-num">04</span>
-        <h3 class="service-name">Irrigation Systems</h3>
+  </div>
+  <div class="services-row-2">
+    <div class="service-card">
+      <img src="../../assets/samples/Landscapers/66311ef6ad0b10c8f40ceb0b_How To Write A Landscaper Job Description share image.png" alt="Irrigation">
+      <div class="service-card-overlay"></div>
+      <div class="service-card-content">
+        <div class="service-card-num">04</div>
+        <h3>Irrigation Systems</h3>
+        <p>Sprinkler installation, repair, and full system maintenance for every season.</p>
       </div>
-      <p class="service-desc">Sprinkler installation, repair, and full irrigation system maintenance to keep your landscape thriving through every season.</p>
     </div>
-    <div class="service-row">
-      <div class="service-left">
-        <span class="service-num">05</span>
-        <h3 class="service-name">Tree Trimming &amp; Sod</h3>
+    <div class="service-card">
+      <img src="../../assets/samples/Landscapers/landscapers-mainscape.jpg" alt="Tree and sod services">
+      <div class="service-card-overlay"></div>
+      <div class="service-card-content">
+        <div class="service-card-num">05</div>
+        <h3>Tree Trimming &amp; Sod</h3>
+        <p>Professional trimming, sod installation, mulching, and shrub maintenance.</p>
       </div>
-      <p class="service-desc">Professional tree trimming, sod installation, mulching, and shrub and hedge maintenance for a polished, healthy property.</p>
     </div>
-    <div class="service-row">
-      <div class="service-left">
-        <span class="service-num">06</span>
-        <h3 class="service-name">Landscape Lighting</h3>
+    <div class="service-card">
+      <img src="https://amartinezlandscaping.com/wp-content/themes/land6/images/general-home-img.jpg" alt="Landscape lighting">
+      <div class="service-card-overlay"></div>
+      <div class="service-card-content">
+        <div class="service-card-num">06</div>
+        <h3>Landscape Lighting</h3>
+        <p>Residential lighting design that highlights your property after the sun goes down.</p>
       </div>
-      <p class="service-desc">Residential landscape lighting design and installation that highlights your property's best features after the sun goes down.</p>
     </div>
   </div>
 </section>
@@ -992,7 +863,6 @@ footer {
 </footer>
 
 <script>
-// Transparent → solid nav on scroll
 const nav = document.querySelector('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('nav-scrolled', window.scrollY > 40);
