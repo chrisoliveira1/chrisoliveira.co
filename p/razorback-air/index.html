@@ -3,97 +3,1279 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Razorback Air | Palm Springs, FL | AC Repair & Installation Since 1999</title>
+  <title>Razorback Air | Palm Beach County, FL | AC Repair & Installation</title>
+  <meta name="description" content="Razorback Air Conditioning — Palm Beach County's trusted HVAC experts. AC repair, installation, maintenance, and 365-day emergency service. Licensed & insured. CAC1822878.">
+  <meta property="og:title" content="Razorback Air | Palm Beach County's AC Experts">
+  <meta property="og:description" content="15 years keeping South Florida cool. AC repair, installation & emergency service. Licensed CAC1822878.">
+  <meta property="og:image" content="https://chrisoliveira.co/p/razorback-air/preview.jpg">
+  <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+
   <style>
+    /* ── RESET & ROOT ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --navy: #0e2340;
-      --red: #c0392b;
-      --offwhite: #f6f6f4;
-      --dark: #0d0d0d;
-      --white: #ffffff;
+      --charcoal:   #1a1a1a;
+      --charcoal2:  #222222;
+      --charcoal3:  #2a2a2a;
+      --red:        #c0392b;
+      --red-dark:   #a93226;
+      --red-glow:   rgba(192,57,43,0.18);
+      --white:      #ffffff;
+      --off:        #f5f5f5;
+      --line:       #e5e5e5;
+      --text:       #1a1a1a;
+      --muted:      #6b7280;
+      --light-text: rgba(255,255,255,0.70);
+      --nav-h:      68px;
     }
-    body { font-family: 'Inter', sans-serif; color: var(--dark); background: var(--offwhite); }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
 
+    /* ── LOADER ── */
+    #loader {
+      position: fixed; inset: 0; z-index: 99999;
+      background: var(--charcoal);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      transition: opacity 0.9s ease;
+    }
+    #loader.fade-out { opacity: 0; pointer-events: none; }
+    .loader-stars {
+      color: #f59e0b;
+      font-size: 1.3rem;
+      letter-spacing: 4px;
+      margin-bottom: 20px;
+    }
+    .loader-quote {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.3rem, 3.5vw, 2.2rem);
+      font-weight: 500;
+      color: var(--white);
+      text-align: center;
+      max-width: 680px;
+      padding: 0 32px;
+      line-height: 1.4;
+      font-style: italic;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .loader-quote.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .loader-bar {
+      width: 48px; height: 3px;
+      background: var(--red);
+      margin-top: 28px;
+      border-radius: 2px;
+    }
+    #page { visibility: hidden; }
+    #page.visible { visibility: visible; }
+
+    @media (prefers-reduced-motion: reduce) {
+      #loader { display: none; }
+      #page { visibility: visible !important; }
+    }
+
+    /* ── GRAIN CANVAS ── */
+    #grain {
+      position: fixed; inset: 0; z-index: 99998;
+      pointer-events: none;
+      opacity: 0.38;
+    }
+    @media (prefers-reduced-motion: reduce) { #grain { display: none; } }
+
+    /* ── NAV ── */
     nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--navy);
+      position: sticky; top: 0; z-index: 1000;
+      height: var(--nav-h);
+      background: rgba(26,26,26,0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px; height: 68px;
+      padding: 0 40px;
     }
-    .nav-logo { font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: var(--white); letter-spacing: 0.06em; text-transform: uppercase; }
-    .nav-logo span { color: var(--red); }
+    .nav-logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px; font-weight: 700;
+      color: var(--white); letter-spacing: 0.03em;
+      text-decoration: none;
+    }
+    .nav-logo em { font-style: normal; color: var(--red); }
     .nav-right { display: flex; align-items: center; gap: 20px; }
-    .nav-phone { color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 600; text-decoration: none; }
-    .nav-cta { background: var(--red); color: var(--white); font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 3px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; }
+    .nav-phone {
+      color: var(--light-text); font-size: 14px; font-weight: 600;
+      text-decoration: none; letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-phone:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--red); color: var(--white);
+      font-weight: 700; font-size: 12px; padding: 9px 22px;
+      border-radius: 5px; text-decoration: none;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--red-dark); transform: translateY(-1px); }
 
-    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 68px); max-height: 832px; }
-    .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 64px 52px 64px 64px; background: var(--navy); }
-    .hero-eyebrow { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
-    .hero-h1 { font-family: 'Oswald', sans-serif; font-size: clamp(48px, 4.8vw, 72px); font-weight: 700; line-height: 1.05; color: var(--white); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.02em; }
-    .hero-h1 em { color: var(--red); font-style: normal; }
-    .hero-rule { width: 56px; height: 4px; background: var(--red); margin-bottom: 20px; }
-    .hero-sub { font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.8); max-width: 420px; margin-bottom: 36px; }
-    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-    .btn-primary { background: var(--red); color: var(--white); font-weight: 700; font-size: 15px; padding: 15px 30px; border-radius: 3px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; }
-    .btn-ghost { color: var(--white); font-weight: 600; font-size: 15px; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.35); padding-bottom: 1px; }
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: calc(100vh - var(--nav-h));
+      min-height: 560px;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://chrisoliveira.co/assets/samples/hvac/How-to-be-HVAC-Technician-scaled.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(
+        105deg,
+        rgba(26,26,26,0.97) 0%,
+        rgba(26,26,26,0.91) 35%,
+        rgba(26,26,26,0.65) 62%,
+        rgba(26,26,26,0.15) 100%
+      );
+    }
+    .hero-left {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 60px 48px 80px 56px;
+    }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 20px;
+      opacity: 0; transform: translateY(18px);
+      animation: fadeUp 0.6s 0.1s ease forwards;
+    }
+    .hero-h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(3rem, 5.5vw, 5.2rem);
+      font-weight: 700; line-height: 1.0;
+      color: var(--white);
+      margin-bottom: 22px;
+      opacity: 0; transform: translateY(22px);
+      animation: fadeUp 0.7s 0.25s ease forwards;
+    }
+    .hero-h1 em {
+      font-style: normal; color: var(--red);
+      display: block;
+    }
+    .hero-sub {
+      font-size: 1.05rem; line-height: 1.65;
+      color: var(--light-text);
+      max-width: 500px;
+      margin-bottom: 36px;
+      opacity: 0; transform: translateY(18px);
+      animation: fadeUp 0.7s 0.4s ease forwards;
+    }
+    .hero-stat-row {
+      display: flex; gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 28px;
+      opacity: 0; transform: translateY(16px);
+      animation: fadeUp 0.7s 0.55s ease forwards;
+    }
+    .hero-stat {
+      padding-right: 32px;
+      margin-right: 32px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .hero-stat:last-child { border-right: none; padding-right: 0; margin-right: 0; }
+    .hero-stat-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2rem; font-weight: 700;
+      color: var(--red); line-height: 1;
+      margin-bottom: 4px;
+    }
+    .hero-stat-label {
+      font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.5);
+    }
 
-    .hero-img { position: relative; overflow: hidden; }
-    .hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* ── HERO RIGHT — FORM ── */
+    .hero-right {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      padding: 40px 32px 80px 20px;
+    }
+    .quote-form {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 36px 32px;
+      width: 100%;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.55), 0 4px 16px rgba(0,0,0,0.3);
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.8s 0.5s ease forwards;
+    }
+    .form-headline {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.35rem; font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+    .form-sub {
+      font-size: 0.82rem; color: var(--muted);
+      margin-bottom: 22px;
+    }
+    .form-group { margin-bottom: 14px; }
+    .form-group label {
+      display: block; font-size: 0.78rem; font-weight: 600;
+      color: var(--text); margin-bottom: 5px;
+      letter-spacing: 0.03em;
+    }
+    .form-group input, .form-group select {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem; color: var(--text);
+      background: var(--white);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:focus, .form-group select:focus {
+      border-color: var(--red);
+    }
+    .form-submit {
+      width: 100%; padding: 14px;
+      background: var(--red); color: var(--white);
+      border: none; border-radius: 6px; cursor: pointer;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 6px;
+    }
+    .form-submit:hover { background: var(--red-dark); transform: translateY(-1px); }
+    .form-disclaimer {
+      font-size: 0.72rem; color: var(--muted);
+      text-align: center; margin-top: 10px;
+      line-height: 1.4;
+    }
 
-    .trust-bar { background: var(--red); display: grid; grid-template-columns: repeat(4, 1fr); }
-    .trust-item { padding: 26px 28px; text-align: center; border-right: 1px solid rgba(255,255,255,0.2); }
+    /* ── SVG WAVE ── */
+    .hero-wave {
+      position: absolute; bottom: 0; left: 0;
+      width: 100%; line-height: 0; z-index: 3;
+      pointer-events: none;
+    }
+    .hero-wave svg { display: block; width: 100%; height: 52px; }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--charcoal);
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .trust-item {
+      padding: 30px 24px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; gap: 6px;
+    }
     .trust-item:last-child { border-right: none; }
-    .trust-number { font-family: 'Oswald', sans-serif; font-size: 36px; font-weight: 700; color: var(--white); line-height: 1; margin-bottom: 4px; }
-    .trust-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.85); }
+    .trust-icon {
+      font-size: 1.4rem; margin-bottom: 4px;
+    }
+    .trust-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.9rem; font-weight: 700;
+      color: var(--red); line-height: 1;
+    }
+    .trust-label {
+      font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.55);
+    }
 
-    @media (max-width: 768px) {
+    /* ── SECTION COMMON ── */
+    .section-wrap {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .section-label {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; color: var(--charcoal);
+      line-height: 1.1; margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 1rem; line-height: 1.7;
+      color: var(--muted); max-width: 580px;
+    }
+
+    /* ── REVIEWS ── */
+    .reviews-section {
+      background: var(--off); padding: 80px 0;
+    }
+    .reviews-section .section-wrap { text-align: center; }
+    .reviews-section .section-sub { margin: 0 auto 0; }
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 12px; padding: 36px 40px;
+      text-align: left;
+    }
+    .review-stars {
+      color: #f59e0b; font-size: 1.1rem;
+      letter-spacing: 3px; margin-bottom: 14px;
+    }
+    .review-text {
+      font-size: 1.05rem; color: var(--text);
+      line-height: 1.7; margin-bottom: 18px;
+      font-style: italic;
+    }
+    .review-author {
+      font-size: 0.85rem; font-weight: 700;
+      color: var(--muted);
+    }
+    .carousel-wrap {
+      position: relative; margin-top: 48px; overflow: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .carousel-track .review-card { flex: 0 0 100%; }
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: 50%; width: 42px; height: 42px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      z-index: 2; color: var(--muted); padding: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: background 0.2s, color 0.2s;
+    }
+    .carousel-btn:hover { background: var(--red); color: var(--white); border-color: var(--red); }
+    .carousel-prev { left: 12px; }
+    .carousel-next { right: 12px; }
+    .carousel-dots {
+      display: flex; justify-content: center;
+      gap: 8px; margin-top: 20px;
+    }
+    .carousel-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #d1d5db; cursor: pointer;
+      border: none; padding: 0;
+      transition: all 0.25s;
+    }
+    .carousel-dot.active {
+      background: var(--red); width: 24px; border-radius: 4px;
+    }
+
+    /* ── SERVICES GRID ── */
+    .services-section {
+      padding: 88px 0;
+    }
+    .services-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 48px; gap: 32px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--charcoal);
+      border-radius: 10px;
+      padding: 32px 28px;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      opacity: 0; transform: translateY(24px);
+    }
+    .service-card.in-view {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.25s, border-color 0.25s;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+      border-color: rgba(192,57,43,0.35);
+    }
+    .service-icon {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: var(--red-glow);
+      border: 1px solid rgba(192,57,43,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 18px;
+    }
+    .service-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--white); margin-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+    .service-desc {
+      font-size: 0.875rem; line-height: 1.65;
+      color: rgba(255,255,255,0.55);
+    }
+    .service-tag {
+      display: inline-block; margin-top: 14px;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--red); background: var(--red-glow);
+      padding: 4px 10px; border-radius: 4px;
+    }
+
+    /* ── ABOUT ── */
+    .about-section {
+      background: var(--off);
+      padding: 88px 0;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px; align-items: center;
+    }
+    .about-img-wrap {
+      position: relative;
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+    }
+    .about-img-wrap img {
+      width: 100%; display: block;
+      height: 520px; object-fit: cover;
+    }
+    .about-badge {
+      position: absolute; bottom: 24px; left: 24px;
+      background: var(--charcoal);
+      color: var(--white);
+      border-radius: 8px;
+      padding: 14px 20px;
+      display: flex; flex-direction: column;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .about-badge-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2rem; font-weight: 700;
+      color: var(--red); line-height: 1;
+    }
+    .about-badge-label {
+      font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.6);
+      margin-top: 3px;
+    }
+    .about-content .section-title { margin-bottom: 20px; }
+    .about-body {
+      font-size: 1rem; line-height: 1.75;
+      color: var(--muted); margin-bottom: 28px;
+    }
+    .cred-list {
+      display: flex; flex-direction: column; gap: 12px;
+      margin-bottom: 32px;
+    }
+    .cred-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.9rem; line-height: 1.5;
+      color: var(--text);
+    }
+    .cred-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--red); flex-shrink: 0;
+      margin-top: 6px;
+    }
+    .about-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--red); color: var(--white);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.95rem; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 14px 28px; border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .about-cta:hover { background: var(--red-dark); transform: translateY(-1px); }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: var(--charcoal2);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 72px 0;
+    }
+    .cta-inner {
+      max-width: 1160px; margin: 0 auto;
+      padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 40px;
+    }
+    .cta-text .cta-eyebrow {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 10px;
+    }
+    .cta-text h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700; color: var(--white);
+      line-height: 1.1;
+    }
+    .cta-text p {
+      font-size: 0.95rem; color: rgba(255,255,255,0.6);
+      margin-top: 10px; line-height: 1.6;
+    }
+    .cta-buttons {
+      display: flex; gap: 16px; flex-shrink: 0;
+    }
+    .cta-btn-primary {
+      background: var(--red); color: var(--white);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.95rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 15px 32px; border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .cta-btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); }
+    .cta-btn-outline {
+      background: transparent; color: var(--white);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.95rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 15px 32px; border-radius: 6px;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      text-decoration: none; white-space: nowrap;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .cta-btn-outline:hover {
+      border-color: var(--red); background: rgba(192,57,43,0.1);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111111;
+      padding: 64px 0 0;
+    }
+    .footer-grid {
+      max-width: 1160px; margin: 0 auto;
+      padding: 0 40px;
+      display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 48px;
+    }
+    .footer-brand-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--white); margin-bottom: 12px;
+    }
+    .footer-brand-name em { font-style: normal; color: var(--red); }
+    .footer-tagline {
+      font-size: 0.875rem; line-height: 1.6;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 20px;
+    }
+    .footer-contact-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.875rem; color: rgba(255,255,255,0.6);
+      margin-bottom: 8px;
+    }
+    .footer-contact-item a {
+      color: rgba(255,255,255,0.6); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-contact-item a:hover { color: var(--red); }
+    .footer-col-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 18px;
+    }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 10px; }
+    .footer-links a {
+      font-size: 0.875rem; color: rgba(255,255,255,0.55);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--red); }
+    .footer-hours-item {
+      display: flex; justify-content: space-between;
+      font-size: 0.83rem; color: rgba(255,255,255,0.55);
+      margin-bottom: 8px; gap: 16px;
+    }
+    .footer-hours-item span:first-child { color: rgba(255,255,255,0.35); }
+    .footer-lic {
+      font-size: 0.75rem; color: rgba(255,255,255,0.3);
+      margin-top: 14px;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin-top: 48px;
+      padding: 20px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1160px; margin-left: auto; margin-right: auto;
+    }
+    .footer-copy {
+      font-size: 0.78rem; color: rgba(255,255,255,0.3);
+    }
+    .footer-lic-badge {
+      font-size: 0.75rem; font-weight: 600;
+      color: rgba(255,255,255,0.3); letter-spacing: 0.05em;
+    }
+    .footer-lic-badge span { color: var(--red); }
+
+    /* ── MOBILE STICKY CTA ── */
+    .mobile-cta {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 9000;
+      background: var(--red);
+      padding: 14px 20px;
+      text-align: center;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+    }
+    .mobile-cta a {
+      color: var(--white); text-decoration: none;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.05rem; font-weight: 700;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── FADE-IN REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .hero { grid-template-columns: 1fr 380px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .about-grid { gap: 48px; }
+    }
+    @media (max-width: 900px) {
       nav { padding: 0 20px; }
-      .hero { grid-template-columns: 1fr; min-height: auto; max-height: none; }
-      .hero-text { padding: 48px 24px 32px; }
-      .hero-img { height: 280px; }
+      .nav-phone { display: none; }
+      .hero {
+        grid-template-columns: 1fr;
+        height: auto; min-height: 100svh;
+      }
+      .hero-left {
+        padding: 52px 24px 32px;
+        min-height: calc(50svh);
+      }
+      .hero-right {
+        padding: 0 20px 48px;
+        grid-row: 1;
+      }
+      .quote-form { max-width: 480px; margin: 0 auto; }
+      .hero-h1 { font-size: clamp(2.4rem, 8vw, 3.5rem); }
       .trust-bar { grid-template-columns: repeat(2, 1fr); }
+      .trust-item:nth-child(2) { border-right: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-img-wrap img { height: 360px; }
+      .services-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .cta-inner { flex-direction: column; text-align: center; }
+      .cta-buttons { justify-content: center; flex-wrap: wrap; }
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .mobile-cta { display: block; }
+      .review-card { padding: 24px 20px; }
+    }
+    @media (max-width: 640px) {
+      .section-wrap { padding: 0 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .hero-stat-row { flex-wrap: wrap; gap: 16px; }
+      .hero-stat {
+        border-right: none; padding-right: 0;
+        margin-right: 0; min-width: 80px;
+      }
+      nav { padding: 0 16px; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo"><span>Razorback</span> Air</div>
-  <div class="nav-right">
-    <a href="tel:5617675629" class="nav-phone">(561) 767-5629</a>
-    <a href="tel:5617675629" class="nav-cta">Free Estimate</a>
-  </div>
-</nav>
+<!-- ── LOADER ── -->
+<div id="loader" role="status" aria-label="Loading">
+  <div class="loader-stars">★★★★★</div>
+  <p class="loader-quote" id="lq"></p>
+  <div class="loader-bar"></div>
+</div>
 
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-eyebrow">Palm Springs, FL &nbsp;·&nbsp; Since 1999 &nbsp;·&nbsp; Owner Operated</div>
-    <h1 class="hero-h1">Palm Beach's<br><em>AC Pro</em><br>Since 1999</h1>
-    <div class="hero-rule"></div>
-    <p class="hero-sub">
-      113 reviewers back Derek Lewis with 5.0 stars. No overselling, no runaround. Just fast diagnosis and air conditioning that actually stays fixed.
-    </p>
-    <div class="hero-actions">
-      <a href="tel:5617675629" class="btn-primary">Get a Free Estimate</a>
-      <a href="tel:5617675629" class="btn-ghost">Call (561) 767-5629</a>
+<!-- ── GRAIN ── -->
+<canvas id="grain" aria-hidden="true"></canvas>
+
+<!-- ── PAGE ── -->
+<div id="page">
+
+  <!-- NAV -->
+  <nav aria-label="Main navigation">
+    <a href="#" class="nav-logo"><em>Razorback</em> Air</a>
+    <div class="nav-right">
+      <a href="tel:5617675629" class="nav-phone">(561) 767-5629</a>
+      <a href="#quote" class="nav-cta">Free Quote</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-bg" role="img" aria-label="HVAC technician servicing an AC unit in Palm Beach County"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-left">
+      <p class="hero-eyebrow">Palm Beach County, FL &nbsp;·&nbsp; Licensed &amp; Insured &nbsp;·&nbsp; CAC1822878</p>
+      <h1 class="hero-h1">
+        Stay<br>
+        <em>Razorback</em><br>
+        Cool.
+      </h1>
+      <p class="hero-sub">
+        Delray Beach's trusted AC team — upfront pricing, same-day repairs, and emergency service 365 days a year. We fix it fast and we fix it right.
+      </p>
+      <div class="hero-stat-row">
+        <div class="hero-stat">
+          <div class="hero-stat-num" id="years-counter">0</div>
+          <div class="hero-stat-label">Years Serving<br>South Florida</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">10-Yr</div>
+          <div class="hero-stat-label">Material<br>Warranty</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">365</div>
+          <div class="hero-stat-label">Days Emergency<br>Service</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right" id="quote">
+      <div class="quote-form">
+        <h2 class="form-headline">Get a Free AC Quote</h2>
+        <p class="form-sub">No pressure. Honest estimate within 24 hrs.</p>
+        <form onsubmit="handleForm(event)">
+          <div class="form-group">
+            <label for="fname">Your Name</label>
+            <input type="text" id="fname" name="name" placeholder="John Smith" autocomplete="name" required>
+          </div>
+          <div class="form-group">
+            <label for="fphone">Phone Number</label>
+            <input type="tel" id="fphone" name="phone" placeholder="(561) 000-0000" autocomplete="tel" required>
+          </div>
+          <div class="form-group">
+            <label for="femail">Email Address</label>
+            <input type="email" id="femail" name="email" placeholder="you@example.com" autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="fservice">What do you need?</label>
+            <select id="fservice" name="service">
+              <option value="">Select a service...</option>
+              <option>AC Repair</option>
+              <option>AC Installation / Replacement</option>
+              <option>Maintenance / Tune-Up</option>
+              <option>Mini-Split Installation</option>
+              <option>Duct Cleaning / Air Quality</option>
+              <option>Emergency Service</option>
+              <option>Other / Not Sure</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit">Request My Free Quote →</button>
+        </form>
+        <p class="form-disclaimer">We respect your privacy. No spam, ever.</p>
+      </div>
+    </div>
+
+    <!-- SVG WAVE -->
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,22 C360,52 1080,0 1440,30 L1440,52 L0,52 Z" fill="#1a1a1a"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar" aria-label="Trust indicators">
+    <div class="trust-item">
+      <div class="trust-icon">🏅</div>
+      <div class="trust-num">15</div>
+      <div class="trust-label">Years in Business</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🔒</div>
+      <div class="trust-num" style="font-size:1.1rem;margin-top:6px;">Licensed</div>
+      <div class="trust-label">& Insured · CAC1822878</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">📍</div>
+      <div class="trust-num" style="font-size:1rem;margin-top:6px;">Palm Beach</div>
+      <div class="trust-label">& Broward County</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">⭐</div>
+      <div class="trust-num">5.0</div>
+      <div class="trust-label">Google Rating</div>
     </div>
   </div>
-  <div class="hero-img">
-    <img src="../../assets/samples/HVAC/hvac-career-in-texas.jpg" alt="Razorback Air technician completing a precision AC repair in Palm Beach County" loading="eager">
-  </div>
-</section>
 
-<div class="trust-bar">
-  <div class="trust-item"><div class="trust-number">5.0★</div><div class="trust-label">Google Rating</div></div>
-  <div class="trust-item"><div class="trust-number">113+</div><div class="trust-label">Verified Reviews</div></div>
-  <div class="trust-item"><div class="trust-number">25+</div><div class="trust-label">Years Serving FL</div></div>
-  <div class="trust-item"><div class="trust-number">100%</div><div class="trust-label">Licensed &amp; Insured</div></div>
+  <!-- REVIEWS CAROUSEL -->
+  <section class="reviews-section" aria-label="Customer reviews">
+    <div class="section-wrap">
+      <p class="section-label reveal">What Customers Say</p>
+      <h2 class="section-title reveal">South Florida Homeowners<br>Trust Razorback Air</h2>
+      <p class="section-sub reveal">Real experiences from real customers across Palm Beach County.</p>
+
+      <div class="carousel-wrap reveal">
+        <div class="carousel-track">
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Called on a Friday afternoon when my AC went out during a heatwave. Razorback had a tech at my door within two hours. He diagnosed the problem, had the part on his truck, and we were cool again before dinner. I've been recommending them to everyone in Delray."</p>
+            <div class="review-author">Maria T. — Delray Beach, FL · Emergency AC Repair</div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"After getting three quotes for a new system, Razorback Air was the most honest. No upselling, no pressure — just a fair price and a clear explanation of what I was getting. The install was clean and they walked me through the new thermostat before they left. Couldn't ask for more."</p>
+            <div class="review-author">James R. — Boynton Beach, FL · AC Installation</div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Signed up for their Cool Club maintenance plan and it's been worth every penny. They catch small issues before they become expensive repairs. The technician is always on time, professional, and explains everything clearly. First AC company I've ever actually trusted."</p>
+            <div class="review-author">Linda K. — Boca Raton, FL · Cool Club Member</div>
+          </div>
+
+        </div>
+        <button class="carousel-btn carousel-prev" aria-label="Previous review">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="carousel-btn carousel-next" aria-label="Next review">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+      <div class="carousel-dots" aria-label="Review navigation">
+        <button class="carousel-dot active" aria-label="Review 1"></button>
+        <button class="carousel-dot" aria-label="Review 2"></button>
+        <button class="carousel-dot" aria-label="Review 3"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES GRID -->
+  <section class="services-section" aria-label="Services">
+    <div class="section-wrap">
+      <div class="services-header">
+        <div>
+          <p class="section-label">What We Do</p>
+          <h2 class="section-title">Every AC Service<br>You'll Ever Need</h2>
+        </div>
+        <p class="section-sub">From routine tune-ups to full system replacements — Razorback Air handles it all across Palm Beach and Broward counties.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-icon">🔧</div>
+          <h3 class="service-name">AC Repair &amp; Diagnostics</h3>
+          <p class="service-desc">Fast, accurate diagnosis for any brand or model. Fully stocked trucks mean most repairs are done in a single visit. Upfront pricing before any work begins.</p>
+          <span class="service-tag">Same-Day Available</span>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🌀</div>
+          <h3 class="service-name">AC Installation &amp; Replacement</h3>
+          <p class="service-desc">Free in-home estimates. High-efficiency systems sized precisely for your home. 10-year manufacturer warranty + 1-year labor warranty included on every install.</p>
+          <span class="service-tag">Free Estimate</span>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🛡️</div>
+          <h3 class="service-name">The Cool Club — Maintenance</h3>
+          <p class="service-desc">Our signature maintenance plan: 21-point seasonal inspections, priority scheduling, and early detection before small issues become expensive emergencies.</p>
+          <span class="service-tag">Members Get Priority</span>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">💨</div>
+          <h3 class="service-name">Duct Cleaning &amp; Ductwork</h3>
+          <p class="service-desc">Clean ducts mean better airflow, lower energy bills, and fewer allergens. We also design and install custom ductwork for additions and renovations.</p>
+          <span class="service-tag">Improve Air Quality</span>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🌿</div>
+          <h3 class="service-name">Indoor Air Quality</h3>
+          <p class="service-desc">UV lights, whole-home air purifiers, advanced filtration, and dehumidifiers. Breathe cleaner, live healthier — especially in South Florida's humidity.</p>
+          <span class="service-tag">UV + HEPA Options</span>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">⚡</div>
+          <h3 class="service-name">Emergency Service — 365 Days</h3>
+          <p class="service-desc">AC emergencies don't keep business hours. Razorback Air does. 365 days a year, holidays included. We aim to be on-site within an hour for urgent calls.</p>
+          <span class="service-tag">365 Days / Year</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section" aria-label="About Razorback Air">
+    <div class="section-wrap">
+      <div class="about-grid">
+        <div class="about-img-wrap reveal">
+          <img
+            src="https://chrisoliveira.co/assets/samples/hvac/hvac-careers.jpg"
+            alt="Razorback Air technician servicing an AC unit in Palm Beach County"
+            loading="lazy"
+          >
+          <div class="about-badge">
+            <span class="about-badge-num">15</span>
+            <span class="about-badge-label">Years in South Florida</span>
+          </div>
+        </div>
+        <div class="about-content reveal">
+          <p class="section-label">Our Story</p>
+          <h2 class="section-title">Local, Family-Owned,<br>and Proud of It</h2>
+          <p class="about-body">
+            Razorback Air Conditioning started with a simple mission: keep Palm Beach County families comfortable with honest service and fair prices. Based in Delray Beach, we've spent 15 years building a reputation one happy homeowner at a time — from Boca Raton to Jupiter and everywhere in between.
+          </p>
+          <p class="about-body">
+            We're not a big national franchise. Every call goes to a real technician who knows your neighborhood, understands South Florida's humidity, and shows up when they say they will. No bait-and-switch pricing. No unnecessary upsells. Just straight talk and solid work.
+          </p>
+          <ul class="cred-list" role="list">
+            <li class="cred-item">
+              <span class="cred-dot" aria-hidden="true"></span>
+              <span>Florida HVAC License CAC1822878 — Licensed &amp; fully insured</span>
+            </li>
+            <li class="cred-item">
+              <span class="cred-dot" aria-hidden="true"></span>
+              <span>10-year material warranty + 1-year labor on all installations</span>
+            </li>
+            <li class="cred-item">
+              <span class="cred-dot" aria-hidden="true"></span>
+              <span>Mitsubishi, Daikin &amp; Fujitsu certified mini-split installer</span>
+            </li>
+            <li class="cred-item">
+              <span class="cred-dot" aria-hidden="true"></span>
+              <span>0% financing for 12 months through Synchrony on qualifying systems</span>
+            </li>
+            <li class="cred-item">
+              <span class="cred-dot" aria-hidden="true"></span>
+              <span>Serving Delray Beach, Boca Raton, Boynton Beach, West Palm Beach &amp; more</span>
+            </li>
+          </ul>
+          <a href="tel:5617675629" class="about-cta">
+            Call (561) 767-5629
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner" aria-label="Call to action">
+    <div class="cta-inner">
+      <div class="cta-text reveal">
+        <p class="cta-eyebrow">Ready to Stay Cool?</p>
+        <h2>Your AC Shouldn't Wait.<br>Neither Should You.</h2>
+        <p>Same-day service available. Free estimates on all new installs. 365-day emergency coverage, Palm Beach &amp; Broward counties.</p>
+      </div>
+      <div class="cta-buttons reveal">
+        <a href="tel:5617675629" class="cta-btn-primary">Call (561) 767-5629</a>
+        <a href="#quote" class="cta-btn-outline">Get Free Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer aria-label="Site footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name"><em>Razorback</em> Air Conditioning</div>
+        <p class="footer-tagline">Palm Beach County's trusted HVAC experts. Honest pricing, fast service, and workmanship backed by real warranties.</p>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.36 13.5 19.79 19.79 0 0 1 1.3 5a2 2 0 0 1 1.97-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 18z"/></svg>
+          <a href="tel:5617675629">(561) 767-5629</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:admin@razorbackair.com">admin@razorbackair.com</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>910 SW 15th Ave, Delray Beach, FL 33444</span>
+        </div>
+        <p class="footer-lic">Lic. CAC1822878 · Licensed &amp; Insured</p>
+      </div>
+
+      <div>
+        <p class="footer-col-title">Services</p>
+        <ul class="footer-links">
+          <li><a href="#quote">AC Repair &amp; Diagnostics</a></li>
+          <li><a href="#quote">AC Installation &amp; Replacement</a></li>
+          <li><a href="#quote">The Cool Club Maintenance</a></li>
+          <li><a href="#quote">Mini-Split Systems</a></li>
+          <li><a href="#quote">Duct Cleaning</a></li>
+          <li><a href="#quote">Indoor Air Quality</a></li>
+          <li><a href="tel:5617675629">Emergency Service</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-col-title">Hours &amp; Service Area</p>
+        <div class="footer-hours-item">
+          <span>Mon – Fri</span>
+          <span>7:00 AM – 4:30 PM</span>
+        </div>
+        <div class="footer-hours-item">
+          <span>Sat – Sun</span>
+          <span>Emergency Only</span>
+        </div>
+        <div class="footer-hours-item" style="margin-top:8px;">
+          <span>Emergency</span>
+          <span style="color:#c0392b;font-weight:700;">365 Days / Year</span>
+        </div>
+        <p class="footer-col-title" style="margin-top:24px;">Service Areas</p>
+        <ul class="footer-links">
+          <li><a href="#quote">Delray Beach</a></li>
+          <li><a href="#quote">Boca Raton</a></li>
+          <li><a href="#quote">Boynton Beach</a></li>
+          <li><a href="#quote">West Palm Beach</a></li>
+          <li><a href="#quote">Palm Beach Gardens</a></li>
+          <li><a href="#quote">Lake Worth &amp; Wellington</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,0.07);margin-top:48px;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;max-width:1160px;margin-left:auto;margin-right:auto;">
+      <p class="footer-copy">© 2026 Razorback Air Conditioning LLC. All rights reserved.</p>
+      <p class="footer-lic-badge">FL HVAC Lic. <span>CAC1822878</span></p>
+    </div>
+  </footer>
+
+</div><!-- end #page -->
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-cta" aria-label="Mobile call to action">
+  <a href="tel:5617675629">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.36 13.5 19.79 19.79 0 0 1 1.3 5a2 2 0 0 1 1.97-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 18z"/></svg>
+    Call Now — (561) 767-5629
+  </a>
 </div>
+
+<script>
+/* ═══════════════════════════════════════
+   LOADER
+═══════════════════════════════════════ */
+(function() {
+  var quotes = [
+    "Called at noon, fixed by 3 — no BS, no upselling.",
+    "Best AC company in Palm Beach. Period.",
+    "Honest price, fast work. My whole family uses them now."
+  ];
+  var lq = document.getElementById('lq');
+  var loader = document.getElementById('loader');
+  var page = document.getElementById('page');
+  var idx = 0;
+
+  function showQuote(i) {
+    lq.classList.remove('visible');
+    setTimeout(function() {
+      lq.textContent = '"' + quotes[i] + '"';
+      lq.classList.add('visible');
+    }, 150);
+  }
+
+  showQuote(0);
+  var interval = setInterval(function() {
+    idx++;
+    if (idx < quotes.length) {
+      showQuote(idx);
+    } else {
+      clearInterval(interval);
+      // Hold last quote, then fade
+      setTimeout(function() {
+        loader.classList.add('fade-out');
+        page.classList.add('visible');
+        // Start hero counter after loader clears
+        setTimeout(startCounter, 1200);
+        setTimeout(function() {
+          loader.style.display = 'none';
+        }, 1000);
+      }, 1200);
+    }
+  }, 1500);
+})();
+
+/* ═══════════════════════════════════════
+   GRAIN CANVAS
+═══════════════════════════════════════ */
+(function() {
+  var canvas = document.getElementById('grain');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w, h, animId;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function grain() {
+    var imageData = ctx.createImageData(w, h);
+    var data = imageData.data;
+    for (var i = 0; i < data.length; i += 4) {
+      var v = Math.random() * 255;
+      data[i]   = v * 1.0;  // R
+      data[i+1] = v * 0.7;  // G — warm-red tint
+      data[i+2] = v * 0.6;  // B
+      data[i+3] = 11;        // alpha
+    }
+    ctx.putImageData(imageData, 0, 0);
+    animId = requestAnimationFrame(grain);
+  }
+  grain();
+})();
+
+/* ═══════════════════════════════════════
+   YEARS COUNTER
+═══════════════════════════════════════ */
+function startCounter() {
+  var el = document.getElementById('years-counter');
+  if (!el) return;
+  var target = 15, start = 0, duration = 2200;
+  var startTime = null;
+
+  function easeOutExpo(t) {
+    return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+  }
+
+  function tick(ts) {
+    if (!startTime) startTime = ts;
+    var elapsed = ts - startTime;
+    var progress = Math.min(elapsed / duration, 1);
+    var eased = easeOutExpo(progress);
+    el.textContent = Math.round(eased * target);
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+/* ═══════════════════════════════════════
+   INTERSECTION OBSERVER — REVEALS
+═══════════════════════════════════════ */
+(function() {
+  var reveals = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(function(el) { observer.observe(el); });
+})();
+
+/* ═══════════════════════════════════════
+   SERVICE CARDS — STAGGERED REVEAL
+═══════════════════════════════════════ */
+(function() {
+  var cards = document.querySelectorAll('.service-card');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var i = Array.from(cards).indexOf(entry.target);
+        setTimeout(function() {
+          entry.target.classList.add('in-view');
+        }, i * 90);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  cards.forEach(function(c) { observer.observe(c); });
+})();
+
+/* ═══════════════════════════════════════
+   REVIEWS CAROUSEL
+═══════════════════════════════════════ */
+(function() {
+  var wrap = document.querySelector('.carousel-wrap');
+  if (!wrap) return;
+  var track = wrap.querySelector('.carousel-track');
+  var dots = document.querySelectorAll('.carousel-dot');
+  var n = track.querySelectorAll('.review-card').length;
+  var cur = 0, timer;
+
+  function go(i) {
+    cur = ((i % n) + n) % n;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dots.forEach(function(d, j) { d.classList.toggle('active', j === cur); });
+  }
+
+  wrap.querySelector('.carousel-prev').addEventListener('click', function() { go(cur - 1); reset(); });
+  wrap.querySelector('.carousel-next').addEventListener('click', function() { go(cur + 1); reset(); });
+  dots.forEach(function(d, i) { d.addEventListener('click', function() { go(i); reset(); }); });
+
+  // Touch/swipe support
+  var touchStartX = 0;
+  track.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) { go(dx < 0 ? cur + 1 : cur - 1); reset(); }
+  }, { passive: true });
+
+  function reset() {
+    clearInterval(timer);
+    timer = setInterval(function() { go(cur + 1); }, 5500);
+  }
+  reset();
+})();
+
+/* ═══════════════════════════════════════
+   FORM HANDLER
+═══════════════════════════════════════ */
+function handleForm(e) {
+  e.preventDefault();
+  var btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  setTimeout(function() {
+    btn.textContent = '✓ Request Received!';
+    btn.style.background = '#27ae60';
+  }, 900);
+}
+</script>
 
 </body>
 </html>

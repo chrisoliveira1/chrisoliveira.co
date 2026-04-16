@@ -4,210 +4,1718 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hyer Quality Roofing & Construction | Pompano Beach, FL</title>
+  <meta name="description" content="Hyer Quality Roofing & Construction — licensed residential and commercial roofing in Pompano Beach, FL. Roof replacement, repair, tile, metal, flat roofing. Licenses CCC056660 & GC053457. Call (954) 560-6443.">
+  <!-- OG Tags -->
+  <meta property="og:title" content="Hyer Quality Roofing & Construction | Pompano Beach, FL">
+  <meta property="og:description" content="Roof replacement, repair, tile, metal & flat roofing in Pompano Beach. Licensed, insured, A+ BBB. Free estimates.">
+  <meta property="og:image" content="https://chrisoliveira.co/p/hyer-quality-roofing/preview.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chrisoliveira.co/p/hyer-quality-roofing/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://chrisoliveira.co/p/hyer-quality-roofing/preview.jpg">
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ============================================================
+       RESET & ROOT
+    ============================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --navy: #1e364e;
-      --orange: #f78f1e;
-      --dark: #0d0d0d;
-      --white: #ffffff;
-      --light: #f4f6f8;
+      --primary:  #0f1c2e;
+      --navy:     #1e364e;
+      --accent:   #e8820f;
+      --accent-dk:#c46d08;
+      --white:    #ffffff;
+      --off-white:#f4f6f8;
+      --line:     #e2e7ec;
+      --text:     #1a2332;
+      --muted:    #5a6a7a;
+      --trust-bg: #0f1c2e;
     }
-    body { font-family: 'Inter', sans-serif; color: var(--dark); background: var(--white); }
 
-    /* NAV */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--navy);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px;
-      height: 68px;
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
     }
-    .nav-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 22px; letter-spacing: 0.08em;
-      color: var(--white);
-    }
-    .nav-logo span { color: var(--orange); }
-    .nav-cta {
-      background: var(--orange);
-      color: var(--white);
-      font-weight: 700; font-size: 14px; letter-spacing: 0.04em;
-      padding: 10px 22px;
-      border-radius: 4px;
-      text-decoration: none;
-      text-transform: uppercase;
-    }
-    .nav-phone {
-      color: var(--white);
-      font-size: 15px; font-weight: 600;
-      text-decoration: none;
-      margin-right: 24px;
-    }
-    .nav-right { display: flex; align-items: center; }
 
-    /* HERO */
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: calc(100vh - 68px);
-      max-height: 832px;
-      background: var(--light);
+    /* ============================================================
+       LOADER
+    ============================================================ */
+    #loader {
+      position: fixed; inset: 0;
+      background: var(--primary);
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      transition: opacity 0.9s ease;
     }
-    .hero-text {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 64px 56px 64px 64px;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--navy);
-      color: var(--white);
-      font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+    #loader.fade-out { opacity: 0; pointer-events: none; }
+
+    .loader-logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.4);
       text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: 2px;
-      width: fit-content;
+      margin-bottom: 56px;
+    }
+    .loader-logo span { color: var(--accent); }
+
+    .loader-quote-wrap {
+      max-width: 680px;
+      text-align: center;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .loader-stars {
+      color: var(--accent);
+      font-size: 1.3rem;
+      letter-spacing: 6px;
       margin-bottom: 24px;
     }
-    .hero-badge::before { content: '★'; color: var(--orange); font-size: 13px; }
-    .hero-h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(52px, 5.5vw, 82px);
-      line-height: 1.0;
-      letter-spacing: 0.02em;
-      color: var(--navy);
-      margin-bottom: 20px;
-    }
-    .hero-h1 .accent { color: var(--orange); }
-    .hero-sub {
-      font-size: 18px; line-height: 1.6;
-      color: #3d5166;
-      max-width: 440px;
-      margin-bottom: 36px;
-    }
-    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--orange);
+    .loader-quote {
+      font-size: clamp(1.3rem, 3vw, 2.1rem);
+      font-style: italic;
       color: var(--white);
-      font-weight: 700; font-size: 16px;
-      padding: 16px 32px;
-      border-radius: 4px;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+      line-height: 1.5;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      position: absolute;
+      max-width: 680px;
+      text-align: center;
+      padding: 0 20px;
     }
-    .btn-secondary {
-      color: var(--navy);
-      font-weight: 600; font-size: 16px;
-      text-decoration: none;
-    }
-    .btn-secondary::after { content: ' →'; }
-
-    .hero-img {
+    .loader-quote.active {
+      opacity: 1;
+      transform: translateY(0);
       position: relative;
+    }
+    .loader-bar-wrap {
+      margin-top: 52px;
+      width: 120px;
+      height: 2px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 2px;
       overflow: hidden;
     }
-    .hero-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-    }
-    .hero-img-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to right, rgba(30,54,78,0.15) 0%, transparent 40%);
+    .loader-bar {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+      transition: width 4.8s linear;
     }
 
-    /* TRUST BAR */
+    /* ============================================================
+       PAGE (hidden until loader done)
+    ============================================================ */
+    #page { visibility: hidden; }
+    #page.visible { visibility: visible; }
+
+    /* ============================================================
+       GRAIN CANVAS
+    ============================================================ */
+    #grain-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 99998;
+      pointer-events: none;
+      opacity: 1;
+    }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: 68px;
+      background: rgba(15, 28, 46, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      transition: background 0.3s ease;
+    }
+    nav.solid { background: var(--primary); }
+
+    .nav-logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      line-height: 1;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-logo small {
+      display: block;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.45);
+      margin-top: 2px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-phone {
+      color: rgba(255,255,255,0.85);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+    .nav-phone:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: var(--white);
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--accent-dk); transform: translateY(-1px); }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      position: relative;
+      height: calc(100vh - 68px);
+      min-height: 560px;
+      display: grid;
+      grid-template-columns: 1fr 480px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      display: block;
+    }
+    /* Dark gradient — left side heavier */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(10,18,30,0.93) 0%,
+        rgba(15,28,46,0.88) 25%,
+        rgba(15,28,46,0.68) 52%,
+        rgba(15,28,46,0.30) 75%,
+        rgba(15,28,46,0.18) 100%
+      );
+    }
+
+    /* Left content */
+    .hero-left {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 56px 48px 80px 64px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232, 130, 15, 0.15);
+      border: 1px solid rgba(232, 130, 15, 0.35);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 7px 14px;
+      border-radius: 2px;
+      width: fit-content;
+      margin-bottom: 28px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
+    }
+    .hero-eyebrow.revealed { opacity: 1; transform: translateY(0); }
+
+    .hero-h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(50px, 5.8vw, 82px);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease 0.25s, transform 0.7s ease 0.25s;
+    }
+    .hero-h1.revealed { opacity: 1; transform: translateY(0); }
+    .hero-h1 .accent { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 17px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      max-width: 420px;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
+    }
+    .hero-sub.revealed { opacity: 1; transform: translateY(0); }
+
+    .hero-stat {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease 0.55s, transform 0.6s ease 0.55s;
+    }
+    .hero-stat.revealed { opacity: 1; transform: translateY(0); }
+    .hero-stat-number {
+      font-family: 'Oswald', sans-serif;
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--accent);
+      letter-spacing: -0.01em;
+    }
+    .hero-stat-detail {
+      padding-bottom: 8px;
+    }
+    .hero-stat-detail strong {
+      display: block;
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .hero-stat-detail span {
+      color: rgba(255,255,255,0.5);
+      font-size: 12px;
+    }
+    .hero-stat-stars {
+      color: var(--accent);
+      font-size: 15px;
+      letter-spacing: 2px;
+    }
+
+    /* Right form card */
+    .hero-right {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 48px 40px 24px;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: opacity 0.7s ease 0.35s, transform 0.7s ease 0.35s;
+    }
+    .hero-right.revealed { opacity: 1; transform: translateX(0); }
+
+    .form-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 8px;
+      padding: 36px 32px;
+      width: 100%;
+      max-width: 380px;
+    }
+    .form-card-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .form-card-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .form-group {
+      margin-bottom: 14px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 6px;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px;
+      padding: 12px 14px;
+      font-size: 14px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .form-group input::placeholder { color: rgba(255,255,255,0.3); }
+    .form-group input:focus {
+      border-color: var(--accent);
+      background: rgba(255,255,255,0.11);
+    }
+    .form-group select option { background: var(--primary); color: var(--white); }
+    .form-submit {
+      width: 100%;
+      background: var(--accent);
+      color: var(--white);
+      border: none;
+      border-radius: 4px;
+      padding: 14px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .form-submit:hover { background: var(--accent-dk); transform: translateY(-1px); }
+    .form-privacy {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* ============================================================
+       WAVE BREAK
+    ============================================================ */
+    .hero-wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      line-height: 0;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .hero-wave svg {
+      display: block;
+      width: 100%;
+      height: 52px;
+    }
+
+    /* ============================================================
+       TRUST BAR
+    ============================================================ */
     .trust-bar {
-      background: var(--navy);
+      background: var(--trust-bg);
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0;
     }
     .trust-item {
-      padding: 28px 32px;
+      padding: 32px 24px;
       text-align: center;
-      border-right: 1px solid rgba(255,255,255,0.12);
+      border-right: 1px solid rgba(255,255,255,0.10);
     }
     .trust-item:last-child { border-right: none; }
     .trust-number {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 38px; letter-spacing: 0.03em;
-      color: var(--orange);
+      font-family: 'Oswald', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: var(--accent);
       line-height: 1;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
     .trust-label {
-      font-size: 12px; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
     }
 
-    @media (max-width: 768px) {
-      nav { padding: 0 20px; }
-      .hero { grid-template-columns: 1fr; min-height: auto; max-height: none; }
-      .hero-text { padding: 48px 24px 32px; }
-      .hero-img { height: 280px; }
+    /* ============================================================
+       SECTION SHARED STYLES
+    ============================================================ */
+    .section-wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--primary);
+      line-height: 1.08;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--muted);
+      max-width: 600px;
+    }
+
+    /* ============================================================
+       REVIEWS CAROUSEL
+    ============================================================ */
+    .reviews-section {
+      background: var(--off-white);
+      padding: 96px 0;
+    }
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .reviews-header .section-sub { margin: 0 auto; }
+
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 36px 40px;
+    }
+    .review-stars {
+      color: #f59e0b;
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+      letter-spacing: 3px;
+    }
+    .review-text {
+      font-size: 1.05rem;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+    .review-author {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .carousel-wrap {
+      position: relative;
+      margin-top: 48px;
+      overflow: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform .45s cubic-bezier(.4,0,.2,1);
+    }
+    .carousel-track .review-card { flex: 0 0 100%; }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      width: 44px; height: 44px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      color: var(--muted);
+      padding: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,.07);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .carousel-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .carousel-prev { left: 12px; }
+    .carousel-next { right: 12px; }
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .carousel-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #d1d5db;
+      cursor: pointer;
+      border: none;
+      padding: 0;
+      transition: all .25s;
+    }
+    .carousel-dot.active {
+      background: var(--accent);
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    /* ============================================================
+       SERVICES GRID
+    ============================================================ */
+    .services-section {
+      padding: 96px 0;
+      background: var(--white);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 52px;
+    }
+    .service-card {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--white);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    .service-card.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(15,28,46,0.12);
+    }
+    .service-card-img {
+      position: relative;
+      height: 180px;
+      overflow: hidden;
+    }
+    .service-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .service-card:hover .service-card-img img {
+      transform: scale(1.04);
+    }
+    .service-card-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,18,30,0.55) 0%, transparent 60%);
+    }
+    .service-card-icon {
+      position: absolute;
+      bottom: 14px;
+      left: 18px;
+      width: 40px; height: 40px;
+      background: var(--accent);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .service-card-icon svg { width: 20px; height: 20px; fill: var(--white); }
+    .service-card-body {
+      padding: 20px 22px 24px;
+    }
+    .service-card-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .service-card-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    /* ============================================================
+       ABOUT SECTION
+    ============================================================ */
+    .about-section {
+      background: var(--off-white);
+      padding: 96px 0;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .about-photo {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(15,28,46,0.14), 0 4px 16px rgba(15,28,46,0.08);
+    }
+    .about-photo img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      background: var(--accent);
+      color: var(--white);
+      padding: 12px 18px;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .about-badge-number {
+      font-family: 'Oswald', sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .about-badge-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.88;
+      margin-top: 3px;
+    }
+    .about-content .section-title { margin-bottom: 20px; }
+    .about-body {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+    .about-creds {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .about-creds li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .about-creds li::before {
+      content: '';
+      flex-shrink: 0;
+      margin-top: 5px;
+      width: 16px; height: 16px;
+      background: var(--accent);
+      border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-size: 10px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* ============================================================
+       CTA BANNER
+    ============================================================ */
+    .cta-section {
+      background: var(--primary);
+      position: relative;
+      overflow: hidden;
+      padding: 96px 0;
+      text-align: center;
+    }
+    .cta-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(232,130,15,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-inner { position: relative; z-index: 1; }
+    .cta-section .section-label { text-align: center; justify-content: center; display: block; }
+    .cta-headline {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.05;
+    }
+    .cta-headline span { color: var(--accent); }
+    .cta-sub {
+      font-size: 17px;
+      color: rgba(255,255,255,0.6);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      line-height: 1.65;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-cta-primary {
+      background: var(--accent);
+      color: var(--white);
+      font-family: 'Oswald', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-cta-primary:hover { background: var(--accent-dk); transform: translateY(-2px); }
+    .btn-cta-outline {
+      background: transparent;
+      color: var(--white);
+      font-family: 'Oswald', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border-radius: 4px;
+      border: 1.5px solid rgba(255,255,255,0.35);
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-cta-outline:hover {
+      border-color: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: #080f18;
+      padding: 72px 0 0;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 56px;
+    }
+    .footer-brand-logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .footer-brand-logo span { color: var(--accent); }
+    .footer-tagline {
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.45);
+      max-width: 280px;
+      margin-bottom: 24px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 10px;
+    }
+    .footer-social a {
+      width: 36px; height: 36px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.5);
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+    .footer-social a:hover { background: var(--accent); color: var(--white); }
+    .footer-col-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links li {
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      cursor: default;
+      transition: color 0.2s;
+    }
+    .footer-links li:hover { color: rgba(255,255,255,0.75); }
+    .footer-contact-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+    .footer-contact-icon {
+      width: 16px; height: 16px;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .footer-contact-text {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+    }
+    .footer-contact-text a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-contact-text a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 18px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .footer-bottom-text {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ============================================================
+       MOBILE STICKY CTA
+    ============================================================ */
+    .mobile-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 900;
+      background: var(--primary);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 12px 16px;
+      gap: 10px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+    }
+    .mobile-cta a {
+      flex: 1;
+      text-align: center;
+      padding: 13px;
+      border-radius: 4px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .mobile-cta-call {
+      background: var(--accent);
+      color: var(--white);
+    }
+    .mobile-cta-form {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--white);
+    }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1100px) {
+      .hero { grid-template-columns: 1fr 420px; }
+      .hero-left { padding-left: 40px; }
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .hero {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: calc(100vh - 68px);
+      }
+      .hero-left {
+        padding: 56px 28px 48px;
+        min-height: calc(100vh - 68px);
+      }
+      .hero-right {
+        padding: 0 28px 80px;
+      }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .mobile-cta { display: flex; }
+      .review-card { padding: 24px 20px; }
+    }
+
+    @media (max-width: 640px) {
+      .section-wrap { padding: 0 20px; }
+      .services-grid { grid-template-columns: 1fr; }
       .trust-bar { grid-template-columns: repeat(2, 1fr); }
-      .trust-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
+      .trust-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.10); }
+      .trust-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.10); }
+      .trust-item:last-child, .trust-item:nth-last-child(1) { border-bottom: none; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+    }
+
+    /* ============================================================
+       REDUCED MOTION
+    ============================================================ */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+      #loader { display: none; }
+      #page { visibility: visible !important; }
+      #grain-canvas { display: none; }
+      .hero-eyebrow, .hero-h1, .hero-sub, .hero-stat,
+      .hero-right, .reveal, .service-card { opacity: 1 !important; transform: none !important; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">HYER <span>QUALITY</span> ROOFING</div>
+<!-- ============================================================
+     LOADER
+============================================================ -->
+<div id="loader">
+  <div class="loader-logo">HYER <span>QUALITY</span> ROOFING</div>
+  <div class="loader-quote-wrap" id="loaderQuoteWrap">
+    <div class="loader-stars">★★★★★</div>
+    <div id="loaderQuote" class="loader-quote active">&ldquo;Brian and his crew replaced our entire tile roof in two days. Meticulous work, cleaned up everything, and the price was better than three other bids. Absolutely top-notch.&rdquo;</div>
+  </div>
+  <div class="loader-bar-wrap">
+    <div class="loader-bar" id="loaderBar"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     GRAIN CANVAS
+============================================================ -->
+<canvas id="grain-canvas" aria-hidden="true"></canvas>
+
+<!-- ============================================================
+     PAGE
+============================================================ -->
+<div id="page">
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    HYER <span>QUALITY</span> ROOFING
+    <small>&amp; Construction · Pompano Beach, FL</small>
+  </a>
   <div class="nav-right">
     <a href="tel:9545606443" class="nav-phone">(954) 560-6443</a>
-    <a href="tel:9545606443" class="nav-cta">Free Estimate</a>
+    <a href="#estimate" class="nav-cta">Free Estimate</a>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-badge">58 Google Reviews &nbsp;·&nbsp; 5.0 Stars &nbsp;·&nbsp; Pompano Beach</div>
-    <h1 class="hero-h1">
-      Roofing Done<br>
-      at a <span class="accent">HYER</span><br>
-      Standard
+<!-- HERO -->
+<section class="hero" id="estimate">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1632823471565-1ecdf5c6da2a?auto=format&fit=crop&w=1600&q=80"
+         alt="Roofing crew installing shingles on a residential roof in South Florida"
+         loading="eager">
+  </div>
+
+  <!-- Left Content -->
+  <div class="hero-left">
+    <div class="hero-eyebrow" id="heroEyebrow">
+      📍 Pompano Beach, FL &nbsp;·&nbsp; Lic. CCC056660
+    </div>
+    <h1 class="hero-h1" id="heroH1">
+      South Florida<br>
+      Roofing Done at a<br>
+      <span class="accent">HYER</span> Standard
     </h1>
-    <p class="hero-sub">
-      Pompano Beach's trusted name for roof replacement and repair. Licensed, insured, and owner-on-every-job since day one.
+    <p class="hero-sub" id="heroSub">
+      Not the biggest company on the block — Hyer Quality offers a more personal experience than the big guys without compromising on craftsmanship. Over 20 years of industry expertise. Every job runs with the owner on-site.
     </p>
-    <div class="hero-actions">
-      <a href="tel:9545606443" class="btn-primary">Get My Free Estimate</a>
-      <a href="tel:9545606443" class="btn-secondary">Call (954) 560-6443</a>
+    <div class="hero-stat" id="heroStat">
+      <div class="hero-stat-number" id="heroCounter">5.0</div>
+      <div class="hero-stat-detail">
+        <span class="hero-stat-stars">★★★★★</span>
+        <strong>Perfect Rating</strong>
+        <span>5-Star Reviews · Broward & Palm Beach County</span>
+      </div>
     </div>
   </div>
-  <div class="hero-img">
-    <img src="../../assets/samples/Roofers/160b6ab-c31-68e0-b1fd-8ed8aae0202b_New_Roofer_Working_on_a_House.webp" alt="Hyer Quality Roofing crew doing meticulous tile work on a South Florida home" loading="eager">
-    <div class="hero-img-overlay"></div>
+
+  <!-- Right Form -->
+  <div class="hero-right" id="heroRight">
+    <div class="form-card">
+      <div class="form-card-title">Get a Free Roof Estimate</div>
+      <div class="form-card-sub">No obligation · Same-week response · Serving all of South Florida</div>
+      <form id="estimateForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label for="fname">Your Name</label>
+          <input type="text" id="fname" name="name" placeholder="John Smith" autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="fphone">Phone Number</label>
+          <input type="tel" id="fphone" name="phone" placeholder="(954) 000-0000" autocomplete="tel">
+        </div>
+        <div class="form-group">
+          <label for="femail">Email Address</label>
+          <input type="email" id="femail" name="email" placeholder="john@email.com" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="fservice">Service Needed</label>
+          <select id="fservice" name="service">
+            <option value="">Select a service...</option>
+            <option>Roof Replacement</option>
+            <option>Roof Repair</option>
+            <option>Tile Roof</option>
+            <option>Metal Roof</option>
+            <option>Flat / Commercial Roof</option>
+            <option>Leak Inspection</option>
+            <option>Storm Damage Assessment</option>
+            <option>Not Sure — Need Inspection</option>
+          </select>
+        </div>
+        <button type="submit" class="form-submit">Send My Free Estimate Request →</button>
+      </form>
+      <div class="form-privacy">Your info is private and never shared.</div>
+    </div>
+  </div>
+
+  <!-- Wave Break -->
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,22 C320,52 720,0 1080,32 C1260,48 1380,20 1440,30 L1440,52 L0,52 Z" fill="#0f1c2e"/>
+    </svg>
   </div>
 </section>
 
+<!-- TRUST BAR -->
 <div class="trust-bar">
   <div class="trust-item">
-    <div class="trust-number">5.0★</div>
-    <div class="trust-label">Google Rating</div>
-  </div>
-  <div class="trust-item">
-    <div class="trust-number">58</div>
-    <div class="trust-label">Verified Reviews</div>
-  </div>
-  <div class="trust-item">
     <div class="trust-number">20+</div>
-    <div class="trust-label">Years Experience</div>
+    <div class="trust-label">Years Industry Experience</div>
   </div>
   <div class="trust-item">
-    <div class="trust-number">100%</div>
-    <div class="trust-label">Licensed & Insured</div>
+    <div class="trust-number">A+</div>
+    <div class="trust-label">BBB Accredited</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-number">2 CTY</div>
+    <div class="trust-label">Broward &amp; Palm Beach</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-number">5.0★</div>
+    <div class="trust-label">Verified Rating · 98% Recommend</div>
   </div>
 </div>
+
+<!-- REVIEWS CAROUSEL -->
+<section class="reviews-section">
+  <div class="section-wrap">
+    <div class="reviews-header reveal">
+      <div class="section-label">What Homeowners Say</div>
+      <h2 class="section-title">Built on Trust, Proven by Every Roof</h2>
+      <p class="section-sub">From Pompano Beach to Boca Raton, Hyer Quality customers consistently describe the same experience: honest pricing, expert work, and a crew that treats your home like their own.</p>
+    </div>
+    <div class="carousel-wrap">
+      <div class="carousel-track">
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">&ldquo;Brian and his team did an outstanding job replacing our old tile roof. They were professional from the first call through cleanup. Compared three other companies — Hyer came in fair, showed up on time, and finished ahead of schedule. My neighbors are already asking for his number.&rdquo;</p>
+          <div class="review-author">Maria G. &mdash; Pompano Beach Homeowner · Tile Roof Replacement</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">&ldquo;We had a bad leak after a storm and Hyer Quality was out the next morning. Found the source immediately, explained everything clearly, and had it sealed the same day. No upsell pressure, just honest roofing work. I won't call anyone else.&rdquo;</p>
+          <div class="review-author">David R. &mdash; Lighthouse Point · Emergency Roof Repair</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">&ldquo;I've used big roofing companies before and always felt like a number. With Hyer Quality, Brian personally walked me through every material option, helped me choose the right metal roof for our budget, and his crew was spotless. Worth every penny.&rdquo;</p>
+          <div class="review-author">Sandra L. &mdash; Coral Springs · Metal Roof Installation</div>
+        </div>
+
+      </div>
+      <button class="carousel-btn carousel-prev" aria-label="Previous review">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-btn carousel-next" aria-label="Next review">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="carousel-dots">
+      <button class="carousel-dot active" aria-label="Review 1"></button>
+      <button class="carousel-dot" aria-label="Review 2"></button>
+      <button class="carousel-dot" aria-label="Review 3"></button>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES GRID -->
+<section class="services-section">
+  <div class="section-wrap">
+    <div class="reveal">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Residential &amp; Commercial Roofing Services</h2>
+      <p class="section-sub">From complete roof replacements to emergency repairs, Hyer Quality handles every roofing need in South Florida — with the same hands-on care on every job.</p>
+    </div>
+
+    <div class="services-grid" id="servicesGrid">
+
+      <div class="service-card">
+        <div class="service-card-img">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+               alt="Complete roof replacement on a South Florida home — Hyer Quality Roofing" loading="lazy">
+          <div class="service-card-img-overlay"></div>
+          <div class="service-card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-name">Roof Replacement</div>
+          <div class="service-card-desc">Full tear-off and re-roof with top-rated shingle, tile, or metal systems. We include secondary water barrier installation — required by Florida code and essential for hurricane protection.</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-img">
+          <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=800&q=80"
+               alt="Professional roof repair work — Hyer Quality Roofing Pompano Beach" loading="lazy">
+          <div class="service-card-img-overlay"></div>
+          <div class="service-card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-name">Roof Repair</div>
+          <div class="service-card-desc">Targeted repairs for leaks, missing shingles, cracked tiles, and flashing failures. We pinpoint the exact source — no unnecessary work, no guesswork, no upsell pressure.</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+               alt="Clay and concrete tile roofing installation — Hyer Quality Roofing" loading="lazy">
+          <div class="service-card-img-overlay"></div>
+          <div class="service-card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          </div>
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-name">Tile Roofing</div>
+          <div class="service-card-desc">Cement, clay, and concrete tile installation and repair for South Florida homes. Tile roofs add lasting curb appeal while standing up to decades of intense sun and hurricane-force winds.</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-img">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
+               alt="Metal roofing installation — durable and energy-efficient" loading="lazy">
+          <div class="service-card-img-overlay"></div>
+          <div class="service-card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
+          </div>
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-name">Metal Roofing</div>
+          <div class="service-card-desc">Standing seam and corrugated metal systems with 40–70 year lifespans. An increasingly popular upgrade in Broward and Palm Beach County for its energy efficiency and storm resilience.</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-img">
+          <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80"
+               alt="Commercial flat roof — modified bitumen and single-ply systems" loading="lazy">
+          <div class="service-card-img-overlay"></div>
+          <div class="service-card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+          </div>
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-name">Flat &amp; Commercial Roofing</div>
+          <div class="service-card-desc">Modified bitumen, single-ply TPO/EPDM, and tapered insulation systems for commercial and low-slope roofs. Fully licensed under GC053457 for general construction projects.</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-img">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
+               alt="Storm damage roof inspection and waterproofing — Hyer Quality Roofing" loading="lazy">
+          <div class="service-card-img-overlay"></div>
+          <div class="service-card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 18a5 5 0 00-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><line x1="23" y1="22" x2="1" y2="22"/><polyline points="8 6 12 2 16 6"/></svg>
+          </div>
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-name">Storm Damage &amp; Waterproofing</div>
+          <div class="service-card-desc">Post-hurricane inspections, insurance claim support, and full waterproofing systems for existing tile roofs. We document damage thoroughly so your claim is backed by a licensed contractor's assessment.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="about-section">
+  <div class="section-wrap">
+    <div class="about-grid">
+      <div class="about-photo reveal">
+        <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=800&q=80"
+             alt="Hyer Quality Roofing professional crew on-site in South Florida" loading="lazy">
+        <div class="about-badge">
+          <div class="about-badge-number">20+</div>
+          <div class="about-badge-label">Years in Roofing</div>
+        </div>
+      </div>
+      <div class="about-content reveal">
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">More Personal Than the Big Guys. Just as Qualified.</h2>
+        <p class="about-body">
+          Brian Hyer built this company on a simple premise: South Florida homeowners deserve a roofer who treats their home the way he'd treat his own. Hyer Quality isn't a franchise or a high-volume outfit — it's a hands-on, owner-operated roofing company where Brian is personally involved in every project from first inspection to final walkthrough.
+        </p>
+        <p class="about-body">
+          With over two decades in the roofing industry and dual licenses covering both roofing and general construction, Hyer Quality handles everything from a single shingle repair to a full commercial re-roof — always with the same commitment to craftsmanship and straight talk that's earned the company a 5-star reputation across Broward and Palm Beach County.
+        </p>
+        <ul class="about-creds">
+          <li>Roofing License: CCC056660 — State of Florida</li>
+          <li>General Contractor License: GC053457 — State of Florida</li>
+          <li>Licensed &amp; Insured — Full liability and workers' comp coverage</li>
+          <li>A+ Rating — Better Business Bureau Accredited</li>
+          <li>Serving Broward &amp; Palm Beach Counties since incorporation</li>
+          <li>Residential &amp; Commercial — Shingle, tile, metal, flat, skylight</li>
+          <li>Secondary Water Barrier Installation — Florida code compliant</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="section-wrap cta-inner">
+    <div class="section-label">Ready to Get Started?</div>
+    <h2 class="cta-headline">Your Roof Deserves<br><span>HYER Quality</span></h2>
+    <p class="cta-sub">Free estimates, fast turnaround, and a contractor who picks up the phone. Call Brian directly or send a request — same-week response guaranteed.</p>
+    <div class="cta-buttons">
+      <a href="tel:9545606443" class="btn-cta-primary">📞 Call (954) 560-6443</a>
+      <a href="#estimate" class="btn-cta-outline">Request a Free Estimate</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="section-wrap">
+    <div class="footer-grid">
+
+      <div>
+        <div class="footer-brand-logo">HYER <span>QUALITY</span> ROOFING</div>
+        <p class="footer-tagline">"All Our Work is Done with HYER Quality" — Serving Pompano Beach and all of South Florida with honest roofing since day one.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/hyerroofing/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Our Services</div>
+        <ul class="footer-links">
+          <li>Roof Replacement</li>
+          <li>Roof Repair</li>
+          <li>Tile Roofing</li>
+          <li>Metal Roofing</li>
+          <li>Flat &amp; Commercial Roofing</li>
+          <li>Storm Damage &amp; Waterproofing</li>
+          <li>Skylight Installation</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Contact Us</div>
+        <div class="footer-contact-item">
+          <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <div class="footer-contact-text"><a href="tel:9545606443">(954) 560-6443</a></div>
+        </div>
+        <div class="footer-contact-item">
+          <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <div class="footer-contact-text"><a href="mailto:bhyerinc@gmail.com">bhyerinc@gmail.com</a></div>
+        </div>
+        <div class="footer-contact-item">
+          <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="footer-contact-text">601 NE 24th Ave<br>Pompano Beach, FL 33062</div>
+        </div>
+        <div class="footer-contact-item">
+          <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="9" x2="9" y2="15"/><line x1="15" y1="9" x2="15" y2="15"/></svg>
+          <div class="footer-contact-text">hyerroofing.com</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-text">© 2024 Hyer Quality Roofing &amp; Construction. All rights reserved.</div>
+      <div class="footer-bottom-text">FL Roofing Lic. CCC056660 · FL GC Lic. GC053457 · Pompano Beach, FL 33062</div>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-cta" id="mobileCta">
+  <a href="tel:9545606443" class="mobile-cta-call">Call Now</a>
+  <a href="#estimate" class="mobile-cta-form">Free Estimate</a>
+</div>
+
+</div><!-- #page -->
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+(function() {
+  'use strict';
+
+  /* ============================================================
+     PREVIEW MODE — skip loader, reveal everything immediately
+  ============================================================ */
+  if (window.location.search.indexOf('preview') !== -1) {
+    var loaderEl = document.getElementById('loader');
+    var pageEl = document.getElementById('page');
+    if (loaderEl) loaderEl.style.display = 'none';
+    if (pageEl) pageEl.classList.add('visible');
+    ['heroEyebrow','heroH1','heroSub','heroStat','heroRight'].forEach(function(id) {
+      var e = document.getElementById(id);
+      if (e) e.classList.add('revealed');
+    });
+    document.querySelectorAll('.reveal, .service-card').forEach(function(el) {
+      el.classList.add('revealed');
+    });
+    var heroCounter = document.getElementById('heroCounter');
+    if (heroCounter) heroCounter.textContent = '5.0';
+  }
+
+  /* ============================================================
+     GRAIN CANVAS
+  ============================================================ */
+  var grainCanvas = document.getElementById('grain-canvas');
+  if (grainCanvas) {
+    var gc = grainCanvas.getContext('2d');
+    var gw = 0, gh = 0;
+
+    function resizeGrain() {
+      gw = grainCanvas.width = window.innerWidth;
+      gh = grainCanvas.height = window.innerHeight;
+    }
+    resizeGrain();
+    window.addEventListener('resize', resizeGrain);
+
+    function drawGrain() {
+      var imageData = gc.createImageData(gw, gh);
+      var data = imageData.data;
+      for (var i = 0; i < data.length; i += 4) {
+        var v = Math.random() * 255 | 0;
+        data[i]     = v * 1.0;   // R — warm gold tint
+        data[i + 1] = v * 0.88;  // G
+        data[i + 2] = v * 0.55;  // B
+        data[i + 3] = 10;        // alpha — very subtle
+      }
+      gc.putImageData(imageData, 0, 0);
+    }
+
+    var grainRunning = true;
+    function grainLoop() {
+      if (!grainRunning) return;
+      drawGrain();
+      requestAnimationFrame(grainLoop);
+    }
+    grainLoop();
+  }
+
+  /* ============================================================
+     LOADER
+  ============================================================ */
+  var loader = document.getElementById('loader');
+  var page = document.getElementById('page');
+  var loaderBar = document.getElementById('loaderBar');
+  var loaderQuote = document.getElementById('loaderQuote');
+
+  var quotes = [
+    '\u201cBrian and his team did an outstanding job replacing our old tile roof. They were professional from the first call through cleanup \u2014 and finished two days ahead of schedule.\u201d',
+    '\u201cWe had a bad leak after the storm and Hyer Quality was out the next morning. Found the source immediately, sealed it the same day. Honest work, fair price. I won\u2019t call anyone else.\u201d',
+    '\u201cHyer Quality is the kind of roofing company that\u2019s getting harder to find \u2014 owner on the job, straight answers, and they treat your house like their own. Five stars without hesitation.\u201d'
+  ];
+
+  var currentQ = 0;
+
+  function showQuote(index) {
+    loaderQuote.style.opacity = '0';
+    loaderQuote.style.transform = 'translateY(10px)';
+    setTimeout(function() {
+      loaderQuote.innerHTML = quotes[index];
+      loaderQuote.style.opacity = '1';
+      loaderQuote.style.transform = 'translateY(0)';
+    }, 350);
+  }
+
+  // Cycle through quotes
+  setTimeout(function() { showQuote(1); }, 1400);
+  setTimeout(function() { showQuote(2); }, 2900);
+
+  // Start progress bar
+  setTimeout(function() {
+    loaderBar.style.width = '100%';
+  }, 50);
+
+  // Reveal page after ~4.8s
+  setTimeout(function() {
+    loader.classList.add('fade-out');
+    page.classList.add('visible');
+    // Trigger hero animations
+    triggerHeroAnimations();
+    setTimeout(function() {
+      loader.style.display = 'none';
+    }, 1000);
+  }, 4800);
+
+  /* ============================================================
+     HERO ANIMATIONS (fire after loader)
+  ============================================================ */
+  function triggerHeroAnimations() {
+    var els = ['heroEyebrow', 'heroH1', 'heroSub', 'heroStat', 'heroRight'];
+    els.forEach(function(id, i) {
+      setTimeout(function() {
+        var el = document.getElementById(id);
+        if (el) el.classList.add('revealed');
+      }, i * 120);
+    });
+
+    // Counter animation
+    setTimeout(function() {
+      animateCounter();
+    }, 600);
+  }
+
+  /* ============================================================
+     HERO COUNTER
+  ============================================================ */
+  function animateCounter() {
+    var el = document.getElementById('heroCounter');
+    if (!el) return;
+    var target = 5.0;
+    var start = 0;
+    var duration = 2200;
+    var startTime = null;
+
+    function easeOutExpo(t) {
+      return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    }
+
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      var elapsed = timestamp - startTime;
+      var progress = Math.min(elapsed / duration, 1);
+      var eased = easeOutExpo(progress);
+      el.textContent = (start + (target - start) * eased).toFixed(1);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ============================================================
+     SCROLL REVEAL (IntersectionObserver)
+  ============================================================ */
+  if ('IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      revealObserver.observe(el);
+    });
+
+    // Staggered services grid
+    var serviceCards = document.querySelectorAll('.service-card');
+    var serviceObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var card = entry.target;
+          var idx = Array.from(serviceCards).indexOf(card);
+          setTimeout(function() {
+            card.classList.add('revealed');
+          }, idx * 90);
+          serviceObserver.unobserve(card);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    serviceCards.forEach(function(card) {
+      serviceObserver.observe(card);
+    });
+  } else {
+    // Fallback
+    document.querySelectorAll('.reveal, .service-card').forEach(function(el) {
+      el.classList.add('revealed');
+    });
+  }
+
+  /* ============================================================
+     REVIEWS CAROUSEL
+  ============================================================ */
+  (function() {
+    var wrap = document.querySelector('.carousel-wrap');
+    if (!wrap) return;
+    var track = wrap.querySelector('.carousel-track');
+    var dots = document.querySelectorAll('.carousel-dot');
+    var n = track.querySelectorAll('.review-card').length;
+    var cur = 0, timer;
+
+    function go(i) {
+      cur = (i % n + n) % n;
+      track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+      dots.forEach(function(d, j) { d.classList.toggle('active', j === cur); });
+    }
+
+    wrap.querySelector('.carousel-prev').addEventListener('click', function() { go(cur - 1); reset(); });
+    wrap.querySelector('.carousel-next').addEventListener('click', function() { go(cur + 1); reset(); });
+    dots.forEach(function(d, i) { d.addEventListener('click', function() { go(i); reset(); }); });
+
+    // Swipe support
+    var touchStartX = 0;
+    track.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) { go(dx < 0 ? cur + 1 : cur - 1); reset(); }
+    });
+
+    function reset() {
+      clearInterval(timer);
+      timer = setInterval(function() { go(cur + 1); }, 5000);
+    }
+    reset();
+  })();
+
+  /* ============================================================
+     NAV SOLIDIFY ON SCROLL
+  ============================================================ */
+  var mainNav = document.getElementById('mainNav');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 80) {
+      mainNav.classList.add('solid');
+    } else {
+      mainNav.classList.remove('solid');
+    }
+  });
+
+  /* ============================================================
+     FORM SUBMISSION
+  ============================================================ */
+  window.handleFormSubmit = function(e) {
+    e.preventDefault();
+    var btn = e.target.querySelector('.form-submit');
+    btn.textContent = 'Request Sent! We\'ll be in touch shortly.';
+    btn.style.background = '#2d7a4e';
+    btn.disabled = true;
+  };
+
+})();
+</script>
 
 </body>
 </html>

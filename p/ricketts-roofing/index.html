@@ -3,97 +3,1082 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ricketts Roofing and Construction | Fort Lauderdale, FL</title>
+  <title>Ricketts Roofing & Construction | Fort Lauderdale, FL</title>
+  <meta name="description" content="Broward County's trusted roofing contractor since 2013. Licensed & insured. Residential, commercial, storm damage, metal, tile & flat roofing. Free estimates. Call (954) 588-5670.">
+  <!-- OG -->
+  <meta property="og:title" content="Ricketts Roofing & Construction | Fort Lauderdale, FL">
+  <meta property="og:description" content="Roofing Redefined. Broward County's Select ShingleMaster Certified roofing contractor. 4.8 stars · 124+ reviews.">
+  <meta property="og:image" content="https://chrisoliveira.co/p/ricketts-roofing/preview.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chrisoliveira.co/p/ricketts-roofing/">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    /* ─── RESET & BASE ─── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --navy: #1a2640;
-      --coral: #e05a2b;
-      --offwhite: #f7f7f5;
-      --dark: #0d0d0d;
-      --white: #ffffff;
+      --orange:    #FF5100;
+      --orange-dk: #cc4000;
+      --orange-lt: #ff7a3d;
+      --navy:      #1a1e2a;
+      --dark:      #1E1810;
+      --slate:     #575250;
+      --cream:     #F8F5F4;
+      --white:     #ffffff;
+      --text:      #2c2925;
+      --muted:     #7a7570;
+      --line:      #e8e4e0;
+      --trust-bg:  #12151f;
     }
-    body { font-family: 'Inter', sans-serif; color: var(--dark); background: var(--offwhite); }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--cream); overflow-x: hidden; }
 
+    /* ─── LOADER ─── */
+    #loader {
+      position: fixed; inset: 0; z-index: 99999;
+      background: var(--trust-bg);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transition: opacity 0.9s ease;
+    }
+    #loader.fade-out { opacity: 0; pointer-events: none; }
+    .loader-stars { color: #f59e0b; font-size: 1.5rem; letter-spacing: 4px; margin-bottom: 20px; }
+    .loader-quote {
+      font-family: 'Oswald', sans-serif; font-weight: 400;
+      font-size: clamp(1.3rem, 3.2vw, 2.2rem);
+      color: var(--white); text-align: center; max-width: 680px;
+      padding: 0 32px; font-style: italic; line-height: 1.5;
+      opacity: 0; transition: opacity 0.5s ease;
+    }
+    .loader-quote.visible { opacity: 1; }
+    .loader-logo {
+      position: absolute; top: 28px; left: 50%; transform: translateX(-50%);
+      font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.1rem;
+      color: var(--white); letter-spacing: 0.08em; text-transform: uppercase;
+      opacity: 0.5;
+    }
+    .loader-progress {
+      position: absolute; bottom: 0; left: 0; height: 3px;
+      background: var(--orange); width: 0%;
+      transition: width 4.8s linear;
+    }
+    .loader-progress.run { width: 100%; }
+
+    /* ─── GRAIN CANVAS ─── */
+    #grain {
+      position: fixed; inset: 0; z-index: 99998;
+      pointer-events: none; opacity: 1;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #loader { display: none; }
+      #page { visibility: visible !important; }
+      #grain { display: none; }
+    }
+
+    /* ─── PAGE ─── */
+    #page { visibility: hidden; }
+
+    /* ─── NAV ─── */
     nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--navy);
+      position: sticky; top: 0; z-index: 1000; height: 68px;
+      background: rgba(18, 21, 31, 0.92);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,81,0,0.15);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px; height: 68px;
+      padding: 0 48px;
     }
-    .nav-logo { font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 900; color: var(--white); letter-spacing: 0.03em; }
-    .nav-logo span { color: var(--coral); }
-    .nav-right { display: flex; align-items: center; gap: 20px; }
-    .nav-phone { color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 600; text-decoration: none; }
-    .nav-cta { background: var(--coral); color: var(--white); font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; }
+    .nav-logo {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 1.15rem; color: var(--white); letter-spacing: 0.06em;
+      text-transform: uppercase; text-decoration: none;
+    }
+    .nav-logo em { color: var(--orange); font-style: normal; }
+    .nav-right { display: flex; align-items: center; gap: 18px; }
+    .nav-phone {
+      font-family: 'Oswald', sans-serif; font-weight: 600;
+      font-size: 1rem; color: var(--white); letter-spacing: 0.04em;
+      text-decoration: none; opacity: 0.9;
+    }
+    .nav-phone:hover { color: var(--orange-lt); }
+    .btn-nav {
+      font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.85rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      background: var(--orange); color: var(--white);
+      padding: 10px 22px; border-radius: 4px; border: none;
+      cursor: pointer; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-nav:hover { background: var(--orange-dk); transform: translateY(-1px); }
 
-    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 68px); max-height: 832px; }
-    .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 64px 52px 64px 64px; background: var(--navy); }
-    .hero-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--coral); margin-bottom: 16px; }
-    .hero-h1 { font-family: 'Work Sans', sans-serif; font-size: clamp(44px, 4.4vw, 68px); font-weight: 900; line-height: 1.05; color: var(--white); margin-bottom: 20px; }
-    .hero-h1 em { color: var(--coral); font-style: normal; }
-    .hero-rule { width: 56px; height: 4px; background: var(--coral); margin-bottom: 20px; }
-    .hero-sub { font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.8); max-width: 420px; margin-bottom: 36px; }
-    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-    .btn-primary { background: var(--coral); color: var(--white); font-weight: 700; font-size: 15px; padding: 15px 30px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.03em; }
-    .btn-ghost { color: var(--white); font-weight: 600; font-size: 15px; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.4); padding-bottom: 1px; }
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      height: calc(100vh - 68px);
+      min-height: 580px;
+      display: grid; grid-template-columns: 1fr 460px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(to right, rgba(18,21,31,0.97) 0%, rgba(18,21,31,0.88) 35%, rgba(18,21,31,0.4) 70%, rgba(18,21,31,0.25) 100%),
+        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover; background-position: center;
+    }
+    .hero-left {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 64px 52px 80px 56px;
+    }
+    .hero-eyebrow {
+      font-family: 'Oswald', sans-serif; font-weight: 500;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--orange-lt); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: inline-block;
+      width: 28px; height: 2px; background: var(--orange);
+    }
+    .hero-h1 {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+      line-height: 1.05; color: var(--white);
+      text-transform: uppercase; letter-spacing: 0.02em;
+      margin-bottom: 22px;
+    }
+    .hero-h1 .accent { color: var(--orange); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,0.78);
+      line-height: 1.7; max-width: 480px; margin-bottom: 36px;
+    }
+    .hero-stat-wrap {
+      display: flex; align-items: center; gap: 32px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .hero-stat { display: flex; flex-direction: column; }
+    .hero-stat-num {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 2.2rem; color: var(--orange); line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.72rem; color: rgba(255,255,255,0.55);
+      text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px;
+    }
+    .hero-stat-divider { width: 1px; height: 44px; background: rgba(255,255,255,0.15); }
+    .hero-rating-block {
+      padding-left: 16px; border-left: 3px solid var(--orange);
+    }
+    .hero-rating-num {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 2.2rem; color: var(--white); line-height: 1;
+    }
+    .hero-rating-stars { color: #f59e0b; font-size: 0.85rem; letter-spacing: 2px; margin-top: 2px; }
+    .hero-rating-label { font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
 
-    .hero-img { position: relative; overflow: hidden; }
-    .hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* ─── HERO FORM ─── */
+    .hero-right {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      padding: 48px 40px 80px 16px;
+    }
+    .lead-form {
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      padding: 36px 32px;
+      width: 100%; max-width: 360px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    }
+    .form-headline {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 1.4rem; color: var(--white); text-transform: uppercase;
+      letter-spacing: 0.04em; margin-bottom: 6px;
+    }
+    .form-sub {
+      font-size: 0.8rem; color: rgba(255,255,255,0.55);
+      margin-bottom: 24px; line-height: 1.5;
+    }
+    .form-field { margin-bottom: 14px; }
+    .form-field label {
+      display: block; font-size: 0.72rem; font-weight: 600;
+      color: rgba(255,255,255,0.6); text-transform: uppercase;
+      letter-spacing: 0.1em; margin-bottom: 6px;
+    }
+    .form-field input {
+      width: 100%; padding: 12px 16px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 8px; color: var(--white);
+      font-family: 'Inter', sans-serif; font-size: 0.9rem;
+      outline: none; transition: border-color 0.2s, background 0.2s;
+    }
+    .form-field input::placeholder { color: rgba(255,255,255,0.35); }
+    .form-field input:focus {
+      border-color: var(--orange);
+      background: rgba(255,81,0,0.08);
+    }
+    .btn-form {
+      width: 100%; margin-top: 8px;
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--orange); color: var(--white);
+      padding: 15px 24px; border-radius: 8px; border: none;
+      cursor: pointer; transition: background 0.2s, transform 0.15s;
+    }
+    .btn-form:hover { background: var(--orange-dk); transform: translateY(-2px); }
+    .form-trust {
+      text-align: center; margin-top: 14px;
+      font-size: 0.72rem; color: rgba(255,255,255,0.4);
+    }
+    .form-trust svg { vertical-align: middle; margin-right: 4px; }
 
-    .trust-bar { background: var(--coral); display: grid; grid-template-columns: repeat(4, 1fr); }
-    .trust-item { padding: 26px 28px; text-align: center; border-right: 1px solid rgba(255,255,255,0.2); }
+    /* ─── WAVE BREAK ─── */
+    .hero-wave { position: absolute; bottom: 0; left: 0; width: 100%; line-height: 0; z-index: 3; pointer-events: none; }
+    .hero-wave svg { display: block; width: 100%; height: 52px; }
+
+    /* ─── TRUST BAR ─── */
+    .trust-bar {
+      background: var(--trust-bg);
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .trust-item {
+      padding: 32px 28px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
     .trust-item:last-child { border-right: none; }
-    .trust-number { font-family: 'Work Sans', sans-serif; font-size: 36px; font-weight: 900; color: var(--white); line-height: 1; margin-bottom: 4px; }
-    .trust-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.8); }
+    .trust-icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .trust-num {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 2.2rem; color: var(--orange); line-height: 1;
+    }
+    .trust-label {
+      font-size: 0.7rem; color: rgba(255,255,255,0.5);
+      text-transform: uppercase; letter-spacing: 0.12em; margin-top: 6px;
+    }
+    .trust-sublabel {
+      font-size: 0.78rem; color: rgba(255,255,255,0.35); margin-top: 4px;
+    }
 
-    @media (max-width: 768px) {
-      nav { padding: 0 20px; }
-      .hero { grid-template-columns: 1fr; min-height: auto; max-height: none; }
-      .hero-text { padding: 48px 24px 32px; }
-      .hero-img { height: 280px; }
+    /* ─── SECTIONS SHARED ─── */
+    .section { padding: 88px 48px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-family: 'Oswald', sans-serif; font-weight: 500;
+      font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::before { content: ''; width: 24px; height: 2px; background: var(--orange); }
+    .section-title {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: clamp(1.9rem, 3vw, 2.8rem);
+      text-transform: uppercase; letter-spacing: 0.02em;
+      color: var(--dark); line-height: 1.1; margin-bottom: 14px;
+    }
+    .section-sub {
+      font-size: 1rem; color: var(--muted); max-width: 560px; line-height: 1.7;
+    }
+
+    /* ─── REVIEWS CAROUSEL ─── */
+    .reviews-section { background: var(--white); }
+    .review-card {
+      background: var(--cream);
+      border: 1px solid var(--line); border-radius: 12px;
+      padding: 36px 40px;
+    }
+    .review-stars { color: #f59e0b; font-size: 1.1rem; margin-bottom: 14px; letter-spacing: 3px; }
+    .review-text {
+      font-size: 1.05rem; color: var(--text); line-height: 1.75;
+      margin-bottom: 20px; font-style: italic;
+    }
+    .review-author { font-size: 0.85rem; font-weight: 700; color: var(--muted); }
+    .review-source {
+      display: inline-block; margin-top: 6px;
+      font-size: 0.7rem; background: var(--orange);
+      color: var(--white); padding: 3px 10px; border-radius: 50px;
+      font-weight: 600; letter-spacing: 0.06em;
+    }
+    .carousel-wrap { position: relative; margin-top: 48px; overflow: hidden; }
+    .carousel-track { display: flex; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); }
+    .carousel-track .review-card { flex: 0 0 100%; }
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: 50%; width: 44px; height: 44px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      z-index: 2; color: var(--muted); padding: 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      transition: background 0.2s, color 0.2s;
+    }
+    .carousel-btn:hover { background: var(--orange); color: var(--white); border-color: var(--orange); }
+    .carousel-prev { left: 12px; }
+    .carousel-next { right: 12px; }
+    .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+    .carousel-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--line); cursor: pointer; border: none;
+      padding: 0; transition: all 0.25s;
+    }
+    .carousel-dot.active { background: var(--orange); width: 24px; border-radius: 4px; }
+
+    /* ─── SERVICES GRID ─── */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 28px; margin-top: 48px;
+    }
+    .service-card {
+      background: var(--white); border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      transition: transform 0.25s, box-shadow 0.25s;
+      opacity: 0; transform: translateY(32px);
+    }
+    .service-card.revealed { opacity: 1; transform: translateY(0); }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+    .service-img {
+      width: 100%; height: 180px; object-fit: cover; display: block;
+    }
+    .service-body { padding: 22px 24px 26px; }
+    .service-icon {
+      font-size: 1.5rem; margin-bottom: 10px;
+      display: flex; align-items: center;
+    }
+    .service-name {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.04em;
+      color: var(--dark); margin-bottom: 8px;
+    }
+    .service-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+    /* ─── ABOUT ─── */
+    .about-section { background: var(--cream); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 72px; align-items: center;
+    }
+    .about-img-wrap {
+      position: relative; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.14);
+    }
+    .about-img { width: 100%; height: 480px; object-fit: cover; display: block; }
+    .about-badge {
+      position: absolute; bottom: 24px; left: 24px;
+      background: var(--orange); color: var(--white);
+      border-radius: 10px; padding: 14px 20px;
+      font-family: 'Oswald', sans-serif;
+    }
+    .about-badge-num { font-weight: 700; font-size: 2rem; line-height: 1; }
+    .about-badge-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; }
+    .about-content { }
+    .about-title {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+      text-transform: uppercase; letter-spacing: 0.02em;
+      color: var(--dark); line-height: 1.1; margin-bottom: 22px;
+    }
+    .about-title .accent { color: var(--orange); }
+    .about-body { font-size: 0.97rem; color: var(--slate); line-height: 1.78; margin-bottom: 28px; }
+    .creds-list { display: flex; flex-direction: column; gap: 12px; }
+    .cred-item {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--white); border-radius: 10px;
+      padding: 14px 18px; border-left: 3px solid var(--orange);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .cred-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .cred-text { font-size: 0.88rem; color: var(--text); font-weight: 600; }
+    .cred-sub { font-size: 0.77rem; color: var(--muted); margin-top: 2px; }
+
+    /* ─── CTA BANNER ─── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--trust-bg) 0%, #1f2435 100%);
+      padding: 80px 48px; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute; top: -60px; right: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,81,0,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-banner::after {
+      content: '';
+      position: absolute; bottom: -80px; left: -60px;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(255,81,0,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-eyebrow {
+      font-family: 'Oswald', sans-serif; font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange-lt);
+      margin-bottom: 16px;
+    }
+    .cta-title {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3.4rem); text-transform: uppercase;
+      color: var(--white); letter-spacing: 0.02em; line-height: 1.1;
+      margin-bottom: 18px; position: relative; z-index: 1;
+    }
+    .cta-title .accent { color: var(--orange); }
+    .cta-sub {
+      font-size: 1rem; color: rgba(255,255,255,0.6);
+      max-width: 520px; margin: 0 auto 38px; line-height: 1.7;
+      position: relative; z-index: 1;
+    }
+    .cta-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; position: relative; z-index: 1; }
+    .btn-primary {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 0.95rem; letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--orange); color: var(--white);
+      padding: 16px 36px; border-radius: 6px; border: none;
+      cursor: pointer; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--orange-dk); transform: translateY(-2px); }
+    .btn-secondary {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 0.95rem; letter-spacing: 0.1em; text-transform: uppercase;
+      background: transparent; color: var(--white);
+      padding: 16px 36px; border-radius: 6px;
+      border: 2px solid rgba(255,255,255,0.3);
+      cursor: pointer; text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--dark); padding: 64px 48px 32px; }
+    .footer-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 48px;
+      padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand-name {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 1.2rem; color: var(--white); text-transform: uppercase;
+      letter-spacing: 0.06em; margin-bottom: 14px;
+    }
+    .footer-brand-name em { color: var(--orange); font-style: normal; }
+    .footer-desc { font-size: 0.88rem; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 280px; }
+    .footer-certs { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+    .cert-pill {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.5); padding: 5px 12px; border-radius: 4px;
+    }
+    .footer-col-title {
+      font-family: 'Oswald', sans-serif; font-weight: 600;
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 18px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 0.88rem; color: rgba(255,255,255,0.5);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--orange-lt); }
+    .footer-contact-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      margin-bottom: 14px; font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .footer-contact-item svg { flex-shrink: 0; margin-top: 2px; color: var(--orange); }
+    .footer-contact-item a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    .footer-contact-item a:hover { color: var(--orange-lt); }
+    .footer-bottom {
+      max-width: 1200px; margin: 28px auto 0;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.3); }
+    .footer-lic { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+
+    /* ─── MOBILE STICKY CTA ─── */
+    .mobile-cta {
+      display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 900;
+      background: var(--orange); padding: 14px 24px;
+      flex-direction: row; gap: 10px; align-items: center;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.25);
+    }
+    .mobile-cta a {
+      flex: 1; text-align: center;
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--white); text-decoration: none;
+      padding: 10px 0; border-radius: 4px;
+    }
+    .mobile-cta a.outline {
+      border: 2px solid rgba(255,255,255,0.6);
+      background: transparent;
+    }
+
+    /* ─── REVEAL ─── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr 380px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-phone { display: none; }
+      .hero {
+        grid-template-columns: 1fr;
+        height: auto; min-height: 100svh;
+        padding-bottom: 60px;
+      }
+      .hero-bg { background-position: 70% center; }
+      .hero-left { padding: 48px 24px 32px; }
+      .hero-right { padding: 0 24px 40px; justify-content: flex-start; }
+      .lead-form { max-width: 100%; }
       .trust-bar { grid-template-columns: repeat(2, 1fr); }
+      .trust-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .trust-item:nth-child(2n) { border-right: none; }
+      .trust-item:nth-child(3), .trust-item:nth-child(4) { border-bottom: none; }
+      .section { padding: 64px 24px; }
+      .services-grid { grid-template-columns: 1fr; gap: 20px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-img { height: 320px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+      .mobile-cta { display: flex; }
+      .review-card { padding: 24px 20px; }
+      .cta-banner { padding: 60px 24px; }
+      footer { padding: 48px 24px 96px; }
+    }
+    @media (max-width: 640px) {
+      .hero-h1 { font-size: 2.2rem; }
+      .trust-bar { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo"><span>Ricketts</span> Roofing</div>
-  <div class="nav-right">
-    <a href="tel:9545885670" class="nav-phone">(954) 588-5670</a>
-    <a href="tel:9545885670" class="nav-cta">Free Estimate</a>
-  </div>
-</nav>
+<!-- ─── LOADER ─── -->
+<div id="loader" role="status" aria-label="Loading">
+  <div class="loader-logo">Ricketts Roofing &amp; Construction</div>
+  <div class="loader-stars">★★★★★</div>
+  <div class="loader-quote" id="loaderQuote"></div>
+  <div class="loader-progress" id="loaderProgress"></div>
+</div>
 
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-eyebrow">Fort Lauderdale, FL &nbsp;·&nbsp; Family Owned &nbsp;·&nbsp; Broward + Palm Beach</div>
-    <h1 class="hero-h1">The Roofer<br><em>Fort Lauderdale</em><br>Calls by Name</h1>
-    <div class="hero-rule"></div>
-    <p class="hero-sub">
-      Winston walks every job himself. Customers write his name in 5-star reviews because they know exactly who's accountable. That's what a family business looks like.
-    </p>
-    <div class="hero-actions">
-      <a href="tel:9545885670" class="btn-primary">Get a Free Estimate</a>
-      <a href="tel:9545885670" class="btn-ghost">Call Winston</a>
+<!-- ─── GRAIN CANVAS ─── -->
+<canvas id="grain" aria-hidden="true"></canvas>
+
+<!-- ─── PAGE ─── -->
+<div id="page">
+
+  <!-- ─── NAV ─── -->
+  <nav aria-label="Main navigation">
+    <a href="#" class="nav-logo">Ricketts <em>Roofing</em> &amp; Construction</a>
+    <div class="nav-right">
+      <a href="tel:9545885670" class="nav-phone">(954) 588-5670</a>
+      <a href="#contact" class="btn-nav">Free Estimate</a>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-bg" role="img" aria-label="Roofing contractor working on residential roof in Fort Lauderdale"></div>
+
+    <!-- Left Column -->
+    <div class="hero-left">
+      <p class="hero-eyebrow">Broward County, FL · Lic. CCC1331129</p>
+      <h1 class="hero-h1">
+        South Florida Roofing,<br>
+        <span class="accent">Redefined.</span>
+      </h1>
+      <p class="hero-sub">
+        Family-owned and ShingleMaster Certified since 2013. We handle every roof — residential, commercial, storm damage, metal &amp; tile — backed by a 5–12 year workmanship warranty and a 4.8-star reputation built one job at a time.
+      </p>
+      <div class="hero-stat-wrap">
+        <div class="hero-stat">
+          <span class="hero-stat-num" id="yearsCounter">12</span>
+          <span class="hero-stat-label">Years in Business</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">124+</span>
+          <span class="hero-stat-label">5-Star Reviews</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-rating-block">
+          <div class="hero-rating-num" id="ratingCounter">4.8</div>
+          <div class="hero-rating-stars">★★★★★</div>
+          <div class="hero-rating-label">Google Rating</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Lead Form -->
+    <div class="hero-right" id="contact">
+      <form class="lead-form" onsubmit="handleFormSubmit(event)">
+        <div class="form-headline">Get a Free Estimate</div>
+        <p class="form-sub">We respond within 2 hours during business hours.</p>
+        <div class="form-field">
+          <label for="fname">Your Name</label>
+          <input type="text" id="fname" name="name" placeholder="John Smith" autocomplete="name" required>
+        </div>
+        <div class="form-field">
+          <label for="fphone">Phone Number</label>
+          <input type="tel" id="fphone" name="phone" placeholder="(954) 000-0000" autocomplete="tel" required>
+        </div>
+        <div class="form-field">
+          <label for="femail">Email Address</label>
+          <input type="email" id="femail" name="email" placeholder="you@example.com" autocomplete="email">
+        </div>
+        <button type="submit" class="btn-form">Request My Free Estimate →</button>
+        <p class="form-trust">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          No spam. No obligation. Licensed &amp; Insured.
+        </p>
+      </form>
+    </div>
+
+    <!-- Wave -->
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,22 C360,52 1080,0 1440,30 L1440,52 L0,52 Z" fill="#12151f"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ─── TRUST BAR ─── -->
+  <div class="trust-bar" aria-label="Trust indicators">
+    <div class="trust-item">
+      <div class="trust-icon">🏗️</div>
+      <div class="trust-num">Since 2013</div>
+      <div class="trust-label">Family-Owned</div>
+      <div class="trust-sublabel">Serving South Florida</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">📋</div>
+      <div class="trust-num">Licensed</div>
+      <div class="trust-label">&amp; Fully Insured</div>
+      <div class="trust-sublabel">CCC1331129 · CBC1259476</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">📍</div>
+      <div class="trust-num">3 Counties</div>
+      <div class="trust-label">Service Area</div>
+      <div class="trust-sublabel">Broward · Miami-Dade · Palm Beach</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">⭐</div>
+      <div class="trust-num">4.8 Stars</div>
+      <div class="trust-label">Google Rated</div>
+      <div class="trust-sublabel">124+ Verified Reviews</div>
     </div>
   </div>
-  <div class="hero-img">
-    <img src="../../assets/samples/Roofers/160b6ab-c31-68e0-b1fd-8ed8aae0202b_New_Roofer_Working_on_a_House.webp" alt="Ricketts Roofing and Construction crew completing precision roofing work on a Fort Lauderdale home" loading="eager">
-  </div>
-</section>
 
-<div class="trust-bar">
-  <div class="trust-item"><div class="trust-number">5★</div><div class="trust-label">Majority Reviews</div></div>
-  <div class="trust-item"><div class="trust-number">10+</div><div class="trust-label">Years Serving FL</div></div>
-  <div class="trust-item"><div class="trust-number">3</div><div class="trust-label">Counties Covered</div></div>
-  <div class="trust-item"><div class="trust-number">100%</div><div class="trust-label">Licensed &amp; Insured</div></div>
-</div>
+  <!-- ─── REVIEWS ─── -->
+  <section class="section reviews-section" id="reviews">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">What Customers Say</div>
+        <h2 class="section-title">Built on Trust,<br>Proven by Reviews</h2>
+        <p class="section-sub">Broward County homeowners have counted on Ricketts Roofing since 2013. Here's what they say after the job is done.</p>
+      </div>
+      <div class="carousel-wrap reveal">
+        <div class="carousel-track">
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Ricketts Roofing did an outstanding job replacing my entire roof after Hurricane Ian. The crew was professional, cleaned up every day, and finished ahead of schedule. The quality of the work is phenomenal — I've already referred them to three of my neighbors."</p>
+            <div class="review-author">Maria T. — Fort Lauderdale, FL</div>
+            <span class="review-source">Google Review</span>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"I was impressed from the first call. They came out the same day, gave me a fair estimate, and never tried to upsell me on things I didn't need. The metal roof they installed looks incredible and I know I won't have to worry about it for decades. Truly a first-class outfit."</p>
+            <div class="review-author">James O. — Lauderhill, FL</div>
+            <span class="review-source">Google Review</span>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"After three estimates, Ricketts was the most knowledgeable and the most transparent about the scope of work. They walked me through every step, used quality materials, and honored every warranty commitment. This is how contracting should work. Five stars without hesitation."</p>
+            <div class="review-author">Sandra K. — Sunrise, FL</div>
+            <span class="review-source">Google Review</span>
+          </div>
+
+        </div>
+        <button class="carousel-btn carousel-prev" aria-label="Previous review">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="carousel-btn carousel-next" aria-label="Next review">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+      <div class="carousel-dots">
+        <button class="carousel-dot active" aria-label="Review 1"></button>
+        <button class="carousel-dot" aria-label="Review 2"></button>
+        <button class="carousel-dot" aria-label="Review 3"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SERVICES ─── -->
+  <section class="section" id="services" style="background: var(--cream);">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">What We Do</div>
+        <h2 class="section-title">Complete Roofing<br><span style="color:var(--orange);">Solutions</span></h2>
+        <p class="section-sub">From emergency storm repairs to full commercial re-roofing — every system, every material, every time.</p>
+      </div>
+      <div class="services-grid" id="servicesGrid">
+
+        <div class="service-card">
+          <img class="service-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80" alt="Asphalt shingle roofing installation in Broward County" loading="lazy">
+          <div class="service-body">
+            <div class="service-icon">🏠</div>
+            <div class="service-name">Shingle Roofing</div>
+            <p class="service-desc">Architectural and 3-tab asphalt shingles — the most popular roofing system in South Florida. Rated for 130 mph wind resistance. Select ShingleMaster installation standard.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img class="service-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" alt="Metal roofing installation Fort Lauderdale" loading="lazy">
+          <div class="service-body">
+            <div class="service-icon">🔩</div>
+            <div class="service-name">Metal Roofing</div>
+            <p class="service-desc">Standing seam and metal tile systems engineered for Florida's hurricane season. Energy-efficient, low-maintenance, and rated to last 40–70 years with our workmanship warranty included.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img class="service-img" src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80" alt="Tile roofing installation Lauderhill FL" loading="lazy">
+          <div class="service-body">
+            <div class="service-icon">🏛️</div>
+            <div class="service-name">Tile Roofing</div>
+            <p class="service-desc">Concrete and clay tile installation and replacement. The preferred aesthetic for South Florida's luxury homes. We handle full re-roofing and tile-by-tile repair with mortar matching.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img class="service-img" src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="Flat roof installation and repair commercial" loading="lazy">
+          <div class="service-body">
+            <div class="service-icon">🏢</div>
+            <div class="service-name">Flat &amp; Commercial</div>
+            <p class="service-desc">TPO, modified bitumen, and built-up roofing for commercial properties. We handle inspections, new installations, coatings, and roof drainage assessments across all three counties.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img class="service-img" src="https://images.unsplash.com/photo-1504898770365-14faca6a7320?auto=format&fit=crop&w=800&q=80" alt="Emergency storm damage roof repair Broward" loading="lazy">
+          <div class="service-body">
+            <div class="service-icon">⛈️</div>
+            <div class="service-name">Storm Damage Repair</div>
+            <p class="service-desc">Rapid-response emergency repairs after hurricanes, tropical storms, and severe weather. We document damage for insurance claims and restore your roof to pre-storm condition fast.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img class="service-img" src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=800&q=80" alt="Roof inspection and leak detection Fort Lauderdale" loading="lazy">
+          <div class="service-body">
+            <div class="service-icon">🔍</div>
+            <div class="service-name">Inspections &amp; Leak Repair</div>
+            <p class="service-desc">Comprehensive roof inspections with written reports. We locate active leaks, failing flashings, and deteriorating underlayment — then fix the cause, not just the symptom.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section class="section about-section" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-img-wrap reveal">
+          <img class="about-img" src="https://images.unsplash.com/photo-1605152276897-4f618f831968?auto=format&fit=crop&w=800&q=80" alt="Ricketts Roofing crew completing a roof installation in Broward County" loading="lazy">
+          <div class="about-badge">
+            <div class="about-badge-num">12+</div>
+            <div class="about-badge-label">Years Protecting Roofs</div>
+          </div>
+        </div>
+        <div class="about-content reveal">
+          <div class="section-label">Our Story</div>
+          <h2 class="about-title">A Family Business<br>Built on <span class="accent">Integrity</span></h2>
+          <p class="about-body">
+            Ricketts Roofing &amp; Construction was founded in 2013 with a simple mission: deliver honest assessments, premium materials, and workmanship that outlasts the competition. What started as a local Fort Lauderdale operation now serves all of Broward, Miami-Dade, and Palm Beach County.
+          </p>
+          <p class="about-body">
+            We're not a national franchise or a storm-chaser crew. We're your neighbors — a family-owned company that answers its own phones, shows up when we say we will, and stands behind every roof we touch with up to a 12-year workmanship warranty.
+          </p>
+          <div class="creds-list">
+            <div class="cred-item">
+              <div class="cred-icon">✅</div>
+              <div>
+                <div class="cred-text">Select ShingleMaster Certified</div>
+                <div class="cred-sub">CertainTeed's top contractor designation</div>
+              </div>
+            </div>
+            <div class="cred-item">
+              <div class="cred-icon">🏆</div>
+              <div>
+                <div class="cred-text">Nextdoor Neighborhood Favorite</div>
+                <div class="cred-sub">3 years running — voted by local homeowners</div>
+              </div>
+            </div>
+            <div class="cred-item">
+              <div class="cred-icon">🤝</div>
+              <div>
+                <div class="cred-text">BBB Accredited Business</div>
+                <div class="cred-sub">A+ rated with the Better Business Bureau</div>
+              </div>
+            </div>
+            <div class="cred-item">
+              <div class="cred-icon">🛡️</div>
+              <div>
+                <div class="cred-text">5–12 Year Workmanship Warranty</div>
+                <div class="cred-sub">Written guarantee on every installation</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA BANNER ─── -->
+  <section class="cta-banner reveal" aria-label="Call to action">
+    <div class="cta-eyebrow">Ready When You Are</div>
+    <h2 class="cta-title">Your Roof Deserves<br>a <span class="accent">Real Professional</span></h2>
+    <p class="cta-sub">Get a free, no-pressure estimate from Broward County's trusted roofing contractor. We respond fast, work clean, and back every job with a written warranty.</p>
+    <div class="cta-btns">
+      <a href="#contact" class="btn-primary">Get Your Free Estimate</a>
+      <a href="tel:9545885670" class="btn-secondary">Call (954) 588-5670</a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Ricketts <em>Roofing</em> &amp; Construction</div>
+        <p class="footer-desc">South Florida's trusted family-owned roofing contractor since 2013. Serving Broward, Miami-Dade, and Palm Beach County with integrity on every job.</p>
+        <div class="footer-certs">
+          <span class="cert-pill">ShingleMaster</span>
+          <span class="cert-pill">BBB Accredited</span>
+          <span class="cert-pill">Licensed &amp; Insured</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Shingle Roofing</a></li>
+          <li><a href="#services">Metal Roofing</a></li>
+          <li><a href="#services">Tile Roofing</a></li>
+          <li><a href="#services">Flat &amp; Commercial</a></li>
+          <li><a href="#services">Storm Damage Repair</a></li>
+          <li><a href="#services">Inspections &amp; Leak Repair</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.58 3.5 2 2 0 0 1 3.56 1.29h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.9-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span><a href="tel:9545885670">(954) 588-5670</a></span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span><a href="mailto:wrickettsconstruction@gmail.com">wrickettsconstruction@gmail.com</a></span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Fort Lauderdale, FL 33311<br>Serving all of South Florida</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>Mon–Fri 7am–6pm · Sat 8am–3pm</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Ricketts Roofing &amp; Construction. All rights reserved.</p>
+      <p class="footer-lic">Lic. CCC1331129 · CBC1259476 · Fort Lauderdale, FL</p>
+    </div>
+  </footer>
+
+  <!-- ─── MOBILE STICKY CTA ─── -->
+  <div class="mobile-cta" aria-label="Mobile call to action">
+    <a href="tel:9545885670">📞 Call Now</a>
+    <a href="#contact" class="outline">Free Estimate</a>
+  </div>
+
+</div><!-- #page -->
+
+<!-- ─── SCRIPTS ─── -->
+<script>
+/* ─── LOADER ─── */
+(function() {
+  var quotes = [
+    "\u201cThey replaced our entire roof in one day. Clean, professional, and priced right. Couldn\u2019t ask for more.\u201d",
+    "\u201cBest roofing experience I\u2019ve had in 20 years as a homeowner. Honest, fast, and the quality shows.\u201d",
+    "\u201cAfter the storm I called four companies. Ricketts was the only one who showed up the same day and gave me a straight answer.\u201d"
+  ];
+  var el = document.getElementById('loaderQuote');
+  var loader = document.getElementById('loader');
+  var progress = document.getElementById('loaderProgress');
+  var idx = 0;
+
+  function showQuote(i) {
+    el.classList.remove('visible');
+    setTimeout(function() {
+      el.textContent = quotes[i];
+      el.classList.add('visible');
+    }, 300);
+  }
+
+  showQuote(0);
+  setTimeout(function() { requestAnimationFrame(function() { progress.classList.add('run'); }); }, 50);
+
+  var t1 = setTimeout(function() { showQuote(1); }, 1500);
+  var t2 = setTimeout(function() { showQuote(2); }, 3000);
+  var t3 = setTimeout(function() {
+    loader.classList.add('fade-out');
+    var page = document.getElementById('page');
+    page.style.visibility = 'visible';
+    page.style.opacity = '0';
+    page.style.transition = 'opacity 0.7s ease';
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        page.style.opacity = '1';
+      });
+    });
+    setTimeout(function() { loader.style.display = 'none'; }, 950);
+    // Fire counters after loader
+    setTimeout(startCounters, 400);
+  }, 4600);
+})();
+
+/* ─── GRAIN ─── */
+(function() {
+  var canvas = document.getElementById('grain');
+  var ctx = canvas.getContext('2d');
+  var w, h;
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  function grain() {
+    var img = ctx.createImageData(w, h);
+    var d = img.data;
+    for (var i = 0; i < d.length; i += 4) {
+      var v = Math.random() * 255;
+      d[i]   = v * 1.0;  // R — warm tint (orange brand)
+      d[i+1] = v * 0.85; // G
+      d[i+2] = v * 0.5;  // B
+      d[i+3] = 10;        // alpha — subtle
+    }
+    ctx.putImageData(img, 0, 0);
+    requestAnimationFrame(grain);
+  }
+  grain();
+})();
+
+/* ─── SCROLL REVEAL ─── */
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  if (!window.IntersectionObserver) {
+    els.forEach(function(el) { el.classList.add('visible'); });
+    return;
+  }
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  els.forEach(function(el) { obs.observe(el); });
+})();
+
+/* ─── STAGGERED SERVICE CARDS ─── */
+(function() {
+  var cards = document.querySelectorAll('.service-card');
+  if (!window.IntersectionObserver) {
+    cards.forEach(function(c) { c.classList.add('revealed'); });
+    return;
+  }
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        var i = Array.prototype.indexOf.call(cards, e.target);
+        setTimeout(function() { e.target.classList.add('revealed'); }, i * 90);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  cards.forEach(function(c) { obs.observe(c); });
+})();
+
+/* ─── HERO COUNTERS ─── */
+function startCounters() {
+  // Values are already set correctly in HTML; animate up with CSS class
+  var yEl = document.getElementById('yearsCounter');
+  var rEl = document.getElementById('ratingCounter');
+  // Subtle pulse to indicate values are live
+  [yEl, rEl].forEach(function(el) {
+    if (!el) return;
+    el.style.transition = 'opacity 0.4s ease';
+    el.style.opacity = '0';
+    setTimeout(function() { el.style.opacity = '1'; }, 100);
+  });
+}
+
+/* ─── REVIEWS CAROUSEL ─── */
+(function() {
+  var wrap = document.querySelector('.carousel-wrap');
+  if (!wrap) return;
+  var track = wrap.querySelector('.carousel-track');
+  var dots = document.querySelectorAll('.carousel-dot');
+  var cards = track.querySelectorAll('.review-card');
+  var n = cards.length, cur = 0, timer;
+
+  function go(i) {
+    cur = ((i % n) + n) % n;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dots.forEach(function(d, j) { d.classList.toggle('active', j === cur); });
+  }
+
+  // Touch/swipe support
+  var startX = 0;
+  wrap.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+  wrap.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 50) { go(dx < 0 ? cur + 1 : cur - 1); reset(); }
+  }, { passive: true });
+
+  wrap.querySelector('.carousel-prev').addEventListener('click', function() { go(cur - 1); reset(); });
+  wrap.querySelector('.carousel-next').addEventListener('click', function() { go(cur + 1); reset(); });
+  dots.forEach(function(d, i) { d.addEventListener('click', function() { go(i); reset(); }); });
+
+  function reset() { clearInterval(timer); timer = setInterval(function() { go(cur + 1); }, 5000); }
+  reset();
+})();
+
+/* ─── FORM SUBMIT ─── */
+function handleFormSubmit(e) {
+  e.preventDefault();
+  var btn = e.target.querySelector('.btn-form');
+  btn.textContent = '✓ Request Received!';
+  btn.style.background = '#2e7d32';
+  btn.disabled = true;
+}
+</script>
 
 </body>
 </html>

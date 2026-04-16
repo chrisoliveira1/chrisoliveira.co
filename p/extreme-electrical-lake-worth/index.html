@@ -3,170 +3,1273 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Extreme Electrical Inc. | Lake Worth, FL</title>
+<title>Extreme Electrical Inc. | Licensed Electrician — Lake Worth, FL</title>
+<meta name="description" content="Extreme Electrical Inc. — Lake Worth's trusted licensed electricians since 2010. Panel upgrades, EV chargers, rewiring, generators. 24/7 emergency service across Palm Beach County. (561) 584-1327">
+<meta property="og:title" content="Extreme Electrical Inc. | Lake Worth, FL">
+<meta property="og:description" content="Licensed &amp; insured electricians serving Palm Beach County since 2010. Panel upgrades, EV chargers, generators, rewiring &amp; more. Free estimates.">
+<meta property="og:image" content="https://chrisoliveira.co/p/extreme-electrical-lake-worth/preview.jpg">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
+/* ============================
+   RESET & BASE
+   ============================ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#0d1b2a;color:#e8edf2;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ============================
+   CSS VARIABLES — BRAND COLORS
+   ============================ */
 :root{
-  --navy:#0f1f30;
-  --accent:#1d6fa4;
-  --accent-light:#38bdf8;
-  --white:#ffffff;
-  --trust-bg:#091523;
+  --navy:       #0d1b2a;
+  --navy-mid:   #122236;
+  --blue:       #2b6ca3;
+  --blue-light: #3a82bd;
+  --yellow:     #ffde11;
+  --yellow-dark:#e6c800;
+  --white:      #ffffff;
+  --off-white:  #f4f6f9;
+  --text:       #0d1b2a;
+  --muted:      #6b7a8d;
+  --line:       #e2e8f0;
+  --trust-bg:   #0f2133;
+  --card-bg:    #ffffff;
 }
-body{font-family:'Work Sans',sans-serif;background:var(--white);color:var(--navy)}
 
-/* NAV */
-nav{
-  position:sticky;top:0;z-index:100;
-  height:68px;background:var(--navy);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 40px;
-}
-.nav-logo{color:var(--white);font-weight:800;font-size:1.1rem;letter-spacing:-.01em;line-height:1.2}
-.nav-logo span{color:var(--accent-light)}
-.nav-right{display:flex;align-items:center;gap:20px}
-.nav-phone{color:rgba(255,255,255,.85);font-weight:600;font-size:.95rem;text-decoration:none}
-.nav-cta{background:var(--accent);color:var(--white);font-weight:700;font-size:.875rem;padding:10px 22px;border-radius:6px;text-decoration:none;white-space:nowrap}
-
-/* HERO */
-.hero{
-  height:calc(100vh - 68px);
-  display:grid;grid-template-columns:1fr 1fr;
-  overflow:hidden;position:relative;
+/* ============================
+   LOADER
+   ============================ */
+#loader{
+  position:fixed;inset:0;z-index:99999;
   background:var(--navy);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:40px 24px;
+  transition:opacity 0.9s ease;
+}
+#loader.fade-out{opacity:0;pointer-events:none}
+.loader-logo{
+  font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:600;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--yellow);
+  margin-bottom:56px;opacity:0.85;
+}
+.loader-quote-wrap{
+  max-width:600px;width:100%;text-align:center;min-height:140px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.loader-stars{color:var(--yellow);font-size:1.3rem;letter-spacing:4px;margin-bottom:18px}
+.loader-quote{
+  font-family:'Inter',sans-serif;font-size:clamp(1.2rem,3vw,2rem);
+  font-style:italic;font-weight:300;color:var(--white);
+  line-height:1.55;opacity:0;
+  transition:opacity 0.55s ease;
+}
+.loader-quote.visible{opacity:1}
+.loader-bar{
+  margin-top:48px;width:200px;height:2px;background:rgba(255,255,255,0.1);
+  border-radius:2px;overflow:hidden;
+}
+.loader-bar-fill{
+  height:100%;width:0%;background:var(--yellow);
+  transition:width 4.6s linear;
+}
+
+/* ============================
+   GRAIN CANVAS
+   ============================ */
+#grain{
+  position:fixed;inset:0;z-index:99998;pointer-events:none;
+  opacity:1;mix-blend-mode:overlay;
+}
+@media(prefers-reduced-motion:reduce){
+  #grain{display:none}
+  #loader{display:none}
+  #page{visibility:visible!important}
+}
+
+/* ============================
+   PAGE WRAPPER
+   ============================ */
+#page{visibility:hidden}
+
+/* ============================
+   NAV
+   ============================ */
+.nav{
+  position:sticky;top:0;z-index:1000;height:68px;
+  background:rgba(13,27,42,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(16px,4vw,48px);
+  transition:background 0.3s;
+}
+.nav-logo{
+  display:flex;align-items:center;gap:12px;text-decoration:none;
+}
+.nav-logo-mark{
+  width:36px;height:36px;background:var(--yellow);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.nav-logo-mark svg{display:block}
+.nav-logo-text{
+  font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:1.05rem;letter-spacing:0.04em;line-height:1.15;color:var(--white);
+  text-transform:uppercase;
+}
+.nav-logo-text span{color:var(--yellow)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-phone{
+  font-family:'Inter',sans-serif;font-weight:600;font-size:0.9rem;
+  color:rgba(255,255,255,0.8);text-decoration:none;
+  display:flex;align-items:center;gap:6px;
+  transition:color 0.2s;
+}
+.nav-phone:hover{color:var(--yellow)}
+.nav-phone svg{color:var(--yellow)}
+.nav-cta{
+  background:var(--yellow);color:var(--navy);
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:0.85rem;
+  letter-spacing:0.06em;text-transform:uppercase;
+  padding:0 20px;height:38px;border-radius:6px;
+  text-decoration:none;display:flex;align-items:center;gap:6px;
+  transition:background 0.2s,transform 0.15s,box-shadow 0.2s;
+  box-shadow:0 2px 12px rgba(255,222,17,0.25);
+}
+.nav-cta:hover{background:var(--yellow-dark);transform:translateY(-1px);box-shadow:0 4px 18px rgba(255,222,17,0.35)}
+@media(max-width:640px){
+  .nav-phone-text{display:none}
+  .nav-cta-text{display:none}
+}
+
+/* ============================
+   HERO
+   ============================ */
+.hero{
+  position:relative;height:calc(100vh - 68px);min-height:560px;
+  display:grid;grid-template-columns:1fr 420px;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background-image:url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1600&q=80');
+  background-size:cover;background-position:center;
+  filter:brightness(0.45);
 }
 .hero-left{
-  display:flex;flex-direction:column;justify-content:center;
-  padding:64px 56px 80px 64px;
   position:relative;z-index:2;
+  padding:clamp(40px,6vh,72px) clamp(24px,5vw,72px);
+  display:flex;flex-direction:column;justify-content:center;
 }
-.eyebrow{
+.hero-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
-  color:var(--accent-light);font-weight:700;font-size:.75rem;
-  text-transform:uppercase;letter-spacing:.1em;
-  padding:6px 14px;border-radius:99px;width:fit-content;margin-bottom:24px;
+  font-family:'Inter',sans-serif;font-size:0.75rem;font-weight:600;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--yellow);
+  margin-bottom:20px;
 }
-.eyebrow::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--accent-light)}
-h1{
-  font-size:clamp(2rem,3.4vw,2.8rem);font-weight:900;color:var(--white);
-  line-height:1.12;letter-spacing:-.025em;margin-bottom:20px;
+.hero-eyebrow-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--yellow);flex-shrink:0;
 }
-h1 em{font-style:normal;color:var(--accent-light)}
+.hero-h1{
+  font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:clamp(2.8rem,6vw,5.2rem);line-height:0.95;
+  letter-spacing:-0.01em;color:var(--white);
+  margin-bottom:20px;
+  opacity:0;transform:translateY(28px);
+  animation:fadeUp 0.7s ease forwards 0.1s;
+}
+.hero-h1 .accent{
+  color:var(--yellow);
+  display:inline-block;
+  position:relative;
+}
+.hero-h1 .accent::after{
+  content:'';position:absolute;bottom:-4px;left:0;right:0;height:3px;
+  background:var(--yellow);border-radius:2px;
+  transform:scaleX(0);transform-origin:left;
+  animation:drawLine 0.6s ease forwards 0.85s;
+}
 .hero-sub{
-  color:rgba(255,255,255,.75);font-size:1.05rem;font-weight:400;line-height:1.65;
-  max-width:420px;margin-bottom:36px;
+  font-size:clamp(1rem,1.8vw,1.15rem);font-weight:400;color:rgba(255,255,255,0.72);
+  line-height:1.65;max-width:480px;margin-bottom:32px;
+  opacity:0;transform:translateY(20px);
+  animation:fadeUp 0.7s ease forwards 0.3s;
 }
-.hero-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:44px}
-.btn-primary{
-  background:var(--accent);color:var(--white);font-weight:700;font-size:.95rem;
-  padding:14px 28px;border-radius:8px;text-decoration:none;
+.hero-stat{
+  display:flex;align-items:center;gap:20px;
+  padding-top:28px;border-top:1px solid rgba(255,255,255,0.12);
+  opacity:0;transform:translateY(16px);
+  animation:fadeUp 0.7s ease forwards 0.5s;
 }
-.btn-ghost{
-  color:rgba(255,255,255,.85);font-weight:600;font-size:.95rem;
-  text-decoration:none;border:1px solid rgba(255,255,255,.3);
-  padding:13px 24px;border-radius:8px;
+.hero-stat-num{
+  font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:clamp(2rem,4vw,3.2rem);color:var(--yellow);
+  line-height:1;border-left:3px solid var(--yellow);padding-left:16px;
 }
-.hero-stats{
-  display:flex;gap:0;padding-top:28px;
-  border-top:1px solid rgba(255,255,255,.12);
-}
-.stat{padding:0 28px 0 0;margin-right:28px;border-right:1px solid rgba(255,255,255,.15)}
-.stat:last-child{border-right:none}
-.stat-num{display:block;font-size:1.6rem;font-weight:900;color:var(--white);letter-spacing:-.02em}
-.stat-label{display:block;font-size:.75rem;font-weight:500;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.hero-stat-label{font-size:0.8rem;color:rgba(255,255,255,0.6);line-height:1.5;max-width:130px}
+.hero-stat-label strong{display:block;font-size:0.9rem;color:var(--white);font-weight:600;margin-bottom:2px}
 
-/* HERO PHOTO */
-.hero-right{position:relative;overflow:hidden}
-.hero-right::before{
-  content:'';position:absolute;inset:0;z-index:1;
-  background:linear-gradient(to right,var(--navy) 0%,var(--navy) 8%,rgba(15,31,48,.55) 42%,transparent 78%);
+.hero-right{
+  position:relative;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+  padding:clamp(24px,4vh,48px) clamp(16px,2vw,32px) clamp(24px,4vh,48px) 0;
 }
-.hero-right img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.hero-form-card{
+  background:rgba(13,27,42,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.1);border-radius:16px;
+  padding:32px 28px;width:100%;max-width:380px;
+  opacity:0;transform:translateY(24px);
+  animation:fadeUp 0.7s ease forwards 0.4s;
+  box-shadow:0 24px 64px rgba(0,0,0,0.45);
+}
+.form-title{
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:1.25rem;
+  letter-spacing:0.03em;color:var(--white);margin-bottom:6px;
+}
+.form-sub{font-size:0.82rem;color:rgba(255,255,255,0.5);margin-bottom:22px;line-height:1.5}
+.form-group{margin-bottom:14px}
+.form-group label{
+  display:block;font-size:0.72rem;font-weight:600;letter-spacing:0.08em;
+  text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:6px;
+}
+.form-group input{
+  width:100%;height:44px;background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.12);border-radius:8px;
+  color:var(--white);font-family:'Inter',sans-serif;font-size:0.9rem;
+  padding:0 14px;outline:none;
+  transition:border-color 0.2s,background 0.2s;
+}
+.form-group input::placeholder{color:rgba(255,255,255,0.3)}
+.form-group input:focus{border-color:var(--yellow);background:rgba(255,222,17,0.05)}
+.form-select{
+  width:100%;height:44px;background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.12);border-radius:8px;
+  color:rgba(255,255,255,0.7);font-family:'Inter',sans-serif;font-size:0.9rem;
+  padding:0 14px;outline:none;cursor:pointer;
+  transition:border-color 0.2s;
+  -webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+  padding-right:36px;
+}
+.form-select:focus{border-color:var(--yellow)}
+.form-select option{background:#122236;color:var(--white)}
+.form-submit{
+  width:100%;height:48px;background:var(--yellow);
+  border:none;border-radius:8px;cursor:pointer;
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;
+  letter-spacing:0.06em;text-transform:uppercase;color:var(--navy);
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  margin-top:18px;
+  transition:background 0.2s,transform 0.15s,box-shadow 0.2s;
+  box-shadow:0 4px 16px rgba(255,222,17,0.3);
+}
+.form-submit:hover{background:var(--yellow-dark);transform:translateY(-1px);box-shadow:0 6px 24px rgba(255,222,17,0.4)}
+.form-disclaimer{
+  font-size:0.7rem;color:rgba(255,255,255,0.3);text-align:center;margin-top:12px;line-height:1.5;
+}
 
-/* WAVE */
+/* Hero wave */
 .hero-wave{position:absolute;bottom:0;left:0;width:100%;line-height:0;z-index:3;pointer-events:none}
-.hero-wave svg{display:block;width:100%;height:48px}
+.hero-wave svg{display:block;width:100%;height:52px}
 
-/* TRUST BAR */
+/* ============================
+   ANIMATIONS
+   ============================ */
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes drawLine{
+  to{transform:scaleX(1)}
+}
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes bob{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ============================
+   TRUST BAR
+   ============================ */
 .trust-bar{
-  background:var(--trust-bg);padding:20px 64px;
+  background:var(--trust-bg);
   display:grid;grid-template-columns:repeat(4,1fr);
+  border-bottom:1px solid rgba(255,255,255,0.05);
 }
 .trust-item{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:0 20px;border-right:1px solid rgba(255,255,255,.12);text-align:center;
+  padding:28px 20px;text-align:center;
+  border-right:1px solid rgba(255,255,255,0.07);
+  transition:background 0.2s;
 }
 .trust-item:last-child{border-right:none}
-.trust-title{color:var(--white);font-weight:700;font-size:.95rem}
-.trust-sub{color:rgba(255,255,255,.5);font-size:.75rem;font-weight:400;margin-top:2px}
+.trust-item:hover{background:rgba(255,255,255,0.02)}
+.trust-num{
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:2rem;
+  color:var(--yellow);line-height:1;margin-bottom:6px;
+}
+.trust-label{font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.4;letter-spacing:0.02em}
 
+/* ============================
+   SECTIONS — SHARED
+   ============================ */
+.section{padding:clamp(64px,10vh,100px) clamp(16px,5vw,72px)}
+.section-light{background:var(--off-white)}
+.section-dark{background:var(--trust-bg)}
+.section-navy{background:var(--navy-mid)}
+.section-label{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:12px;
+}
+.section-label-light{color:var(--blue-light)}
+.section-label-yellow{color:var(--yellow)}
+.section-title{
+  font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:clamp(2rem,4vw,3rem);line-height:1.05;color:var(--text);
+  margin-bottom:14px;letter-spacing:-0.01em;
+}
+.section-title-white{color:var(--white)}
+.section-sub{font-size:1.05rem;color:var(--muted);line-height:1.7;max-width:560px}
+.section-sub-white{color:rgba(255,255,255,0.6)}
+.section-header{margin-bottom:clamp(36px,5vh,56px)}
+.max-w{max-width:1200px;margin:0 auto}
+
+/* ============================
+   REVIEWS CAROUSEL
+   ============================ */
+.reviews-bg{background:var(--off-white)}
+.review-card{
+  background:var(--white);border:1px solid var(--line);
+  border-radius:12px;padding:36px 40px;
+  flex:0 0 100%;
+}
+.review-stars{color:#f59e0b;font-size:1.1rem;margin-bottom:14px;letter-spacing:3px}
+.review-text{
+  font-size:1rem;color:var(--text);line-height:1.7;
+  margin-bottom:18px;font-style:italic;
+}
+.review-author{font-size:.85rem;font-weight:700;color:var(--muted)}
+.carousel-wrap{position:relative;margin-top:48px;overflow:hidden}
+.carousel-track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.carousel-btn{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:var(--white);border:1px solid var(--line);border-radius:50%;
+  width:40px;height:40px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;z-index:2;
+  color:var(--muted);padding:0;box-shadow:0 2px 8px rgba(0,0,0,.07);
+  transition:border-color 0.2s,color 0.2s;
+}
+.carousel-btn:hover{border-color:var(--blue);color:var(--blue)}
+.carousel-prev{left:12px}
+.carousel-next{right:12px}
+.carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:16px}
+.carousel-dot{
+  width:8px;height:8px;border-radius:50%;background:#d1d5db;
+  cursor:pointer;border:none;padding:0;transition:all .25s;
+}
+.carousel-dot.active{background:var(--blue);width:24px;border-radius:4px}
+
+/* ============================
+   SERVICES GRID
+   ============================ */
+.services-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  margin-top:clamp(32px,5vh,52px);
+}
+.service-card{
+  background:var(--white);border-radius:14px;overflow:hidden;
+  border:1px solid var(--line);
+  transition:transform 0.3s ease,box-shadow 0.3s ease;
+  cursor:default;
+}
+.service-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 52px rgba(13,27,42,0.14);
+}
+.service-card-img{
+  width:100%;height:180px;object-fit:cover;display:block;
+  transition:transform 0.4s ease;
+}
+.service-card:hover .service-card-img{transform:scale(1.04)}
+.service-card-body{padding:22px 24px}
+.service-card-icon{
+  width:40px;height:40px;background:rgba(43,108,163,0.1);
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:12px;
+}
+.service-card-icon svg{color:var(--blue)}
+.service-card-title{
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:1.1rem;
+  color:var(--text);margin-bottom:8px;letter-spacing:0.01em;
+}
+.service-card-desc{font-size:0.85rem;color:var(--muted);line-height:1.6}
+
+/* ============================
+   ABOUT
+   ============================ */
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);
+  align-items:center;
+}
+.about-img-wrap{position:relative}
+.about-img{
+  width:100%;border-radius:16px;
+  box-shadow:0 24px 64px rgba(13,27,42,0.2);
+  display:block;
+}
+.about-badge{
+  position:absolute;bottom:-20px;right:-20px;
+  background:var(--yellow);border-radius:12px;
+  padding:18px 22px;text-align:center;
+  box-shadow:0 8px 28px rgba(255,222,17,0.4);
+  animation:bob 6s ease-in-out infinite;
+}
+.about-badge-num{
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:2.2rem;
+  color:var(--navy);line-height:1;
+}
+.about-badge-label{font-size:0.72rem;font-weight:700;color:var(--navy);letter-spacing:0.06em;text-transform:uppercase;opacity:0.8}
+.about-label{color:var(--blue)}
+.about-title{color:var(--text)}
+.about-body{font-size:1rem;color:var(--muted);line-height:1.75;margin-bottom:24px}
+.cred-list{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.cred-item{
+  display:flex;align-items:center;gap:10px;
+  font-size:0.88rem;font-weight:500;color:var(--text);
+}
+.cred-check{
+  width:22px;height:22px;background:rgba(43,108,163,0.1);border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.cred-check svg{color:var(--blue)}
+.about-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--blue);color:var(--white);
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:0.9rem;
+  letter-spacing:0.06em;text-transform:uppercase;
+  padding:0 24px;height:48px;border-radius:8px;text-decoration:none;
+  transition:background 0.2s,transform 0.15s;box-shadow:0 4px 16px rgba(43,108,163,0.3);
+}
+.about-cta:hover{background:var(--blue-light);transform:translateY(-1px)}
+
+/* ============================
+   CTA BANNER
+   ============================ */
+.cta-banner{
+  background:linear-gradient(135deg,#0d1b2a 0%,#122236 40%,#173050 100%);
+  text-align:center;padding:clamp(56px,8vh,88px) clamp(16px,5vw,72px);
+  position:relative;overflow:hidden;
+}
+.cta-banner::before{
+  content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);
+  width:600px;height:600px;border-radius:50%;
+  background:rgba(43,108,163,0.08);pointer-events:none;
+}
+.cta-banner-eyebrow{
+  font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--yellow);margin-bottom:12px;
+}
+.cta-banner-title{
+  font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:clamp(2rem,4vw,3.2rem);color:var(--white);
+  line-height:1.05;margin-bottom:16px;letter-spacing:-0.01em;
+}
+.cta-banner-sub{
+  font-size:1.05rem;color:rgba(255,255,255,0.6);
+  max-width:520px;margin:0 auto 40px;line-height:1.65;
+}
+.cta-banner-btns{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--yellow);color:var(--navy);
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;
+  letter-spacing:0.06em;text-transform:uppercase;
+  padding:0 32px;height:52px;border-radius:8px;text-decoration:none;
+  transition:background 0.2s,transform 0.15s,box-shadow 0.2s;
+  box-shadow:0 4px 18px rgba(255,222,17,0.35);
+}
+.btn-primary:hover{background:var(--yellow-dark);transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,222,17,0.45)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:var(--white);
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;
+  letter-spacing:0.06em;text-transform:uppercase;
+  padding:0 32px;height:52px;border-radius:8px;text-decoration:none;
+  border:2px solid rgba(255,255,255,0.2);
+  transition:border-color 0.2s,background 0.2s,transform 0.15s;
+}
+.btn-ghost:hover{border-color:var(--white);background:rgba(255,255,255,0.06);transform:translateY(-2px)}
+
+/* ============================
+   FOOTER
+   ============================ */
+.footer{
+  background:var(--navy);border-top:1px solid rgba(255,255,255,0.06);
+  padding:clamp(48px,7vh,72px) clamp(16px,5vw,72px) 0;
+}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.footer-brand{}
+.footer-logo{
+  display:flex;align-items:center;gap:10px;margin-bottom:16px;
+}
+.footer-logo-mark{
+  width:32px;height:32px;background:var(--yellow);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.footer-logo-text{
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:0.95rem;
+  letter-spacing:0.04em;text-transform:uppercase;color:var(--white);
+}
+.footer-logo-text span{color:var(--yellow)}
+.footer-desc{font-size:0.85rem;color:rgba(255,255,255,0.45);line-height:1.7;max-width:280px;margin-bottom:20px}
+.footer-contact-item{
+  display:flex;align-items:center;gap:10px;
+  font-size:0.85rem;color:rgba(255,255,255,0.55);margin-bottom:10px;
+  text-decoration:none;transition:color 0.2s;
+}
+.footer-contact-item:hover{color:var(--yellow)}
+.footer-contact-item svg{color:var(--yellow);flex-shrink:0}
+.footer-col-title{
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:0.85rem;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--white);
+  margin-bottom:18px;
+}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-links li a{
+  font-size:0.85rem;color:rgba(255,255,255,0.45);text-decoration:none;
+  transition:color 0.2s;
+}
+.footer-links li a:hover{color:var(--yellow)}
+.footer-service-areas{
+  font-size:0.82rem;color:rgba(255,255,255,0.4);line-height:1.8;
+}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.06);
+  padding:18px 0;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+}
+.footer-copy{font-size:0.78rem;color:rgba(255,255,255,0.3)}
+.footer-lic{font-size:0.78rem;color:rgba(255,255,255,0.3)}
+
+/* ============================
+   MOBILE STICKY CTA
+   ============================ */
+.mobile-sticky{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:9000;
+  background:var(--navy);border-top:2px solid var(--yellow);
+  padding:10px 16px;
+  gap:10px;align-items:center;
+}
+.mobile-sticky-call{
+  flex:1;height:44px;background:var(--yellow);color:var(--navy);
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:0.95rem;
+  letter-spacing:0.06em;text-transform:uppercase;
+  border-radius:8px;text-decoration:none;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.mobile-sticky-quote{
+  flex:1;height:44px;background:transparent;color:var(--white);
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:0.95rem;
+  letter-spacing:0.06em;text-transform:uppercase;
+  border:2px solid rgba(255,255,255,0.2);border-radius:8px;text-decoration:none;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media(max-width:1024px){
+  .hero{grid-template-columns:1fr;grid-template-rows:auto}
+  .hero-right{padding:0 clamp(16px,5vw,48px) 40px;justify-content:flex-start}
+  .hero-form-card{max-width:100%}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr}
+  .about-img-wrap{max-width:480px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
 @media(max-width:768px){
-  nav{padding:0 20px}
-  .hero{grid-template-columns:1fr;height:auto;min-height:calc(100vh - 68px)}
-  .hero-right{height:260px}
-  .hero-left{padding:36px 20px 48px}
-  h1{font-size:1.8rem}
-  .trust-bar{grid-template-columns:1fr 1fr;padding:16px 20px;gap:12px}
-  .trust-item{border-right:none;padding:8px 0}
+  .trust-bar{grid-template-columns:repeat(2,1fr)}
+  .trust-item:nth-child(2){border-right:none}
+  .trust-item:nth-child(3){border-right:1px solid rgba(255,255,255,0.07)}
+  .trust-item:nth-child(3),.trust-item:nth-child(4){border-top:1px solid rgba(255,255,255,0.07)}
+  .services-grid{grid-template-columns:1fr 1fr}
+  .review-card{padding:24px 20px}
+  .mobile-sticky{display:flex}
+  body{padding-bottom:68px}
+  .footer-grid{grid-template-columns:1fr}
+  .about-badge{bottom:-16px;right:-8px}
+}
+@media(max-width:540px){
+  .services-grid{grid-template-columns:1fr}
+  .hero-h1{font-size:clamp(2.4rem,9vw,3.6rem)}
+  .cta-banner-btns{flex-direction:column;align-items:stretch}
+  .btn-primary,.btn-ghost{justify-content:center}
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">Extreme<span> Electrical</span></div>
+<!-- GRAIN CANVAS -->
+<canvas id="grain" aria-hidden="true"></canvas>
+
+<!-- LOADER -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-logo">⚡ Extreme Electrical Inc.</div>
+  <div class="loader-quote-wrap">
+    <div class="loader-stars">★★★★★</div>
+    <p class="loader-quote" id="lq"></p>
+  </div>
+  <div class="loader-bar"><div class="loader-bar-fill" id="lbar"></div></div>
+</div>
+
+<!-- PAGE -->
+<div id="page">
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <a href="#" class="nav-logo" aria-label="Extreme Electrical Inc home">
+    <div class="nav-logo-mark">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0d1b2a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+      </svg>
+    </div>
+    <div class="nav-logo-text"><span>Extreme</span> Electrical Inc.</div>
+  </a>
   <div class="nav-right">
-    <a href="tel:5615841327" class="nav-phone">(561) 584-1327</a>
-    <a href="tel:5615841327" class="nav-cta">Get a Free Quote</a>
+    <a href="tel:5615841327" class="nav-phone" aria-label="Call (561) 584-1327">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.09 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      <span class="nav-phone-text">(561) 584-1327</span>
+    </a>
+    <a href="#estimate" class="nav-cta">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <span class="nav-cta-text">Free Estimate</span>
+    </a>
   </div>
 </nav>
 
-<section class="hero">
+<!-- HERO -->
+<section class="hero" id="estimate" aria-label="Hero">
+  <div class="hero-bg" role="img" aria-label="Electrician working on a panel"></div>
+
+  <!-- Left -->
   <div class="hero-left">
-    <div class="eyebrow">Lake Worth, FL&nbsp;&nbsp;·&nbsp;&nbsp;5-Star Electrician</div>
-    <h1>Lake Worth's <em>Trusted</em><br>Licensed Electrician</h1>
-    <p class="hero-sub">Customers call us "professional, reasonably priced and thorough" with panel upgrades that add "great value to the home." Smart lighting, EV chargers, and panel work done right.</p>
-    <div class="hero-actions">
-      <a href="tel:5615841327" class="btn-primary">Call (561) 584-1327</a>
-      <a href="tel:5615841327" class="btn-ghost">Free Estimate</a>
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-dot" aria-hidden="true"></span>
+      Lake Worth, FL &nbsp;·&nbsp; Licensed &amp; Insured &nbsp;·&nbsp; 24/7 Emergency
     </div>
-    <div class="hero-stats">
-      <div class="stat"><span class="stat-num">5★</span><span class="stat-label">Rated</span></div>
-      <div class="stat"><span class="stat-num">15+</span><span class="stat-label">Years Serving</span></div>
-      <div class="stat"><span class="stat-num">Panel</span><span class="stat-label">Upgrades</span></div>
+    <h1 class="hero-h1">
+      <span class="accent">Extreme</span><br>
+      Results.<br>
+      Every Job.
+    </h1>
+    <p class="hero-sub">
+      Palm Beach County's trusted electrical contractor since 2010. Flat-rate pricing, fully permitted work, and a 100% satisfaction guarantee on every residential and commercial job.
+    </p>
+    <div class="hero-stat">
+      <div>
+        <div class="hero-stat-num" id="hero-counter" aria-label="5.0 star rating">5.0</div>
+      </div>
+      <div class="hero-stat-label">
+        <strong>Perfect Rating</strong>
+        Google Reviews &nbsp;·&nbsp; 100% Satisfaction Guaranteed
+      </div>
     </div>
   </div>
+
+  <!-- Right — Lead Form -->
   <div class="hero-right">
-    <img src="../../assets/samples/Electricians/electrician-working-on-electrical-panel-circuit-breaker-box.jpg" alt="Licensed electrician completing panel upgrade in Lake Worth, FL">
+    <div class="hero-form-card" role="form" aria-label="Get a Free Electrical Estimate">
+      <div class="form-title">Get a Free Electrical Estimate</div>
+      <p class="form-sub">No obligation — we'll reach out within the hour.</p>
+      <form onsubmit="handleFormSubmit(event)" novalidate>
+        <div class="form-group">
+          <label for="f-name">Your Name</label>
+          <input type="text" id="f-name" name="name" placeholder="Jane Smith" autocomplete="name" required>
+        </div>
+        <div class="form-group">
+          <label for="f-phone">Phone Number</label>
+          <input type="tel" id="f-phone" name="phone" placeholder="(561) 000-0000" autocomplete="tel" required>
+        </div>
+        <div class="form-group">
+          <label for="f-email">Email Address</label>
+          <input type="email" id="f-email" name="email" placeholder="jane@email.com" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="f-service">Service Needed</label>
+          <select id="f-service" name="service" class="form-select">
+            <option value="">— Select a service —</option>
+            <option>Panel Upgrade</option>
+            <option>EV Charger Installation</option>
+            <option>Home Rewiring</option>
+            <option>Generator Installation</option>
+            <option>Outlets &amp; Switches</option>
+            <option>Commercial Electrical</option>
+            <option>Emergency Service</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <button type="submit" class="form-submit">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Get My Free Estimate
+        </button>
+      </form>
+      <p class="form-disclaimer">We never share your information. By submitting, you agree to be contacted about your request.</p>
+    </div>
   </div>
-  <div class="hero-wave">
-    <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,20 C360,48 1080,0 1440,28 L1440,48 L0,48 Z" fill="#091523"/>
+
+  <!-- Wave break -->
+  <div class="hero-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 C360,52 1080,0 1440,30 L1440,52 L0,52 Z" fill="#0f2133"/>
     </svg>
   </div>
 </section>
 
-<div class="trust-bar">
-  <div class="trust-item">
-    <div class="trust-title">5-Star Rated</div>
-    <div class="trust-sub">Verified Reviews</div>
+<!-- TRUST BAR -->
+<div class="trust-bar" role="list" aria-label="Trust signals">
+  <div class="trust-item reveal" role="listitem">
+    <div class="trust-num">15+</div>
+    <div class="trust-label">Years Serving<br>Palm Beach County</div>
   </div>
-  <div class="trust-item">
-    <div class="trust-title">Panel Specialist</div>
-    <div class="trust-sub">EV Charger Install</div>
+  <div class="trust-item reveal" role="listitem">
+    <div class="trust-num">EC</div>
+    <div class="trust-label">Licensed &amp; Insured<br>Florida Electrical Contractor</div>
   </div>
-  <div class="trust-item">
-    <div class="trust-title">Licensed &amp; Insured</div>
-    <div class="trust-sub">Palm Beach County</div>
+  <div class="trust-item reveal" role="listitem">
+    <div class="trust-num">24/7</div>
+    <div class="trust-label">Emergency Electrical<br>Service Available</div>
   </div>
-  <div class="trust-item">
-    <div class="trust-title">Free Estimates</div>
-    <div class="trust-sub">Residential &amp; Commercial</div>
+  <div class="trust-item reveal" role="listitem">
+    <div class="trust-num">5★</div>
+    <div class="trust-label">Perfect Rating &nbsp;·&nbsp;<br>100% Satisfaction Guaranteed</div>
   </div>
 </div>
+
+<!-- SERVICES GRID -->
+<section class="section section-light" aria-label="Services">
+  <div class="max-w">
+    <div class="section-header">
+      <div class="section-label reveal">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        What We Do
+      </div>
+      <h2 class="section-title reveal">Electrical Services for<br>Homes &amp; Businesses</h2>
+      <p class="section-sub reveal">From service panels to EV chargers — fully permitted, properly done, every time.</p>
+    </div>
+    <div class="services-grid">
+
+      <!-- Panel Upgrades -->
+      <article class="service-card reveal">
+        <img
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+          alt="Electrical panel upgrade service — Extreme Electrical Inc, Lake Worth FL"
+          class="service-card-img"
+          loading="lazy"
+          width="800" height="450"
+        >
+        <div class="service-card-body">
+          <div class="service-card-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3 class="service-card-title">Panel Upgrades</h3>
+          <p class="service-card-desc">200A service upgrades, main breaker replacements, and sub-panel installs. We pull permits and coordinate final inspections — the right way, every time.</p>
+        </div>
+      </article>
+
+      <!-- Rewiring -->
+      <article class="service-card reveal">
+        <img
+          src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=800&q=80"
+          alt="Home rewiring service — Extreme Electrical Inc, Lake Worth FL"
+          class="service-card-img"
+          loading="lazy"
+          width="800" height="450"
+        >
+        <div class="service-card-body">
+          <div class="service-card-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3 class="service-card-title">Home Rewiring</h3>
+          <p class="service-card-desc">Old knob-and-tube or aluminum wiring creating a safety hazard? We handle full and partial rewires for existing homes — quickly, cleanly, and up to current NEC code.</p>
+        </div>
+      </article>
+
+      <!-- EV Chargers -->
+      <article class="service-card reveal">
+        <img
+          src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=800&q=80"
+          alt="EV charger installation — Extreme Electrical Inc, Lake Worth FL"
+          class="service-card-img"
+          loading="lazy"
+          width="800" height="450"
+        >
+        <div class="service-card-body">
+          <div class="service-card-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18H3a2 2 0 01-2-2V8a2 2 0 012-2h3.19M15 6h2a2 2 0 012 2v8a2 2 0 01-2 2h-3.19"/><line x1="23" y1="13" x2="23" y2="11"/><polyline points="11 6 7 12 13 12 9 18"/></svg>
+          </div>
+          <h3 class="service-card-title">EV Charger Installation</h3>
+          <p class="service-card-desc">Level 2 home charging stations installed for Tesla, Rivian, GM, Ford, and all major EV brands. We handle the 240V circuit, NEMA outlet or hardwired charger, and permit.</p>
+        </div>
+      </article>
+
+      <!-- Outlets & Switches -->
+      <article class="service-card reveal">
+        <img
+          src="https://images.unsplash.com/photo-1572113378703-50809c9f1ae7?auto=format&fit=crop&w=800&q=80"
+          alt="Outlet and switch installation — Extreme Electrical Inc, Lake Worth FL"
+          class="service-card-img"
+          loading="lazy"
+          width="800" height="450"
+        >
+        <div class="service-card-body">
+          <div class="service-card-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          </div>
+          <h3 class="service-card-title">Outlets &amp; Switches</h3>
+          <p class="service-card-desc">GFCI upgrades, USB outlets, smart dimmer switches, and whole-room circuit additions. Fast, same-week scheduling for residential and commercial jobs across Palm Beach County.</p>
+        </div>
+      </article>
+
+      <!-- Generators -->
+      <article class="service-card reveal">
+        <img
+          src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=800&q=80"
+          alt="Whole-home generator installation — Extreme Electrical Inc, Lake Worth FL"
+          class="service-card-img"
+          loading="lazy"
+          width="800" height="450"
+        >
+        <div class="service-card-body">
+          <div class="service-card-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+          </div>
+          <h3 class="service-card-title">Generator Installation</h3>
+          <p class="service-card-desc">Whole-home standby generators and transfer switches — essential in South Florida hurricane season. We handle site assessment, load calculations, and city permits from start to finish.</p>
+        </div>
+      </article>
+
+      <!-- Commercial -->
+      <article class="service-card reveal">
+        <img
+          src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
+          alt="Commercial electrical services — Extreme Electrical Inc, Lake Worth FL"
+          class="service-card-img"
+          loading="lazy"
+          width="800" height="450"
+        >
+        <div class="service-card-body">
+          <div class="service-card-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+          </div>
+          <h3 class="service-card-title">Commercial Electrical</h3>
+          <p class="service-card-desc">Offices, retail buildouts, restaurants, and light industrial. Tenant improvements, 3-phase service, lighting controls, and code compliance for Palm Beach County commercial properties.</p>
+        </div>
+      </article>
+
+    </div><!-- /services-grid -->
+  </div>
+</section>
+
+<!-- REVIEWS CAROUSEL -->
+<section class="section reviews-bg" aria-label="Customer reviews">
+  <div class="max-w">
+    <div class="section-header">
+      <div class="section-label reveal">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Customer Reviews
+      </div>
+      <h2 class="section-title reveal">What Lake Worth Homeowners Say</h2>
+      <p class="section-sub reveal">100% satisfaction guaranteed — and our customers prove it.</p>
+    </div>
+    <div class="carousel-wrap" role="region" aria-label="Reviews carousel" aria-live="polite">
+      <div class="carousel-track">
+
+        <div class="review-card" role="article">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p class="review-text">"Kevin did a great job fixing all my light fixtures and ring doorbell. He was professional, on time, and explained everything clearly. Definitely will use again for all my other home projects."</p>
+          <div class="review-author">Emma &mdash; Lake Worth, FL &nbsp;·&nbsp; Light Fixtures &amp; Smart Doorbell</div>
+        </div>
+
+        <div class="review-card" role="article">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p class="review-text">"We have had 2 great experiences with this company. They are professional, reasonably priced, and thorough. The crew arrived on time both visits and the work passed inspection without a single issue. We highly recommend them."</p>
+          <div class="review-author">Lize &mdash; Boynton Beach, FL &nbsp;·&nbsp; Residential Electrical</div>
+        </div>
+
+        <div class="review-card" role="article">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p class="review-text">"Called for an emergency at 10 PM — they actually picked up and had someone at my house within the hour. Breaker panel issue sorted out the same night. Pricing was fair and no surprise fees. 100% recommend for any Palm Beach County homeowner."</p>
+          <div class="review-author">Marcus &mdash; West Palm Beach, FL &nbsp;·&nbsp; Emergency Panel Repair</div>
+        </div>
+
+      </div>
+      <button class="carousel-btn carousel-prev" aria-label="Previous review">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-btn carousel-next" aria-label="Next review">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="carousel-dots" role="tablist" aria-label="Review navigation">
+      <button class="carousel-dot active" role="tab" aria-label="Review 1" aria-selected="true"></button>
+      <button class="carousel-dot" role="tab" aria-label="Review 2" aria-selected="false"></button>
+      <button class="carousel-dot" role="tab" aria-label="Review 3" aria-selected="false"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" aria-label="About Extreme Electrical Inc">
+  <div class="max-w">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <img
+          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
+          alt="Licensed electrician on the job — Extreme Electrical Inc, Lake Worth FL"
+          class="about-img"
+          loading="lazy"
+          width="800" height="600"
+        >
+        <div class="about-badge" aria-label="In business since 2010">
+          <div class="about-badge-num">Since</div>
+          <div class="about-badge-label">2010</div>
+        </div>
+      </div>
+      <div class="about-content reveal">
+        <div class="section-label about-label">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Who We Are
+        </div>
+        <h2 class="section-title about-title">Lake Worth's Trusted Electrical Contractor</h2>
+        <p class="about-body">
+          Extreme Electrical Inc. was founded in Lake Worth Beach with a single promise: go the Extreme for every customer. For over 15 years, we've delivered residential, commercial, and industrial electrical services across Palm Beach County — with fully permitted work, honest pricing, and a team that shows up when it says it will.
+        </p>
+        <p class="about-body">
+          Every job we take on — from a single outlet to a commercial buildout — gets the same care and attention to code compliance. Our 24/7 emergency line means you're never left in the dark when it matters most.
+        </p>
+        <ul class="cred-list" aria-label="Credentials">
+          <li class="cred-item">
+            <div class="cred-check" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Florida Licensed Electrical Contractor
+          </li>
+          <li class="cred-item">
+            <div class="cred-check" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Fully Insured — Liability &amp; Workers' Comp
+          </li>
+          <li class="cred-item">
+            <div class="cred-check" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Residential, Commercial &amp; Industrial Services
+          </li>
+          <li class="cred-item">
+            <div class="cred-check" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            24/7 Emergency Electrical Service
+          </li>
+          <li class="cred-item">
+            <div class="cred-check" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            100% Customer Satisfaction Guaranteed
+          </li>
+          <li class="cred-item">
+            <div class="cred-check" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Serving All of Palm Beach County Since 2010
+          </li>
+        </ul>
+        <a href="tel:5615841327" class="about-cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.09 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Call (561) 584-1327
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner reveal" aria-label="Get a free estimate">
+  <div class="cta-banner-eyebrow">Available 24 Hours a Day, 7 Days a Week</div>
+  <h2 class="cta-banner-title">Ready for an Electrical Project?<br>Let's Get It Done Right.</h2>
+  <p class="cta-banner-sub">Free estimates on all jobs. Fully permitted work. 100% satisfaction guaranteed. Serving Lake Worth, Boynton Beach, West Palm Beach, and all of Palm Beach County.</p>
+  <div class="cta-banner-btns">
+    <a href="#estimate" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      Get a Free Estimate
+    </a>
+    <a href="tel:5615841327" class="btn-ghost">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.09 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Call (561) 584-1327
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="max-w">
+    <div class="footer-grid">
+      <!-- Brand col -->
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-mark">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0d1b2a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div class="footer-logo-text"><span>Extreme</span> Electrical Inc.</div>
+        </div>
+        <p class="footer-desc">Licensed and insured electrical contractors serving Palm Beach County since 2010. Residential, commercial, and industrial electrical services — done right, every time.</p>
+        <a href="tel:5615841327" class="footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.09 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          (561) 584-1327
+        </a>
+        <a href="mailto:extremeelectricalinc@yahoo.com" class="footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          extremeelectricalinc@yahoo.com
+        </a>
+        <div class="footer-contact-item" style="cursor:default">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          4704 Clemens St, Lake Worth Beach, FL 33463
+        </div>
+      </div>
+      <!-- Services col -->
+      <nav aria-label="Services footer links">
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#estimate">Panel Upgrades</a></li>
+          <li><a href="#estimate">Home Rewiring</a></li>
+          <li><a href="#estimate">EV Charger Installation</a></li>
+          <li><a href="#estimate">Outlets &amp; Switches</a></li>
+          <li><a href="#estimate">Generator Installation</a></li>
+          <li><a href="#estimate">Commercial Electrical</a></li>
+          <li><a href="tel:5615841327">24/7 Emergency Service</a></li>
+        </ul>
+      </nav>
+      <!-- Service areas col -->
+      <div>
+        <div class="footer-col-title">Service Areas</div>
+        <p class="footer-service-areas">
+          Lake Worth Beach &nbsp;·&nbsp; Greenacres<br>
+          Boynton Beach &nbsp;·&nbsp; West Palm Beach<br>
+          Boca Raton &nbsp;·&nbsp; Delray Beach<br>
+          Wellington &nbsp;·&nbsp; Jupiter<br>
+          Riviera Beach &nbsp;·&nbsp; Palm Beach Gardens<br>
+          Port St. Lucie &nbsp;·&nbsp; Stuart<br>
+          Palm Beach County
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 Extreme Electrical Inc. All rights reserved. &nbsp;|&nbsp; <a href="https://www.extremeelectricalinc.com" style="color:inherit;text-decoration:none">extremeelectricalinc.com</a></p>
+      <p class="footer-lic">Florida Licensed Electrical Contractor &nbsp;·&nbsp; Lake Worth Beach, FL 33463</p>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-sticky" role="complementary" aria-label="Contact bar">
+  <a href="tel:5615841327" class="mobile-sticky-call">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.09 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    Call Now
+  </a>
+  <a href="#estimate" class="mobile-sticky-quote">Free Estimate</a>
+</div>
+
+</div><!-- /#page -->
+
+<!-- ============================
+     JAVASCRIPT
+     ============================ -->
+<script>
+(function(){
+'use strict';
+
+/* ---- LOADER ---- */
+var quotes = [
+  "Kevin did a great job fixing all my light fixtures. Definitely will use again for all my home projects.",
+  "Professional, reasonably priced, and thorough — we highly recommend them.",
+  "Called at 10 PM for an emergency and they actually showed up within the hour. 100% recommend."
+];
+var lq = document.getElementById('lq');
+var loader = document.getElementById('loader');
+var page = document.getElementById('page');
+var lbar = document.getElementById('lbar');
+var idx = 0;
+
+function showQuote(i) {
+  lq.classList.remove('visible');
+  setTimeout(function(){
+    lq.textContent = quotes[i];
+    lq.classList.add('visible');
+  }, 250);
+}
+
+showQuote(0);
+setTimeout(function(){lbar.style.width='100%'},50);
+
+var qtimer = setInterval(function(){
+  idx++;
+  if(idx < quotes.length){
+    showQuote(idx);
+  } else {
+    clearInterval(qtimer);
+    setTimeout(function(){
+      loader.classList.add('fade-out');
+      setTimeout(function(){
+        loader.style.display='none';
+        page.style.visibility='visible';
+        page.style.animation='fadeIn 0.5s ease forwards';
+        startCounters();
+      }, 900);
+    }, 1200);
+  }
+}, 1500);
+
+/* ---- GRAIN CANVAS ---- */
+var canvas = document.getElementById('grain');
+if(canvas && window.matchMedia('(prefers-reduced-motion: no-preference)').matches){
+  var ctx = canvas.getContext('2d');
+  var W,H,imgData,data;
+  function resizeGrain(){
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    imgData = ctx.createImageData(W,H);
+    data = imgData.data;
+  }
+  function drawGrain(){
+    for(var i=0;i<data.length;i+=4){
+      var v = Math.random()*255|0;
+      // Tinted gold/warm for this brand
+      data[i]   = v * 1.0 | 0;
+      data[i+1] = v * 0.9 | 0;
+      data[i+2] = v * 0.5 | 0;
+      data[i+3] = 10;
+    }
+    ctx.putImageData(imgData,0,0);
+    requestAnimationFrame(drawGrain);
+  }
+  resizeGrain();
+  window.addEventListener('resize',resizeGrain);
+  drawGrain();
+}
+
+/* ---- HERO COUNTER ---- */
+function startCounters(){
+  var el = document.getElementById('hero-counter');
+  if(!el) return;
+  var target = 5.0;
+  var start = null;
+  var duration = 2200;
+  function easeOutExpo(t){ return t===1?1:1-Math.pow(2,-10*t); }
+  function step(ts){
+    if(!start) start = ts;
+    var p = Math.min((ts-start)/duration,1);
+    var val = easeOutExpo(p) * target;
+    el.textContent = val.toFixed(1);
+    if(p<1) requestAnimationFrame(step);
+    else el.textContent = target.toFixed(1);
+  }
+  requestAnimationFrame(step);
+}
+
+/* ---- INTERSECTION OBSERVER (scroll reveal) ---- */
+var revealEls = document.querySelectorAll('.reveal');
+var observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+},{threshold:0.12});
+revealEls.forEach(function(el){ observer.observe(el); });
+
+/* ---- STAGGERED CARDS ---- */
+var cards = document.querySelectorAll('.service-card');
+var cardObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      var i = Array.prototype.indexOf.call(cards, e.target);
+      setTimeout(function(){
+        e.target.style.opacity='1';
+        e.target.style.transform='translateY(0)';
+      }, i * 80);
+      cardObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+cards.forEach(function(c){
+  c.style.opacity='0';c.style.transform='translateY(24px)';
+  c.style.transition='opacity 0.55s ease, transform 0.55s ease';
+  cardObs.observe(c);
+});
+
+/* ---- REVIEWS CAROUSEL ---- */
+(function(){
+  var wrap = document.querySelector('.carousel-wrap');
+  if(!wrap) return;
+  var track = wrap.querySelector('.carousel-track');
+  var dots = document.querySelectorAll('.carousel-dot');
+  var n = track.querySelectorAll('.review-card').length;
+  var cur = 0, timer;
+  function go(i){
+    cur = (i%n+n)%n;
+    track.style.transform = 'translateX(-'+(cur*100)+'%)';
+    dots.forEach(function(d,j){
+      d.classList.toggle('active',j===cur);
+      d.setAttribute('aria-selected', j===cur ? 'true' : 'false');
+    });
+  }
+  wrap.querySelector('.carousel-prev').addEventListener('click',function(){go(cur-1);reset()});
+  wrap.querySelector('.carousel-next').addEventListener('click',function(){go(cur+1);reset()});
+  dots.forEach(function(d,i){ d.addEventListener('click',function(){go(i);reset()}) });
+  // Touch/swipe
+  var startX = null;
+  track.addEventListener('touchstart',function(e){startX=e.touches[0].clientX},{passive:true});
+  track.addEventListener('touchend',function(e){
+    if(startX===null) return;
+    var diff = startX - e.changedTouches[0].clientX;
+    if(Math.abs(diff)>40){ go(diff>0?cur+1:cur-1); reset(); }
+    startX=null;
+  },{passive:true});
+  function reset(){ clearInterval(timer); timer=setInterval(function(){go(cur+1)},5000) }
+  reset();
+})();
+
+/* ---- NAV SCROLL OPACITY ---- */
+var nav = document.querySelector('.nav');
+window.addEventListener('scroll',function(){
+  if(window.scrollY > 40){
+    nav.style.background = 'rgba(13,27,42,0.98)';
+  } else {
+    nav.style.background = 'rgba(13,27,42,0.92)';
+  }
+},{passive:true});
+
+/* ---- FORM SUBMIT ---- */
+window.handleFormSubmit = function(e){
+  e.preventDefault();
+  var btn = e.target.querySelector('.form-submit');
+  btn.textContent = '✓ Request Sent!';
+  btn.style.background = '#2b6ca3';
+  btn.style.color = '#fff';
+  btn.disabled = true;
+};
+
+})();
+</script>
 
 </body>
 </html>

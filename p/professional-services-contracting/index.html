@@ -2,194 +2,1391 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Professional Services Contracting — Boynton Beach, FL</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Services Contracting | Palm Beach County, FL | General Contractor</title>
+<meta name="description" content="Professional Services Contracting — Palm Beach County's trusted general contractor since 1998. Remodeling, home additions, commercial buildouts, and more. Licensed & insured. Call (561) 664-4368.">
+
+<!-- OG / Social -->
+<meta property="og:title" content="Professional Services Contracting | Palm Beach County, FL">
+<meta property="og:description" content="Over 27 years serving Palm Beach County. Licensed general contractor specializing in residential and commercial renovations.">
+<meta property="og:image" content="https://chrisoliveira.co/p/professional-services-contracting/preview.jpg">
+<meta property="og:url" content="https://chrisoliveira.co/p/professional-services-contracting/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Fonts: Oswald (display, GC vertical) + Inter (body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;500;700&display=swap" as="style">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+
 <style>
-:root{
-  --espresso:#2c1810;
-  --copper:#c4622d;
-  --copper-l:#db7540;
-  --cream:#faf5ed;
-  --muted-text:rgba(255,255,255,0.67);
-  --ff-head:'Anton',sans-serif;
-  --ff-body:'Roboto',sans-serif;
+/* ───────────── RESET & TOKENS ───────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy:    #0f1e2d;
+  --navy2:   #162534;
+  --navy3:   #1c2f42;
+  --gold:    #c9a84c;
+  --gold2:   #e0bc6a;
+  --gold-dk: #a88632;
+  --white:   #ffffff;
+  --off:     #f5f3ef;
+  --text:    #1a2533;
+  --muted:   #6b7a8d;
+  --line:    #e2ddd6;
+  --ff-head: 'Oswald', sans-serif;
+  --ff-body: 'Inter', sans-serif;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--ff-body);background:var(--espresso);color:#fff;overflow-x:hidden}
+html { scroll-behavior: smooth; }
+body { font-family: var(--ff-body); background: var(--white); color: var(--text); overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font-family: var(--ff-body); cursor: pointer; border: none; background: none; }
 
-/* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  background:rgba(36,18,10,0.97);
-  border-bottom:1px solid rgba(196,98,45,0.25);
-  padding:0 48px;height:64px;
-  display:flex;align-items:center;justify-content:space-between;
-}
-.nav-mark{font-family:var(--ff-head);font-size:22px;letter-spacing:2px;color:var(--copper)}
-.nav-center{display:flex;flex-direction:column;align-items:center}
-.nav-biz{font-size:13px;font-weight:500;color:rgba(255,255,255,0.8);letter-spacing:.3px}
-.nav-meta{font-size:11px;color:rgba(255,255,255,0.38);margin-top:2px}
-.nav-cta{
-  background:var(--copper);color:#fff;padding:10px 22px;
-  border-radius:4px;font-size:13px;font-weight:700;
-  text-decoration:none;white-space:nowrap;
-}
-.nav-cta:hover{background:var(--copper-l)}
+/* ───────────── PAGE VISIBILITY (loader) ───────────── */
+#page { visibility: hidden; }
 
-/* HERO — text left, photo right, stats row above headline */
-#hero{
-  min-height:100vh;padding-top:64px;
-  display:grid;grid-template-columns:1fr 1fr;overflow:hidden;
-  background:var(--espresso);
+/* ───────────── LOADER ───────────── */
+#loader {
+  position: fixed; inset: 0; z-index: 99999;
+  background: var(--navy);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 32px;
+  transition: opacity 0.9s ease;
 }
-.hero-text{
-  display:flex;flex-direction:column;justify-content:center;
-  padding:60px 48px 60px 72px;
+.loader-stars {
+  color: #f59e0b;
+  font-size: 1.3rem;
+  letter-spacing: 6px;
+  margin-bottom: 24px;
 }
-.hero-stats-row{
-  display:flex;gap:28px;margin-bottom:28px;
-  padding:16px 0;
-  border-top:1px solid rgba(196,98,45,0.25);
-  border-bottom:1px solid rgba(196,98,45,0.25);
+.loader-quote {
+  font-family: var(--ff-body);
+  font-size: clamp(1.3rem, 3.2vw, 2.2rem);
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(255,255,255,0.92);
+  text-align: center;
+  max-width: 760px;
+  line-height: 1.55;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
-.hero-stat{display:flex;flex-direction:column}
-.hero-stat-val{font-family:var(--ff-head);font-size:28px;letter-spacing:1px;color:var(--copper)}
-.hero-stat-label{font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:2px}
-.hero-h1{
-  font-family:var(--ff-head);
-  font-size:clamp(48px,5.2vw,76px);
-  line-height:1.0;letter-spacing:1px;
-  color:#fff;margin-bottom:24px;
+.loader-quote.visible { opacity: 1; }
+.loader-logo {
+  position: absolute;
+  top: 32px; left: 50%; transform: translateX(-50%);
+  font-family: var(--ff-head);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  text-transform: uppercase;
+  white-space: nowrap;
 }
-.hero-h1 .accent{color:var(--copper)}
-.hero-sub{
-  font-size:16px;line-height:1.7;color:var(--muted-text);
-  max-width:420px;margin-bottom:36px;
+.loader-progress {
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 3px;
+  background: var(--gold);
+  width: 0%;
+  transition: width 4.8s linear;
 }
-.hero-ctas{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-.btn-primary{
-  background:var(--copper);color:#fff;padding:14px 28px;
-  border-radius:4px;font-size:15px;font-weight:700;text-decoration:none;
-}
-.btn-primary:hover{background:var(--copper-l)}
-.btn-ghost{color:var(--muted-text);font-size:15px;text-decoration:none}
-.btn-ghost:hover{color:#fff}
 
-/* HERO VISUAL */
-.hero-visual{position:relative;overflow:hidden}
-.hero-img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-.hero-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to right, var(--espresso) 0%, rgba(44,24,16,0.3) 35%, transparent 100%);
+/* ───────────── GRAIN CANVAS ───────────── */
+#grain {
+  position: fixed; inset: 0;
+  z-index: 99997;
+  pointer-events: none;
+  opacity: 0.38;
 }
-.hero-badge{
-  position:absolute;bottom:36px;right:28px;
-  background:rgba(30,14,8,0.88);
-  border:1px solid rgba(196,98,45,0.4);
-  border-bottom:3px solid var(--copper);
-  padding:14px 20px;border-radius:4px;
-  backdrop-filter:blur(6px);text-align:right;
+@media (prefers-reduced-motion: reduce) {
+  #grain { display: none; }
+  #loader { display: none; }
+  #page { visibility: visible !important; }
+  * { animation: none !important; transition: none !important; }
 }
-.hero-badge-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-bottom:6px}
-.hero-badge-val{font-family:var(--ff-head);font-size:22px;letter-spacing:.5px;color:#fff}
-.hero-badge-sub{font-size:11px;color:rgba(255,255,255,0.5);margin-top:3px}
 
-/* PROOF STRIP */
-#proof{
-  background:var(--cream);
-  padding:32px 72px;
-  display:grid;grid-template-columns:repeat(4,1fr);
-  border-top:3px solid var(--copper);
+/* ───────────── NAV ───────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9000;
+  height: 68px;
+  background: rgba(15,30,45,0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(201,168,76,0.18);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
 }
-.proof-item{
-  padding:0 24px 0 0;
-  border-right:1px solid rgba(44,24,16,0.1);
+.nav-logo {
+  font-family: var(--ff-head);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white);
 }
-.proof-item:last-child{border-right:none}
-.proof-val{font-family:var(--ff-head);font-size:30px;letter-spacing:.5px;color:var(--espresso);display:block}
-.proof-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#907060;margin-top:5px;display:block}
+.nav-logo span { color: var(--gold); }
+.nav-right {
+  display: flex; align-items: center; gap: 20px;
+}
+.nav-phone {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.82);
+  white-space: nowrap;
+}
+.nav-phone:hover { color: var(--gold); }
+.nav-btn {
+  background: var(--gold);
+  color: var(--navy);
+  padding: 10px 22px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.nav-btn:hover { background: var(--gold2); }
 
-@media(max-width:900px){
-  nav{padding:0 20px}
-  .nav-center{display:none}
-  #hero{grid-template-columns:1fr}
-  .hero-visual{display:none}
-  .hero-text{padding:52px 24px 48px}
-  .hero-stats-row{gap:16px}
-  #proof{grid-template-columns:repeat(2,1fr);padding:28px 24px;gap:20px}
-  .proof-item{border-right:none;padding-right:0}
+/* ───────────── HERO ───────────── */
+#hero {
+  height: calc(100vh - 68px);
+  margin-top: 68px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  overflow: hidden;
 }
-@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+}
+.hero-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 40%;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to right,
+    rgba(10,18,28,0.93) 0%,
+    rgba(10,18,28,0.88) 30%,
+    rgba(10,18,28,0.60) 60%,
+    rgba(10,18,28,0.72) 100%
+  );
+}
+.hero-left {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 60px 48px 100px 72px;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 22px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 28px; height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+.hero-h1 {
+  font-family: var(--ff-head);
+  font-size: clamp(44px, 5.5vw, 76px);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 22px;
+}
+.hero-h1 .accent { color: var(--gold); }
+.hero-sub {
+  font-size: 16px;
+  line-height: 1.72;
+  color: rgba(255,255,255,0.75);
+  max-width: 440px;
+  margin-bottom: 36px;
+}
+.hero-stat-block {
+  display: flex; align-items: center; gap: 0;
+  border-left: 3px solid var(--gold);
+  padding-left: 18px;
+  margin-bottom: 0;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s 0.85s ease, transform 0.7s 0.85s ease;
+}
+.hero-stat-block.visible { opacity: 1; transform: translateY(0); }
+.hero-stat-num {
+  font-family: var(--ff-head);
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-right: 16px;
+}
+.hero-stat-detail {
+  display: flex; flex-direction: column;
+}
+.hero-stat-label {
+  font-size: 13px; font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.05em;
+}
+.hero-stat-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.52);
+  margin-top: 2px;
+}
+
+/* Hero entrance animations */
+.hero-eyebrow,
+.hero-h1,
+.hero-sub {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.hero-eyebrow.visible { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+.hero-h1.visible { opacity: 1; transform: translateY(0); transition-delay: 0.28s; }
+.hero-sub.visible { opacity: 1; transform: translateY(0); transition-delay: 0.45s; }
+
+/* ── HERO RIGHT: LEAD FORM ── */
+.hero-right {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px 40px 80px 16px;
+}
+.lead-form {
+  background: rgba(255,255,255,0.97);
+  border-radius: 10px;
+  padding: 36px 32px 32px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.45), 0 4px 16px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 0.8s 0.4s ease, transform 0.8s 0.4s ease;
+}
+.lead-form.visible { opacity: 1; transform: translateX(0); }
+.lead-form-title {
+  font-family: var(--ff-head);
+  font-size: 22px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.lead-form-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 22px;
+  line-height: 1.5;
+}
+.form-group {
+  margin-bottom: 14px;
+}
+.form-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 5px;
+  font-family: var(--ff-body);
+  font-size: 14px;
+  color: var(--text);
+  background: var(--white);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--gold);
+}
+.form-submit {
+  width: 100%;
+  background: var(--gold);
+  color: var(--navy);
+  padding: 14px;
+  border-radius: 5px;
+  font-family: var(--ff-head);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 6px;
+  transition: background 0.2s, transform 0.15s;
+  cursor: pointer;
+  border: none;
+}
+.form-submit:hover { background: var(--gold2); transform: translateY(-1px); }
+.form-fine {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
+/* ── HERO WAVE ── */
+.hero-wave {
+  position: absolute; bottom: 0; left: 0;
+  width: 100%; line-height: 0; z-index: 3;
+  pointer-events: none;
+}
+.hero-wave svg { display: block; width: 100%; height: 52px; }
+
+/* ───────────── TRUST BAR ───────────── */
+#trust {
+  background: var(--navy);
+  padding: 0;
+}
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.trust-col {
+  padding: 32px 28px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.12);
+}
+.trust-col:last-child { border-right: none; }
+.trust-icon {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.trust-num {
+  font-family: var(--ff-head);
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.trust-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.88);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.trust-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  margin-top: 3px;
+}
+
+/* ───────────── SECTION SHARED ───────────── */
+.section-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dk);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: var(--ff-head);
+  font-size: clamp(30px, 3.2vw, 46px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--navy);
+  line-height: 1.08;
+  margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 16px;
+  line-height: 1.72;
+  color: var(--muted);
+  max-width: 600px;
+}
+
+/* ───────────── REVIEWS CAROUSEL ───────────── */
+#reviews {
+  background: var(--off);
+  padding: 96px 0;
+}
+.review-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 36px 40px;
+}
+.review-stars {
+  color: #f59e0b;
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+  letter-spacing: 3px;
+}
+.review-text {
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.72;
+  margin-bottom: 18px;
+  font-style: italic;
+}
+.review-author {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.carousel-wrap {
+  position: relative;
+  margin-top: 48px;
+  overflow: hidden;
+}
+.carousel-track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+}
+.carousel-track .review-card {
+  flex: 0 0 100%;
+}
+.carousel-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: 50%; width: 40px; height: 40px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  z-index: 2; color: var(--muted); padding: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  transition: border-color 0.2s, color 0.2s;
+}
+.carousel-btn:hover { border-color: var(--gold); color: var(--gold-dk); }
+.carousel-prev { left: 12px; }
+.carousel-next { right: 12px; }
+.carousel-dots {
+  display: flex; justify-content: center;
+  gap: 8px; margin-top: 16px;
+}
+.carousel-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #d1d5db; cursor: pointer;
+  border: none; padding: 0;
+  transition: all 0.25s;
+}
+.carousel-dot.active { background: var(--gold-dk); width: 24px; border-radius: 4px; }
+
+/* ───────────── SERVICES GRID ───────────── */
+#services {
+  padding: 96px 0;
+  background: var(--white);
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 52px;
+}
+.service-card {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--white);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.25s ease;
+}
+.service-card.visible { opacity: 1; transform: translateY(0); }
+.service-card:hover {
+  box-shadow: 0 16px 48px rgba(15,30,45,0.12);
+  transform: translateY(-3px);
+}
+.service-card-img {
+  height: 200px;
+  overflow: hidden;
+}
+.service-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+.service-card:hover .service-card-img img { transform: scale(1.04); }
+.service-card-body {
+  padding: 24px 22px 22px;
+}
+.service-icon {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.service-name {
+  font-family: var(--ff-head);
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.service-desc {
+  font-size: 14px;
+  line-height: 1.66;
+  color: var(--muted);
+}
+
+/* ───────────── ABOUT ───────────── */
+#about {
+  background: var(--navy);
+  padding: 96px 0;
+}
+#about .section-title { color: var(--white); }
+#about .section-label { color: var(--gold); }
+#about .section-sub { color: rgba(255,255,255,0.65); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 480px 1fr;
+  gap: 72px;
+  align-items: center;
+  margin-top: 0;
+}
+.about-photo {
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.about-photo img {
+  width: 100%; height: 480px;
+  object-fit: cover;
+}
+.about-photo-badge {
+  position: absolute;
+  bottom: 20px; right: 20px;
+  background: var(--gold);
+  color: var(--navy);
+  padding: 12px 18px;
+  border-radius: 6px;
+  text-align: center;
+}
+.about-photo-badge .badge-num {
+  font-family: var(--ff-head);
+  font-size: 28px;
+  font-weight: 700;
+  display: block;
+  line-height: 1;
+}
+.about-photo-badge .badge-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 2px;
+}
+.about-content { }
+.about-story {
+  font-size: 16px;
+  line-height: 1.78;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 32px;
+}
+.about-creds {
+  list-style: none;
+  display: flex; flex-direction: column;
+  gap: 12px;
+}
+.about-creds li {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.55;
+}
+.about-creds li::before {
+  content: '▸';
+  color: var(--gold);
+  font-size: 12px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* ───────────── CTA BANNER ───────────── */
+#cta {
+  position: relative;
+  padding: 88px 0;
+  overflow: hidden;
+  background: var(--navy2);
+}
+#cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  opacity: 0.12;
+}
+.cta-inner {
+  position: relative; z-index: 1;
+  text-align: center;
+}
+.cta-title {
+  font-family: var(--ff-head);
+  font-size: clamp(32px, 4vw, 54px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.cta-title span { color: var(--gold); }
+.cta-sub {
+  font-size: 17px;
+  color: rgba(255,255,255,0.68);
+  margin-bottom: 40px;
+  max-width: 560px;
+  margin-left: auto; margin-right: auto;
+  line-height: 1.65;
+}
+.cta-btns {
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px; flex-wrap: wrap;
+}
+.btn-gold {
+  background: var(--gold);
+  color: var(--navy);
+  padding: 16px 36px;
+  border-radius: 5px;
+  font-family: var(--ff-head);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-block;
+}
+.btn-gold:hover { background: var(--gold2); transform: translateY(-2px); }
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  padding: 15px 36px;
+  border-radius: 5px;
+  font-family: var(--ff-head);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 2px solid rgba(255,255,255,0.4);
+  transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  display: inline-block;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+/* ───────────── FOOTER ───────────── */
+footer {
+  background: #080f18;
+  padding: 72px 0 0;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-brand {}
+.footer-logo {
+  font-family: var(--ff-head);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 14px;
+}
+.footer-logo span { color: var(--gold); }
+.footer-tagline {
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.5);
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+.footer-contact a {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 8px;
+  transition: color 0.2s;
+}
+.footer-contact a:hover { color: var(--gold); }
+.footer-contact .ico { width: 16px; text-align: center; opacity: 0.55; }
+.footer-col-title {
+  font-family: var(--ff-head);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.footer-links {
+  list-style: none;
+  display: flex; flex-direction: column;
+  gap: 10px;
+}
+.footer-links li a {
+  font-size: 14px;
+  color: rgba(255,255,255,0.58);
+  transition: color 0.2s;
+}
+.footer-links li a:hover { color: var(--white); }
+.footer-bottom {
+  padding: 20px 0;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px;
+}
+.footer-bottom p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+}
+.footer-bottom a { color: rgba(255,255,255,0.45); }
+.footer-bottom a:hover { color: var(--gold); }
+
+/* ───────────── MOBILE STICKY CTA ───────────── */
+.mobile-cta {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 8000;
+  background: var(--navy);
+  border-top: 2px solid var(--gold);
+  padding: 12px 16px;
+  gap: 10px;
+}
+.mobile-cta-call {
+  flex: 1;
+  background: var(--gold);
+  color: var(--navy);
+  padding: 13px;
+  border-radius: 5px;
+  font-family: var(--ff-head);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+}
+.mobile-cta-est {
+  flex: 1;
+  background: transparent;
+  color: var(--white);
+  padding: 12px;
+  border-radius: 5px;
+  font-family: var(--ff-head);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+/* ───────────── SCROLL REVEAL ───────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ───────────── RESPONSIVE ───────────── */
+@media (max-width: 1100px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-grid { grid-template-columns: 1fr 1fr; gap: 48px; }
+  #hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 48px 40px 120px; }
+}
+@media (max-width: 900px) {
+  .trust-grid { grid-template-columns: repeat(2, 1fr); }
+  .trust-col { border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .about-grid { grid-template-columns: 1fr; gap: 36px; }
+  .about-photo img { height: 320px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .review-card { padding: 24px 20px; }
+}
+@media (max-width: 640px) {
+  nav { padding: 0 20px; }
+  .nav-logo { font-size: 16px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .section-wrap { padding: 0 20px; }
+  .hero-left { padding: 36px 20px 100px; }
+  .trust-grid { grid-template-columns: 1fr 1fr; }
+  .mobile-cta { display: flex; }
+  body { padding-bottom: 70px; }
+  .cta-btns { flex-direction: column; }
+  .btn-gold, .btn-outline { width: 100%; text-align: center; }
+  .nav-phone { display: none; }
+}
 </style>
 </head>
 <body>
+
+<!-- ════════════ LOADER ════════════ -->
+<div id="loader">
+  <div class="loader-logo">PSC · Professional Services Contracting</div>
+  <div class="loader-stars">★★★★★</div>
+  <p class="loader-quote" id="lq"></p>
+  <div class="loader-progress" id="lp"></div>
+</div>
+
+<!-- ════════════ GRAIN CANVAS ════════════ -->
+<canvas id="grain"></canvas>
+
+<!-- ════════════ MAIN PAGE ════════════ -->
+<div id="page">
+
+<!-- NAV -->
 <nav>
-  <span class="nav-mark">PSC</span>
-  <div class="nav-center">
-    <span class="nav-biz">Professional Services Contracting</span>
-    <span class="nav-meta">Boynton Beach, FL &middot; Since 1994</span>
+  <div class="nav-logo">PS<span>C</span></div>
+  <div class="nav-right">
+    <a href="tel:5616644368" class="nav-phone">(561) 664-4368</a>
+    <a href="#estimate" class="nav-btn">Free Estimate</a>
   </div>
-  <a class="nav-cta" href="tel:5616644368">(561) 664-4368</a>
 </nav>
 
+<!-- HERO -->
 <section id="hero">
-  <div class="hero-text">
-    <div class="hero-stats-row">
-      <div class="hero-stat">
-        <span class="hero-stat-val">35+</span>
-        <span class="hero-stat-label">Years</span>
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=80"
+         alt="Construction project in Palm Beach County, FL">
+  </div>
+
+  <!-- LEFT: copy + stat -->
+  <div class="hero-left">
+    <div class="hero-eyebrow">Palm Beach County &nbsp;·&nbsp; Licensed &amp; Insured</div>
+    <h1 class="hero-h1">
+      Built Right.<br>
+      Built to <span class="accent">Last.</span>
+    </h1>
+    <p class="hero-sub">
+      From full home renovations to commercial buildouts, Professional Services Contracting brings 27+ years of South Florida expertise to every project — on time, on budget, and permitted.
+    </p>
+    <div class="hero-stat-block" id="heroStat">
+      <div class="hero-stat-num" id="heroNum">5.0</div>
+      <div class="hero-stat-detail">
+        <span class="hero-stat-label">★★★★★ Perfect Rating</span>
+        <span class="hero-stat-sub">Boynton Beach · Since 1998</span>
       </div>
-      <div class="hero-stat">
-        <span class="hero-stat-val">1994</span>
-        <span class="hero-stat-label">Founded NYC</span>
-      </div>
-      <div class="hero-stat">
-        <span class="hero-stat-val">100%</span>
-        <span class="hero-stat-label">Owner-Run</span>
-      </div>
-    </div>
-    <h1 class="hero-h1">New York<br>Built.<br><span class="accent">South Florida</span><br>Trusted.</h1>
-    <p class="hero-sub">Founded in New York City in 1994, Nick has personally managed every project for 35 years. That kind of reputation should be pulling in new jobs every week. Your website just isn&rsquo;t doing it justice yet.</p>
-    <div class="hero-ctas">
-      <a class="btn-primary" href="tel:5616644368">Call (561) 664-4368</a>
-      <a class="btn-ghost" href="#proof">Credentials &rarr;</a>
     </div>
   </div>
-  <div class="hero-visual">
-    <img class="hero-img"
-      src="../../assets/samples/gc/general-contractors.jpg"
-      alt="Professional Services Contracting team reviewing blueprints on a project site">
-    <div class="hero-overlay"></div>
-    <div class="hero-badge">
-      <div class="hero-badge-label">Owner Since Day One</div>
-      <div class="hero-badge-val">Nick Manages Every Job</div>
-      <div class="hero-badge-sub">NYC Founded 1994 &middot; Boynton Beach, FL</div>
+
+  <!-- RIGHT: lead form -->
+  <div class="hero-right" id="estimate">
+    <div class="lead-form" id="leadForm">
+      <div class="lead-form-title">Get a Free Project Estimate</div>
+      <p class="lead-form-sub">No obligation. We'll get back to you within 24 hours.</p>
+      <form onsubmit="handleForm(event)">
+        <div class="form-group">
+          <label for="f-name">Your Name</label>
+          <input type="text" id="f-name" placeholder="John Smith" required>
+        </div>
+        <div class="form-group">
+          <label for="f-phone">Phone Number</label>
+          <input type="tel" id="f-phone" placeholder="(561) 000-0000" required>
+        </div>
+        <div class="form-group">
+          <label for="f-email">Email Address</label>
+          <input type="email" id="f-email" placeholder="john@example.com">
+        </div>
+        <div class="form-group">
+          <label for="f-service">Project Type</label>
+          <select id="f-service">
+            <option value="">Select a service...</option>
+            <option>General Contracting</option>
+            <option>Kitchen / Bath Remodel</option>
+            <option>Home Addition</option>
+            <option>Commercial Buildout</option>
+            <option>Interior Renovation</option>
+            <option>Exterior / Roofing</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <button type="submit" class="form-submit">Request My Free Estimate →</button>
+        <p class="form-fine">Licensed &amp; insured · Palm Beach County &amp; Broward</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- WAVE BREAK -->
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,22 C360,52 1080,0 1440,30 L1440,52 L0,52 Z" fill="#0f1e2d"/>
+    </svg>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<section id="trust">
+  <div class="trust-grid">
+    <div class="trust-col">
+      <div class="trust-icon">🏗️</div>
+      <div class="trust-num">27+</div>
+      <div class="trust-label">Years in Business</div>
+      <div class="trust-sub">Founded 1998</div>
+    </div>
+    <div class="trust-col">
+      <div class="trust-icon">📋</div>
+      <div class="trust-num">CGC</div>
+      <div class="trust-label">Licensed &amp; Insured</div>
+      <div class="trust-sub">Florida Certified General Contractor</div>
+    </div>
+    <div class="trust-col">
+      <div class="trust-icon">📍</div>
+      <div class="trust-num">PBC</div>
+      <div class="trust-label">Palm Beach County</div>
+      <div class="trust-sub">Serving all of South Florida</div>
+    </div>
+    <div class="trust-col">
+      <div class="trust-icon">⭐</div>
+      <div class="trust-num">A+</div>
+      <div class="trust-label">BBB Rating</div>
+      <div class="trust-sub">Zero complaints on record</div>
     </div>
   </div>
 </section>
 
-<section id="proof">
-  <div class="proof-item">
-    <span class="proof-val">35+ Years</span>
-    <span class="proof-label">In Business</span>
-  </div>
-  <div class="proof-item">
-    <span class="proof-val">NYC 1994</span>
-    <span class="proof-label">Heritage</span>
-  </div>
-  <div class="proof-item">
-    <span class="proof-val">Owner-Run</span>
-    <span class="proof-label">Every Project</span>
-  </div>
-  <div class="proof-item">
-    <span class="proof-val">Licensed</span>
-    <span class="proof-label">&amp; Insured</span>
+<!-- REVIEWS CAROUSEL -->
+<section id="reviews">
+  <div class="section-wrap">
+    <div class="reveal">
+      <div class="section-label">What Our Clients Say</div>
+      <h2 class="section-title">Built on Reputation</h2>
+      <p class="section-sub">From kitchen remodels to full commercial buildouts, our clients trust us to deliver — on time, on budget, and done right.</p>
+    </div>
+
+    <div class="carousel-wrap">
+      <div class="carousel-track">
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Professional Services Contracting completely transformed our kitchen and master bath. The owner was hands-on from day one, the crew was respectful of our home, and they finished ahead of schedule. I've already referred them to two neighbors."</p>
+          <div class="review-author">Diane M. — Boynton Beach Homeowner · Kitchen &amp; Bath Remodel</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"We hired PSC for a 1,200 sq ft home addition and couldn't be happier. Every permit was pulled properly, the work passed inspection first try, and the crew left the site clean every day. Genuinely one of the best contractor experiences we've had in 20 years."</p>
+          <div class="review-author">Robert &amp; Carla T. — Delray Beach · Home Addition</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"We needed a full office buildout in Boca and had a tight timeline. PSC delivered an incredible finished space — clean lines, quality finishes, everything to spec. Their experience in commercial work really shows. Would hire again without hesitation."</p>
+          <div class="review-author">Marcus L. — Boca Raton Business Owner · Commercial Buildout</div>
+        </div>
+
+      </div>
+      <button class="carousel-btn carousel-prev" aria-label="Previous">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-btn carousel-next" aria-label="Next">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+
+    <div class="carousel-dots">
+      <button class="carousel-dot active" aria-label="Review 1"></button>
+      <button class="carousel-dot" aria-label="Review 2"></button>
+      <button class="carousel-dot" aria-label="Review 3"></button>
+    </div>
+
   </div>
 </section>
+
+<!-- SERVICES GRID -->
+<section id="services">
+  <div class="section-wrap">
+    <div class="reveal">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Full-Scope Contracting Services</h2>
+      <p class="section-sub">From the first permit to the final walkthrough, we handle every phase of your project with 27+ years of South Florida construction experience.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-card-img">
+          <img src="https://images.unsplash.com/photo-1565008576549-57569a49371d?auto=format&fit=crop&w=800&q=80"
+               alt="General contracting — Professional Services Contracting">
+        </div>
+        <div class="service-card-body">
+          <div class="service-icon">🏗️</div>
+          <div class="service-name">General Contracting</div>
+          <p class="service-desc">End-to-end project management for residential and commercial builds. We handle permitting, subcontractors, inspections, and scheduling so you don't have to.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-img">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80"
+               alt="Kitchen and bath remodeling — Professional Services Contracting">
+        </div>
+        <div class="service-card-body">
+          <div class="service-icon">🔨</div>
+          <div class="service-name">Remodeling</div>
+          <p class="service-desc">Kitchen and bathroom renovations tailored to your lifestyle. We coordinate cabinetry, tile, countertops, plumbing, and electrical under one roof.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-img">
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80"
+               alt="Home additions — Professional Services Contracting">
+        </div>
+        <div class="service-card-body">
+          <div class="service-icon">🏠</div>
+          <div class="service-name">Home Additions</div>
+          <p class="service-desc">Extra bedrooms, sunrooms, garages, or second stories — properly engineered, fully permitted, and seamlessly integrated with your existing structure.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-img">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
+               alt="Commercial buildout — Professional Services Contracting">
+        </div>
+        <div class="service-card-body">
+          <div class="service-icon">🏢</div>
+          <div class="service-name">Commercial Buildout</div>
+          <p class="service-desc">Office suites, retail spaces, and tenant improvements built to spec. We work around your business schedule to minimize downtime and disruption.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-img">
+          <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80"
+               alt="Interior renovation — Professional Services Contracting">
+        </div>
+        <div class="service-card-body">
+          <div class="service-icon">🪟</div>
+          <div class="service-name">Interior Renovation</div>
+          <p class="service-desc">Custom closets, home offices, flooring, drywall, and finish carpentry. We transform tired interiors into spaces you're proud to live and work in.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-img">
+          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80"
+               alt="Exterior and roofing — Professional Services Contracting">
+        </div>
+        <div class="service-card-body">
+          <div class="service-icon">🛖</div>
+          <div class="service-name">Exterior &amp; Roofing</div>
+          <p class="service-desc">Impact windows, exterior stucco, painting, and roofing coordination. Built to withstand South Florida weather — hurricane-rated where applicable.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-wrap">
+    <div class="about-grid">
+
+      <div class="about-photo reveal">
+        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80"
+             alt="Professional Services Contracting team on a Palm Beach County project site">
+        <div class="about-photo-badge">
+          <span class="badge-num">27</span>
+          <span class="badge-label">Years Serving<br>South Florida</span>
+        </div>
+      </div>
+
+      <div class="about-content reveal">
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">Deep Roots in Palm Beach County</h2>
+        <p class="about-story">
+          Professional Services Contracting was founded in 1998 in Boynton Beach, FL — built on the belief that great construction comes down to personal accountability. Every project, large or small, is managed and supervised personally by ownership. No hand-offs, no surprises.
+        </p>
+        <p class="about-story">
+          Over the past 27 years we've completed hundreds of residential remodels, home additions, condo renovations, and commercial buildouts across Boynton Beach, Delray Beach, Boca Raton, West Palm Beach, and beyond. Our A+ BBB rating and spotless complaint history reflect a simple standard: we only close a job when the client is completely satisfied.
+        </p>
+        <ul class="about-creds">
+          <li>Florida Certified General Contractor — fully licensed &amp; insured</li>
+          <li>A+ BBB Rating · Zero complaints in 27 years of operation</li>
+          <li>Serving Palm Beach County &amp; Broward County since 1998</li>
+          <li>Residential &amp; commercial scope — $25K to $1M+ projects</li>
+          <li>Personal owner oversight on every project from start to finish</li>
+          <li>All projects properly permitted and inspected per Florida Building Code</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section id="cta">
+  <div class="section-wrap cta-inner">
+    <h2 class="cta-title reveal">Ready to Start Your <span>Project?</span></h2>
+    <p class="cta-sub reveal">Get a no-obligation estimate from one of Palm Beach County's most trusted general contractors. We'll listen, plan, and deliver.</p>
+    <div class="cta-btns reveal">
+      <a href="tel:5616644368" class="btn-gold">Call (561) 664-4368</a>
+      <a href="#estimate" class="btn-outline">Request an Estimate Online</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="section-wrap">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <div class="footer-logo">Professional Services<br><span>Contracting</span></div>
+        <p class="footer-tagline">Palm Beach County's trusted general contractor since 1998. Licensed, insured, and personally accountable on every project.</p>
+        <div class="footer-contact">
+          <a href="tel:5616644368">
+            <span class="ico">📞</span>
+            (561) 664-4368
+          </a>
+          <a href="#">
+            <span class="ico">📍</span>
+            Boynton Beach, FL 33437
+          </a>
+          <a href="#">
+            <span class="ico">🌐</span>
+            Palm Beach County &amp; Broward County
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">General Contracting</a></li>
+          <li><a href="#services">Kitchen &amp; Bath Remodeling</a></li>
+          <li><a href="#services">Home Additions</a></li>
+          <li><a href="#services">Commercial Buildout</a></li>
+          <li><a href="#services">Interior Renovation</a></li>
+          <li><a href="#services">Exterior &amp; Roofing</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Service Areas</div>
+        <ul class="footer-links">
+          <li><a href="#">Boynton Beach</a></li>
+          <li><a href="#">Delray Beach</a></li>
+          <li><a href="#">Boca Raton</a></li>
+          <li><a href="#">West Palm Beach</a></li>
+          <li><a href="#">Wellington</a></li>
+          <li><a href="#">Coral Springs</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Professional Services Contracting, LLC. All rights reserved.</p>
+      <p>Licensed General Contractor · Palm Beach County, FL · <a href="tel:5616644368">(561) 664-4368</a></p>
+    </div>
+  </div>
+</footer>
+
+</div><!-- #page -->
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-cta">
+  <a href="tel:5616644368" class="mobile-cta-call">Call Now</a>
+  <a href="#estimate" class="mobile-cta-est">Free Estimate</a>
+</div>
+
+<!-- ════════════ SCRIPTS ════════════ -->
+<script>
+/* ── LOADER ── */
+(function(){
+  var quotes = [
+    '"They finished ahead of schedule and the quality blew us away. Best contractor in Palm Beach County."',
+    '"Every permit pulled, every inspection passed first time. Zero hassle from start to finish."',
+    '"27 years of experience shows. The attention to detail was unlike any contractor we\'ve used before."'
+  ];
+  var el = document.getElementById('lq');
+  var lp = document.getElementById('lp');
+  var i = 0;
+  function show(idx){
+    el.classList.remove('visible');
+    setTimeout(function(){
+      el.textContent = quotes[idx];
+      el.classList.add('visible');
+    }, 300);
+  }
+  show(0);
+  // Start progress bar
+  setTimeout(function(){ lp.style.width = '100%'; }, 100);
+  var t1 = setTimeout(function(){ show(1); }, 1500);
+  var t2 = setTimeout(function(){ show(2); }, 3000);
+  var t3 = setTimeout(function(){
+    var ld = document.getElementById('loader');
+    ld.style.opacity = '0';
+    setTimeout(function(){
+      ld.style.display = 'none';
+      document.getElementById('page').style.visibility = 'visible';
+      startHero();
+    }, 900);
+  }, 4300);
+})();
+
+/* ── GRAIN CANVAS ── */
+(function(){
+  var c = document.getElementById('grain');
+  if(!c) return;
+  var ctx = c.getContext('2d');
+  function resize(){ c.width = window.innerWidth; c.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  function draw(){
+    var w = c.width, h = c.height;
+    var img = ctx.createImageData(w, h);
+    var d = img.data;
+    for(var j=0; j<d.length; j+=4){
+      var v = (Math.random() * 255)|0;
+      d[j]   = (v * 1.0)|0;
+      d[j+1] = (v * 0.85)|0;
+      d[j+2] = (v * 0.5)|0;
+      d[j+3] = 10;
+    }
+    ctx.putImageData(img, 0, 0);
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── HERO ENTRANCE ── */
+function startHero(){
+  var els = document.querySelectorAll('.hero-eyebrow, .hero-h1, .hero-sub');
+  els.forEach(function(e){ e.classList.add('visible'); });
+  var form = document.getElementById('leadForm');
+  if(form) form.classList.add('visible');
+
+  // Animated counter
+  setTimeout(function(){
+    var stat = document.getElementById('heroStat');
+    if(stat) stat.classList.add('visible');
+    var numEl = document.getElementById('heroNum');
+    if(!numEl) return;
+    var start = 0, end = 50, dur = 2200;
+    var startTime = null;
+    function easeOut(t){ return 1 - Math.pow(1 - t, 4); }
+    function anim(ts){
+      if(!startTime) startTime = ts;
+      var p = Math.min((ts - startTime) / dur, 1);
+      var val = Math.round(easeOut(p) * end);
+      numEl.textContent = val === 50 ? '5.0' : (val/10).toFixed(1);
+      if(p < 1) requestAnimationFrame(anim);
+      else numEl.textContent = '5.0';
+    }
+    requestAnimationFrame(anim);
+  }, 400);
+}
+
+/* ── INTERSECTION OBSERVER (reveal + stagger) ── */
+(function(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // Stagger service cards
+  var cardIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var cards = document.querySelectorAll('.service-card');
+        cards.forEach(function(c, i){
+          setTimeout(function(){ c.classList.add('visible'); }, i * 100);
+        });
+        cardIO.disconnect();
+      }
+    });
+  }, { threshold: 0.08 });
+  var grid = document.querySelector('.services-grid');
+  if(grid) cardIO.observe(grid);
+})();
+
+/* ── REVIEWS CAROUSEL ── */
+(function(){
+  var wrap = document.querySelector('.carousel-wrap');
+  if(!wrap) return;
+  var track = wrap.querySelector('.carousel-track');
+  var dots = document.querySelectorAll('.carousel-dot');
+  var n = track.querySelectorAll('.review-card').length, cur = 0, timer;
+  function go(i){
+    cur = (i % n + n) % n;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dots.forEach(function(d,j){ d.classList.toggle('active', j === cur); });
+  }
+  wrap.querySelector('.carousel-prev').addEventListener('click', function(){ go(cur-1); reset(); });
+  wrap.querySelector('.carousel-next').addEventListener('click', function(){ go(cur+1); reset(); });
+  dots.forEach(function(d,i){ d.addEventListener('click', function(){ go(i); reset(); }); });
+
+  // Touch swipe
+  var tx = 0;
+  wrap.addEventListener('touchstart', function(e){ tx = e.touches[0].clientX; }, {passive:true});
+  wrap.addEventListener('touchend', function(e){
+    var dx = e.changedTouches[0].clientX - tx;
+    if(Math.abs(dx) > 40){ go(dx < 0 ? cur+1 : cur-1); reset(); }
+  }, {passive:true});
+
+  function reset(){ clearInterval(timer); timer = setInterval(function(){ go(cur+1); }, 5000); }
+  reset();
+})();
+
+/* ── FORM HANDLER ── */
+function handleForm(e){
+  e.preventDefault();
+  var btn = e.target.querySelector('.form-submit');
+  btn.textContent = '✓ Request Sent!';
+  btn.style.background = '#4caf50';
+  btn.style.color = '#fff';
+  btn.disabled = true;
+}
+
+/* ── SMOOTH ANCHOR: #estimate ── */
+document.querySelectorAll('a[href="#estimate"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    e.preventDefault();
+    var t = document.getElementById('estimate');
+    if(t) t.scrollIntoView({ behavior:'smooth', block:'center' });
+  });
+});
+</script>
+
 </body>
 </html>

@@ -3,90 +3,1343 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mike The Plumber | Lake Worth, FL | Owner-Operated Plumbing</title>
+  <title>Mike The Plumber Inc | Palm Beach County, FL | Owner-Operated Since 2008</title>
+  <meta name="description" content="Mike The Plumber Inc — licensed, insured, owner-operated plumbing in Palm Beach County, FL. Drain cleaning, water heaters, repiping, emergency service. CFC1427954. Call (561) 460-5017.">
+
+  <!-- OG -->
+  <meta property="og:title" content="Mike The Plumber Inc | Palm Beach County's Owner-Operated Plumber">
+  <meta property="og:description" content="Since 2008, Mike has personally handled every job in Palm Beach County. 4.9-star rated. Licensed CFC1427954. Call (561) 460-5017.">
+  <meta property="og:image" content="https://chrisoliveira.co/p/mike-the-plumber/preview.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Inter:wght@400;500;600;700&display=swap">
+
   <style>
+    /* ─────────────── RESET & BASE ─────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --cyan: #00bfff;
-      --teal: #007ea1;
-      --white: #ffffff;
-      --dark: #0d0d0d;
+      /* Brand: Mike's real blues, pulled from miketheplumberinc.com */
+      --navy:    #0a2540;
+      --mid:     #00608a;
+      --accent:  #009fd4;
+      --accent2: #007ea1;
+      --white:   #ffffff;
+      --offwhite:#f4f8fc;
+      --dark:    #0d0d0d;
+      --text:    #2a2f3a;
+      --muted:   #5e6e82;
+      --line:    #e2eaf0;
     }
-    body { font-family: 'Inter', sans-serif; color: var(--dark); background: #f0faff; }
 
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--offwhite);
+      overflow-x: hidden;
+    }
+
+    /* ─────────────── LOADER ─────────────── */
+    #loader {
+      position: fixed; inset: 0;
+      background: var(--navy);
+      z-index: 99999;
+      display: none; /* JS enables this */
+      flex-direction: column;
+      align-items: center; justify-content: center;
+      transition: opacity 0.9s ease;
+    }
+    #loader.active { display: flex; }
+    #loader.fade-out { opacity: 0; pointer-events: none; }
+
+    .loader-stars {
+      color: #f59e0b;
+      font-size: 1.4rem;
+      letter-spacing: 6px;
+      margin-bottom: 28px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .loader-quote {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.3rem, 3.2vw, 2.2rem);
+      font-style: italic;
+      font-weight: 600;
+      color: var(--white);
+      text-align: center;
+      max-width: 680px;
+      padding: 0 32px;
+      line-height: 1.5;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .loader-quote.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .loader-stars.visible { opacity: 1; }
+    .loader-bar {
+      margin-top: 48px;
+      width: 180px; height: 3px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loader-progress {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+      transition: width 4.6s linear;
+      border-radius: 2px;
+    }
+
+    /* ─────────────── GRAIN CANVAS ─────────────── */
+    #grain {
+      position: fixed;
+      inset: 0;
+      z-index: 99998;
+      pointer-events: none;
+      opacity: 1;
+    }
+
+    /* ─────────────── PAGE ─────────────── */
+    #page { visibility: visible; }
+
+    /* ─────────────── NAV ─────────────── */
     nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--cyan);
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(10, 37, 64, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px; height: 68px;
+      padding: 0 52px;
+      height: 68px;
+      border-bottom: 1px solid rgba(0,159,212,0.15);
+      transition: background 0.3s;
     }
-    .nav-logo { font-family: 'Work Sans', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.03em; }
-    .nav-logo span { color: rgba(255,255,255,0.85); }
-    .nav-right { display: flex; align-items: center; gap: 20px; }
-    .nav-phone { color: rgba(255,255,255,0.9); font-size: 15px; font-weight: 600; text-decoration: none; }
-    .nav-cta { background: var(--teal); color: var(--white); font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; }
+    nav.solid { background: var(--navy); }
 
-    .hero { position: relative; height: calc(100vh - 68px); overflow: hidden; display: flex; align-items: center; }
-    .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,126,161,0.93) 40%, rgba(0,191,255,0.55)); }
-    .hero-content { position: relative; z-index: 1; padding: 0 72px; max-width: 700px; }
-    .hero-eyebrow { font-family: 'Work Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 18px; }
-    .hero-h1 { font-family: 'Work Sans', sans-serif; font-size: clamp(48px, 5vw, 76px); font-weight: 900; line-height: 1.04; color: var(--white); margin-bottom: 20px; }
-    .hero-h1 em { color: var(--cyan); font-style: normal; }
-    .hero-rule { width: 56px; height: 4px; background: var(--cyan); border-radius: 2px; margin-bottom: 22px; }
-    .hero-sub { font-size: 18px; line-height: 1.65; color: rgba(255,255,255,0.88); max-width: 500px; margin-bottom: 38px; }
-    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-    .btn-primary { background: var(--cyan); color: var(--teal); font-weight: 700; font-size: 15px; padding: 16px 32px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.03em; }
-    .btn-ghost { color: var(--white); font-weight: 600; font-size: 15px; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.4); padding-bottom: 2px; }
+    .nav-logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 17px; font-weight: 800;
+      color: var(--white); letter-spacing: 0.01em;
+      text-decoration: none; display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo-icon {
+      width: 32px; height: 32px;
+      background: var(--accent);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-logo-icon svg { width: 18px; height: 18px; }
+    .nav-logo em { color: var(--accent); font-style: normal; }
 
-    .trust-bar { background: var(--teal); display: grid; grid-template-columns: repeat(4, 1fr); }
-    .trust-item { padding: 24px 20px; text-align: center; border-right: 1px solid rgba(255,255,255,0.25); }
+    .nav-right { display: flex; align-items: center; gap: 18px; }
+    .nav-phone {
+      color: rgba(255,255,255,0.88); font-size: 15px; font-weight: 600;
+      text-decoration: none; display: flex; align-items: center; gap: 6px;
+    }
+    .nav-phone svg { opacity: 0.7; }
+    .nav-cta {
+      background: var(--accent); color: var(--white);
+      font-weight: 700; font-size: 13px; padding: 10px 22px;
+      border-radius: 6px; text-decoration: none;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--mid); }
+
+    /* ─────────────── HERO ─────────────── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 440px;
+      height: calc(100vh - 68px);
+      min-height: 560px;
+      max-height: 860px;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-photo {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    /* Left panel */
+    .hero-text {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 64px 40px 72px 72px;
+      position: relative; z-index: 1;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 22px;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block;
+      width: 22px; height: 2px; background: var(--accent); flex-shrink: 0;
+    }
+    .hero-eyebrow span { color: rgba(255,255,255,0.45); }
+
+    .hero-h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(38px, 4vw, 62px);
+      font-weight: 900; line-height: 1.07;
+      color: var(--white); margin-bottom: 22px;
+    }
+    .hero-h1 em { color: var(--accent); font-style: normal; }
+
+    .hero-sub {
+      font-size: 16px; line-height: 1.75;
+      color: rgba(255,255,255,0.72);
+      max-width: 440px; margin-bottom: 40px;
+    }
+
+    /* Animated rating block */
+    .hero-rating-block {
+      display: flex; align-items: center; gap: 20px;
+      padding: 20px 24px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(0,159,212,0.25);
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      max-width: 380px;
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .hero-rating-block.hidden { opacity: 0; transform: translateY(16px); }
+    .hero-rating-block.visible { opacity: 1; transform: translateY(0); }
+    .rating-big {
+      font-family: 'Poppins', sans-serif;
+      font-size: 42px; font-weight: 900; color: var(--white);
+      line-height: 1; min-width: 80px;
+    }
+    .rating-big span { color: var(--accent); font-size: 0.65em; }
+    .rating-right {}
+    .rating-stars { color: #f59e0b; font-size: 1.1rem; letter-spacing: 3px; line-height: 1; margin-bottom: 4px; }
+    .rating-label { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* Hero stats row */
+    .hero-stats {
+      display: flex; gap: 36px;
+      padding-top: 32px; margin-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat-item {}
+    .stat-number {
+      font-family: 'Poppins', sans-serif;
+      font-size: 26px; font-weight: 900;
+      color: var(--white); line-height: 1; margin-bottom: 3px;
+    }
+    .stat-number sup { color: var(--accent); font-size: 0.7em; vertical-align: super; }
+    .stat-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.09em;
+      text-transform: uppercase; color: rgba(255,255,255,0.5);
+    }
+
+    /* Right form panel */
+    .hero-form-panel {
+      background: rgba(255,255,255,0.04);
+      border-left: 1px solid rgba(0,159,212,0.2);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 52px 44px;
+      position: relative; z-index: 1;
+      backdrop-filter: blur(6px);
+    }
+    .form-heading {
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px; font-weight: 800;
+      color: var(--white); margin-bottom: 6px;
+    }
+    .form-sub { font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 28px; }
+    .lead-form { display: flex; flex-direction: column; gap: 14px; }
+    .lead-form input,
+    .lead-form select,
+    .lead-form textarea {
+      width: 100%; padding: 14px 16px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 8px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.25s;
+    }
+    .lead-form input::placeholder,
+    .lead-form select::placeholder,
+    .lead-form textarea::placeholder { color: rgba(255,255,255,0.38); }
+    .lead-form input:focus,
+    .lead-form select:focus,
+    .lead-form textarea:focus { border-color: var(--accent); }
+    .lead-form select { color: rgba(255,255,255,0.38); cursor: pointer; appearance: none; }
+    .lead-form select option { background: var(--navy); color: var(--white); }
+    .lead-form textarea { resize: vertical; min-height: 80px; }
+    .form-btn {
+      background: var(--accent); color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px; font-weight: 800;
+      padding: 16px 24px; border-radius: 8px;
+      border: none; cursor: pointer;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      transition: background 0.25s, transform 0.15s;
+      width: 100%;
+    }
+    .form-btn:hover { background: var(--mid); transform: translateY(-1px); }
+    .form-note { font-size: 11px; color: rgba(255,255,255,0.35); text-align: center; margin-top: 4px; }
+
+    /* Wave break */
+    .hero-wave {
+      position: absolute; bottom: 0; left: 0;
+      width: 100%; line-height: 0; z-index: 3; pointer-events: none;
+    }
+    .hero-wave svg { display: block; width: 100%; height: 52px; }
+
+    /* Fade-up animation — starts visible; JS hides then reveals */
+    .fade-up {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.hidden { opacity: 0; transform: translateY(22px); }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─────────────── TRUST BAR ─────────────── */
+    .trust-bar {
+      background: var(--mid);
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .trust-item {
+      padding: 22px 20px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.22);
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+    }
     .trust-item:last-child { border-right: none; }
-    .trust-label-top { font-family: 'Work Sans', sans-serif; font-size: 22px; font-weight: 800; color: var(--white); line-height: 1; margin-bottom: 4px; }
-    .trust-label-bot { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.8); }
+    .trust-icon { font-size: 1.4rem; margin-bottom: 4px; }
+    .trust-top {
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px; font-weight: 800;
+      color: var(--white); line-height: 1;
+    }
+    .trust-bot {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+    }
 
-    @media (max-width: 768px) {
+    /* ─────────────── SECTION BASE ─────────────── */
+    .section { padding: 96px 0; }
+    .section-inner { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+    .section-label {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 800; line-height: 1.18;
+      color: var(--navy); margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 16px; line-height: 1.7;
+      color: var(--muted); max-width: 600px;
+    }
+    .section-header { margin-bottom: 56px; }
+
+    /* ─────────────── REVIEWS CAROUSEL ─────────────── */
+    .reviews-section { background: var(--offwhite); }
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 40px 44px;
+      box-shadow: 0 4px 24px rgba(0,31,64,0.07);
+    }
+    .review-stars { color: #f59e0b; font-size: 1.15rem; margin-bottom: 16px; letter-spacing: 3px; }
+    .review-text {
+      font-size: 1.05rem; color: var(--text); line-height: 1.75;
+      margin-bottom: 20px; font-style: italic;
+    }
+    .review-author { font-size: 0.85rem; font-weight: 700; color: var(--muted); }
+    .review-author span { color: var(--accent); font-weight: 600; }
+
+    .carousel-wrap { position: relative; margin-top: 48px; overflow: hidden; }
+    .carousel-track { display: flex; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); }
+    .carousel-track .review-card { flex: 0 0 100%; }
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: 50%; width: 42px; height: 42px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      z-index: 2; color: var(--muted); padding: 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.09);
+      transition: box-shadow 0.2s, color 0.2s;
+    }
+    .carousel-btn:hover { color: var(--accent); box-shadow: 0 4px 20px rgba(0,0,0,0.14); }
+    .carousel-prev { left: 14px; }
+    .carousel-next { right: 14px; }
+    .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+    .carousel-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #c8d8e8; cursor: pointer;
+      border: none; padding: 0; transition: all 0.25s;
+    }
+    .carousel-dot.active { background: var(--accent); width: 26px; border-radius: 4px; }
+
+    /* ─────────────── SERVICES GRID ─────────────── */
+    .services-section { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 0;
+    }
+    .service-card {
+      background: var(--offwhite);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 1; transform: translateY(0);
+    }
+    .service-card.hidden-anim {
+      opacity: 0; transform: translateY(28px);
+    }
+    .service-card.visible {
+      opacity: 1; transform: translateY(0);
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,31,64,0.12);
+    }
+    .service-photo {
+      height: 180px; overflow: hidden;
+      position: relative;
+    }
+    .service-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .service-card:hover .service-photo img { transform: scale(1.04); }
+    .service-body { padding: 24px 26px 28px; }
+    .service-icon {
+      width: 44px; height: 44px;
+      background: rgba(0,159,212,0.12);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+    }
+    .service-icon svg { width: 22px; height: 22px; color: var(--accent); }
+    .service-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 17px; font-weight: 800;
+      color: var(--navy); margin-bottom: 8px;
+    }
+    .service-desc { font-size: 13.5px; line-height: 1.65; color: var(--muted); }
+
+    /* ─────────────── ABOUT ─────────────── */
+    .about-section { background: var(--offwhite); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .about-photo-wrap {
+      position: relative;
+    }
+    .about-photo-wrap img {
+      width: 100%; border-radius: 16px;
+      box-shadow: 0 24px 64px rgba(10,37,64,0.18);
+      display: block;
+    }
+    .about-badge {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--accent); color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px; font-weight: 800;
+      padding: 14px 20px; border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,96,138,0.3);
+      line-height: 1.3; text-align: center;
+    }
+    .about-badge strong { font-size: 24px; display: block; }
+    .about-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+    }
+    .about-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(26px, 2.8vw, 38px); font-weight: 800;
+      line-height: 1.2; color: var(--navy); margin-bottom: 20px;
+    }
+    .about-body {
+      font-size: 16px; line-height: 1.8; color: var(--text);
+      margin-bottom: 28px;
+    }
+    .about-creds {
+      display: flex; flex-direction: column; gap: 10px;
+      margin-bottom: 36px;
+    }
+    .about-cred {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; font-weight: 600; color: var(--text);
+    }
+    .cred-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+    }
+    .about-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--navy); color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px; font-weight: 700;
+      padding: 16px 32px; border-radius: 8px;
+      text-decoration: none; text-transform: uppercase;
+      letter-spacing: 0.05em; transition: background 0.25s;
+    }
+    .about-cta:hover { background: var(--mid); }
+
+    /* ─────────────── CTA BANNER ─────────────── */
+    .cta-banner {
+      background: var(--navy);
+      padding: 80px 0;
+      position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1600&q=50');
+      background-size: cover; background-position: center;
+      opacity: 0.08;
+    }
+    .cta-inner {
+      max-width: 760px; margin: 0 auto; padding: 0 48px;
+      text-align: center; position: relative; z-index: 1;
+    }
+    .cta-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+    }
+    .cta-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(28px, 3.2vw, 46px); font-weight: 900;
+      color: var(--white); line-height: 1.18; margin-bottom: 18px;
+    }
+    .cta-sub { font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 40px; }
+    .cta-buttons { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .btn-cta-primary {
+      background: var(--accent); color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px; font-weight: 800;
+      padding: 18px 38px; border-radius: 8px;
+      text-decoration: none; text-transform: uppercase;
+      letter-spacing: 0.05em; transition: background 0.25s, transform 0.15s;
+      box-shadow: 0 4px 24px rgba(0,159,212,0.35);
+    }
+    .btn-cta-primary:hover { background: var(--mid); transform: translateY(-2px); }
+    .btn-cta-ghost {
+      color: var(--white); font-family: 'Poppins', sans-serif;
+      font-size: 15px; font-weight: 700;
+      padding: 16px 34px; border-radius: 8px;
+      border: 2px solid rgba(255,255,255,0.3);
+      text-decoration: none; text-transform: uppercase;
+      letter-spacing: 0.05em; transition: border-color 0.25s, background 0.25s;
+    }
+    .btn-cta-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.07); }
+
+    /* ─────────────── FOOTER ─────────────── */
+    .footer {
+      background: var(--dark);
+      padding: 64px 0 0;
+    }
+    .footer-grid {
+      max-width: 1160px; margin: 0 auto; padding: 0 48px;
+      display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 48px;
+    }
+    .footer-logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px; font-weight: 800;
+      color: var(--white); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .footer-logo em { color: var(--accent); font-style: normal; }
+    .footer-logo-icon {
+      width: 30px; height: 30px;
+      background: var(--accent); border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-logo-icon svg { width: 16px; height: 16px; }
+    .footer-desc { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.5); margin-bottom: 24px; }
+    .footer-socials { display: flex; gap: 10px; }
+    .social-btn {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: rgba(255,255,255,0.5);
+      transition: background 0.25s, color 0.25s;
+    }
+    .social-btn:hover { background: var(--accent); color: var(--white); border-color: var(--accent); }
+
+    .footer-heading {
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--white); margin-bottom: 20px;
+    }
+    .footer-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-list a {
+      font-size: 14px; color: rgba(255,255,255,0.5);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-list a:hover { color: var(--accent); }
+    .footer-contact-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: rgba(255,255,255,0.5);
+      margin-bottom: 12px;
+    }
+    .footer-contact-item svg { flex-shrink: 0; margin-top: 2px; opacity: 0.6; }
+    .footer-contact-item a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    .footer-contact-item a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      margin-top: 56px;
+      padding: 20px 48px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      max-width: 1160px; margin-left: auto; margin-right: auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom-bar {
+      background: var(--dark);
+    }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+    .footer-lic { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+    /* ─────────────── MOBILE STICKY CTA ─────────────── */
+    .mobile-sticky {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      z-index: 999;
+      background: var(--navy);
+      border-top: 1px solid rgba(0,159,212,0.3);
+      padding: 14px 20px;
+      gap: 12px;
+    }
+    .mobile-sticky a {
+      flex: 1; text-align: center;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px; font-weight: 800;
+      padding: 14px 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .mobile-sticky .ms-call {
+      background: var(--accent); color: var(--white);
+    }
+    .mobile-sticky .ms-text {
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    /* ─────────────── SCROLL REVEALS ─────────────── */
+    .reveal {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.hidden-anim { opacity: 0; transform: translateY(24px); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─────────────── RESPONSIVE ─────────────── */
+    @media (max-width: 1100px) {
+      .hero { grid-template-columns: 1fr 380px; }
+      .hero-text { padding: 52px 32px 64px 48px; }
+    }
+    @media (max-width: 900px) {
       nav { padding: 0 20px; }
-      .hero-content { padding: 0 24px; }
+      .nav-cta { display: none; }
+      .hero {
+        grid-template-columns: 1fr;
+        height: auto; max-height: none;
+        padding-bottom: 80px;
+      }
+      .hero-text { padding: 48px 24px 36px; }
+      .hero-form-panel {
+        padding: 32px 24px 48px;
+        border-left: none;
+        border-top: 1px solid rgba(0,159,212,0.2);
+      }
+      .hero-stats { gap: 20px; }
       .trust-bar { grid-template-columns: repeat(2, 1fr); }
+      .trust-item:nth-child(2) { border-right: none; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .about-badge { bottom: -16px; right: 16px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .section-inner { padding: 0 24px; }
+      .mobile-sticky { display: flex; }
+      body { padding-bottom: 80px; }
+      .review-card { padding: 24px 20px; }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-stats { flex-wrap: wrap; gap: 16px; }
+      .section { padding: 64px 0; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      #loader, #loader.active { display: none !important; }
+      #page { visibility: visible !important; }
+      #grain { display: none; }
+      .fade-up, .fade-up.hidden,
+      .reveal, .reveal.hidden-anim,
+      .service-card, .service-card.hidden-anim,
+      .hero-rating-block, .hero-rating-block.hidden {
+        opacity: 1 !important; transform: none !important; transition: none !important;
+      }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo"><span>Mike</span> The Plumber</div>
+<!-- ═══════════════════════════════════════════
+     LOADER
+═══════════════════════════════════════════ -->
+<div id="loader">
+  <div class="loader-stars" id="loaderStars">★★★★★</div>
+  <div class="loader-quote" id="loaderQuote"></div>
+  <div class="loader-bar"><div class="loader-progress" id="loaderProgress"></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     GRAIN CANVAS
+═══════════════════════════════════════════ -->
+<canvas id="grain"></canvas>
+
+<!-- ═══════════════════════════════════════════
+     PAGE
+═══════════════════════════════════════════ -->
+<div id="page">
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" opacity="0"/><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3-3a8 8 0 1 1-9.4.7L14.7 6.3z"/></svg>
+    </div>
+    <span>Mike The <em>Plumber</em></span>
+  </a>
   <div class="nav-right">
-    <a href="tel:5614605017" class="nav-phone">(561) 460-5017</a>
-    <a href="tel:5614605017" class="nav-cta">Free Estimate</a>
+    <a href="tel:5614605017" class="nav-phone">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.44a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      (561) 460-5017
+    </a>
+    <a href="#hero-form" class="nav-cta">Get a Free Estimate</a>
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <img class="hero-bg" src="../../assets/samples/Plumbers/65c08d28a657a16e0d067f50_63ae00d11ee10938936b4e26_image5.webp" alt="Mike The Plumber owner-operated service in Lake Worth" loading="eager">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Lake Worth, FL &nbsp;·&nbsp; Mike &nbsp;·&nbsp; Owner Operated</div>
-    <h1 class="hero-h1">Lake Worth's<br><em>Owner-Operated</em><br>Plumber.</h1>
-    <div class="hero-rule"></div>
-    <p class="hero-sub">Mike answers every call himself, shows up when he says he will, and prices it right. No middlemen, no surprises. Just reliable plumbing from the guy who owns the truck.</p>
-    <div class="hero-actions">
-      <a href="tel:5614605017" class="btn-primary">Get a Free Estimate</a>
-      <a href="tel:5614605017" class="btn-ghost">Call Mike</a>
+  <div class="hero-bg-photo"></div>
+
+  <div class="hero-text">
+    <div class="hero-eyebrow fade-up">
+      Palm Beach County, FL
+      <span>&nbsp;·&nbsp;</span>
+      Lic. CFC1427954
+      <span>&nbsp;·&nbsp;</span>
+      Since 2008
+    </div>
+
+    <h1 class="hero-h1 fade-up" style="transition-delay:0.12s">
+      Palm Beach's<br>
+      Plumber.<br>
+      <em>Mike.</em>
+    </h1>
+
+    <p class="hero-sub fade-up" style="transition-delay:0.24s">
+      Licensed, insured, and owner-operated since 2008. Mike personally handles every job — no subcontractors, no runaround. Serving Lake Worth, Boynton Beach, Boca Raton, Wellington &amp; all of Palm Beach County.
+    </p>
+
+    <div class="hero-rating-block" id="ratingBlock">
+      <div class="rating-big"><span id="ratingCounter">0.0</span></div>
+      <div class="rating-right">
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-label">Angi 4.9 · 10× Super Service Award</div>
+      </div>
+    </div>
+
+    <div class="hero-stats fade-up" style="transition-delay:0.48s">
+      <div class="stat-item">
+        <div class="stat-number">17<sup>yr</sup></div>
+        <div class="stat-label">In Business</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">4.9<sup>★</sup></div>
+        <div class="stat-label">Avg. Rating</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">10<sup>×</sup></div>
+        <div class="stat-label">Angi Super Service</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lead form -->
+  <div class="hero-form-panel" id="hero-form">
+    <div class="form-heading">Schedule Mike Today</div>
+    <div class="form-sub">Free estimates · Honest pricing · No surprises</div>
+    <form class="lead-form" onsubmit="handleForm(event)">
+      <input type="text" name="name" placeholder="Your Name" required autocomplete="name">
+      <input type="tel" name="phone" placeholder="Phone Number" required autocomplete="tel">
+      <input type="email" name="email" placeholder="Email Address" autocomplete="email">
+      <select name="service">
+        <option value="" disabled selected>Service Needed</option>
+        <option>Drain Cleaning</option>
+        <option>Water Heater</option>
+        <option>Leak Repair</option>
+        <option>Emergency Plumbing</option>
+        <option>Repiping</option>
+        <option>Fixture Installation</option>
+        <option>Sewer Inspection</option>
+        <option>Other</option>
+      </select>
+      <textarea name="message" placeholder="Brief description (optional)"></textarea>
+      <button type="submit" class="form-btn">Get Mike On The Job →</button>
+      <p class="form-note">No spam. Mike calls you back personally.</p>
+    </form>
+  </div>
+
+  <!-- Wave break -->
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,22 C360,52 1080,0 1440,30 L1440,52 L0,52 Z" fill="#00608a"/>
+    </svg>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <div class="trust-icon">🔧</div>
+    <div class="trust-top">Since 2008</div>
+    <div class="trust-bot">17 Years Serving PBC</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">✅</div>
+    <div class="trust-top">Licensed &amp; Insured</div>
+    <div class="trust-bot">CFC1427954</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">📍</div>
+    <div class="trust-top">Palm Beach County</div>
+    <div class="trust-bot">Lake Worth Based</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">⭐</div>
+    <div class="trust-top">4.9 Star Rated</div>
+    <div class="trust-bot">10× Angi Super Service Award</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section services-section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label reveal">What Mike Does Best</div>
+      <h2 class="section-title reveal" style="transition-delay:0.1s">Full-Service Plumbing,<br>Done Right the First Time</h2>
+      <p class="section-sub reveal" style="transition-delay:0.2s">From emergency calls to scheduled repairs, Mike handles residential and commercial plumbing across all of Palm Beach County — personally, every time.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-photo">
+          <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=800&q=80" alt="Drain cleaning service by Mike The Plumber in Palm Beach County">
+        </div>
+        <div class="service-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+          </div>
+          <div class="service-name">Drain Cleaning</div>
+          <p class="service-desc">Slow drains, clogs, and backups cleared fast. Mike uses professional-grade snaking and hydro-jetting — not the workarounds that fail next month.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-photo">
+          <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=800&q=80" alt="Water heater installation and repair in Palm Beach County">
+        </div>
+        <div class="service-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          </div>
+          <div class="service-name">Water Heaters</div>
+          <p class="service-desc">Install, repair, or replace — gas and electric. Mike recommends the right unit for your home's needs and installs same-day in most cases.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-photo">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80" alt="Leak detection and repair Palm Beach County">
+        </div>
+        <div class="service-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+          </div>
+          <div class="service-name">Leak Detection &amp; Repair</div>
+          <p class="service-desc">Hidden leaks waste thousands per year. Mike uses video sewer cameras and pressure testing to find the problem before tearing up walls or slabs.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-photo">
+          <img src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=800&q=80" alt="Emergency plumber Palm Beach County available 24 7">
+        </div>
+        <div class="service-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div class="service-name">Emergency Plumbing</div>
+          <p class="service-desc">Burst pipe? Overflowing toilet? Sewer backup? Mike's emergency line is active for Palm Beach County homeowners when it can't wait until morning.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-photo">
+          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80" alt="Whole-house repiping service Lake Worth Florida">
+        </div>
+        <div class="service-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </div>
+          <div class="service-name">Repiping</div>
+          <p class="service-desc">Corroded or polybutylene pipes? Whole-house repipes done properly — copper or PEX — with permits pulled and inspections passed. Chinese drywall re-pipes too.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-photo">
+          <img src="https://images.unsplash.com/photo-1585664811087-47f65abbad64?auto=format&fit=crop&w=800&q=80" alt="Fixture installation and replacement Palm Beach County">
+        </div>
+        <div class="service-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <div class="service-name">Fixture Installation</div>
+          <p class="service-desc">Faucets, toilets, garbage disposals, showers, and more. Bring your own fixture or Mike can source it — he'll ensure it's installed correctly and up to code.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<div class="trust-bar">
-  <div class="trust-item"><div class="trust-label-top">Owner</div><div class="trust-label-bot">Answers Every Call</div></div>
-  <div class="trust-item"><div class="trust-label-top">Local</div><div class="trust-label-bot">Lake Worth</div></div>
-  <div class="trust-item"><div class="trust-label-top">Free</div><div class="trust-label-bot">Estimates</div></div>
-  <div class="trust-item"><div class="trust-label-top">100%</div><div class="trust-label-bot">Licensed &amp; Insured</div></div>
+<!-- REVIEWS -->
+<section class="section reviews-section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label reveal">What Customers Say</div>
+      <h2 class="section-title reveal" style="transition-delay:0.1s">Trusted by Palm Beach County Homeowners</h2>
+      <p class="section-sub reveal" style="transition-delay:0.2s">4.9-star rated across Angi, Google, and Yelp. Mike has earned the Angi Super Service Award 10 years running — a record fewer than 5% of contractors achieve.</p>
+    </div>
+
+    <div class="carousel-wrap reveal">
+      <div class="carousel-track">
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Mike is the real deal. Showed up on time, diagnosed the problem fast, and fixed it for a fair price. He explained everything clearly and didn't try to upsell me on things I didn't need. This is exactly what you want from a plumber."</p>
+          <div class="review-author">David R. — <span>Boynton Beach, FL · Leak Repair</span></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Had a water heater fail on a Friday afternoon. Mike was out within a couple hours, had the new unit in by that evening. Honest pricing, no emergency markup nonsense. I've used him twice now and will never call anyone else."</p>
+          <div class="review-author">Sandra M. — <span>Lake Worth, FL · Water Heater Replacement</span></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Mike re-piped our entire house after a Chinese drywall situation. The job was done professionally, the permits were all handled correctly, and the price was very fair compared to three other quotes we got. Highly recommend."</p>
+          <div class="review-author">James &amp; Carol T. — <span>Boca Raton, FL · Full Repipe</span></div>
+        </div>
+
+      </div>
+      <button class="carousel-btn carousel-prev" aria-label="Previous review">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-btn carousel-next" aria-label="Next review">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="carousel-dots">
+      <button class="carousel-dot active" aria-label="Review 1"></button>
+      <button class="carousel-dot" aria-label="Review 2"></button>
+      <button class="carousel-dot" aria-label="Review 3"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about-section">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-photo-wrap reveal">
+        <img
+          src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80"
+          alt="Mike the owner-operator plumber working on a job in Palm Beach County">
+        <div class="about-badge">
+          <strong>10×</strong>
+          Angi Super<br>Service Award
+        </div>
+      </div>
+      <div class="about-content">
+        <div class="about-label reveal">About Mike</div>
+        <h2 class="about-title reveal" style="transition-delay:0.1s">The Owner Shows Up.<br>Every Single Job.</h2>
+        <p class="about-body reveal" style="transition-delay:0.2s">
+          Mike The Plumber Inc was founded in 2008 in Lake Worth on a simple belief: the person whose name is on the van should be the person at your door. No dispatching strangers, no rotating technicians — Mike answers the phone, Mike drives the truck, and Mike fixes the problem.
+        </p>
+        <p class="about-body reveal" style="transition-delay:0.3s">
+          That accountability has earned Mike a 4.9-star rating and the Angi Super Service Award for 10 consecutive years — a distinction fewer than 5% of service contractors ever reach. Today Mike serves all of Palm Beach County and northern Broward, handling everything from routine drain cleanings to full whole-house repipes.
+        </p>
+        <div class="about-creds reveal" style="transition-delay:0.35s">
+          <div class="about-cred"><div class="cred-dot"></div>State Certified Plumbing Contractor — CFC1427954</div>
+          <div class="about-cred"><div class="cred-dot"></div>Fully Licensed &amp; Insured in Florida</div>
+          <div class="about-cred"><div class="cred-dot"></div>A-Rated on Angi · 10× Super Service Award</div>
+          <div class="about-cred"><div class="cred-dot"></div>Serving Palm Beach &amp; Northern Broward County</div>
+          <div class="about-cred"><div class="cred-dot"></div>Backflow Prevention &amp; Recertification Specialist</div>
+        </div>
+        <a href="tel:5614605017" class="about-cta reveal" style="transition-delay:0.4s">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.44a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call Mike Now: (561) 460-5017
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-inner">
+    <div class="cta-eyebrow reveal">Ready to Get It Fixed?</div>
+    <h2 class="cta-title reveal" style="transition-delay:0.1s">Get Mike On The Job Today</h2>
+    <p class="cta-sub reveal" style="transition-delay:0.2s">
+      Free estimates on all residential and commercial plumbing. No runaround, no subcontractors — just Mike, licensed and ready to fix it right.
+    </p>
+    <div class="cta-buttons reveal" style="transition-delay:0.3s">
+      <a href="tel:5614605017" class="btn-cta-primary">Call (561) 460-5017</a>
+      <a href="#hero-form" class="btn-cta-ghost">Request Online Estimate</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <div class="footer-logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3-3a8 8 0 1 1-9.4.7L14.7 6.3z"/></svg>
+        </div>
+        Mike The <em>Plumber</em>
+      </div>
+      <p class="footer-desc">Owner-operated plumbing in Palm Beach County, FL. Licensed, insured, and 4.9-star rated since 2008. The owner is on every job — always.</p>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com" class="social-btn" aria-label="Facebook" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.yelp.com/biz/mike-the-plumber-lake-worth-2" class="social-btn" aria-label="Yelp" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.16 12.73l-4.46 1.44c-.97.31-1.76-.57-1.39-1.5l1.68-4.27c.34-.86 1.49-.88 1.89-.04l2.78 4.27a1 1 0 0 1-.5 1.1zM12.1 18.7l-.3 4.57c-.06.93-1.12 1.32-1.76.67L6.62 20.5a1 1 0 0 1 .2-1.52l4.18-2.39c.88-.5 1.8.22 1.1 2.11zm-1.62-6.35L6.3 14.8c-.9.42-1.82-.37-1.56-1.32l1.4-5.01c.24-.88 1.38-1.06 1.87-.3l2.91 4.26c.46.68.05 1.55-.44 1.92zM13 7.3V2.73c0-.96 1.07-1.5 1.8-.9l3.73 3c.74.59.55 1.74-.33 2.06l-3.73 1.37C13.6 8.59 13 8.08 13 7.3zm-4.63 1.13L4.6 6.35c-.74-.69-.3-1.89.7-1.94l4.68-.21c.97-.04 1.56 1 1.06 1.83L8.96 8.96a1 1 0 0 1-1.59-.53z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-heading">Services</div>
+      <ul class="footer-list">
+        <li><a href="#hero-form">Drain Cleaning</a></li>
+        <li><a href="#hero-form">Water Heaters</a></li>
+        <li><a href="#hero-form">Leak Detection &amp; Repair</a></li>
+        <li><a href="#hero-form">Emergency Plumbing</a></li>
+        <li><a href="#hero-form">Repiping</a></li>
+        <li><a href="#hero-form">Fixture Installation</a></li>
+        <li><a href="#hero-form">Backflow Certification</a></li>
+        <li><a href="#hero-form">Sewer Camera Inspection</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-heading">Contact</div>
+      <div class="footer-contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.44a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div><a href="tel:5614605017">Office: (561) 460-5017</a><br><a href="tel:9546432363">Emergency: (954) 643-2363</a></div>
+      </div>
+      <div class="footer-contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>Lake Worth, FL<br>Serving all of Palm Beach County<br>+ Northern Broward</div>
+      </div>
+      <div class="footer-contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div>Mon–Fri: 8am–6pm<br>Sat: 8am–2pm<br>Emergency line available after hours</div>
+      </div>
+      <div class="footer-contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <div><a href="https://www.miketheplumberinc.com" target="_blank" rel="noopener">miketheplumberinc.com</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom-bar">
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Mike The Plumber Inc · Lake Worth, FL · All rights reserved.</div>
+      <div class="footer-lic">State Certified Plumbing Contractor · CFC1427954 · Licensed &amp; Insured in Florida</div>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-sticky">
+  <a href="tel:5614605017" class="ms-call">Call Mike Now</a>
+  <a href="#hero-form" class="ms-text">Free Estimate</a>
 </div>
+
+</div><!-- /#page -->
+
+<script>
+/* ═══════════════════════════════════════════
+   LOADER
+═══════════════════════════════════════════ */
+(function () {
+  var loader = document.getElementById('loader');
+  var quoteEl = document.getElementById('loaderQuote');
+  var starsEl = document.getElementById('loaderStars');
+  var progressEl = document.getElementById('loaderProgress');
+  var page = document.getElementById('page');
+
+  // Activate loader (hidden in CSS by default, so no-JS screenshots show page)
+  loader.classList.add('active');
+
+  var quotes = [
+    '"Mike was on time, diagnosed the issue immediately, and fixed it right. Honest pricing — no surprises."',
+    '"Best plumber in Palm Beach County. The owner actually shows up. 5 stars every time."',
+    '"We\'ve called Mike three times now. He\'s the only plumber we\'ll ever use again."'
+  ];
+  var idx = 0;
+
+  function showQuote(i) {
+    quoteEl.classList.remove('visible');
+    starsEl.classList.remove('visible');
+    setTimeout(function () {
+      quoteEl.textContent = quotes[i];
+      quoteEl.classList.add('visible');
+      starsEl.classList.add('visible');
+    }, 300);
+  }
+
+  // Hide hero elements immediately so they can animate in
+  document.querySelectorAll('.hero .fade-up').forEach(function (el) {
+    el.classList.add('hidden');
+    el.classList.remove('visible');
+  });
+  var ratingBlock = document.getElementById('ratingBlock');
+  if (ratingBlock) { ratingBlock.classList.add('hidden'); }
+
+  showQuote(0);
+  progressEl.style.width = '100%';
+
+  var t1 = setTimeout(function () { showQuote(1); }, 1500);
+  var t2 = setTimeout(function () { showQuote(2); }, 3000);
+
+  setTimeout(function () {
+    loader.classList.add('fade-out');
+    page.style.visibility = 'visible';
+    setTimeout(function () {
+      loader.style.display = 'none';
+    }, 950);
+    // Trigger hero fade-ups
+    document.querySelectorAll('.hero .fade-up').forEach(function (el, i) {
+      setTimeout(function () {
+        el.classList.remove('hidden');
+        el.classList.add('visible');
+      }, i * 140);
+    });
+    // Rating counter
+    setTimeout(startRatingCounter, 400);
+  }, 4600);
+})();
+
+/* ═══════════════════════════════════════════
+   RATING COUNTER
+═══════════════════════════════════════════ */
+function startRatingCounter() {
+  var block = document.getElementById('ratingBlock');
+  var el = document.getElementById('ratingCounter');
+  if (!block || !el) return;
+  block.classList.remove('hidden');
+  block.classList.add('visible');
+  var start = 0, end = 4.9, duration = 2200, startTime = null;
+
+  function easeOutExpo(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+
+  function animate(ts) {
+    if (!startTime) startTime = ts;
+    var progress = Math.min((ts - startTime) / duration, 1);
+    var val = start + (end - start) * easeOutExpo(progress);
+    el.textContent = val.toFixed(1);
+    if (progress < 1) requestAnimationFrame(animate);
+    else el.textContent = end.toFixed(1);
+  }
+  requestAnimationFrame(animate);
+}
+
+/* ═══════════════════════════════════════════
+   GRAIN CANVAS
+═══════════════════════════════════════════ */
+(function () {
+  var canvas = document.getElementById('grain');
+  var ctx = canvas.getContext('2d');
+  var w, h;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function renderGrain() {
+    var img = ctx.createImageData(w, h);
+    var data = img.data;
+    for (var i = 0; i < data.length; i += 4) {
+      var n = Math.random() * 255;
+      data[i]     = n * 0.85;
+      data[i + 1] = n * 0.95;
+      data[i + 2] = n * 1.0;
+      data[i + 3] = Math.random() < 0.5 ? 0 : 10;
+    }
+    ctx.putImageData(img, 0, 0);
+    requestAnimationFrame(renderGrain);
+  }
+  renderGrain();
+})();
+
+/* ═══════════════════════════════════════════
+   NAV SCROLL SOLID
+═══════════════════════════════════════════ */
+(function () {
+  var nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('solid', window.scrollY > 60);
+  });
+})();
+
+/* ═══════════════════════════════════════════
+   INTERSECTION OBSERVER — REVEALS
+═══════════════════════════════════════════ */
+(function () {
+  // Hide all reveal + service-card elements before observing
+  var revealEls = document.querySelectorAll('.reveal');
+  revealEls.forEach(function (el) { el.classList.add('hidden-anim'); });
+
+  var cards = document.querySelectorAll('.service-card');
+  cards.forEach(function (c) { c.classList.add('hidden-anim'); });
+
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('hidden-anim');
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(function (el) { obs.observe(el); });
+
+  // Staggered service cards
+  var cardObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        var idx = Array.from(cards).indexOf(entry.target);
+        setTimeout(function () {
+          entry.target.classList.remove('hidden-anim');
+          entry.target.classList.add('visible');
+        }, idx * 90);
+        cardObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  cards.forEach(function (c) { cardObs.observe(c); });
+})();
+
+/* ═══════════════════════════════════════════
+   REVIEWS CAROUSEL
+═══════════════════════════════════════════ */
+(function () {
+  var wrap = document.querySelector('.carousel-wrap');
+  if (!wrap) return;
+  var track = wrap.querySelector('.carousel-track');
+  var dots = document.querySelectorAll('.carousel-dot');
+  var n = track.querySelectorAll('.review-card').length;
+  var cur = 0, timer;
+
+  function go(i) {
+    cur = (i % n + n) % n;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dots.forEach(function (d, j) { d.classList.toggle('active', j === cur); });
+  }
+
+  // Touch/swipe
+  var touchStartX = 0;
+  track.addEventListener('touchstart', function (e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) { go(dx < 0 ? cur + 1 : cur - 1); reset(); }
+  }, { passive: true });
+
+  wrap.querySelector('.carousel-prev').addEventListener('click', function () { go(cur - 1); reset(); });
+  wrap.querySelector('.carousel-next').addEventListener('click', function () { go(cur + 1); reset(); });
+  dots.forEach(function (d, i) { d.addEventListener('click', function () { go(i); reset(); }); });
+
+  function reset() { clearInterval(timer); timer = setInterval(function () { go(cur + 1); }, 5200); }
+  reset();
+})();
+
+/* ═══════════════════════════════════════════
+   FORM HANDLER
+═══════════════════════════════════════════ */
+function handleForm(e) {
+  e.preventDefault();
+  var btn = e.target.querySelector('.form-btn');
+  btn.textContent = 'Request Received!';
+  btn.style.background = '#007ea1';
+  setTimeout(function () {
+    btn.textContent = 'Get Mike On The Job →';
+    btn.style.background = '';
+    e.target.reset();
+  }, 3500);
+}
+</script>
 
 </body>
 </html>

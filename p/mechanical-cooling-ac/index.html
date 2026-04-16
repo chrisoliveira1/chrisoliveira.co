@@ -3,97 +3,1535 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mechanical Cooling A/C | Margate, FL | 5-Star AC Repair & Installation</title>
+  <title>Mechanical Cooling A/C | Broward County, FL | 5-Star AC Repair & Installation</title>
+  <meta name="description" content="Broward County's trusted HVAC experts. AC repair, installation, maintenance & commercial refrigeration. NATE-certified, CAC licensed. 291 five-star reviews. Call (954) 397-2527.">
+
+  <!-- OG -->
+  <meta property="og:title" content="Mechanical Cooling A/C | Broward County's Top-Rated HVAC">
+  <meta property="og:description" content="291 five-star reviews. NATE-certified technicians. AC repair, installation & maintenance in Broward & Palm Beach County.">
+  <meta property="og:image" content="https://chrisoliveira.co/p/mechanical-cooling-ac/preview.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap">
+
   <style>
+    /* ── RESET & BASE ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --gunmetal: #2d3142;
-      --teal: #00b4d8;
-      --offwhite: #f3f7fa;
-      --dark: #0d0d0d;
-      --white: #ffffff;
+      --teal:       #0981a6;
+      --teal-dark:  #076d8c;
+      --teal-light: #0ea5cb;
+      --navy:       #0c1f2e;
+      --navy-mid:   #122840;
+      --navy-light: #1a3a52;
+      --white:      #ffffff;
+      --offwhite:   #f4f8fa;
+      --line:       #e2eaef;
+      --text:       #1a2e3d;
+      --muted:      #5a7488;
+      --red:        #9b3535;
+      --trust-bg:   #0c1f2e;
     }
-    body { font-family: 'Inter', sans-serif; color: var(--dark); background: var(--offwhite); }
 
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── LOADER ── */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--navy);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: opacity 0.9s ease;
+    }
+    #loader.fade-out { opacity: 0; pointer-events: none; }
+
+    .loader-inner { text-align: center; max-width: 680px; padding: 0 32px; }
+
+    .loader-stars {
+      color: #f59e0b;
+      font-size: 1.6rem;
+      letter-spacing: 6px;
+      margin-bottom: 20px;
+    }
+
+    .loader-quote {
+      font-family: 'Work Sans', sans-serif;
+      font-size: clamp(1.3rem, 3.5vw, 2.2rem);
+      font-weight: 600;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.45;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .loader-quote.visible { opacity: 1; }
+
+    .loader-bar {
+      margin-top: 48px;
+      width: 200px;
+      height: 2px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loader-bar-fill {
+      height: 100%;
+      background: var(--teal);
+      border-radius: 2px;
+      width: 0%;
+      transition: width 4.8s linear;
+    }
+
+    /* ── GRAIN ── */
+    #grain {
+      position: fixed;
+      inset: 0;
+      z-index: 99998;
+      pointer-events: none;
+      opacity: 0.045;
+    }
+
+    /* ── PAGE ── */
+    #page { visibility: hidden; }
+    #page.revealed { visibility: visible; }
+
+    /* ── NAV ── */
     nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--gunmetal);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px; height: 68px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: 68px;
+      background: rgba(12, 31, 46, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      transition: background 0.3s;
     }
-    .nav-logo { font-family: 'Nunito Sans', sans-serif; font-size: 18px; font-weight: 900; color: var(--white); letter-spacing: 0.03em; }
-    .nav-logo span { color: var(--teal); }
-    .nav-right { display: flex; align-items: center; gap: 20px; }
-    .nav-phone { color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 600; text-decoration: none; }
-    .nav-cta { background: var(--teal); color: var(--gunmetal); font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; }
+    nav.scrolled { background: rgba(12,31,46,0.98); }
 
-    .hero { display: grid; grid-template-columns: 1fr 1fr; height: calc(100vh - 68px); }
-    .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 64px 52px 64px 64px; background: var(--gunmetal); }
-    .hero-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; }
-    .hero-h1 { font-family: 'Nunito Sans', sans-serif; font-size: clamp(44px, 4.4vw, 68px); font-weight: 900; line-height: 1.06; color: var(--white); margin-bottom: 20px; }
-    .hero-h1 em { color: var(--teal); font-style: normal; }
-    .hero-rule { width: 56px; height: 4px; background: var(--teal); border-radius: 2px; margin-bottom: 20px; }
-    .hero-sub { font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.8); max-width: 420px; margin-bottom: 36px; }
-    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-    .btn-primary { background: var(--teal); color: var(--gunmetal); font-weight: 700; font-size: 15px; padding: 15px 30px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.03em; }
-    .btn-ghost { color: var(--white); font-weight: 600; font-size: 15px; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.35); padding-bottom: 1px; }
+    .nav-inner {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-    .hero-img { position: relative; overflow: hidden; }
-    .hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
 
-    .trust-bar { background: var(--teal); display: grid; grid-template-columns: repeat(4, 1fr); }
-    .trust-item { padding: 26px 28px; text-align: center; border-right: 1px solid rgba(45,49,66,0.2); }
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--teal);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-logo-text {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--white);
+      line-height: 1.1;
+    }
+    .nav-logo-text span { color: var(--teal-light); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-phone {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-phone:hover { color: var(--white); }
+
+    .btn-nav {
+      background: var(--teal);
+      color: var(--white);
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.875rem;
+      padding: 10px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-nav:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      height: calc(100vh - 68px);
+      min-height: 580px;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center 40%;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(12,31,46,0.97) 0%, rgba(12,31,46,0.97) 10%, rgba(12,31,46,0.75) 50%, rgba(12,31,46,0.55) 100%);
+    }
+
+    .hero-left {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 48px 80px 60px;
+      max-width: 640px;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .eyebrow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(9,129,166,0.18);
+      border: 1px solid rgba(9,129,166,0.35);
+      color: var(--teal-light);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+
+    .hero-h1 {
+      font-family: 'Work Sans', sans-serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-h1 .accent {
+      color: var(--teal-light);
+      position: relative;
+    }
+    .hero-h1 .accent::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: var(--teal);
+      border-radius: 2px;
+      animation: underline-draw 0.8s ease forwards 2s;
+    }
+    @keyframes underline-draw { to { width: 100%; } }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.65;
+      margin-bottom: 32px;
+      max-width: 480px;
+    }
+
+    .hero-stat {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .hero-rating-num {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--teal-light);
+      line-height: 1;
+      border-left: 3px solid var(--teal);
+      padding-left: 18px;
+    }
+
+    .hero-rating-label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hero-stars-sm { color: #f59e0b; font-size: 1rem; letter-spacing: 2px; }
+    .hero-rating-text { font-size: 0.82rem; color: rgba(255,255,255,0.6); font-weight: 500; }
+
+    /* ── HERO RIGHT — LEAD FORM ── */
+    .hero-right {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 60px 80px 20px;
+    }
+
+    .quote-form {
+      background: rgba(255,255,255,0.97);
+      border-radius: 16px;
+      padding: 36px 36px 32px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.35), 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    .form-title {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .form-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .form-group { margin-bottom: 14px; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(9,129,166,0.12);
+    }
+
+    .btn-form {
+      width: 100%;
+      background: var(--teal);
+      color: var(--white);
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-form:hover {
+      background: var(--teal-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(9,129,166,0.4);
+    }
+
+    .form-note {
+      text-align: center;
+      font-size: 0.73rem;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    /* ── HERO WAVE ── */
+    .hero-wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      line-height: 0;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .hero-wave svg { display: block; width: 100%; height: 52px; }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--trust-bg);
+      padding: 0;
+    }
+
+    .trust-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .trust-item {
+      padding: 32px 24px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+    }
     .trust-item:last-child { border-right: none; }
-    .trust-number { font-family: 'Nunito Sans', sans-serif; font-size: 28px; font-weight: 900; color: var(--gunmetal); line-height: 1; margin-bottom: 4px; }
-    .trust-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(45,49,66,0.75); }
+
+    .trust-icon {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .trust-num {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--teal-light);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .trust-label {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .trust-label strong {
+      display: block;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 88px 40px; }
+
+    .section-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: 'Work Sans', sans-serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 580px;
+    }
+
+    /* ── REVIEWS CAROUSEL ── */
+    .reviews-section {
+      background: var(--offwhite);
+      padding: 80px 40px;
+    }
+
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 36px 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    .review-stars { color: #f59e0b; font-size: 1.1rem; margin-bottom: 14px; letter-spacing: 3px; }
+    .review-text {
+      font-size: 1.02rem;
+      color: var(--text);
+      line-height: 1.72;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .review-author {
+      font-size: 0.83rem;
+      font-weight: 700;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .review-author::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 2px;
+      background: var(--teal);
+    }
+
+    .carousel-wrap { position: relative; margin-top: 48px; overflow: hidden; }
+    .carousel-track { display: flex; transition: transform 0.45s cubic-bezier(.4,0,.2,1); }
+    .carousel-track .review-card { flex: 0 0 100%; }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--white);
+      border: 1.5px solid var(--line);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      color: var(--muted);
+      padding: 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.2s;
+    }
+    .carousel-btn:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+      transform: translateY(-51%);
+    }
+    .carousel-prev { left: -10px; }
+    .carousel-next { right: -10px; }
+
+    .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+    .carousel-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #d1d5db; cursor: pointer;
+      border: none; padding: 0; transition: all 0.25s;
+    }
+    .carousel-dot.active { background: var(--teal); width: 28px; border-radius: 4px; }
+
+    /* ── SERVICES ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    .service-card.in-view {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s, box-shadow 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(9,129,166,0.15);
+    }
+
+    .service-photo {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .service-body { padding: 22px 24px 26px; }
+
+    .service-icon {
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .service-name {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── ABOUT ── */
+    .about-section {
+      background: var(--offwhite);
+      padding: 88px 40px;
+    }
+
+    .about-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .about-photo-wrap { position: relative; }
+
+    .about-photo {
+      width: 100%;
+      border-radius: 16px;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 4/3;
+      box-shadow: 0 24px 64px rgba(12,31,46,0.18);
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 18px 22px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      text-align: center;
+    }
+    .about-badge-num {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--teal-light);
+      display: block;
+      line-height: 1;
+    }
+    .about-badge-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.65);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .about-content { padding-right: 8px; }
+
+    .about-quote {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.45;
+      font-style: italic;
+      margin: 24px 0;
+      padding-left: 20px;
+      border-left: 4px solid var(--teal);
+    }
+
+    .about-body {
+      font-size: 0.97rem;
+      color: var(--muted);
+      line-height: 1.72;
+      margin-bottom: 28px;
+    }
+
+    .creds-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .cred-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .cred-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--teal);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: var(--navy-mid);
+      padding: 88px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(9,129,166,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-banner-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .cta-banner-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal-light);
+      margin-bottom: 14px;
+    }
+
+    .cta-banner-title {
+      font-family: 'Work Sans', sans-serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .cta-banner-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.65;
+      margin-bottom: 36px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--teal);
+      color: var(--white);
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 16px 34px;
+      border-radius: 10px;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(9,129,166,0.45);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 15px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      transition: border-color 0.2s, transform 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.6);
+      transform: translateY(-2px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 64px 40px 0;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .footer-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 52px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.7;
+      margin-top: 14px;
+      max-width: 320px;
+    }
+
+    .footer-logo-text {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--white);
+    }
+    .footer-logo-text span { color: var(--teal-light); }
+
+    .footer-col h4 {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--white);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a {
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--teal-light); }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.88rem;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .footer-contact-item a {
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+    }
+    .footer-contact-item a:hover { color: var(--teal-light); }
+    .fc-icon { color: var(--teal); font-size: 0.9rem; margin-top: 2px; flex-shrink: 0; }
+
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 20px 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.28);
+    }
+
+    .footer-lic {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.28);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* ── MOBILE STICKY CTA ── */
+    .mobile-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 500;
+      padding: 12px 16px;
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .mobile-cta a {
+      display: block;
+      background: var(--teal);
+      color: var(--white);
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      text-align: center;
+      padding: 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── FADE-IN ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { max-width: 100%; padding: 48px 36px 80px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-badge { bottom: -10px; right: 10px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
 
     @media (max-width: 768px) {
       nav { padding: 0 20px; }
-      .hero { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
-      .hero-text { padding: 48px 24px 32px; }
-      .hero-img { height: 280px; }
-      .trust-bar { grid-template-columns: repeat(2, 1fr); }
+      .nav-phone { display: none; }
+      section, .reviews-section, .about-section, .cta-banner { padding: 56px 20px; }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-item:nth-child(2) { border-right: none; }
+      .trust-item:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.1); }
+      .trust-item:nth-child(4) { border-right: none; }
+      .trust-item:nth-child(3),
+      .trust-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.1); }
+      .services-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+      .review-card { padding: 24px 20px; }
+      .carousel-prev { left: 4px; }
+      .carousel-next { right: 4px; }
+      .mobile-cta { display: block; }
+      body { padding-bottom: 76px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      #loader { display: none; }
+      #page { visibility: visible !important; }
+      #grain { display: none; }
+      .fade-up, .service-card { opacity: 1 !important; transform: none !important; transition: none !important; }
+      @keyframes underline-draw { to { width: 100%; } }
+      .hero-h1 .accent::after { width: 100%; animation: none; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo"><span>Mechanical</span> Cooling A/C</div>
-  <div class="nav-right">
-    <a href="tel:9543972527" class="nav-phone">(954) 397-2527</a>
-    <a href="tel:9543972527" class="nav-cta">Free Estimate</a>
+<!-- ── LOADER ── -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <div class="loader-stars">★★★★★</div>
+    <p class="loader-quote" id="loader-quote">&ldquo;They showed up within two hours and had my AC running before dinner. Absolutely professional.&rdquo;</p>
+    <div class="loader-bar"><div class="loader-bar-fill" id="loader-bar"></div></div>
   </div>
-</nav>
+</div>
 
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-eyebrow">Margate, FL &nbsp;·&nbsp; Broward County &nbsp;·&nbsp; 24-Hour Service</div>
-    <h1 class="hero-h1">Residential &amp; Commercial<br><em>HVAC Done</em><br>Right the First Time.</h1>
-    <div class="hero-rule"></div>
-    <p class="hero-sub">
-      Residential, commercial, and complex mechanical systems handled with precision. South Florida's standard for HVAC work that actually lasts.
-    </p>
-    <div class="hero-actions">
-      <a href="tel:9543972527" class="btn-primary">Get a Free Estimate</a>
-      <a href="tel:9543972527" class="btn-ghost">Call (954) 397-2527</a>
+<!-- ── GRAIN CANVAS ── -->
+<canvas id="grain" aria-hidden="true"></canvas>
+
+<!-- ── PAGE ── -->
+<div id="page">
+
+  <!-- ── NAV ── -->
+  <nav id="nav" role="banner">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Mechanical Cooling A/C home">
+        <div class="nav-logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 2v4M12 18v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h4M18 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+          </svg>
+        </div>
+        <div class="nav-logo-text">Mechanical <span>Cooling</span> A/C</div>
+      </a>
+      <div class="nav-right">
+        <a href="tel:+19543972527" class="nav-phone">(954) 397-2527</a>
+        <a href="#quote-form" class="btn-nav">Free Quote</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-bg" role="img" aria-label="HVAC technician working on air conditioning unit"></div>
+
+    <!-- Left column -->
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-pill">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Broward &amp; Palm Beach County
+        </span>
+        <span class="eyebrow-pill">CAC 1818474</span>
+        <span class="eyebrow-pill">24/7 Service</span>
+      </div>
+
+      <h1 class="hero-h1">
+        South Florida's<br>
+        <span class="accent">Most Trusted</span><br>
+        AC Experts
+      </h1>
+
+      <p class="hero-sub">
+        NATE-certified technicians. Flat-rate pricing. 291 five-star reviews. From emergency repairs to full system installs — we don't compromise on quality.
+      </p>
+
+      <div class="hero-stat">
+        <div class="hero-rating-num" id="hero-count">5.0</div>
+        <div class="hero-rating-label">
+          <span class="hero-stars-sm">★★★★★</span>
+          <span class="hero-rating-text">Perfect Rating · 291 Google Reviews</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right column: lead form -->
+    <div class="hero-right">
+      <div class="quote-form" id="quote-form">
+        <div class="form-title">Get a Free AC Quote</div>
+        <p class="form-sub">No pressure. No obligation. Fast response.</p>
+
+        <form action="#" method="POST" name="quote" aria-label="Free AC quote request form">
+          <div class="form-group">
+            <label for="f-name">Your Name</label>
+            <input type="text" id="f-name" name="name" placeholder="John Smith" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="f-phone">Phone Number</label>
+            <input type="tel" id="f-phone" name="phone" placeholder="(954) 000-0000" required autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label for="f-email">Email Address</label>
+            <input type="email" id="f-email" name="email" placeholder="you@email.com" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="f-service">What Do You Need?</label>
+            <select id="f-service" name="service">
+              <option value="">Select a service…</option>
+              <option>AC Repair / Emergency</option>
+              <option>AC Installation</option>
+              <option>AC Maintenance Tune-Up</option>
+              <option>Commercial Refrigeration</option>
+              <option>Duct Cleaning / Sealing</option>
+              <option>Indoor Air Quality</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-form">Request Free Quote →</button>
+        </form>
+        <p class="form-note">We typically respond within 1 hour during business hours.</p>
+      </div>
+    </div>
+
+    <!-- SVG Wave Break -->
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M0,20 C360,52 1080,0 1440,30 L1440,52 L0,52 Z" fill="#0c1f2e"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ── TRUST BAR ── -->
+  <div class="trust-bar" role="region" aria-label="Trust credentials">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <span class="trust-icon" aria-hidden="true">🏅</span>
+        <div class="trust-num">291</div>
+        <div class="trust-label"><strong>Five-Star Reviews</strong>Perfect Google Rating</div>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon" aria-hidden="true">🔐</span>
+        <div class="trust-num">100%</div>
+        <div class="trust-label"><strong>Licensed &amp; Insured</strong>CAC 1818474 · NATE Certified</div>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon" aria-hidden="true">📍</span>
+        <div class="trust-num">2</div>
+        <div class="trust-label"><strong>Counties Served</strong>Broward &amp; Palm Beach County</div>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon" aria-hidden="true">🕐</span>
+        <div class="trust-num">24/7</div>
+        <div class="trust-label"><strong>Emergency Service</strong>Available Day &amp; Night</div>
+      </div>
     </div>
   </div>
-  <div class="hero-img">
-    <img src="../../assets/samples/HVAC/hvac-career-in-texas.jpg" alt="Mechanical Cooling AC expert technician completing precision HVAC work in Margate Florida" loading="eager">
-  </div>
-</section>
 
-<div class="trust-bar">
-  <div class="trust-item"><div class="trust-number">24/7</div><div class="trust-label">Emergency Service</div></div>
-  <div class="trust-item"><div class="trust-number">Free</div><div class="trust-label">Estimates</div></div>
-  <div class="trust-item"><div class="trust-number">Local</div><div class="trust-label">Broward County</div></div>
-  <div class="trust-item"><div class="trust-number">100%</div><div class="trust-label">Licensed &amp; Insured</div></div>
+  <!-- ── REVIEWS CAROUSEL ── -->
+  <section class="reviews-section" aria-label="Customer reviews">
+    <div class="section-inner">
+      <div class="section-label">What Customers Say</div>
+      <h2 class="section-title fade-up">291 Reasons to Call Us First</h2>
+      <p class="section-sub fade-up">Real reviews from real Broward and Palm Beach County homeowners — no filtering, no cherry-picking.</p>
+
+      <div class="carousel-wrap" role="region" aria-label="Customer reviews carousel" aria-live="polite">
+        <div class="carousel-track">
+
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            <p class="review-text">"They showed up within two hours of my call on a Saturday afternoon. The tech diagnosed the problem fast, explained everything clearly, and had the unit running before dinner. Honest pricing, no surprises. I won't call anyone else."</p>
+            <div class="review-author">Simon K. — Margate, FL</div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            <p class="review-text">"Our commercial refrigeration went down on a Friday night. Mechanical Cooling had someone out within the hour and saved us thousands in lost inventory. Professional, efficient, and fairly priced. Highly recommend for any business owner in Broward."</p>
+            <div class="review-author">William W. — Coral Springs, FL</div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            <p class="review-text">"We've used Mechanical Cooling for three years now — maintenance, a full system replacement, and a duct cleaning. Every single time, the technicians are on time, courteous, and thorough. These are the only AC people we trust in South Florida."</p>
+            <div class="review-author">Maria G. — Boca Raton, FL</div>
+          </div>
+
+        </div>
+
+        <button class="carousel-btn carousel-prev" aria-label="Previous review">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="carousel-btn carousel-next" aria-label="Next review">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <div class="carousel-dots" role="tablist" aria-label="Review navigation">
+        <button class="carousel-dot active" role="tab" aria-selected="true" aria-label="Review 1"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Review 2"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Review 3"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES GRID ── -->
+  <section aria-label="Services">
+    <div class="section-inner">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title fade-up">Full-Service HVAC &amp; Refrigeration</h2>
+      <p class="section-sub fade-up">From the smallest repair to a complete commercial refrigeration system — family-owned, factory-trained, and always accountable.</p>
+
+      <div class="services-grid">
+
+        <article class="service-card" aria-label="AC Repair service">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+               alt="HVAC technician repairing air conditioning unit" class="service-photo" loading="lazy" width="800" height="190">
+          <div class="service-body">
+            <span class="service-icon" aria-hidden="true">🔧</span>
+            <div class="service-name">AC Repair &amp; Emergency Service</div>
+            <p class="service-desc">Same-day and 24/7 emergency repairs for all makes and models. Refrigerant issues, compressor failures, thermostat faults — diagnosed right the first time.</p>
+          </div>
+        </article>
+
+        <article class="service-card" aria-label="AC Installation service">
+          <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=800&q=80"
+               alt="New air conditioning unit installation" class="service-photo" loading="lazy" width="800" height="190">
+          <div class="service-body">
+            <span class="service-icon" aria-hidden="true">⚙️</span>
+            <div class="service-name">AC Installation &amp; Replacement</div>
+            <p class="service-desc">Full system installations from leading brands. We size your unit correctly for your home's square footage — and offer 0% APR financing for 12, 24, or 36 months.</p>
+          </div>
+        </article>
+
+        <article class="service-card" aria-label="AC Maintenance service">
+          <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80"
+               alt="AC maintenance tune-up being performed" class="service-photo" loading="lazy" width="800" height="190">
+          <div class="service-body">
+            <span class="service-icon" aria-hidden="true">📋</span>
+            <div class="service-name">Preventive Maintenance Plans</div>
+            <p class="service-desc">Annual tune-ups that extend system life, lower energy bills, and catch problems before South Florida's summer heat turns them into emergencies.</p>
+          </div>
+        </article>
+
+        <article class="service-card" aria-label="Commercial Refrigeration service">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80"
+               alt="Commercial refrigeration system in a restaurant" class="service-photo" loading="lazy" width="800" height="190">
+          <div class="service-body">
+            <span class="service-icon" aria-hidden="true">🧊</span>
+            <div class="service-name">Commercial Refrigeration</div>
+            <p class="service-desc">Walk-in coolers, freezers, prep tables, and reach-in units serviced for restaurants, grocery, and medical facilities across Broward County.</p>
+          </div>
+        </article>
+
+        <article class="service-card" aria-label="Duct Sealing and Cleaning service">
+          <img src="https://images.unsplash.com/photo-1627905646134-a600c3d2d3a2?auto=format&fit=crop&w=800&q=80"
+               alt="Air duct cleaning service" class="service-photo" loading="lazy" width="800" height="190">
+          <div class="service-body">
+            <span class="service-icon" aria-hidden="true">💨</span>
+            <div class="service-name">Duct Sealing &amp; Cleaning</div>
+            <p class="service-desc">Leaky or dirty ductwork can waste 25–30% of conditioned air. We seal and clean to NADCA standards — improving efficiency and air quality in one visit.</p>
+          </div>
+        </article>
+
+        <article class="service-card" aria-label="Indoor Air Quality service">
+          <img src="https://images.unsplash.com/photo-1584467541268-b040f83be3fd?auto=format&fit=crop&w=800&q=80"
+               alt="Air purifier and indoor air quality equipment" class="service-photo" loading="lazy" width="800" height="190">
+          <div class="service-body">
+            <span class="service-icon" aria-hidden="true">🌿</span>
+            <div class="service-name">Indoor Air Quality</div>
+            <p class="service-desc">UV lights, HEPA filtration, ERV systems, and smart thermostats that eliminate allergens, mold, and humidity — vital in South Florida's climate.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section class="about-section" aria-label="About Mechanical Cooling A/C">
+    <div class="about-grid">
+      <div class="about-photo-wrap fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
+          alt="Mechanical Cooling A/C technician on the job in South Florida"
+          class="about-photo"
+          loading="lazy"
+          width="800"
+          height="600">
+        <div class="about-badge">
+          <span class="about-badge-num">291</span>
+          <span class="about-badge-label">Five-Star Reviews</span>
+        </div>
+      </div>
+
+      <div class="about-content fade-up">
+        <div class="section-label">About Us</div>
+        <h2 class="section-title">Family-Owned. Factory-Trained. Fully Accountable.</h2>
+
+        <blockquote class="about-quote">
+          "We don't compromise when it comes to quality service."
+        </blockquote>
+
+        <p class="about-body">
+          Mechanical Cooling A/C is a family-owned and operated HVAC and refrigeration company serving Broward and Palm Beach County. Our technicians are factory-licensed and NATE-certified — the gold standard in the industry — and we show up to every job as if our reputation depends on it, because it does.
+        </p>
+        <p class="about-body">
+          We service and install all major brands, offer 24/7 emergency response, and back every job with a 100% satisfaction guarantee. Whether it's a single-family home in Margate or a commercial kitchen in Boca Raton, we bring the same level of care and expertise.
+        </p>
+
+        <ul class="creds-list" aria-label="Credentials and certifications">
+          <li class="cred-item"><span class="cred-dot"></span>Florida License: CAC 1818474</li>
+          <li class="cred-item"><span class="cred-dot"></span>NATE-Certified Technicians</li>
+          <li class="cred-item"><span class="cred-dot"></span>100% Satisfaction Guarantee</li>
+          <li class="cred-item"><span class="cred-dot"></span>0% APR Financing Available (12, 24, 36 months)</li>
+          <li class="cred-item"><span class="cred-dot"></span>Broward &amp; Palm Beach County Service Area</li>
+          <li class="cred-item"><span class="cred-dot"></span>Commercial &amp; Residential</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA BANNER ── -->
+  <section class="cta-banner" aria-label="Call to action">
+    <div class="cta-banner-inner fade-up">
+      <div class="cta-banner-label">Ready When You Are</div>
+      <h2 class="cta-banner-title">
+        Is Your AC Ready for<br>South Florida's Summer?
+      </h2>
+      <p class="cta-banner-sub">
+        Don't wait until the hottest day of the year. Get a free quote today — or call us now for 24/7 emergency service across Broward and Palm Beach County.
+      </p>
+      <div class="cta-buttons">
+        <a href="tel:+19543972527" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.72 9.82 19.79 19.79 0 011.66 1.2 2 2 0 013.64 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l.97-.97a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Call (954) 397-2527
+        </a>
+        <a href="#quote-form" class="btn-ghost">
+          Get a Free Quote →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer aria-label="Site footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-text">Mechanical <span>Cooling</span> A/C</div>
+        <p>Family-owned HVAC and refrigeration specialists serving Broward and Palm Beach County. NATE-certified. Licensed. Insured. Available 24/7.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">AC Repair &amp; Emergency</a></li>
+          <li><a href="#">AC Installation</a></li>
+          <li><a href="#">Maintenance Plans</a></li>
+          <li><a href="#">Commercial Refrigeration</a></li>
+          <li><a href="#">Duct Sealing &amp; Cleaning</a></li>
+          <li><a href="#">Indoor Air Quality</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact-item">
+          <span class="fc-icon" aria-hidden="true">📞</span>
+          <div>
+            <a href="tel:+19543972527">(954) 397-2527</a> — Broward<br>
+            <a href="tel:+15615943621">(561) 594-3621</a> — Palm Beach
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <span class="fc-icon" aria-hidden="true">✉️</span>
+          <a href="mailto:info@mechanicalcoolingac.com">info@mechanicalcoolingac.com</a>
+        </div>
+        <div class="footer-contact-item">
+          <span class="fc-icon" aria-hidden="true">📍</span>
+          <span>5615 NW 8th St #20<br>Margate, FL 33063</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="fc-icon" aria-hidden="true">🕐</span>
+          <span>24/7 Emergency Service<br>Available</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Mechanical Cooling A/C. All rights reserved.</p>
+      <div class="footer-lic">
+        <span>License: CAC 1818474</span>
+        <span>|</span>
+        <span>Broward &amp; Palm Beach County, FL</span>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /#page -->
+
+<!-- ── MOBILE STICKY CTA ── -->
+<div class="mobile-cta" aria-label="Mobile call to action">
+  <a href="tel:+19543972527">📞 Call (954) 397-2527 — Free Quote</a>
 </div>
+
+<!-- ── SCRIPTS ── -->
+<script>
+(function() {
+
+  /* ── GRAIN ── */
+  var canvas = document.getElementById('grain');
+  var ctx = canvas.getContext('2d');
+  var W, H, rafId;
+
+  function resizeGrain() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resizeGrain();
+  window.addEventListener('resize', resizeGrain);
+
+  function drawGrain() {
+    var img = ctx.createImageData(W, H);
+    var d = img.data;
+    for (var i = 0; i < d.length; i += 4) {
+      var v = Math.random() * 255;
+      d[i]   = v * 0.7;   // R (teal-tinted)
+      d[i+1] = v * 0.92;  // G
+      d[i+2] = v * 1.0;   // B
+      d[i+3] = 12;
+    }
+    ctx.putImageData(img, 0, 0);
+    rafId = requestAnimationFrame(drawGrain);
+  }
+  drawGrain();
+
+  /* ── LOADER ── */
+  var quotes = [
+    "\u201cThey showed up within two hours and had my AC running before dinner. Absolutely professional.\u201d",
+    "\u201cOur commercial freezer went down Friday night. They saved us thousands in lost inventory. Heroes.\u201d",
+    "\u201cThree years, three jobs — every time on time, fair, and thorough. The only AC company we trust.\u201d"
+  ];
+  var quoteEl = document.getElementById('loader-quote');
+  var barEl   = document.getElementById('loader-bar');
+  var loader  = document.getElementById('loader');
+  var page    = document.getElementById('page');
+  var cur     = 0;
+
+  function showQuote(i) {
+    quoteEl.classList.remove('visible');
+    setTimeout(function() {
+      quoteEl.textContent = quotes[i];
+      quoteEl.classList.add('visible');
+    }, 250);
+  }
+
+  showQuote(0);
+  setTimeout(function() { barEl.style.width = '100%'; }, 50);
+
+  setTimeout(function() { showQuote(1); }, 1600);
+  setTimeout(function() { showQuote(2); }, 3200);
+
+  setTimeout(function() {
+    loader.classList.add('fade-out');
+    page.classList.add('revealed');
+    setTimeout(function() {
+      loader.style.display = 'none';
+    }, 950);
+
+    /* Trigger hero counter after reveal */
+    setTimeout(function() { animateCounter(); }, 400);
+  }, 4800);
+
+  /* ── HERO RATING COUNTER ── */
+  function animateCounter() {
+    var el = document.getElementById('hero-count');
+    if (!el) return;
+    var start = 0, end = 5.0, duration = 2200, startTime = null;
+    function easeOutExpo(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+    function step(ts) {
+      if (!startTime) startTime = ts;
+      var progress = Math.min((ts - startTime) / duration, 1);
+      var val = start + (end - start) * easeOutExpo(progress);
+      el.textContent = val.toFixed(1);
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = '5.0';
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ── NAV SCROLL ── */
+  var navEl = document.getElementById('nav');
+  window.addEventListener('scroll', function() {
+    navEl.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  /* ── INTERSECTION OBSERVER — FADE UPS & CARDS ── */
+  var fadeEls = document.querySelectorAll('.fade-up, .service-card');
+  var delays  = [0, 100, 150, 200, 250, 300];
+
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        var siblings = el.parentElement ? el.parentElement.querySelectorAll('.service-card') : [];
+        var idx = Array.prototype.indexOf.call(siblings, el);
+        var delay = (idx >= 0 && idx < delays.length) ? delays[idx] : 0;
+        setTimeout(function() { el.classList.add('in-view'); }, delay);
+        obs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  fadeEls.forEach(function(el) { obs.observe(el); });
+
+  /* ── REVIEWS CAROUSEL ── */
+  (function() {
+    var wrap  = document.querySelector('.carousel-wrap');
+    if (!wrap) return;
+    var track = wrap.querySelector('.carousel-track');
+    var dots  = document.querySelectorAll('.carousel-dot');
+    var cards = track.querySelectorAll('.review-card');
+    var n = cards.length, cur = 0, timer;
+
+    function go(i) {
+      cur = ((i % n) + n) % n;
+      track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+      dots.forEach(function(d, j) { d.classList.toggle('active', j === cur); });
+    }
+
+    wrap.querySelector('.carousel-prev').addEventListener('click', function() { go(cur - 1); reset(); });
+    wrap.querySelector('.carousel-next').addEventListener('click', function() { go(cur + 1); reset(); });
+    dots.forEach(function(d, i) { d.addEventListener('click', function() { go(i); reset(); }); });
+
+    /* Touch / swipe */
+    var startX = 0;
+    track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 50) { go(dx < 0 ? cur + 1 : cur - 1); reset(); }
+    }, { passive: true });
+
+    function reset() {
+      clearInterval(timer);
+      timer = setInterval(function() { go(cur + 1); }, 5000);
+    }
+    reset();
+  })();
+
+})();
+</script>
 
 </body>
 </html>

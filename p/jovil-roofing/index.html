@@ -3,95 +3,1160 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jovil Roofing Corp | Deerfield Beach, FL | 4.4 Stars Google Rated</title>
+  <title>Jovil Roofing Corp | Broward County, FL | Licensed Roofing Contractor</title>
+  <meta name="description" content="Jovil Roofing Corp — State-licensed, GAF-certified roofing contractor serving Broward County. Shingle, tile, flat, metal roofing. Free estimates. License #CCC1332404.">
+  <meta property="og:title" content="Jovil Roofing Corp | Broward County's Trusted Roofer">
+  <meta property="og:description" content="State-licensed, GAF-certified roofing in Broward County. Free estimates. Call (954) 263-4994.">
+  <meta property="og:image" content="https://chrisoliveira.co/p/jovil-roofing/preview.jpg">
+  <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --teal: #1c4a45;
-      --amber: #f59e2a;
-      --white: #ffffff;
-      --dark: #0f1f1c;
-      --light: #edf5f4;
+      --dark:    #111418;
+      --dark2:   #1a1e24;
+      --dark3:   #22272e;
+      --teal:    #1ba1b0;
+      --teal2:   #158a98;
+      --orange:  #e8600a;
+      --orange2: #c9520a;
+      --white:   #ffffff;
+      --offwhite:#f4f5f6;
+      --muted:   #8a9099;
+      --text:    #2a2e35;
+      --line:    #e2e4e7;
+      --trust-bg:#1a1e24;
     }
-    body { font-family: 'DM Sans', sans-serif; color: var(--dark); background: var(--white); }
 
-    nav {
-      position: sticky; top: 0; z-index: 100;
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── LOADER ─── */
+    #loader {
+      position: fixed; inset: 0; z-index: 99999;
+      background: var(--dark);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      transition: opacity 0.9s ease;
+    }
+    #loader.fade-out { opacity: 0; pointer-events: none; }
+    .loader-stars {
+      color: #f59e0b;
+      font-size: 1.4rem;
+      letter-spacing: 4px;
+      margin-bottom: 20px;
+    }
+    .loader-quote {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.3rem, 3.2vw, 2.4rem);
+      font-weight: 400;
+      color: var(--white);
+      text-align: center;
+      max-width: 760px;
+      padding: 0 40px;
+      line-height: 1.4;
+      font-style: italic;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .loader-quote.visible { opacity: 1; transform: translateY(0); }
+    .loader-bar {
+      margin-top: 48px;
+      width: 200px; height: 2px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loader-bar-fill {
+      height: 100%;
       background: var(--teal);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px; height: 68px;
+      width: 0%;
+      transition: width 4.8s linear;
     }
-    .nav-logo { font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.02em; }
-    .nav-logo span { color: var(--amber); }
-    .nav-right { display: flex; align-items: center; gap: 20px; }
-    .nav-phone { color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 600; text-decoration: none; }
-    .nav-cta { background: var(--amber); color: var(--teal); font-weight: 800; font-size: 13px; padding: 10px 22px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; }
 
-    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 68px); max-height: 832px; }
-    .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 64px 52px 64px 64px; background: var(--light); }
-    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--teal); color: var(--white); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; width: fit-content; margin-bottom: 20px; }
-    .hero-h1 { font-size: clamp(44px, 4.4vw, 68px); font-weight: 800; line-height: 1.05; color: var(--teal); margin-bottom: 18px; }
-    .hero-h1 em { color: var(--amber); font-style: normal; }
-    .hero-sub { font-size: 17px; line-height: 1.65; color: #2a5045; max-width: 420px; margin-bottom: 36px; }
-    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-    .btn-primary { background: var(--teal); color: var(--white); font-weight: 700; font-size: 15px; padding: 15px 30px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.03em; }
-    .btn-link { color: var(--teal); font-weight: 600; font-size: 15px; text-decoration: none; border-bottom: 2px solid var(--amber); padding-bottom: 1px; }
+    #page { visibility: hidden; }
 
-    .hero-img { position: relative; overflow: hidden; }
-    .hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* ─── GRAIN CANVAS ─── */
+    #grain-canvas {
+      position: fixed; inset: 0;
+      z-index: 99997;
+      pointer-events: none;
+      opacity: 1;
+    }
 
-    .trust-bar { background: var(--teal); display: grid; grid-template-columns: repeat(4, 1fr); }
-    .trust-item { padding: 26px 28px; text-align: center; border-right: 1px solid rgba(255,255,255,0.1); }
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 1000;
+      height: 68px;
+      background: rgba(17,20,24,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+    }
+    .nav-logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px; font-weight: 700;
+      color: var(--white); letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--teal); }
+    .nav-right {
+      display: flex; align-items: center; gap: 20px;
+    }
+    .nav-phone {
+      color: rgba(255,255,255,0.85);
+      font-size: 14px; font-weight: 600;
+      text-decoration: none;
+      display: flex; align-items: center; gap: 7px;
+    }
+    .nav-phone svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .nav-cta {
+      background: var(--orange); color: var(--white);
+      font-weight: 700; font-size: 12px;
+      padding: 10px 22px; border-radius: 4px;
+      text-decoration: none; letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--orange2); }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      height: calc(100vh - 68px);
+      min-height: 600px;
+      background: var(--dark);
+      overflow: hidden;
+      display: flex; align-items: center;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?auto=format&fit=crop&w=1800&q=80');
+      background-size: cover; background-position: center;
+      opacity: 0.38;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(17,20,24,0.96) 0%,
+        rgba(17,20,24,0.85) 40%,
+        rgba(17,20,24,0.55) 70%,
+        rgba(17,20,24,0.30) 100%
+      );
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      width: 100%; max-width: 1280px;
+      margin: 0 auto; padding: 0 48px;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 64px; align-items: center;
+    }
+    .hero-left { opacity: 0; transform: translateY(24px); }
+    .hero-left.revealed { opacity: 1; transform: none; transition: opacity 0.7s ease, transform 0.7s ease; }
+
+    .eyebrow-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(27,161,176,0.15);
+      border: 1px solid rgba(27,161,176,0.4);
+      color: var(--teal);
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 6px 14px; border-radius: 3px;
+      margin-bottom: 24px;
+    }
+    .eyebrow-badge svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+    .hero-h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 20px;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
+    .hero-h1 .accent { color: var(--teal); }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.65;
+      margin-bottom: 32px;
+      max-width: 520px;
+    }
+
+    .hero-stat {
+      display: flex; align-items: center; gap: 16px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .hero-stat-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.8rem; font-weight: 700;
+      color: var(--white); line-height: 1;
+    }
+    .hero-stat-num span { color: var(--teal); }
+    .hero-stat-detail { flex: 1; }
+    .hero-stat-label {
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--teal);
+    }
+    .hero-stat-sub { font-size: 0.82rem; color: rgba(255,255,255,0.55); margin-top: 2px; }
+
+    /* ─── FORM CARD ─── */
+    .form-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 36px 32px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.3);
+      opacity: 0; transform: translateY(28px);
+    }
+    .form-card.revealed { opacity: 1; transform: none; transition: opacity 0.7s ease 0.25s, transform 0.7s ease 0.25s; }
+    .form-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--dark); text-transform: uppercase;
+      letter-spacing: 0.04em; margin-bottom: 6px;
+    }
+    .form-sub {
+      font-size: 0.82rem; color: var(--muted);
+      margin-bottom: 22px;
+    }
+    .form-group { margin-bottom: 14px; }
+    .form-group label {
+      display: block; font-size: 0.78rem; font-weight: 600;
+      color: var(--text); margin-bottom: 5px; letter-spacing: 0.03em;
+    }
+    .form-group input, .form-group select {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 6px; font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--text); background: var(--offwhite);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:focus, .form-group select:focus {
+      border-color: var(--teal);
+      background: var(--white);
+    }
+    .form-submit {
+      width: 100%;
+      background: var(--orange); color: var(--white);
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 14px; border: none; border-radius: 6px;
+      cursor: pointer; margin-top: 4px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .form-submit:hover { background: var(--orange2); transform: translateY(-1px); }
+    .form-privacy {
+      text-align: center; font-size: 0.72rem; color: var(--muted);
+      margin-top: 10px;
+    }
+
+    /* ─── SVG WAVE ─── */
+    .hero-wave {
+      position: absolute; bottom: 0; left: 0;
+      width: 100%; line-height: 0; z-index: 3;
+      pointer-events: none;
+    }
+    .hero-wave svg { display: block; width: 100%; height: 52px; }
+
+    /* ─── TRUST BAR ─── */
+    .trust-bar {
+      background: var(--trust-bg);
+      padding: 0;
+    }
+    .trust-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      max-width: 1280px; margin: 0 auto;
+    }
+    .trust-item {
+      padding: 32px 28px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; gap: 16px;
+    }
     .trust-item:last-child { border-right: none; }
-    .trust-number { font-size: 36px; font-weight: 800; color: var(--amber); line-height: 1; margin-bottom: 4px; }
-    .trust-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+    .trust-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(27,161,176,0.12);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--teal);
+    }
+    .trust-icon svg { width: 22px; height: 22px; }
+    .trust-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.9rem; font-weight: 700;
+      color: var(--white); line-height: 1;
+    }
+    .trust-num span { color: var(--teal); }
+    .trust-label {
+      font-size: 0.78rem; font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-top: 2px;
+    }
 
+    /* ─── SECTION COMMONS ─── */
+    .section { padding: 96px 48px; }
+    .section-inner { max-width: 1280px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700; color: var(--dark);
+      line-height: 1.1; text-transform: uppercase;
+      letter-spacing: 0.02em; margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 1.05rem; color: var(--muted);
+      line-height: 1.65; max-width: 600px;
+    }
+
+    /* reveal */
+    .reveal { opacity: 0; transform: translateY(28px); }
+    .reveal.visible { opacity: 1; transform: none; transition: opacity 0.65s ease, transform 0.65s ease; }
+
+    /* ─── REVIEWS ─── */
+    .reviews-section { background: var(--offwhite); }
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 12px; padding: 36px 40px;
+    }
+    .review-stars { color: #f59e0b; font-size: 1.1rem; margin-bottom: 14px; letter-spacing: 3px; }
+    .review-text {
+      font-size: 1rem; color: var(--text);
+      line-height: 1.7; margin-bottom: 18px;
+      font-style: italic;
+    }
+    .review-author { font-size: 0.85rem; font-weight: 700; color: var(--muted); }
+    .carousel-wrap { position: relative; margin-top: 48px; overflow: hidden; }
+    .carousel-track { display: flex; transition: transform 0.45s cubic-bezier(.4,0,.2,1); }
+    .carousel-track .review-card { flex: 0 0 100%; }
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: 50%; width: 40px; height: 40px;
+      cursor: pointer; display: flex; align-items: center;
+      justify-content: center; z-index: 2;
+      color: var(--muted); padding: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,.07);
+    }
+    .carousel-prev { left: 12px; }
+    .carousel-next { right: 12px; }
+    .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 16px; }
+    .carousel-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #d1d5db; cursor: pointer;
+      border: none; padding: 0; transition: all .25s;
+    }
+    .carousel-dot.active { background: var(--teal); width: 24px; border-radius: 4px; }
+
+    /* ─── SERVICES ─── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px; margin-top: 52px;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 12px; overflow: hidden;
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.2s;
+    }
+    .service-card.visible { opacity: 1; transform: none; }
+    .service-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.12); transform: translateY(-3px); }
+    .service-photo {
+      width: 100%; height: 180px;
+      object-fit: cover; display: block;
+    }
+    .service-body { padding: 24px 24px 28px; }
+    .service-icon {
+      width: 40px; height: 40px;
+      background: rgba(27,161,176,0.1);
+      border-radius: 8px; margin-bottom: 14px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--teal);
+    }
+    .service-icon svg { width: 20px; height: 20px; }
+    .service-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.15rem; font-weight: 600;
+      color: var(--dark); text-transform: uppercase;
+      letter-spacing: 0.04em; margin-bottom: 10px;
+    }
+    .service-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    /* ─── ABOUT ─── */
+    .about-section { background: var(--offwhite); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px; align-items: center;
+    }
+    .about-photo {
+      border-radius: 12px; width: 100%; height: 520px;
+      object-fit: cover;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.14);
+    }
+    .about-label { color: var(--teal); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px; }
+    .about-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700; color: var(--dark);
+      text-transform: uppercase; letter-spacing: 0.02em;
+      margin-bottom: 20px; line-height: 1.1;
+    }
+    .about-title span { color: var(--teal); }
+    .about-body { font-size: 1rem; color: var(--muted); line-height: 1.75; margin-bottom: 32px; }
+    .creds-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+    .cred-item {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.9rem; font-weight: 600; color: var(--dark);
+    }
+    .cred-item svg { width: 18px; height: 18px; color: var(--teal); flex-shrink: 0; }
+    .about-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--dark); color: var(--white);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.95rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      padding: 14px 32px; border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .about-cta:hover { background: var(--teal2); background: var(--teal); }
+
+    /* ─── CTA BANNER ─── */
+    .cta-banner {
+      background: var(--dark);
+      padding: 96px 48px;
+      position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=80') center/cover;
+      opacity: 0.08;
+    }
+    .cta-inner {
+      position: relative; z-index: 1;
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 48px; flex-wrap: wrap;
+    }
+    .cta-text { flex: 1; min-width: 300px; }
+    .cta-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 12px;
+    }
+    .cta-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700; color: var(--white);
+      text-transform: uppercase; letter-spacing: 0.02em;
+      line-height: 1.1; margin-bottom: 16px;
+    }
+    .cta-body { font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.65; max-width: 520px; }
+    .cta-buttons { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: var(--orange); color: var(--white);
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      padding: 15px 36px; border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--orange2); transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: transparent; color: var(--white);
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      padding: 14px 32px; border-radius: 6px;
+      text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--teal); background: rgba(27,161,176,0.1); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark2);
+      padding: 72px 48px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-grid {
+      max-width: 1280px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 56px;
+    }
+    .footer-logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--white); letter-spacing: 0.04em;
+      margin-bottom: 14px;
+    }
+    .footer-logo span { color: var(--teal); }
+    .footer-tagline { font-size: 0.88rem; color: rgba(255,255,255,0.45); line-height: 1.6; max-width: 280px; }
+    .footer-col h4 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.9rem; font-weight: 600;
+      color: var(--white); text-transform: uppercase;
+      letter-spacing: 0.1em; margin-bottom: 18px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { color: rgba(255,255,255,0.5); font-size: 0.88rem; text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--teal); }
+    .footer-contact { display: flex; flex-direction: column; gap: 12px; }
+    .footer-contact-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.88rem; color: rgba(255,255,255,0.5);
+    }
+    .footer-contact-item svg { width: 16px; height: 16px; color: var(--teal); flex-shrink: 0; margin-top: 2px; }
+    .footer-contact-item a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    .footer-contact-item a:hover { color: var(--teal); }
+
+    .footer-bottom {
+      max-width: 1280px; margin: 0 auto;
+      padding: 24px 0;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 56px;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+    .footer-lic { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+
+    /* ─── MOBILE STICKY CTA ─── */
+    .mobile-cta {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      z-index: 9000;
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 12px 20px;
+      gap: 12px;
+    }
+    .mobile-cta a {
+      flex: 1; text-align: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.95rem; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 13px; border-radius: 6px;
+      text-decoration: none;
+    }
+    .mobile-cta-call { background: var(--orange); color: var(--white); }
+    .mobile-cta-quote { background: var(--teal); color: var(--white); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; padding: 0 32px; }
+      .form-card { max-width: 480px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { height: 360px; }
+      nav { padding: 0 28px; }
+      .section { padding: 72px 32px; }
+      .cta-inner { flex-direction: column; align-items: flex-start; }
+    }
     @media (max-width: 768px) {
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .trust-item:nth-child(2n) { }
+      .trust-item:last-child { border-bottom: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+      .review-card { padding: 24px 20px; }
+      .nav-phone { display: none; }
+      .mobile-cta { display: flex; }
+      footer { padding-bottom: 80px; }
+      .cta-buttons { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .hero-h1 { font-size: 2.4rem; }
       nav { padding: 0 20px; }
-      .hero { grid-template-columns: 1fr; min-height: auto; max-height: none; }
-      .hero-text { padding: 48px 24px 32px; }
-      .hero-img { height: 280px; }
-      .trust-bar { grid-template-columns: repeat(2, 1fr); }
+      .section { padding: 56px 20px; }
+    }
+
+    /* ─── REDUCED MOTION ─── */
+    @media (prefers-reduced-motion: reduce) {
+      #loader { display: none; }
+      #page { visibility: visible !important; }
+      #grain-canvas { display: none; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
     }
   </style>
 </head>
 <body>
 
+<!-- ═══ LOADER ═══ -->
+<div id="loader">
+  <div class="loader-stars">★★★★★</div>
+  <p class="loader-quote" id="loader-quote">"They replaced our entire roof in one day. Crew was professional, cleaned everything up, and price was fair. Couldn't ask for more."</p>
+  <div class="loader-bar"><div class="loader-bar-fill" id="loader-bar-fill"></div></div>
+</div>
+
+<!-- ═══ GRAIN CANVAS ═══ -->
+<canvas id="grain-canvas" aria-hidden="true"></canvas>
+
+<div id="page">
+
+<!-- ═══ NAV ═══ -->
 <nav>
-  <div class="nav-logo"><span>Jovil</span> Roofing Corp</div>
+  <a href="#" class="nav-logo">JOVIL <span>ROOFING</span></a>
   <div class="nav-right">
-    <a href="tel:9542634994" class="nav-phone">(954) 263-4994</a>
-    <a href="tel:9542634994" class="nav-cta">Free Estimate</a>
+    <a href="tel:9542634994" class="nav-phone">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92v2z"/></svg>
+      (954) 263-4994
+    </a>
+    <a href="#estimate" class="nav-cta">Free Estimate</a>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-badge">Deerfield Beach, FL &nbsp;·&nbsp; 4.4★ Google &nbsp;·&nbsp; 22 Reviews</div>
-    <h1 class="hero-h1">Roofing That<br><em>Shows Up Early</em><br>and Cleans Up Right</h1>
-    <p class="hero-sub">
-      That's what Jose's customers say, again and again. Deerfield Beach's detail-first roofer. Residential and commercial roofing done the right way.
-    </p>
-    <div class="hero-actions">
-      <a href="tel:9542634994" class="btn-primary">Get Your Free Estimate</a>
-      <a href="tel:9542634994" class="btn-link">Call (954) 263-4994</a>
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-left" id="hero-left">
+      <div class="eyebrow-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Broward County, FL &nbsp;·&nbsp; Lic. CCC1332404
+      </div>
+      <h1 class="hero-h1">
+        Broward County's<br>
+        <span class="accent">Trusted</span><br>
+        Roofing Experts
+      </h1>
+      <p class="hero-sub">State-licensed, GAF-certified, and Owens Corning approved. From shingle to tile to flat roofing — we handle every job with the craftsmanship your home deserves.</p>
+      <div class="hero-stat">
+        <div class="hero-stat-num" id="stat-num">4.<span>7</span></div>
+        <div class="hero-stat-detail">
+          <div class="hero-stat-label">★★★★★ &nbsp;Rated</div>
+          <div class="hero-stat-sub">A+ BBB Rating · Broward County</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM CARD -->
+    <div class="form-card" id="hero-form" id="estimate">
+      <div class="form-title">Get a Free Roof Estimate</div>
+      <div class="form-sub">No pressure. No obligation. Just honest answers.</div>
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label for="f-name">Your Name</label>
+          <input type="text" id="f-name" placeholder="John Smith" required>
+        </div>
+        <div class="form-group">
+          <label for="f-phone">Phone Number</label>
+          <input type="tel" id="f-phone" placeholder="(954) 000-0000" required>
+        </div>
+        <div class="form-group">
+          <label for="f-email">Email Address</label>
+          <input type="email" id="f-email" placeholder="john@email.com">
+        </div>
+        <div class="form-group">
+          <label for="f-service">Service Needed</label>
+          <select id="f-service">
+            <option value="">Select a service...</option>
+            <option>New Roof Installation</option>
+            <option>Re-Roofing</option>
+            <option>Roof Repair</option>
+            <option>Shingle Roofing</option>
+            <option>Tile Roofing</option>
+            <option>Flat Roofing</option>
+            <option>Metal Roofing</option>
+            <option>Skylight Installation</option>
+            <option>Roof Inspection</option>
+          </select>
+        </div>
+        <button type="submit" class="form-submit">Request My Free Estimate →</button>
+      </form>
+      <p class="form-privacy">🔒 Your info is never shared. We'll contact you within 24 hours.</p>
     </div>
   </div>
-  <div class="hero-img">
-    <img src="../../assets/samples/Roofers/67c8a027ddc2711c0e6c2bd0_Why Trustworthy Roofers Are Hard To Find Graphic.jpg" alt="Jovil Roofing Corp professional roofer carefully inspecting and repairing a Deerfield Beach roof" loading="eager">
+
+  <!-- SVG WAVE -->
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,22 C360,52 1080,0 1440,30 L1440,52 L0,52 Z" fill="#1a1e24"/>
+    </svg>
   </div>
 </section>
 
+<!-- ═══ TRUST BAR ═══ -->
 <div class="trust-bar">
-  <div class="trust-item"><div class="trust-number">4.4★</div><div class="trust-label">Google Rating</div></div>
-  <div class="trust-item"><div class="trust-number">22</div><div class="trust-label">Verified Reviews</div></div>
-  <div class="trust-item"><div class="trust-number">Owens</div><div class="trust-label">Corning Certified</div></div>
-  <div class="trust-item"><div class="trust-number">100%</div><div class="trust-label">Licensed &amp; Insured</div></div>
+  <div class="trust-grid">
+    <div class="trust-item reveal">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      </div>
+      <div>
+        <div class="trust-num">25<span>+</span></div>
+        <div class="trust-label">Years in Construction</div>
+      </div>
+    </div>
+    <div class="trust-item reveal">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      </div>
+      <div>
+        <div class="trust-num" style="font-size:1.3rem;line-height:1.2;">Licensed<span>+</span>Insured</div>
+        <div class="trust-label">Bonded · Lic. CCC1332404</div>
+      </div>
+    </div>
+    <div class="trust-item reveal">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div>
+        <div class="trust-num" style="font-size:1.2rem;line-height:1.2;">Broward<span>&</span>Beyond</div>
+        <div class="trust-label">Deerfield · Pompano · Boca</div>
+      </div>
+    </div>
+    <div class="trust-item reveal">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div>
+        <div class="trust-num">A<span>+</span></div>
+        <div class="trust-label">BBB Rating · GAF Certified</div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="section" id="services">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Roofing Services Built<br>for South Florida</h2>
+      <p class="section-sub">From new construction to storm damage repair — we handle every roofing challenge with licensed craftsmanship and manufacturer-backed warranties.</p>
+    </div>
+    <div class="services-grid" id="services-grid">
+
+      <!-- Shingle Roofing -->
+      <div class="service-card">
+        <img class="service-photo" src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=800&q=80" alt="Shingle roofing installation by Jovil Roofing Corp" loading="lazy">
+        <div class="service-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="service-name">Shingle Roofing</div>
+          <p class="service-desc">Composite asphalt shingles installed with GAF and Owens Corning materials. Impact-resistant options available for South Florida storm protection and insurance discounts.</p>
+        </div>
+      </div>
+
+      <!-- Tile Roofing -->
+      <div class="service-card">
+        <img class="service-photo" src="https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?auto=format&fit=crop&w=800&q=80" alt="Tile roofing installation by Jovil Roofing Corp" loading="lazy">
+        <div class="service-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div class="service-name">Tile Roofing</div>
+          <p class="service-desc">Concrete and clay tile systems that last 50+ years in Florida's climate. We properly mortar, bond, and seal every tile — no shortcuts, no callbacks.</p>
+        </div>
+      </div>
+
+      <!-- Flat Roofing -->
+      <div class="service-card">
+        <img class="service-photo" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" alt="Flat roofing by Jovil Roofing Corp" loading="lazy">
+        <div class="service-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="22" height="12" rx="2"/><path d="M5 19h14M3 15v4M21 15v4"/></svg>
+          </div>
+          <div class="service-name">Flat Roofing</div>
+          <p class="service-desc">TPO, modified bitumen, and torch-down flat roofing systems for commercial and residential properties. Properly sloped for South Florida drainage — no ponding, no leaks.</p>
+        </div>
+      </div>
+
+      <!-- Metal Roofing -->
+      <div class="service-card">
+        <img class="service-photo" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80" alt="Metal roofing installation by Jovil Roofing Corp" loading="lazy">
+        <div class="service-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+          </div>
+          <div class="service-name">Metal Roofing</div>
+          <p class="service-desc">Standing seam and exposed fastener metal panels with Class A fire ratings and hurricane-rated wind uplift. Built to last decades and eligible for significant insurance savings.</p>
+        </div>
+      </div>
+
+      <!-- Roof Repair -->
+      <div class="service-card">
+        <img class="service-photo" src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=800&q=80" alt="Roof repair by Jovil Roofing Corp" loading="lazy">
+        <div class="service-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div class="service-name">Roof Repair</div>
+          <p class="service-desc">Storm damage, missing shingles, active leaks — we find the real source, not just the symptom. Permitted repairs backed by a written workmanship warranty.</p>
+        </div>
+      </div>
+
+      <!-- Skylight Installation -->
+      <div class="service-card">
+        <img class="service-photo" src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?auto=format&fit=crop&w=800&q=80" alt="Skylight installation by Jovil Roofing Corp" loading="lazy">
+        <div class="service-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </div>
+          <div class="service-name">Skylight Installation</div>
+          <p class="service-desc">Velux and custom skylight installs that are flashed and sealed correctly. We waterproof the curb, not just the glass — because that's where skylight leaks really start.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REVIEWS ═══ -->
+<section class="section reviews-section" id="reviews">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Customer Reviews</div>
+      <h2 class="section-title">What Broward Homeowners Say</h2>
+      <p class="section-sub">Real feedback from real customers across Deerfield Beach, Pompano Beach, and greater Broward County.</p>
+    </div>
+    <div class="carousel-wrap reveal">
+      <div class="carousel-track">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Jovil Roofing replaced our entire tile roof after hurricane damage. They pulled every permit, kept us updated throughout, and the crew left the property spotless. Our insurance adjuster was impressed with the documentation they provided. Absolute pros from start to finish."</p>
+          <div class="review-author">Maria G. &mdash; Deerfield Beach, FL · Tile Roof Replacement</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"We had three other roofers come out before Jovil — they actually found the real leak source while the others missed it. Repair was completed the same week, fully permitted, and the price was honest. No upselling, no scare tactics. Hard to find that kind of integrity."</p>
+          <div class="review-author">Robert T. &mdash; Pompano Beach, FL · Shingle Repair</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Our flat roof over the garage had been leaking for years. Jovil came out, gave us a straight quote, and installed a new TPO system that's been perfect through two rainy seasons. They explained everything clearly and followed up to make sure we were happy. Outstanding work."</p>
+          <div class="review-author">Sandra M. &mdash; Boca Raton, FL · Flat Roof Installation</div>
+        </div>
+      </div>
+      <button class="carousel-btn carousel-prev" aria-label="Previous">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-btn carousel-next" aria-label="Next">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="carousel-dots">
+      <button class="carousel-dot active" aria-label="Review 1"></button>
+      <button class="carousel-dot" aria-label="Review 2"></button>
+      <button class="carousel-dot" aria-label="Review 3"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="reveal">
+        <img class="about-photo" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" alt="Professional roofing team at Jovil Roofing Corp in Broward County" loading="lazy">
+      </div>
+      <div class="reveal">
+        <div class="about-label">Our Story</div>
+        <h2 class="about-title">Built on <span>25 Years</span> of Florida Roofing</h2>
+        <p class="about-body">Jovil Roofing Corp was founded with a simple mission: give Broward County homeowners access to a roofing contractor they can actually trust. Led by President Jose Vilchiz, our team brings more than 25 years of hands-on construction experience to every project — whether it's a straightforward repair or a full hurricane replacement.</p>
+        <p class="about-body">We're state-licensed, fully insured, and certified by the industry's top manufacturers. We pull every permit. We show up when we say we will. And we stand behind our work with written warranties because that's what doing it right looks like.</p>
+        <div class="creds-list">
+          <div class="cred-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            Florida Certified Roofing Contractor — Lic. CCC1332404
+          </div>
+          <div class="cred-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            GAF Certified Roofing Contractor
+          </div>
+          <div class="cred-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            Owens Corning Preferred Contractor
+          </div>
+          <div class="cred-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            A+ BBB Rating · Fully Bonded & Insured
+          </div>
+          <div class="cred-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            290+ Permitted Projects Since 2020
+          </div>
+        </div>
+        <a href="tel:9542634994" class="about-cta">Call for a Free Estimate →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA BANNER ═══ -->
+<section class="cta-banner" id="estimate">
+  <div class="cta-inner reveal">
+    <div class="cta-text">
+      <div class="cta-eyebrow">Ready to Get Started?</div>
+      <h2 class="cta-title">Your Roof Deserves<br>an Expert Eye</h2>
+      <p class="cta-body">Join hundreds of Broward County homeowners who trust Jovil Roofing Corp for quality work, honest pricing, and a crew that shows up on time — every time.</p>
+    </div>
+    <div class="cta-buttons">
+      <a href="tel:9542634994" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92v2z"/></svg>
+        Call (954) 263-4994
+      </a>
+      <a href="#home" class="btn-secondary">Get a Free Estimate</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">JOVIL <span>ROOFING</span> CORP</div>
+      <p class="footer-tagline">State-licensed, GAF-certified roofing contractor serving Broward County and surrounding South Florida communities. Licensed, Bonded & Insured.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul class="footer-links">
+        <li><a href="#services">Shingle Roofing</a></li>
+        <li><a href="#services">Tile Roofing</a></li>
+        <li><a href="#services">Flat Roofing</a></li>
+        <li><a href="#services">Metal Roofing</a></li>
+        <li><a href="#services">Roof Repair</a></li>
+        <li><a href="#services">Skylight Installation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <div class="footer-contact">
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92v2z"/></svg>
+          <a href="tel:9542634994">(954) 263-4994</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:info@jovilroofing.com">info@jovilroofing.com</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>4100 N Powerline Rd, Ste P9<br>Deerfield Beach, FL 33073</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <span>Lic. CCC1332404 · Broward County</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Jovil Roofing Corp. All rights reserved.</span>
+    <span class="footer-lic">Florida Certified Roofing Contractor · Lic. CCC1332404 · Fully Insured</span>
+  </div>
+</footer>
+
+<!-- ═══ MOBILE STICKY CTA ═══ -->
+<div class="mobile-cta" aria-label="Quick contact bar">
+  <a href="tel:9542634994" class="mobile-cta-call">📞 Call Now</a>
+  <a href="#home" class="mobile-cta-quote">Get Free Estimate</a>
+</div>
+
+</div><!-- /#page -->
+
+<script>
+/* ─── LOADER ─── */
+(function(){
+  var quotes = [
+    '"They replaced our entire roof in one day. Crew was professional, cleaned everything up, and the price was fair. Couldn\'t ask for more."',
+    '"Three other roofers missed the real leak. Jovil found it on the first visit. Repair was done the same week — fully permitted, zero hassle."',
+    '"Our flat roof has been perfect through two full rainy seasons. They explained everything, gave us a straight price, and delivered exactly what they promised."'
+  ];
+  var el = document.getElementById('loader-quote');
+  var loader = document.getElementById('loader');
+  var barFill = document.getElementById('loader-bar-fill');
+  var page = document.getElementById('page');
+  var idx = 0;
+
+  function showQuote(i){
+    el.classList.remove('visible');
+    setTimeout(function(){
+      el.textContent = quotes[i];
+      el.classList.add('visible');
+    }, 300);
+  }
+
+  showQuote(0);
+  barFill.style.width = '100%';
+
+  var t1 = setTimeout(function(){ showQuote(1); }, 1500);
+  var t2 = setTimeout(function(){ showQuote(2); }, 3000);
+  var t3 = setTimeout(function(){
+    loader.classList.add('fade-out');
+    page.style.visibility = 'visible';
+    setTimeout(function(){
+      loader.style.display = 'none';
+      // reveal hero
+      document.getElementById('hero-left').classList.add('revealed');
+      document.getElementById('hero-form').classList.add('revealed');
+      // start counter
+      animateCounter();
+    }, 900);
+  }, 4800);
+})();
+
+/* ─── GRAIN CANVAS ─── */
+(function(){
+  var canvas = document.getElementById('grain-canvas');
+  var ctx = canvas.getContext('2d');
+  var w, h;
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  function draw(){
+    var img = ctx.createImageData(w, h);
+    var d = img.data;
+    for(var i=0; i<d.length; i+=4){
+      var v = Math.random()*255;
+      d[i]   = v * 1.0;
+      d[i+1] = v * 0.9;
+      d[i+2] = v * 0.7;
+      d[i+3] = 11;
+    }
+    ctx.putImageData(img,0,0);
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ─── HERO COUNTER ANIMATION ─── */
+function animateCounter(){
+  var el = document.getElementById('stat-num');
+  if(!el) return;
+  var start = 0.0, end = 4.7, dur = 2200;
+  var t0 = null;
+  function easeOut(t){ return 1 - Math.pow(1-t, 4); }
+  function step(ts){
+    if(!t0) t0 = ts;
+    var p = Math.min((ts-t0)/dur, 1);
+    var val = start + (end-start)*easeOut(p);
+    el.innerHTML = val.toFixed(1).replace(/(\d\.\d)/, function(m){ return m[0]+'.'+m[2]+'<span>★</span>'; });
+    if(p<1) requestAnimationFrame(step);
+    else el.innerHTML = '4.<span>7</span>';
+  }
+  setTimeout(function(){ requestAnimationFrame(step); }, 400);
+}
+
+/* ─── INTERSECTION OBSERVER ─── */
+(function(){
+  var cards = document.querySelectorAll('.service-card');
+  var reveals = document.querySelectorAll('.reveal');
+
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach(function(el){ obs.observe(el); });
+
+  // staggered service cards
+  var cardObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var idx = Array.from(cards).indexOf(e.target);
+        setTimeout(function(){ e.target.classList.add('visible'); }, idx * 110);
+        cardObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  cards.forEach(function(c){ cardObs.observe(c); });
+})();
+
+/* ─── REVIEWS CAROUSEL ─── */
+(function(){
+  var wrap = document.querySelector('.carousel-wrap');
+  if(!wrap) return;
+  var track = wrap.querySelector('.carousel-track');
+  var dots = document.querySelectorAll('.carousel-dot');
+  var n = track.querySelectorAll('.review-card').length, cur = 0, timer;
+  var startX = null;
+
+  function go(i){
+    cur = (i % n + n) % n;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dots.forEach(function(d,j){ d.classList.toggle('active', j === cur); });
+  }
+  wrap.querySelector('.carousel-prev').addEventListener('click', function(){ go(cur-1); reset(); });
+  wrap.querySelector('.carousel-next').addEventListener('click', function(){ go(cur+1); reset(); });
+  dots.forEach(function(d,i){ d.addEventListener('click', function(){ go(i); reset(); }); });
+
+  // swipe
+  wrap.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+  wrap.addEventListener('touchend', function(e){
+    if(startX === null) return;
+    var diff = startX - e.changedTouches[0].clientX;
+    if(Math.abs(diff) > 40){ go(diff > 0 ? cur+1 : cur-1); reset(); }
+    startX = null;
+  }, {passive:true});
+
+  function reset(){ clearInterval(timer); timer = setInterval(function(){ go(cur+1); }, 5000); }
+  reset();
+})();
+
+/* ─── FORM SUBMIT ─── */
+function handleSubmit(e){
+  e.preventDefault();
+  var btn = e.target.querySelector('.form-submit');
+  btn.textContent = '✓ Request Sent — We\'ll Be in Touch!';
+  btn.style.background = '#158a98';
+  btn.disabled = true;
+}
+
+/* ─── NAV SCROLL OPACITY ─── */
+(function(){
+  var nav = document.querySelector('nav');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 60){
+      nav.style.background = 'rgba(17,20,24,0.97)';
+    } else {
+      nav.style.background = 'rgba(17,20,24,0.85)';
+    }
+  }, {passive:true});
+})();
+</script>
 
 </body>
 </html>

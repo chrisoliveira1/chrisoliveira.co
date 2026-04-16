@@ -3,91 +3,1892 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mister Plumber Inc | West Palm Beach, FL | Family Owned Plumbing</title>
+  <title>Mister Plumber Inc | Palm Beach County, FL | Since 1978</title>
+  <meta name="description" content="Mister Plumber Inc — Palm Beach County's trusted plumbing experts since 1978. Three generations, 100+ years combined experience. CFC 056681. Call (561) 333-8665.">
+
+  <!-- OG -->
+  <meta property="og:title" content="Mister Plumber Inc | Palm Beach County, FL">
+  <meta property="og:description" content="Three generations of plumbing expertise. Serving Palm Beach County since 1978. Licensed, insured, and available 24/7.">
+  <meta property="og:image" content="https://chrisoliveira.co/p/mister-plumber/preview.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chrisoliveira.co/p/mister-plumber/">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap">
+
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* ============================================================
+       CSS VARIABLES — MISTER PLUMBER BRAND COLORS
+       Primary: #0a5e9e  Teal accent: #1cbac8  Dark: #0d1c2e
+    ============================================================ */
     :root {
-      --charcoal: #262626;
-      --blue: #0a5e9e;
-      --teal: #1cbac8;
-      --white: #ffffff;
-      --dark: #0d0d0d;
+      --navy:       #0d1c2e;
+      --navy-mid:   #112438;
+      --blue:       #0a5e9e;
+      --blue-light: #1a72b8;
+      --teal:       #1cbac8;
+      --teal-dark:  #15a0ad;
+      --white:      #ffffff;
+      --offwhite:   #f4f7fa;
+      --line:       #dde3ea;
+      --text:       #1e2d3d;
+      --muted:      #5a7080;
+      --trust-bg:   #0d1c2e;
+      --accent:     #1cbac8;
     }
-    body { font-family: 'Inter', sans-serif; color: var(--dark); background: #f2f6f8; }
 
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--charcoal);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px; height: 68px;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
     }
-    .nav-logo { font-family: 'Oswald', sans-serif; font-size: 22px; font-weight: 600; color: var(--white); letter-spacing: 0.06em; text-transform: uppercase; }
-    .nav-logo span { color: var(--teal); }
-    .nav-right { display: flex; align-items: center; gap: 20px; }
-    .nav-phone { color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 600; text-decoration: none; }
-    .nav-cta { background: var(--teal); color: var(--white); font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; }
 
-    .hero { position: relative; height: calc(100vh - 68px); overflow: hidden; display: flex; align-items: center; }
-    .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(10,94,158,0.93) 40%, rgba(28,186,200,0.50)); }
-    .hero-content { position: relative; z-index: 1; padding: 0 72px; max-width: 700px; }
-    .hero-eyebrow { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 18px; }
-    .hero-h1 { font-family: 'Oswald', sans-serif; font-size: clamp(52px, 5.5vw, 80px); font-weight: 700; line-height: 1.02; color: var(--white); margin-bottom: 20px; text-transform: uppercase; }
-    .hero-h1 em { color: var(--teal); font-style: normal; }
-    .hero-rule { width: 56px; height: 4px; background: var(--teal); margin-bottom: 22px; }
-    .hero-sub { font-size: 18px; line-height: 1.65; color: rgba(255,255,255,0.85); max-width: 500px; margin-bottom: 38px; }
-    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-    .btn-primary { background: var(--teal); color: var(--white); font-weight: 700; font-size: 15px; padding: 16px 32px; border-radius: 4px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.03em; }
-    .btn-ghost { color: var(--white); font-weight: 600; font-size: 15px; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.4); padding-bottom: 2px; }
+    #page { visibility: hidden; }
 
-    .trust-bar { background: var(--blue); display: grid; grid-template-columns: repeat(4, 1fr); }
-    .trust-item { padding: 24px 20px; text-align: center; border-right: 1px solid rgba(255,255,255,0.2); }
-    .trust-item:last-child { border-right: none; }
-    .trust-label-top { font-family: 'Oswald', sans-serif; font-size: 22px; font-weight: 600; color: var(--white); line-height: 1; margin-bottom: 4px; letter-spacing: 0.04em; }
-    .trust-label-bot { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.8); }
+    /* ============================================================
+       LOADER
+    ============================================================ */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--navy);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 40px;
+    }
 
-    @media (max-width: 768px) {
-      nav { padding: 0 20px; }
-      .hero-content { padding: 0 24px; }
-      .trust-bar { grid-template-columns: repeat(2, 1fr); }
+    .loader-inner {
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .loader-logo {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--teal);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: loaderLogoIn 0.6s ease forwards 0.2s;
+    }
+
+    .loader-quote {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .loader-quote.active { display: flex; }
+
+    .loader-stars {
+      color: #f59e0b;
+      font-size: 1.5rem;
+      letter-spacing: 4px;
+      opacity: 0;
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    .loader-text {
+      font-family: 'Work Sans', sans-serif;
+      font-size: clamp(1.3rem, 3.5vw, 2.2rem);
+      font-weight: 600;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.4;
+      opacity: 0;
+      animation: fadeUp 0.5s ease forwards 0.15s;
+    }
+
+    .loader-bar {
+      width: 60px;
+      height: 2px;
+      background: var(--teal);
+      margin: 32px auto 0;
+      opacity: 0;
+      animation: loaderBarIn 0.8s ease forwards 0.3s;
+    }
+
+    @keyframes loaderLogoIn { to { opacity: 1; } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes loaderBarIn { to { opacity: 0.5; } }
+
+    /* ============================================================
+       GRAIN CANVAS
+    ============================================================ */
+    #grain {
+      position: fixed;
+      inset: 0;
+      z-index: 99998;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    #nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: 68px;
+      background: rgba(13, 28, 46, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(28, 186, 200, 0.15);
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+    }
+
+    .nav-inner {
+      max-width: 1320px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--teal);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-logo-icon svg { width: 20px; height: 20px; }
+
+    .nav-logo-text {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--white);
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+    }
+    .nav-logo-text span { color: var(--teal); display: block; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-phone {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-phone:hover { color: var(--teal); }
+
+    .btn-nav {
+      background: var(--teal);
+      color: var(--navy);
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .btn-nav:hover { background: #22d4e4; transform: translateY(-1px); }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      position: relative;
+      height: calc(100vh - 68px);
+      min-height: 600px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      align-items: center;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(13,28,46,0.97) 0%,
+        rgba(13,28,46,0.92) 30%,
+        rgba(13,28,46,0.72) 55%,
+        rgba(13,28,46,0.45) 80%,
+        rgba(13,28,46,0.25) 100%
+      );
+    }
+
+    .hero-left {
+      position: relative;
+      z-index: 2;
+      padding: 60px 52px 60px 64px;
+      max-width: 680px;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.1s;
+    }
+
+    .eyebrow-badge {
+      background: rgba(28, 186, 200, 0.15);
+      border: 1px solid rgba(28, 186, 200, 0.35);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-family: 'Work Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .hero-h1 {
+      font-family: 'Work Sans', sans-serif;
+      font-size: clamp(2.6rem, 4.5vw, 4rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.25s;
+    }
+
+    .hero-h1 .accent {
+      color: var(--teal);
+      display: inline-block;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.65;
+      max-width: 500px;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.4s;
+    }
+
+    .hero-stat {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 24px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.55s;
+    }
+
+    .hero-stat-item {
+      padding-right: 28px;
+      margin-right: 28px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .hero-stat-item:last-child { border-right: none; }
+
+    .hero-stat-num {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--teal);
+      line-height: 1;
+      display: block;
+    }
+
+    .hero-stat-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: block;
+      margin-top: 4px;
+    }
+
+    /* Hero right — lead form */
+    .hero-right {
+      position: relative;
+      z-index: 2;
+      padding: 28px 32px 28px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.35s;
+    }
+
+    .hero-form-card {
+      background: rgba(255,255,255,0.97);
+      border-radius: 16px;
+      padding: 32px 28px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.45), 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    .form-title {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 4px;
+      line-height: 1.25;
+    }
+
+    .form-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--teal);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 70px; }
+
+    .btn-form {
+      width: 100%;
+      background: var(--teal);
+      color: var(--navy);
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 4px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-form:hover { background: #22d4e4; transform: translateY(-1px); }
+
+    .form-disclaimer {
+      text-align: center;
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    /* Wave break */
+    .hero-wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      line-height: 0;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .hero-wave svg { display: block; width: 100%; height: 48px; }
+
+    /* ============================================================
+       TRUST BAR
+    ============================================================ */
+    #trust {
+      background: var(--trust-bg);
+      padding: 0;
+    }
+
+    .trust-grid {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .trust-col {
+      padding: 32px 28px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .trust-col:last-child { border-right: none; }
+
+    .trust-num {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--teal);
+      line-height: 1;
+      display: block;
+    }
+
+    .trust-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* ============================================================
+       SECTION SHARED
+    ============================================================ */
+    .section-label {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: 'Work Sans', sans-serif;
+      font-size: clamp(1.9rem, 3vw, 2.6rem);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 560px;
+      margin-top: 12px;
+    }
+
+    /* ============================================================
+       REVIEWS CAROUSEL
+    ============================================================ */
+    #reviews {
+      background: var(--offwhite);
+      padding: 88px 32px;
+    }
+
+    .reviews-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 36px 40px;
+    }
+
+    .review-stars {
+      color: #f59e0b;
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+      letter-spacing: 3px;
+    }
+
+    .review-text {
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+
+    .review-author {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .carousel-wrap {
+      position: relative;
+      margin-top: 48px;
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .carousel-track .review-card {
+      flex: 0 0 100%;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      color: var(--muted);
+      padding: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+
+    .carousel-prev { left: 12px; }
+    .carousel-next { right: 12px; }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #d1d5db;
+      cursor: pointer;
+      border: none;
+      padding: 0;
+      transition: all 0.25s;
+    }
+
+    .carousel-dot.active {
+      background: var(--teal);
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    /* ============================================================
+       SERVICES GRID
+    ============================================================ */
+    #services {
+      padding: 96px 32px;
+      background: var(--white);
+    }
+
+    .services-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+    }
+
+    .services-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 52px;
+      gap: 24px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--white);
+      transition: transform 0.25s, box-shadow 0.25s;
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    .service-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(10,94,158,0.12);
+    }
+
+    .service-photo {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .service-body {
+      padding: 22px 24px 24px;
+    }
+
+    .service-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(28, 186, 200, 0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .service-icon svg { width: 22px; height: 22px; }
+
+    .service-name {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ============================================================
+       ABOUT
+    ============================================================ */
+    #about {
+      background: var(--offwhite);
+      padding: 96px 32px;
+    }
+
+    .about-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .about-photo-wrap {
+      position: relative;
+    }
+
+    .about-photo {
+      width: 100%;
+      border-radius: 16px;
+      display: block;
+      box-shadow: 0 24px 64px rgba(10,30,60,0.18), 0 4px 16px rgba(10,30,60,0.1);
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 16px 22px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .about-badge-num {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--teal);
+      line-height: 1;
+      display: block;
+    }
+
+    .about-badge-text {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .about-content { }
+
+    .about-p {
+      font-size: 0.98rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-top: 16px;
+    }
+
+    .about-creds {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .cred-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .cred-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--teal);
+      border-radius: 50%;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    .cred-text {
+      font-size: 0.85rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .about-quote {
+      margin-top: 28px;
+      padding: 20px 24px;
+      border-left: 3px solid var(--teal);
+      background: rgba(28,186,200,0.05);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .about-quote p {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--navy);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       CTA BANNER
+    ============================================================ */
+    #cta-banner {
+      background: var(--navy);
+      padding: 80px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(28,186,200,0.12) 0%, transparent 70%);
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .cta-label {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 14px;
+    }
+
+    .cta-h2 {
+      font-family: 'Work Sans', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .cta-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .cta-btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--teal);
+      color: var(--navy);
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #22d4e4; transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 15px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+    .btn-outline:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    #footer {
+      background: #060f18;
+      padding: 64px 32px 0;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 52px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .footer-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .footer-logo-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--teal);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-logo-text {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--white);
+    }
+    .footer-logo-text span { color: var(--teal); }
+
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .footer-license {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-col-title {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--teal); }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .fc-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--teal);
+    }
+
+    .fc-text {
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+
+    .fc-text a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .fc-text a:hover { color: var(--teal); }
+
+    /* Footer bottom */
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .footer-lic {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ============================================================
+       MOBILE STICKY CTA
+    ============================================================ */
+    #sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: var(--navy);
+      border-top: 1px solid rgba(28,186,200,0.2);
+      padding: 12px 16px;
+      gap: 10px;
+    }
+
+    #sticky-cta a {
+      flex: 1;
+      text-align: center;
+      padding: 13px 8px;
+      border-radius: 8px;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    #sticky-cta .sticky-call {
+      background: var(--teal);
+      color: var(--navy);
+    }
+
+    #sticky-cta .sticky-quote {
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    /* ============================================================
+       UTILITIES / ANIMATIONS
+    ============================================================ */
+    .fade-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1100px) {
+      #hero {
+        grid-template-columns: 1fr 380px;
+      }
+      .hero-left { padding: 48px 32px 48px 40px; }
+    }
+
+    @media (max-width: 900px) {
+      #hero {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 100vh;
+      }
+
+      .hero-left {
+        padding: 56px 24px 32px;
+        max-width: 100%;
+      }
+
+      .hero-right {
+        padding: 0 24px 48px;
+        justify-content: center;
+      }
+
+      .hero-form-card { max-width: 100%; }
+
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-col { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .trust-col:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.1); }
+      .trust-col:last-child { border-bottom: none; }
+
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-header { flex-direction: column; align-items: flex-start; }
+
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .about-badge { bottom: -16px; right: 16px; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+
+      .review-card { padding: 24px 20px; }
+
+      #sticky-cta { display: flex; }
+
+      .nav-phone { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      #nav { padding: 0 16px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: 1fr; }
+      .trust-col { border-right: none !important; }
+      .about-creds { grid-template-columns: 1fr; }
+      .cta-btns { flex-direction: column; width: 100%; }
+      .btn-primary, .btn-outline { width: 100%; text-align: center; }
+    }
+
+    /* ============================================================
+       REDUCED MOTION
+    ============================================================ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      #loader { display: none; }
+      #page { visibility: visible !important; }
+      #grain { display: none; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo"><span>Mister</span> Plumber</div>
-  <div class="nav-right">
-    <a href="tel:5613338665" class="nav-phone">(561) 333-8665</a>
-    <a href="tel:5613338665" class="nav-cta">Free Estimate</a>
-  </div>
-</nav>
+<!-- ============================================================
+     LOADER
+============================================================ -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <div class="loader-logo">Mister Plumber Inc</div>
 
-<section class="hero">
-  <img class="hero-bg" src="../../assets/samples/Plumbers/iStock-514104433.jpg.webp" alt="Mister Plumber family-owned plumbing in West Palm Beach" loading="eager">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">West Palm Beach, FL &nbsp;·&nbsp; Don Fritz &nbsp;·&nbsp; Third Generation</div>
-    <h1 class="hero-h1">Family Plumbing.<br><em>Third</em><br>Generation.</h1>
-    <div class="hero-rule"></div>
-    <p class="hero-sub">The Fritz family has been solving Palm Beach County's plumbing problems for generations. Professional, honest work. The plumber contractors call when they need a plumber.</p>
-    <div class="hero-actions">
-      <a href="tel:5613338665" class="btn-primary">Get a Free Estimate</a>
-      <a href="tel:5613338665" class="btn-ghost">Call Don</a>
+    <div class="loader-quote active" id="lq-0">
+      <div class="loader-stars">★★★★★</div>
+      <div class="loader-text">"They came out within the hour, fixed a burst pipe I'd been stressing over all morning. Absolute lifesavers."</div>
     </div>
-  </div>
-</section>
 
-<div class="trust-bar">
-  <div class="trust-item"><div class="trust-label-top">3rd</div><div class="trust-label-bot">Generation Family</div></div>
-  <div class="trust-item"><div class="trust-label-top">Owner</div><div class="trust-label-bot">Operated</div></div>
-  <div class="trust-item"><div class="trust-label-top">Free</div><div class="trust-label-bot">Estimates</div></div>
-  <div class="trust-item"><div class="trust-label-top">100%</div><div class="trust-label-bot">Licensed &amp; Insured</div></div>
+    <div class="loader-quote" id="lq-1">
+      <div class="loader-stars">★★★★★</div>
+      <div class="loader-text">"Third time I've used Mister Plumber — they're the only ones I trust. Fair pricing and they always show up when they say they will."</div>
+    </div>
+
+    <div class="loader-quote" id="lq-2">
+      <div class="loader-stars">★★★★★</div>
+      <div class="loader-text">"Replaced our entire water heater in under two hours. The tech explained everything clearly and left the place spotless."</div>
+    </div>
+
+    <div class="loader-bar"></div>
+  </div>
 </div>
+
+<!-- ============================================================
+     GRAIN CANVAS
+============================================================ -->
+<canvas id="grain" aria-hidden="true"></canvas>
+
+<!-- ============================================================
+     PAGE
+============================================================ -->
+<div id="page">
+
+  <!-- NAV -->
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Mister Plumber Inc home">
+        <div class="nav-logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 7c0-1.1-.9-2-2-2H11c-1.1 0-2 .9-2 2v1a1 1 0 0 1-1 1H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-2a1 1 0 0 1-1-1V7Z"/>
+            <circle cx="12" cy="15" r="2"/>
+          </svg>
+        </div>
+        <div class="nav-logo-text">
+          Mister Plumber<span>Inc &middot; Since 1978</span>
+        </div>
+      </a>
+
+      <div class="nav-right">
+        <a href="tel:5613338665" class="nav-phone">(561) 333-8665</a>
+        <a href="#hero-form" class="btn-nav">Get a Free Quote</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" aria-label="Hero">
+    <div class="hero-bg">
+      <img
+        src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1600&q=80"
+        alt="Professional plumber working on pipes in Palm Beach County"
+        loading="eager"
+        fetchpriority="high"
+      >
+    </div>
+
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-badge">Palm Beach County, FL</span>
+        <span class="eyebrow-badge">CFC 056681</span>
+      </div>
+
+      <h1 class="hero-h1">
+        The Plumber<br>
+        Who <span class="accent">Shows Up</span>.
+      </h1>
+
+      <p class="hero-sub">
+        Three generations of South Florida plumbing expertise. Flat-rate pricing, same-day service, and 100+ combined years on the job — serving Palm Beach and Broward counties since 1978.
+      </p>
+
+      <div class="hero-stat">
+        <div class="hero-stat-item">
+          <span class="hero-stat-num" id="hero-counter">4.9</span>
+          <span class="hero-stat-label">Google Rating</span>
+        </div>
+        <div class="hero-stat-item">
+          <span class="hero-stat-num">47</span>
+          <span class="hero-stat-label">Years in Business</span>
+        </div>
+        <div class="hero-stat-item">
+          <span class="hero-stat-num">24/7</span>
+          <span class="hero-stat-label">Emergency Service</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-form-card" id="hero-form">
+        <div class="form-title">Call the Plumber<br>Who Shows Up</div>
+        <p class="form-sub">Free estimate · Same-day available</p>
+
+        <form onsubmit="return false;" novalidate>
+          <div class="form-group">
+            <label for="f-name">Your Name</label>
+            <input type="text" id="f-name" name="name" placeholder="Jane Smith" autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="f-phone">Phone Number</label>
+            <input type="tel" id="f-phone" name="phone" placeholder="(561) 000-0000" autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label for="f-email">Email Address</label>
+            <input type="email" id="f-email" name="email" placeholder="jane@email.com" autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="f-service">What do you need?</label>
+            <select id="f-service" name="service">
+              <option value="">Select a service...</option>
+              <option>Emergency Plumbing</option>
+              <option>Drain Cleaning</option>
+              <option>Water Heater</option>
+              <option>Leak Repair</option>
+              <option>Repiping</option>
+              <option>Fixture Installation</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-form">Request My Free Quote →</button>
+        </form>
+        <p class="form-disclaimer">No obligation. We respond within 1 hour during business hours.</p>
+      </div>
+    </div>
+
+    <!-- SVG Wave Break -->
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,20 C360,48 1080,0 1440,28 L1440,48 L0,48 Z" fill="#0d1c2e"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section id="trust" aria-label="Trust indicators">
+    <div class="trust-grid">
+      <div class="trust-col">
+        <span class="trust-num">47+</span>
+        <span class="trust-label">Years Serving South Florida</span>
+      </div>
+      <div class="trust-col">
+        <span class="trust-num">CFC 056681</span>
+        <span class="trust-label">State Certified · Fully Insured</span>
+      </div>
+      <div class="trust-col">
+        <span class="trust-num">2 Counties</span>
+        <span class="trust-label">Palm Beach &amp; Broward</span>
+      </div>
+      <div class="trust-col">
+        <span class="trust-num">★ 4.9</span>
+        <span class="trust-label">Google Rated · 100+ Reviews</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS CAROUSEL -->
+  <section id="reviews" aria-label="Customer reviews">
+    <div class="reviews-inner">
+      <div class="fade-section">
+        <div class="section-label">What Customers Say</div>
+        <h2 class="section-title">Trusted by Palm Beach Homeowners</h2>
+        <p class="section-sub">Over four decades of five-star work, one job at a time.</p>
+      </div>
+
+      <div class="carousel-wrap fade-section">
+        <div class="carousel-track">
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"My water heater went out on a Friday afternoon. Mister Plumber had a tech at my house within two hours and a brand new unit installed before dinner. I was extremely impressed — pricing was fair and the job was spotless."</p>
+            <div class="review-author">Patricia M. — West Palm Beach, FL · Water Heater Replacement</div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"I've been using Mister Plumber for my commercial properties for over 25 years. None of the other plumbers I've tried over the years have matched their consistency, quality of work, and ability to actually show up when they say they will."</p>
+            <div class="review-author">Robert K. — Boca Raton, FL · Commercial Plumbing</div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Had a slab leak that two other plumbers couldn't diagnose. Mister Plumber's tech found it in 30 minutes, explained the repair clearly, and had it fixed the same day. This is the second time they've bailed me out — they're the only number I call."</p>
+            <div class="review-author">Denise T. — Lake Worth, FL · Leak Detection &amp; Repair</div>
+          </div>
+
+        </div>
+
+        <button class="carousel-btn carousel-prev" aria-label="Previous review">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="carousel-btn carousel-next" aria-label="Next review">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <div class="carousel-dots" aria-label="Review navigation">
+        <button class="carousel-dot active" aria-label="Review 1"></button>
+        <button class="carousel-dot" aria-label="Review 2"></button>
+        <button class="carousel-dot" aria-label="Review 3"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES GRID -->
+  <section id="services" aria-label="Services">
+    <div class="services-inner">
+      <div class="services-header fade-section">
+        <div>
+          <div class="section-label">What We Fix</div>
+          <h2 class="section-title">Full-Service Residential<br>&amp; Commercial Plumbing</h2>
+        </div>
+        <p class="section-sub" style="max-width:360px;">From burst pipes to full repiping — if it involves water, we've seen it and we've fixed it.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <!-- 1: Emergency Plumbing -->
+        <article class="service-card" aria-label="Emergency Plumbing">
+          <img
+            class="service-photo"
+            src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=800&q=80"
+            alt="Emergency plumbing repair"
+            loading="lazy"
+          >
+          <div class="service-body">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1cbac8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            </div>
+            <div class="service-name">Emergency Plumbing</div>
+            <p class="service-desc">Available 24 hours a day, 7 days a week. Burst pipes, sewage backups, and flooding don't wait — and neither do we. Same-day response across Palm Beach and Broward counties.</p>
+          </div>
+        </article>
+
+        <!-- 2: Drain Cleaning -->
+        <article class="service-card" aria-label="Drain Cleaning">
+          <img
+            class="service-photo"
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+            alt="Professional drain cleaning service"
+            loading="lazy"
+          >
+          <div class="service-body">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1cbac8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22V12M12 12C12 12 7 9 7 5a5 5 0 0 1 10 0c0 4-5 7-5 7Z"/>
+              </svg>
+            </div>
+            <div class="service-name">Drain Cleaning &amp; Maintenance</div>
+            <p class="service-desc">Hydro-jetting and camera inspections clear even the most stubborn clogs. We also offer scheduled drain maintenance programs for commercial properties.</p>
+          </div>
+        </article>
+
+        <!-- 3: Water Heaters -->
+        <article class="service-card" aria-label="Water Heaters">
+          <img
+            class="service-photo"
+            src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=800&q=80"
+            alt="Water heater installation and repair"
+            loading="lazy"
+          >
+          <div class="service-body">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1cbac8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v4M4.93 4.93l2.83 2.83M2 12h4M4.93 19.07l2.83-2.83M12 18v4M19.07 19.07l-2.83-2.83M22 12h-4M19.07 4.93l-2.83 2.83"/>
+              </svg>
+            </div>
+            <div class="service-name">Water Heater Service</div>
+            <p class="service-desc">Traditional tank and tankless water heater installation, repair, and replacement. We stock major brands and can often complete same-day installations.</p>
+          </div>
+        </article>
+
+        <!-- 4: Leak Repair -->
+        <article class="service-card" aria-label="Leak Repair">
+          <img
+            class="service-photo"
+            src="https://images.unsplash.com/photo-1620905407737-5f16f60ecf2a?auto=format&fit=crop&w=800&q=80"
+            alt="Leak detection and pipe repair"
+            loading="lazy"
+          >
+          <div class="service-body">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1cbac8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5S12 2 12 2s-3.5 5-4 7.5c-2 1.6-3 3.5-3 5.5a7 7 0 0 0 7 7Z"/>
+              </svg>
+            </div>
+            <div class="service-name">Leak Detection &amp; Repair</div>
+            <p class="service-desc">Electronic leak detection finds hidden slab leaks and wall leaks without unnecessary demolition. Pin-point diagnosis means faster repairs and lower bills.</p>
+          </div>
+        </article>
+
+        <!-- 5: Repiping -->
+        <article class="service-card" aria-label="Repiping">
+          <img
+            class="service-photo"
+            src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?auto=format&fit=crop&w=800&q=80"
+            alt="Whole-home repiping service"
+            loading="lazy"
+          >
+          <div class="service-body">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1cbac8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="20" height="4" rx="2"/><rect x="2" y="14" width="20" height="4" rx="2"/>
+              </svg>
+            </div>
+            <div class="service-name">Whole-Home Repiping</div>
+            <p class="service-desc">Polybutylene and galvanized pipe replacement using copper and PEX. Properly permitted and inspected — protecting your home's value and your family's water quality.</p>
+          </div>
+        </article>
+
+        <!-- 6: Fixture Installation -->
+        <article class="service-card" aria-label="Fixture Installation">
+          <img
+            class="service-photo"
+            src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=80"
+            alt="Kitchen and bathroom fixture installation"
+            loading="lazy"
+          >
+          <div class="service-body">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1cbac8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9h18M3 15h18"/><circle cx="12" cy="12" r="3"/>
+              </svg>
+            </div>
+            <div class="service-name">Fixture Installation</div>
+            <p class="service-desc">Kitchen and bathroom remodeling, faucet and sink replacement, toilet installation, and garbage disposal service. Supply-and-install or installation of your fixtures.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" aria-label="About Mister Plumber Inc">
+    <div class="about-inner">
+      <div class="about-photo-wrap fade-section">
+        <img
+          class="about-photo"
+          src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=800&q=80"
+          alt="Experienced plumber working in Palm Beach County home"
+          loading="lazy"
+        >
+        <div class="about-badge">
+          <span class="about-badge-num">100+</span>
+          <span class="about-badge-text">Combined Years<br>Experience</span>
+        </div>
+      </div>
+
+      <div class="about-content fade-section">
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">Three Generations.<br>One Standard.</h2>
+
+        <p class="about-p">Mister Plumber Inc was founded in West Palm Beach in 1978 — and for nearly half a century, the same commitment to quality and fair pricing has defined every job. What started as one family's trade has grown into three generations of licensed plumbers, with over 100 combined years of experience in South Florida's homes and businesses.</p>
+
+        <p class="about-p" style="margin-top:12px;">Today we serve both Palm Beach and Broward counties with the same values: show up when we say we will, charge what we quoted, and leave the job cleaner than we found it.</p>
+
+        <div class="about-quote">
+          <p>"None of the other plumbers I've tried over the years have matched their consistency, quality of work, and ability to actually show up when they say they will."</p>
+        </div>
+
+        <div class="about-creds">
+          <div class="cred-item">
+            <div class="cred-dot"></div>
+            <span class="cred-text">State Certified — CFC 056681</span>
+          </div>
+          <div class="cred-item">
+            <div class="cred-dot"></div>
+            <span class="cred-text">BBB A+ Rating</span>
+          </div>
+          <div class="cred-item">
+            <div class="cred-dot"></div>
+            <span class="cred-text">Fully Licensed &amp; Insured</span>
+          </div>
+          <div class="cred-item">
+            <div class="cred-dot"></div>
+            <span class="cred-text">221+ Projects in 3 Years</span>
+          </div>
+          <div class="cred-item">
+            <div class="cred-dot"></div>
+            <span class="cred-text">Residential &amp; Commercial</span>
+          </div>
+          <div class="cred-item">
+            <div class="cred-dot"></div>
+            <span class="cred-text">24/7 Emergency Response</span>
+          </div>
+          <div class="cred-item">
+            <div class="cred-dot"></div>
+            <span class="cred-text">City of WPB Approved</span>
+          </div>
+          <div class="cred-item">
+            <div class="cred-dot"></div>
+            <span class="cred-text">Top 5% Florida Contractors</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section id="cta-banner" aria-label="Contact call to action">
+    <div class="cta-inner fade-section">
+      <div class="cta-label">Ready to Get Started?</div>
+      <h2 class="cta-h2">Got a Plumbing Problem?<br>We'll Fix It Today.</h2>
+      <p class="cta-sub">Same-day service available across Palm Beach and Broward counties. No surprise charges — flat-rate pricing on every job.</p>
+      <div class="cta-btns">
+        <a href="tel:5613338665" class="btn-primary">Call (561) 333-8665</a>
+        <a href="#hero-form" class="btn-outline">Request a Free Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer" aria-label="Site footer">
+    <div class="footer-grid">
+
+      <!-- Col 1: Brand -->
+      <div>
+        <div class="footer-logo-row">
+          <div class="footer-logo-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 7c0-1.1-.9-2-2-2H11c-1.1 0-2 .9-2 2v1a1 1 0 0 1-1 1H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-2a1 1 0 0 1-1-1V7Z"/>
+              <circle cx="12" cy="15" r="2"/>
+            </svg>
+          </div>
+          <div class="footer-logo-text">Mister Plumber <span>Inc</span></div>
+        </div>
+        <p class="footer-tagline">Quality Work at Reasonable Prices.<br>Serving South Florida since 1978.</p>
+        <p class="footer-license">State Certified CFC 056681 · Licensed &amp; Insured</p>
+      </div>
+
+      <!-- Col 2: Services -->
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Emergency Plumbing</a></li>
+          <li><a href="#services">Drain Cleaning</a></li>
+          <li><a href="#services">Water Heaters</a></li>
+          <li><a href="#services">Leak Detection</a></li>
+          <li><a href="#services">Whole-Home Repiping</a></li>
+          <li><a href="#services">Fixture Installation</a></li>
+          <li><a href="#services">Commercial Plumbing</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Contact -->
+      <div>
+        <div class="footer-col-title">Contact Us</div>
+
+        <div class="footer-contact-item">
+          <svg class="fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6.07 6.07l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/>
+          </svg>
+          <div class="fc-text">
+            <a href="tel:5613338665">(561) 333-8665</a> — Palm Beach<br>
+            <a href="tel:9547429463">(954) 742-9463</a> — Broward
+          </div>
+        </div>
+
+        <div class="footer-contact-item">
+          <svg class="fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Z"/><polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <div class="fc-text">
+            <a href="mailto:office@mrplumberfl.com">office@mrplumberfl.com</a>
+          </div>
+        </div>
+
+        <div class="footer-contact-item">
+          <svg class="fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          <div class="fc-text">
+            991 Stinson Way #403<br>West Palm Beach, FL 33411
+          </div>
+        </div>
+
+        <div class="footer-contact-item">
+          <svg class="fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <div class="fc-text">
+            Mon–Fri 8am–5pm<br>24/7 Emergency Line
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer bottom -->
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 Mister Plumber Inc. All rights reserved.</p>
+      <p class="footer-lic">State Certified Plumbing Contractor CFC 056681 · Palm Beach + Broward County, FL</p>
+    </div>
+  </footer>
+
+</div><!-- /#page -->
+
+<!-- MOBILE STICKY CTA -->
+<div id="sticky-cta" aria-label="Mobile contact shortcuts">
+  <a href="tel:5613338665" class="sticky-call">Call Now</a>
+  <a href="#hero-form" class="sticky-quote">Free Quote</a>
+</div>
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+(function() {
+  'use strict';
+
+  /* ---- GRAIN CANVAS ---- */
+  var canvas = document.getElementById('grain');
+  var ctx = canvas.getContext('2d');
+  var rafGrain;
+
+  function resizeGrain() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function drawGrain() {
+    var w = canvas.width;
+    var h = canvas.height;
+    var imageData = ctx.createImageData(w, h);
+    var data = imageData.data;
+    for (var i = 0; i < data.length; i += 4) {
+      var val = (Math.random() * 255) | 0;
+      // Tint toward cool blue-white for Mister Plumber's brand
+      data[i]     = val * 0.85; // R
+      data[i + 1] = val * 0.95; // G
+      data[i + 2] = val * 1.0;  // B
+      data[i + 3] = 11;          // Alpha — very subtle
+    }
+    ctx.putImageData(imageData, 0, 0);
+    rafGrain = requestAnimationFrame(drawGrain);
+  }
+
+  resizeGrain();
+  drawGrain();
+  window.addEventListener('resize', resizeGrain, { passive: true });
+
+  /* ---- LOADER ---- */
+  var loader = document.getElementById('loader');
+  var page = document.getElementById('page');
+  var quotes = [
+    document.getElementById('lq-0'),
+    document.getElementById('lq-1'),
+    document.getElementById('lq-2')
+  ];
+  var cur = 0;
+
+  function showQuote(idx) {
+    quotes.forEach(function(q, i) {
+      q.classList.toggle('active', i === idx);
+      // Re-trigger animations by cloning children
+      if (i === idx) {
+        var stars = q.querySelector('.loader-stars');
+        var text = q.querySelector('.loader-text');
+        [stars, text].forEach(function(el) {
+          el.style.animation = 'none';
+          el.offsetHeight; // reflow
+          el.style.animation = '';
+        });
+      }
+    });
+  }
+
+  // Sequence: quote 0 → 1.4s → quote 1 → 1.4s → quote 2 → 1.2s hold → fade out
+  setTimeout(function() { cur = 1; showQuote(1); }, 1400);
+  setTimeout(function() { cur = 2; showQuote(2); }, 2800);
+  setTimeout(function() {
+    loader.style.transition = 'opacity 0.9s ease';
+    loader.style.opacity = '0';
+    page.style.visibility = 'visible';
+    page.style.opacity = '0';
+    page.style.transition = 'opacity 0.5s ease';
+    page.style.opacity = '1';
+    setTimeout(function() {
+      loader.style.display = 'none';
+      // Start hero counter after page is visible
+      startHeroCounter();
+    }, 950);
+  }, 4000);
+
+  /* ---- HERO COUNTER ---- */
+  function startHeroCounter() {
+    var el = document.getElementById('hero-counter');
+    if (!el) return;
+    var target = 4.9;
+    var start = 0;
+    var duration = 2200;
+    var startTime = null;
+
+    function easeOutExpo(t) {
+      return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    }
+
+    function animate(ts) {
+      if (!startTime) startTime = ts;
+      var elapsed = ts - startTime;
+      var progress = Math.min(elapsed / duration, 1);
+      var eased = easeOutExpo(progress);
+      var current = eased * target;
+      el.textContent = current.toFixed(1);
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        el.textContent = target.toFixed(1);
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  /* ---- INTERSECTION OBSERVER — FADE SECTIONS ---- */
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-section').forEach(function(el) {
+    io.observe(el);
+  });
+
+  /* ---- STAGGERED SERVICE CARDS ---- */
+  var cardIo = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var cards = document.querySelectorAll('.service-card');
+        cards.forEach(function(card, i) {
+          setTimeout(function() {
+            card.style.transition = 'opacity 0.5s ease ' + (i * 80) + 'ms, transform 0.5s ease ' + (i * 80) + 'ms';
+            card.classList.add('visible');
+          }, i * 80);
+        });
+        cardIo.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  var servicesGrid = document.querySelector('.services-grid');
+  if (servicesGrid) cardIo.observe(servicesGrid);
+
+  /* ---- REVIEWS CAROUSEL ---- */
+  (function() {
+    var wrap = document.querySelector('.carousel-wrap');
+    if (!wrap) return;
+    var track = wrap.querySelector('.carousel-track');
+    var dots = document.querySelectorAll('.carousel-dot');
+    var n = track.querySelectorAll('.review-card').length;
+    var curIdx = 0;
+    var timer;
+
+    // Touch/swipe
+    var touchStartX = 0;
+    wrap.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    wrap.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) {
+        go(dx < 0 ? curIdx + 1 : curIdx - 1);
+        reset();
+      }
+    }, { passive: true });
+
+    function go(i) {
+      curIdx = ((i % n) + n) % n;
+      track.style.transform = 'translateX(-' + (curIdx * 100) + '%)';
+      dots.forEach(function(d, j) { d.classList.toggle('active', j === curIdx); });
+    }
+
+    wrap.querySelector('.carousel-prev').addEventListener('click', function() { go(curIdx - 1); reset(); });
+    wrap.querySelector('.carousel-next').addEventListener('click', function() { go(curIdx + 1); reset(); });
+    dots.forEach(function(d, i) { d.addEventListener('click', function() { go(i); reset(); }); });
+
+    function reset() {
+      clearInterval(timer);
+      timer = setInterval(function() { go(curIdx + 1); }, 5000);
+    }
+
+    reset();
+  })();
+
+  /* ---- NAV SCROLL OPACITY ---- */
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 20) {
+      nav.style.background = 'rgba(13,28,46,0.98)';
+    } else {
+      nav.style.background = 'rgba(13,28,46,0.92)';
+    }
+  }, { passive: true });
+
+})();
+</script>
 
 </body>
 </html>

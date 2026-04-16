@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teps Pool Service Inc. — Broward County's Pool Experts Since 1989</title>
+  <meta name="description" content="Teps Pool Service Inc. has kept Broward County pools crystal clear since 1989. Licensed, insured, and trusted by thousands of homeowners across South Florida." />
+  <!-- OG -->
+  <meta property="og:title" content="Teps Pool Service Inc. — Broward County's Pool Experts Since 1989" />
+  <meta property="og:description" content="Weekly cleaning, repairs, resurfacing & more. Licensed pool contractor CPC1461098. Serving all of Broward County." />
+  <meta property="og:image" content="https://chrisoliveira.co/p/teps-pool-service/preview.jpg" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─────────────────────────────────────────────
+       TOKENS
+    ───────────────────────────────────────────── */
+    :root {
+      --navy:      #0a1f3a;
+      --navy-mid:  #0d2a4e;
+      --navy-light:#1a3a5c;
+      --teal:      #00b4c8;
+      --teal-dark: #0097aa;
+      --teal-glow: #00d4e8;
+      --white:     #ffffff;
+      --offwhite:  #f0f7fa;
+      --text:      #1c2f45;
+      --muted:     #5a7a94;
+      --line:      #dce9f0;
+      --trust-bg:  #07182e;
+      --accent:    #00b4c8;
+    }
+
+    /* ─────────────────────────────────────────────
+       RESET + BASE
+    ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ─────────────────────────────────────────────
+       LOADER
+    ───────────────────────────────────────────── */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--trust-bg);
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      transition: opacity 0.9s ease;
+    }
+    #loader.fade-out { opacity: 0; pointer-events: none; }
+    .loader-quote {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 680px;
+      animation: loaderFadeIn 0.5s ease forwards;
+    }
+    .loader-quote.active { display: flex; }
+    .loader-stars {
+      color: #f59e0b;
+      font-size: 1.6rem;
+      letter-spacing: 4px;
+      margin-bottom: 22px;
+    }
+    .loader-text {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(1.3rem, 3.2vw, 2.3rem);
+      font-style: italic;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.45;
+    }
+    .loader-logo {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .loader-logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--teal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .loader-logo-mark svg { width: 20px; height: 20px; fill: var(--white); }
+    .loader-logo-name {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.04em;
+    }
+    @keyframes loaderFadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─────────────────────────────────────────────
+       PAGE WRAPPER
+    ───────────────────────────────────────────── */
+    #page { visibility: hidden; }
+    #page.visible { visibility: visible; }
+
+    /* ─────────────────────────────────────────────
+       GRAIN CANVAS
+    ───────────────────────────────────────────── */
+    #grain {
+      position: fixed;
+      inset: 0;
+      z-index: 99998;
+      pointer-events: none;
+      opacity: 0.45;
+    }
+
+    /* ─────────────────────────────────────────────
+       NAV
+    ───────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: 68px;
+      background: rgba(7,24,46,0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,180,200,0.12);
+      display: flex;
+      align-items: center;
+      padding: 0 48px;
+      gap: 16px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+    }
+    .nav-logo-mark {
+      width: 38px;
+      height: 38px;
+      background: var(--teal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-logo-mark svg { width: 20px; height: 20px; fill: var(--white); }
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .nav-logo-name {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo-sub {
+      font-size: 0.7rem;
+      color: var(--teal);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-phone {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--white);
+      letter-spacing: 0.01em;
+    }
+    .nav-phone span { color: var(--teal); }
+    .nav-cta {
+      background: var(--teal);
+      color: var(--navy);
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 10px 22px;
+      border-radius: 6px;
+      border: none;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .nav-cta:hover {
+      background: var(--teal-glow);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0,180,200,0.35);
+    }
+
+    /* ─────────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: calc(100vh - 68px);
+      min-height: 580px;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(7,24,46,0.97) 0%,
+        rgba(7,24,46,0.92) 18%,
+        rgba(7,24,46,0.72) 45%,
+        rgba(7,24,46,0.18) 72%,
+        rgba(7,24,46,0.04) 100%
+      );
+    }
+    .hero-left {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 52px 100px 60px;
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .eyebrow-pill {
+      background: rgba(0,180,200,0.15);
+      border: 1px solid rgba(0,180,200,0.35);
+      color: var(--teal-glow);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+    .hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.4rem, 4.8vw, 4rem);
+      line-height: 1.1;
+      color: var(--white);
+      letter-spacing: -0.025em;
+      margin-bottom: 18px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--teal-glow);
+      position: relative;
+    }
+    .hero h1 em::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--teal);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 1.2s;
+    }
+    #page.visible .hero h1 em::after { transform: scaleX(1); }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.65;
+      max-width: 500px;
+      margin-bottom: 32px;
+    }
+    .hero-stat {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      border-left: 3px solid var(--teal);
+      padding-left: 18px;
+    }
+    .hero-stat-num {
+      font-family: 'Sora', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+    .hero-stat-num span { color: var(--teal-glow); }
+    .hero-stat-label {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.4;
+      font-weight: 500;
+    }
+    .hero-stat-label strong {
+      display: block;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* HERO RIGHT — FORM */
+    .hero-right {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 44px 80px 20px;
+    }
+    .hero-form-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(0,180,200,0.25);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 16px;
+      padding: 36px 32px;
+      width: 100%;
+      max-width: 380px;
+    }
+    .form-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0,180,200,0.15);
+      border: 1px solid rgba(0,180,200,0.3);
+      border-radius: 100px;
+      padding: 4px 12px 4px 6px;
+      margin-bottom: 16px;
+    }
+    .form-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.85); }
+    }
+    .form-badge-text {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--teal-glow);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .hero-form-card h3 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 1.45rem;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .hero-form-card p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .form-group {
+      margin-bottom: 12px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 5px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .form-group input {
+      width: 100%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      padding: 11px 14px;
+      color: var(--white);
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+    }
+    .form-group input::placeholder { color: rgba(255,255,255,0.3); }
+    .form-group input:focus {
+      border-color: var(--teal);
+      background: rgba(0,180,200,0.08);
+    }
+    .form-submit {
+      width: 100%;
+      background: var(--teal);
+      color: var(--navy);
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      padding: 14px;
+      margin-top: 8px;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .form-submit:hover {
+      background: var(--teal-glow);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(0,180,200,0.4);
+    }
+    .form-note {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    /* ─────────────────────────────────────────────
+       WAVE BREAK
+    ───────────────────────────────────────────── */
+    .hero-wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      line-height: 0;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .hero-wave svg {
+      display: block;
+      width: 100%;
+      height: 52px;
+    }
+
+    /* ─────────────────────────────────────────────
+       TRUST BAR
+    ───────────────────────────────────────────── */
+    .trust-bar {
+      background: var(--trust-bg);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .trust-item {
+      padding: 30px 28px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 6px;
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(0,180,200,0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 6px;
+    }
+    .trust-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--teal);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .trust-num {
+      font-family: 'Sora', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--teal-glow);
+      line-height: 1;
+    }
+    .trust-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.02em;
+    }
+    .trust-sub {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ─────────────────────────────────────────────
+       SECTION COMMONS
+    ───────────────────────────────────────────── */
+    .section-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal-dark);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 560px;
+    }
+
+    /* fade-up */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─────────────────────────────────────────────
+       REVIEWS CAROUSEL
+    ───────────────────────────────────────────── */
+    .reviews-section {
+      padding: 100px 0;
+      background: var(--offwhite);
+    }
+    .reviews-header {
+      margin-bottom: 0;
+    }
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 36px 40px;
+    }
+    .review-stars {
+      color: #f59e0b;
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+      letter-spacing: 3px;
+    }
+    .review-text {
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+    .review-author {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .carousel-wrap {
+      position: relative;
+      margin-top: 48px;
+      overflow: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .carousel-track .review-card { flex: 0 0 100%; }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      color: var(--muted);
+      padding: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .carousel-btn:hover { border-color: var(--teal); color: var(--teal); }
+    .carousel-prev { left: 12px; }
+    .carousel-next { right: 12px; }
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #d1d5db;
+      cursor: pointer;
+      border: none;
+      padding: 0;
+      transition: all 0.25s;
+    }
+    .carousel-dot.active {
+      background: var(--accent);
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    /* ─────────────────────────────────────────────
+       SERVICES GRID
+    ───────────────────────────────────────────── */
+    .services-section {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .service-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+      opacity: 0;
+      transform: translateY(32px);
+    }
+    .service-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(10,31,58,0.12);
+    }
+    .service-photo {
+      height: 190px;
+      overflow: hidden;
+      position: relative;
+    }
+    .service-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .service-card:hover .service-photo img { transform: scale(1.05); }
+    .service-body {
+      padding: 22px 24px 26px;
+    }
+    .service-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(0,180,200,0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    .service-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--teal-dark);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .service-name {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─────────────────────────────────────────────
+       ABOUT
+    ───────────────────────────────────────────── */
+    .about-section {
+      padding: 100px 0;
+      background: var(--offwhite);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .about-photo-wrap {
+      position: relative;
+    }
+    .about-photo-wrap img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 24px 64px rgba(10,31,58,0.16), 0 4px 16px rgba(10,31,58,0.08);
+      aspect-ratio: 4/5;
+      object-fit: cover;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -18px;
+      right: -18px;
+      background: var(--trust-bg);
+      border: 2px solid var(--teal);
+      border-radius: 12px;
+      padding: 14px 20px;
+      color: var(--white);
+      font-family: 'Sora', sans-serif;
+      text-align: center;
+    }
+    .about-badge-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--teal-glow);
+      line-height: 1;
+    }
+    .about-badge-text {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-top: 4px;
+    }
+    .about-right { padding-right: 8px; }
+    .about-story {
+      font-size: 1rem;
+      color: #3a5570;
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+    .about-creds {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .cred-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .cred-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    /* ─────────────────────────────────────────────
+       CTA BANNER
+    ───────────────────────────────────────────── */
+    .cta-banner {
+      background: var(--navy);
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(0,180,200,0.08) 0%, transparent 70%);
+    }
+    .cta-inner {
+      position: relative;
+      text-align: center;
+    }
+    .cta-banner h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2rem, 3.6vw, 3rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .cta-banner h2 span { color: var(--teal-glow); }
+    .cta-banner p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 36px;
+    }
+    .cta-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--teal);
+      color: var(--navy);
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 15px 32px;
+      border-radius: 8px;
+      border: none;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover {
+      background: var(--teal-glow);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,180,200,0.4);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 15px 32px;
+      border-radius: 8px;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      letter-spacing: 0.01em;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-outline:hover {
+      border-color: var(--teal);
+      color: var(--teal-glow);
+      transform: translateY(-2px);
+    }
+
+    /* ─────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────── */
+    footer {
+      background: var(--trust-bg);
+      padding: 64px 0 0;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+    }
+    .footer-brand-name {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .footer-brand-tag {
+      font-size: 0.8rem;
+      color: var(--teal);
+      margin-bottom: 16px;
+    }
+    .footer-about-text {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.65;
+    }
+    .footer-heading {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 0.82rem;
+      color: var(--white);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .footer-links a {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--teal); }
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .footer-contact-item svg {
+      width: 15px;
+      height: 15px;
+      stroke: var(--teal);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .footer-contact-item span {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+    .footer-contact-item a {
+      color: rgba(255,255,255,0.5);
+      transition: color 0.2s;
+    }
+    .footer-contact-item a:hover { color: var(--teal); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-lic {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-lic span { color: rgba(0,180,200,0.7); }
+
+    /* ─────────────────────────────────────────────
+       MOBILE STICKY CTA
+    ───────────────────────────────────────────── */
+    .mobile-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      padding: 12px 16px;
+      background: var(--trust-bg);
+      border-top: 1px solid rgba(0,180,200,0.2);
+      gap: 10px;
+    }
+    .mobile-cta a {
+      flex: 1;
+      text-align: center;
+      padding: 13px 0;
+      border-radius: 8px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+    }
+    .mobile-cta-call {
+      background: var(--teal);
+      color: var(--navy);
+    }
+    .mobile-cta-form {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      color: var(--white);
+    }
+
+    /* ─────────────────────────────────────────────
+       HERO ENTRANCE ANIMATION
+    ───────────────────────────────────────────── */
+    .hero-left > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .hero-form-card {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease 0.35s, transform 0.7s ease 0.35s;
+    }
+    #page.visible .hero-left > * { opacity: 1; transform: translateY(0); }
+    #page.visible .hero-form-card { opacity: 1; transform: translateY(0); }
+    #page.visible .hero-left > *:nth-child(1) { transition-delay: 0.05s; }
+    #page.visible .hero-left > *:nth-child(2) { transition-delay: 0.15s; }
+    #page.visible .hero-left > *:nth-child(3) { transition-delay: 0.28s; }
+    #page.visible .hero-left > *:nth-child(4) { transition-delay: 0.42s; }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .hero { grid-template-columns: 1fr 360px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-phone { display: none; }
+      .hero {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: calc(100vh - 68px);
+      }
+      .hero-left { padding: 52px 28px 48px; }
+      .hero-right {
+        padding: 0 28px 80px;
+        justify-content: flex-start;
+      }
+      .hero-form-card { max-width: 100%; }
+      .trust-bar { grid-template-columns: repeat(2, 1fr); }
+      .trust-item:nth-child(2) { border-right: none; }
+      .trust-item:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.1); }
+      .trust-item:nth-child(3),
+      .trust-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.1); }
+      .services-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo-wrap { display: none; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .review-card { padding: 24px 20px; }
+      .mobile-cta { display: flex; }
+      footer { padding-bottom: 80px; }
+    }
+    @media (max-width: 520px) {
+      nav { padding: 0 18px; }
+      .nav-logo-name { font-size: 0.88rem; }
+      .hero-left { padding: 40px 20px 36px; }
+      .hero-right { padding: 0 20px 72px; }
+      .section-inner { padding: 0 20px; }
+      .trust-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ─────────────────────────────────────────────
+       REDUCED MOTION
+    ───────────────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      #loader { display: none; }
+      #page { visibility: visible !important; }
+      #grain { display: none; }
+      .hero-left > *, .hero-form-card, .fade-up, .service-card {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      #page.visible .hero h1 em::after { transform: scaleX(1); }
+      @keyframes pulse { from { opacity: 1; } to { opacity: 1; } }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     LOADER
+══════════════════════════════════════════ -->
+<div id="loader">
+  <div class="loader-quote active" id="lq0">
+    <div class="loader-stars">★★★★★</div>
+    <p class="loader-text">"Been using Tep's for over 8 years — our pool has never looked better. Same crew, same day, every single week."</p>
+  </div>
+  <div class="loader-quote" id="lq1">
+    <div class="loader-stars">★★★★★</div>
+    <p class="loader-text">"They resurfaced our pool and it came out absolutely beautiful. Daniel and the team are real professionals — couldn't be happier."</p>
+  </div>
+  <div class="loader-quote" id="lq2">
+    <div class="loader-stars">★★★★★</div>
+    <p class="loader-text">"Tep came out the same day our pump died — fixed it fast, priced fair. This is the best pool service in South Florida, hands down."</p>
+  </div>
+  <div class="loader-logo">
+    <div class="loader-logo-mark">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 12c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v1c0 1.7-1.3 3-3 3H6c-1.7 0-3-1.3-3-3v-1z"/><path d="M3 12c1.5 1.5 3 2 5 2s3.5-.5 4.5-1.5S14.5 11 16 11s3 .5 5 1.5"/></svg>
+    </div>
+    <span class="loader-logo-name">Teps Pool Service Inc.</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     GRAIN CANVAS
+══════════════════════════════════════════ -->
+<canvas id="grain"></canvas>
+
+<!-- ══════════════════════════════════════════
+     PAGE
+══════════════════════════════════════════ -->
+<div id="page">
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <div class="nav-logo-mark">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 12c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v1c0 1.7-1.3 3-3 3H6c-1.7 0-3-1.3-3-3v-1z"/><path d="M3 12c1.5 1.5 3 2 5 2s3.5-.5 4.5-1.5S14.5 11 16 11s3 .5 5 1.5" stroke="rgba(255,255,255,0.4)" stroke-width="1" fill="none"/></svg>
+      </div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">Teps Pool Service</span>
+        <span class="nav-logo-sub">Broward County · Since 1989</span>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="tel:9545271946" class="nav-phone"><span>(954)</span> 527-1946</a>
+      <a href="#free-inspection" class="nav-cta">Free Inspection</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="free-inspection">
+    <div class="hero-bg">
+      <img
+        src="https://images.unsplash.com/photo-1572782252655-9b157f8e25e2?auto=format&fit=crop&w=1600&q=80"
+        alt="Crystal-clear backyard pool in South Florida"
+        loading="eager"
+      />
+    </div>
+
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-pill">Broward County, FL</span>
+        <span class="eyebrow-pill">Lic. CPC1461098</span>
+      </div>
+      <h1>
+        Nobody Does<br />
+        Pools <em>Better</em><br />
+        Than We Do.
+      </h1>
+      <p class="hero-sub">
+        Serving Broward County since 1989 — fully licensed, insured, and trusted by homeowners across 20+ South Florida communities. Same crew. Same day. Every week.
+      </p>
+      <div class="hero-stat">
+        <div class="hero-stat-num"><span id="rating-counter">0.0</span></div>
+        <div class="hero-stat-label">
+          <strong>★★★★★ Google Rating</strong>
+          Trusted by Broward homeowners
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-form-card">
+        <div class="form-badge">
+          <div class="form-badge-dot"></div>
+          <span class="form-badge-text">Available Today</span>
+        </div>
+        <h3>Get a Free Pool Inspection</h3>
+        <p>No obligation. We'll assess your pool's health and give you a straight answer — no pressure.</p>
+        <form onsubmit="handleForm(event)">
+          <div class="form-group">
+            <label for="f-name">Your Name</label>
+            <input type="text" id="f-name" name="name" placeholder="John Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="f-phone">Phone Number</label>
+            <input type="tel" id="f-phone" name="phone" placeholder="(954) 000-0000" required />
+          </div>
+          <div class="form-group">
+            <label for="f-email">Email Address</label>
+            <input type="email" id="f-email" name="email" placeholder="john@email.com" />
+          </div>
+          <button type="submit" class="form-submit">Request Free Inspection →</button>
+        </form>
+        <p class="form-note">We'll call you within 1 business day. No spam, ever.</p>
+      </div>
+    </div>
+
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,22 C360,52 1080,0 1440,30 L1440,52 L0,52 Z" fill="#07182e"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div class="trust-num">35+</div>
+      <div class="trust-label">Years in Business</div>
+      <div class="trust-sub">Serving Broward since 1989</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="trust-num">Lic.</div>
+      <div class="trust-label">Licensed &amp; Insured</div>
+      <div class="trust-sub">CPC1461098 · Fully bonded</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="trust-num">20+</div>
+      <div class="trust-label">Cities Covered</div>
+      <div class="trust-sub">All of Broward County</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div class="trust-num">4.9</div>
+      <div class="trust-label">Star Rating</div>
+      <div class="trust-sub">Across Google &amp; Yelp</div>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <section class="reviews-section">
+    <div class="section-inner">
+      <div class="reviews-header fade-up">
+        <div class="section-label">What Customers Say</div>
+        <h2 class="section-title">Broward Homeowners Trust Teps</h2>
+        <p class="section-sub">Over 35 years of word-of-mouth referrals. Our customers don't just stick around — they send their neighbors.</p>
+      </div>
+      <div class="carousel-wrap fade-up">
+        <div class="carousel-track">
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"We've been using Tep's for over 8 years, and the previous owners used him for 10 years before us. His crew is thorough, his fees are very reasonable, and he personally comes out for emergency cleanings when we have last-minute guests. You won't find better in Broward."</p>
+            <div class="review-author">Long-Time Customer — Pembroke Pines, FL</div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Daniel did a beautiful job resurfacing our pool and adding the end cap tiles. The whole team was professional, clean, and respectful of our property. It looks like a brand new pool — absolutely worth every penny."</p>
+            <div class="review-author">Kellie P. — Weston, FL · Pool Resurfacing</div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Tep's Pool Service is the best in South Florida. When our salt cell burned out, Tep gave us honest recommendations, explained every option, and installed new piping to make future drainage easier — without charging extra. Always reliable, always honest. We won't use anyone else."</p>
+            <div class="review-author">Homeowner — Coral Springs, FL · Equipment Repair</div>
+          </div>
+
+        </div>
+        <button class="carousel-btn carousel-prev" aria-label="Previous review">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="carousel-btn carousel-next" aria-label="Next review">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+      <div class="carousel-dots">
+        <button class="carousel-dot active" aria-label="Review 1"></button>
+        <button class="carousel-dot" aria-label="Review 2"></button>
+        <button class="carousel-dot" aria-label="Review 3"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section">
+    <div class="section-inner">
+      <div class="fade-up">
+        <div class="section-label">What We Do</div>
+        <h2 class="section-title">Complete Pool Care, Top to Bottom</h2>
+        <p class="section-sub">From weekly maintenance to full resurfacing — Teps handles every aspect of your pool so you can just enjoy it.</p>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-photo">
+            <img
+              src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=800&q=80"
+              alt="Weekly pool cleaning service in Broward County"
+              loading="lazy"
+            />
+          </div>
+          <div class="service-body">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 0 0 6.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 0 0 6.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+            </div>
+            <div class="service-name">Weekly Pool Cleaning</div>
+            <p class="service-desc">Same technician, same day, every week. We skim, brush, vacuum, check chemistry, and backwash — so your pool is always guest-ready.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-photo">
+            <img
+              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+              alt="Pool pump and equipment repair service"
+              loading="lazy"
+            />
+          </div>
+          <div class="service-body">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+            </div>
+            <div class="service-name">Pool Repair &amp; Equipment</div>
+            <p class="service-desc">Pump, filter, heater, salt system, timer, lighting, auto-control systems — we repair and install all major brands, usually same-day.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-photo">
+            <img
+              src="https://images.unsplash.com/photo-1516905041604-7a7e54b6f53c?auto=format&fit=crop&w=800&q=80"
+              alt="Pool chemical balancing service"
+              loading="lazy"
+            />
+          </div>
+          <div class="service-body">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+            </div>
+            <div class="service-name">Chemical Balancing</div>
+            <p class="service-desc">Precise pH, chlorine, alkalinity, and calcium hardness testing — balanced water that's safe, clear, and easy on your pool surface.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-photo">
+            <img
+              src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=800&q=80"
+              alt="Pool resurfacing project in Broward County"
+              loading="lazy"
+            />
+          </div>
+          <div class="service-body">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+            </div>
+            <div class="service-name">Pool Resurfacing</div>
+            <p class="service-desc">Showroom-quality finishes — marcite, quartz, pebble. Complete resurfacing that restores beauty and adds 15–20 years to pool life.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-photo">
+            <img
+              src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80"
+              alt="Green pool rescue and algae removal service"
+              loading="lazy"
+            />
+          </div>
+          <div class="service-body">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22V12m0 0C12 7 8 4 3 3c0 5 3 9 9 9zm0 0c0-5 4-8 9-9 0 5-3 9-9 9z"/></svg>
+            </div>
+            <div class="service-name">Green Pool Rescue</div>
+            <p class="service-desc">Turned green? We diagnose, shock, algaecide treat, and vacuum — returning your pool from swamp to sparkling in 2–3 days.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-photo">
+            <img
+              src="https://images.unsplash.com/photo-1463351145-48e29f8a5d08?auto=format&fit=crop&w=800&q=80"
+              alt="Pool leak detection service in South Florida"
+              loading="lazy"
+            />
+          </div>
+          <div class="service-body">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <div class="service-name">Leak Detection</div>
+            <p class="service-desc">Losing water and not sure why? Our systematic leak detection process finds the problem — structural, plumbing, or equipment — fast.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-photo-wrap fade-up">
+          <img
+            src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80"
+            alt="Professional pool service technician at work in Broward County"
+            loading="lazy"
+          />
+          <div class="about-badge">
+            <div class="about-badge-num">35+</div>
+            <div class="about-badge-text">Years of Service</div>
+          </div>
+        </div>
+        <div class="about-right fade-up">
+          <div class="section-label">Our Story</div>
+          <h2 class="section-title">Built on Honesty,<br />Hard Work &amp; Word of Mouth</h2>
+          <p class="about-story">
+            Teps Pool Service Inc. started in 1989 with a single client — one homeowner who was satisfied enough to tell a neighbor. That neighbor told another, and 35 years later, Teps has grown alongside Broward County itself, becoming one of the most trusted names in South Florida pool care.
+          </p>
+          <p class="about-story">
+            The principles are the same ones passed down from family: honesty, hard work, and treating every customer with respect. When you call Teps, you get the same experienced crew on the same day each week — not a different subcontractor every month. That consistency is what keeps families coming back for generations.
+          </p>
+          <div class="about-creds">
+            <div class="cred-item"><span class="cred-dot"></span> Licensed Pool Contractor — CPC1461098</div>
+            <div class="cred-item"><span class="cred-dot"></span> Fully insured and bonded in Florida</div>
+            <div class="cred-item"><span class="cred-dot"></span> Serving Broward County since 1989</div>
+            <div class="cred-item"><span class="cred-dot"></span> 20+ communities served across South Florida</div>
+            <div class="cred-item"><span class="cred-dot"></span> Repairs, resurfacing, equipment &amp; weekly service</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="section-inner">
+      <div class="cta-inner fade-up">
+        <h2>Your Pool Deserves <span>Better</span> Care.</h2>
+        <p>Join thousands of Broward homeowners who trust Teps Pool Service for weekly cleaning, repairs, and resurfacing.</p>
+        <div class="cta-btns">
+          <a href="tel:9545271946" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call (954) 527-1946
+          </a>
+          <a href="#free-inspection" class="btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+            Request Free Inspection
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="section-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">Teps Pool Service Inc.</div>
+          <div class="footer-brand-tag">Broward County's Pool Experts Since 1989</div>
+          <p class="footer-about-text">Fully licensed and insured pool service company serving all of Broward County. Weekly cleaning, repairs, resurfacing, and equipment installation — done right, every time.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <ul class="footer-links">
+            <li><a href="#free-inspection">Weekly Pool Cleaning</a></li>
+            <li><a href="#free-inspection">Pool Repair &amp; Equipment</a></li>
+            <li><a href="#free-inspection">Chemical Balancing</a></li>
+            <li><a href="#free-inspection">Pool Resurfacing</a></li>
+            <li><a href="#free-inspection">Green Pool Rescue</a></li>
+            <li><a href="#free-inspection">Leak Detection</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Contact</div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span><a href="tel:9545271946">(954) 527-1946</a></span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span><a href="mailto:tepspoolserviceinc@gmail.com">tepspoolserviceinc@gmail.com</a></span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Serving all of Broward County, FL</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Lic. CPC1461098 · Fully Insured</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2025 Teps Pool Service Inc. All rights reserved.</span>
+        <span class="footer-lic">Contractor License <span>CPC1461098</span> · State of Florida</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE STICKY CTA -->
+  <div class="mobile-cta">
+    <a href="tel:9545271946" class="mobile-cta-call">Call Now</a>
+    <a href="#free-inspection" class="mobile-cta-form">Free Inspection</a>
+  </div>
+
+</div><!-- #page -->
+
+<script>
+/* ══════════════════════════════════════════
+   LOADER
+══════════════════════════════════════════ */
+(function(){
+  var quotes = [document.getElementById('lq0'), document.getElementById('lq1'), document.getElementById('lq2')];
+  var current = 0;
+  var loader  = document.getElementById('loader');
+  var page    = document.getElementById('page');
+
+  function showQuote(i) {
+    quotes.forEach(function(q){ q.classList.remove('active'); });
+    quotes[i].classList.add('active');
+  }
+
+  // q0 visible from start; show q1 at 1500ms, q2 at 3000ms, fade at 4400ms
+  setTimeout(function(){ showQuote(1); }, 1500);
+  setTimeout(function(){ showQuote(2); }, 3000);
+  setTimeout(function(){
+    loader.classList.add('fade-out');
+    page.classList.add('visible');
+    // trigger rating counter
+    setTimeout(startCounter, 400);
+  }, 4400);
+  setTimeout(function(){
+    loader.style.display = 'none';
+  }, 5400);
+})();
+
+/* ══════════════════════════════════════════
+   GRAIN CANVAS
+══════════════════════════════════════════ */
+(function(){
+  var c = document.getElementById('grain');
+  var ctx = c.getContext('2d');
+  var w, h;
+
+  function resize(){ w = c.width = window.innerWidth; h = c.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function frame(){
+    var img = ctx.createImageData(w, h);
+    var d   = img.data;
+    for(var i = 0; i < d.length; i += 4){
+      var v = (Math.random() * 255) | 0;
+      d[i]   = v * 0.55;  // teal-tinted: mute R
+      d[i+1] = v * 0.85;  // boost G slightly
+      d[i+2] = v * 1.0;   // full B
+      d[i+3] = 10;
+    }
+    ctx.putImageData(img, 0, 0);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+/* ══════════════════════════════════════════
+   RATING COUNTER
+══════════════════════════════════════════ */
+function startCounter(){
+  var el = document.getElementById('rating-counter');
+  if(!el) return;
+  var start = 0, end = 4.9, dur = 2200, startTime = null;
+
+  function easeOutExpo(t){ return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+
+  function step(ts){
+    if(!startTime) startTime = ts;
+    var progress = Math.min((ts - startTime) / dur, 1);
+    var val = start + (end - start) * easeOutExpo(progress);
+    el.textContent = val.toFixed(1);
+    if(progress < 1) requestAnimationFrame(step);
+    else el.textContent = end.toFixed(1);
+  }
+  requestAnimationFrame(step);
+}
+
+/* ══════════════════════════════════════════
+   INTERSECTION OBSERVER — FADE UP
+══════════════════════════════════════════ */
+(function(){
+  var els = document.querySelectorAll('.fade-up');
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(function(el){ obs.observe(el); });
+})();
+
+/* ══════════════════════════════════════════
+   STAGGERED SERVICE CARDS
+══════════════════════════════════════════ */
+(function(){
+  var cards = document.querySelectorAll('.service-card');
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var idx = Array.from(cards).indexOf(e.target);
+        setTimeout(function(){
+          e.target.classList.add('visible');
+        }, idx * 90);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  cards.forEach(function(c){ obs.observe(c); });
+})();
+
+/* ══════════════════════════════════════════
+   REVIEWS CAROUSEL
+══════════════════════════════════════════ */
+(function(){
+  var wrap  = document.querySelector('.carousel-wrap');
+  if(!wrap) return;
+  var track = wrap.querySelector('.carousel-track');
+  var dots  = document.querySelectorAll('.carousel-dot');
+  var n     = track.querySelectorAll('.review-card').length;
+  var cur   = 0, timer;
+
+  function go(i){
+    cur = (i % n + n) % n;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dots.forEach(function(d, j){ d.classList.toggle('active', j === cur); });
+  }
+  wrap.querySelector('.carousel-prev').addEventListener('click', function(){ go(cur - 1); reset(); });
+  wrap.querySelector('.carousel-next').addEventListener('click', function(){ go(cur + 1); reset(); });
+  dots.forEach(function(d, i){ d.addEventListener('click', function(){ go(i); reset(); }); });
+
+  // touch/swipe support
+  var touchX = null;
+  wrap.addEventListener('touchstart', function(e){ touchX = e.touches[0].clientX; }, { passive: true });
+  wrap.addEventListener('touchend', function(e){
+    if(touchX === null) return;
+    var diff = touchX - e.changedTouches[0].clientX;
+    if(Math.abs(diff) > 40){ go(diff > 0 ? cur + 1 : cur - 1); reset(); }
+    touchX = null;
+  });
+
+  function reset(){ clearInterval(timer); timer = setInterval(function(){ go(cur + 1); }, 5000); }
+  reset();
+})();
+
+/* ══════════════════════════════════════════
+   FORM HANDLER
+══════════════════════════════════════════ */
+function handleForm(e){
+  e.preventDefault();
+  var btn = e.target.querySelector('.form-submit');
+  btn.textContent = '✓ Request Sent!';
+  btn.style.background = '#22c55e';
+  btn.style.color = '#fff';
+  btn.disabled = true;
+}
+</script>
+
+</body>
+</html>

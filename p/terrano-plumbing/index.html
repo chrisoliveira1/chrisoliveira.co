@@ -3,90 +3,1503 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terrano Plumbing & Remodeling | Boca Raton, FL | Since 1994</title>
+  <title>Terrano Plumbing & Remodeling | Palm Beach County, FL | Since 1994</title>
+  <meta name="description" content="South Florida's 1st Licensed Green Plumber. Serving Palm Beach County since 1994. 4.8★ · 1,100+ Google reviews. 24/7 emergency service. License CFC053956.">
+  <meta property="og:title" content="Terrano Plumbing & Remodeling | Palm Beach County, FL">
+  <meta property="og:description" content="30+ years of trusted plumbing & remodeling in Palm Beach County. 4.8★ · 1,100+ reviews. South Florida's 1st Licensed Green Plumber.">
+  <meta property="og:image" content="https://chrisoliveira.co/p/terrano-plumbing/preview.jpg">
+  <meta property="og:type" content="website">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap">
+
   <style>
+    /* ══════════════════════════════════════════════
+       RESET & ROOT
+    ══════════════════════════════════════════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --blue: #0d65c8;
-      --green: #00a700;
-      --white: #ffffff;
-      --dark: #0d0d0d;
+      /* Brand colors — extracted from terranoplumbing.com */
+      --navy:       #0f2d4e;
+      --navy-deep:  #091e33;
+      --blue:       #0d65c8;
+      --blue-mid:   #2563a8;
+      --green:      #00a700;
+      --green-dark: #007a00;
+      --green-dim:  rgba(0,167,0,0.15);
+      --white:      #ffffff;
+      --offwhite:   #f6f8fc;
+      --text:       #1a1f2e;
+      --muted:      #5a6478;
+      --line:       #e2e8f0;
+      --trust-bg:   #0d1e30;
     }
-    body { font-family: 'Inter', sans-serif; color: var(--dark); background: #f2f6fb; }
 
-    nav {
-      position: sticky; top: 0; z-index: 100;
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--offwhite);
+      overflow-x: hidden;
+    }
+
+    #page { visibility: hidden; }
+
+    /* ══════════════════════════════════════════════
+       LOADER
+    ══════════════════════════════════════════════ */
+    #loader {
+      position: fixed; inset: 0; z-index: 99999;
+      background: var(--navy-deep);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 40px 24px;
+      transition: opacity 0.9s ease;
+    }
+    .loader-stars {
+      color: #f59e0b;
+      font-size: 1.4rem;
+      letter-spacing: 5px;
+      margin-bottom: 28px;
+    }
+    .loader-quote {
+      font-family: 'Work Sans', sans-serif;
+      font-size: clamp(1.3rem, 3.2vw, 2.2rem);
+      font-weight: 500;
+      font-style: italic;
+      color: rgba(255,255,255,0.92);
+      text-align: center;
+      max-width: 680px;
+      line-height: 1.5;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .loader-quote.visible { opacity: 1; }
+    .loader-logo {
+      position: absolute;
+      top: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .loader-logo span { color: var(--green); }
+    .loader-progress {
+      position: absolute;
+      bottom: 0; left: 0;
+      height: 3px;
       background: var(--green);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px; height: 68px;
+      transition: width 4.8s linear;
+      width: 0;
     }
-    .nav-logo { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--white); letter-spacing: 0.02em; }
-    .nav-logo span { color: #a8e6a8; }
+
+    @media (prefers-reduced-motion: reduce) {
+      #loader { display: none; }
+      #page { visibility: visible !important; }
+    }
+
+    /* ══════════════════════════════════════════════
+       GRAIN CANVAS
+    ══════════════════════════════════════════════ */
+    #grain {
+      position: fixed; inset: 0;
+      z-index: 99997;
+      pointer-events: none;
+      opacity: 1;
+    }
+
+    /* ══════════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════════ */
+    nav {
+      position: sticky; top: 0; z-index: 1000;
+      height: 68px;
+      background: rgba(9,30,51,0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,167,0,0.25);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+    }
+    .nav-logo {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 19px; font-weight: 800;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--green); }
     .nav-right { display: flex; align-items: center; gap: 20px; }
-    .nav-phone { color: rgba(255,255,255,0.9); font-size: 15px; font-weight: 600; text-decoration: none; }
-    .nav-cta { background: var(--blue); color: var(--white); font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 3px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; }
+    .nav-phone {
+      color: rgba(255,255,255,0.88);
+      font-size: 15px; font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .nav-phone:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--green);
+      color: var(--white);
+      font-weight: 700; font-size: 13px;
+      padding: 10px 22px;
+      border-radius: 4px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--green-dark); }
+    .nav-mobile-toggle {
+      display: none;
+      background: none; border: none;
+      color: var(--white);
+      font-size: 24px; cursor: pointer;
+      padding: 4px;
+    }
 
-    .hero { position: relative; height: calc(100vh - 68px); overflow: hidden; display: flex; align-items: center; }
-    .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(13,101,200,0.93) 40%, rgba(0,167,0,0.55)); }
-    .hero-content { position: relative; z-index: 1; padding: 0 72px; max-width: 700px; }
-    .hero-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #a8e6a8; margin-bottom: 18px; }
-    .hero-h1 { font-family: 'Playfair Display', serif; font-size: clamp(46px, 4.8vw, 72px); font-weight: 900; line-height: 1.08; color: var(--white); margin-bottom: 20px; }
-    .hero-h1 em { color: #a8e6a8; font-style: italic; }
-    .hero-rule { width: 56px; height: 4px; background: #a8e6a8; border-radius: 2px; margin-bottom: 22px; }
-    .hero-sub { font-size: 18px; line-height: 1.65; color: rgba(255,255,255,0.85); max-width: 500px; margin-bottom: 38px; }
-    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-    .btn-primary { background: var(--blue); color: var(--white); font-weight: 700; font-size: 15px; padding: 16px 32px; border-radius: 3px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.03em; }
-    .btn-ghost { color: var(--white); font-weight: 600; font-size: 15px; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.4); padding-bottom: 2px; }
+    /* ══════════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      height: calc(100vh - 68px);
+      min-height: 560px;
+      display: grid;
+      grid-template-columns: 1fr 440px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(9,30,51,0.93) 0%,
+        rgba(9,30,51,0.82) 48%,
+        rgba(9,30,51,0.55) 100%
+      );
+    }
+    .hero-left {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: 60px 56px 80px 72px;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(0,167,0,0.18);
+      border: 1px solid rgba(0,167,0,0.4);
+      color: #5de05d;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 3px;
+      margin-bottom: 28px;
+      width: fit-content;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.6s ease 0.2s forwards;
+    }
+    .hero-h1 {
+      font-family: 'Work Sans', sans-serif;
+      font-size: clamp(42px, 4.8vw, 72px);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.65s ease 0.35s forwards;
+    }
+    .hero-h1 em {
+      color: var(--green);
+      font-style: normal;
+      display: block;
+    }
+    .hero-divider {
+      width: 60px; height: 4px;
+      background: var(--green);
+      border-radius: 2px;
+      margin-bottom: 22px;
+      opacity: 0;
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: growLine 0.5s ease 0.55s forwards;
+    }
+    .hero-sub {
+      font-size: 17px; line-height: 1.7;
+      color: rgba(255,255,255,0.78);
+      max-width: 500px;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.6s ease 0.65s forwards;
+    }
+    .hero-stat {
+      display: flex; align-items: center; gap: 0;
+      border-left: 3px solid var(--green);
+      padding: 12px 20px;
+      background: rgba(0,167,0,0.1);
+      border-radius: 0 6px 6px 0;
+      width: fit-content;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.6s ease 0.8s forwards;
+    }
+    .hero-stat-num {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 3rem; font-weight: 900;
+      color: var(--green);
+      line-height: 1;
+      margin-right: 14px;
+    }
+    .hero-stat-label {
+      display: flex; flex-direction: column;
+      gap: 2px;
+    }
+    .hero-stat-stars { color: #f59e0b; font-size: 0.95rem; letter-spacing: 2px; }
+    .hero-stat-text { color: rgba(255,255,255,0.75); font-size: 12px; font-weight: 500; line-height: 1.3; }
 
-    .trust-bar { background: var(--blue); display: grid; grid-template-columns: repeat(4, 1fr); }
-    .trust-item { padding: 24px 20px; text-align: center; border-right: 1px solid rgba(255,255,255,0.2); }
+    /* Hero right — lead form */
+    .hero-right {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      padding: 40px 40px 80px 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.7s ease 0.5s forwards;
+    }
+    .lead-form {
+      background: rgba(9,30,51,0.88);
+      border: 1px solid rgba(0,167,0,0.3);
+      border-radius: 12px;
+      padding: 36px 32px 32px;
+      width: 100%;
+      max-width: 380px;
+      backdrop-filter: blur(8px);
+    }
+    .lead-form-title {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 20px; font-weight: 800;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 6px;
+    }
+    .lead-form-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .form-group {
+      margin-bottom: 14px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 11px; font-weight: 700;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+      color: var(--white);
+      font-size: 15px;
+      padding: 12px 14px;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s, background 0.2s;
+      -webkit-appearance: none;
+    }
+    .form-group input::placeholder { color: rgba(255,255,255,0.3); }
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: rgba(0,167,0,0.6);
+      background: rgba(255,255,255,0.1);
+    }
+    .form-group select { cursor: pointer; }
+    .form-group select option { background: #0f2d4e; color: var(--white); }
+    .form-submit {
+      width: 100%;
+      background: var(--green);
+      color: var(--white);
+      font-family: 'Work Sans', sans-serif;
+      font-size: 15px; font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .form-submit:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .form-disclaimer {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
+    /* Hero Wave */
+    .hero-wave {
+      position: absolute; bottom: 0; left: 0;
+      width: 100%; line-height: 0; z-index: 3;
+      pointer-events: none;
+    }
+    .hero-wave svg { display: block; width: 100%; height: 52px; }
+
+    /* ══════════════════════════════════════════════
+       TRUST BAR
+    ══════════════════════════════════════════════ */
+    .trust-bar {
+      background: var(--trust-bg);
+      padding: 0;
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .trust-item {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 32px 24px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
     .trust-item:last-child { border-right: none; }
-    .trust-label-top { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--white); line-height: 1; margin-bottom: 4px; }
-    .trust-label-bot { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.8); }
+    .trust-icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: var(--green);
+    }
+    .trust-num {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 2rem; font-weight: 900;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .trust-label {
+      font-size: 12px; font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .trust-sub {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 3px;
+    }
 
-    @media (max-width: 768px) {
-      nav { padding: 0 20px; }
-      .hero-content { padding: 0 24px; }
-      .trust-bar { grid-template-columns: repeat(2, 1fr); }
+    /* ══════════════════════════════════════════════
+       SECTIONS SHARED
+    ══════════════════════════════════════════════ */
+    section { padding: 96px 48px; }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-size: 11px; font-weight: 700;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Work Sans', sans-serif;
+      font-size: clamp(30px, 3.5vw, 46px);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.1;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 580px;
+      margin-bottom: 56px;
+    }
+
+    /* ══════════════════════════════════════════════
+       REVIEWS CAROUSEL
+    ══════════════════════════════════════════════ */
+    .reviews-section {
+      background: var(--offwhite);
+    }
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 36px 40px;
+    }
+    .review-stars { color: #f59e0b; font-size: 1.1rem; margin-bottom: 14px; letter-spacing: 3px; }
+    .review-text {
+      font-size: 1.05rem; color: var(--text);
+      line-height: 1.75; margin-bottom: 18px;
+      font-style: italic;
+    }
+    .review-author { font-size: .85rem; font-weight: 700; color: var(--muted); }
+    .carousel-wrap { position: relative; margin-top: 48px; overflow: hidden; }
+    .carousel-track { display: flex; transition: transform .45s cubic-bezier(.4,0,.2,1); }
+    .carousel-track .review-card { flex: 0 0 100%; }
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: 50%; width: 44px; height: 44px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      z-index: 2; color: var(--muted); padding: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .carousel-btn:hover { border-color: var(--green); color: var(--green); }
+    .carousel-prev { left: 12px; }
+    .carousel-next { right: 12px; }
+    .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 16px; }
+    .carousel-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #d1d5db; cursor: pointer;
+      border: none; padding: 0;
+      transition: all .25s;
+    }
+    .carousel-dot.active { background: var(--green); width: 24px; border-radius: 4px; }
+
+    /* ══════════════════════════════════════════════
+       SERVICES GRID
+    ══════════════════════════════════════════════ */
+    .services-section { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .service-card {
+      background: var(--offwhite);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    .service-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.25s, border-color 0.2s;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(9,30,51,0.12);
+      border-color: rgba(0,167,0,0.3);
+    }
+    .service-photo {
+      width: 100%; height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .service-body { padding: 24px; }
+    .service-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .service-name {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 17px; font-weight: 800;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+    .service-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .service-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--green); font-size: 13px; font-weight: 700;
+      text-decoration: none; margin-top: 14px;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      transition: gap 0.2s;
+    }
+    .service-link:hover { gap: 10px; }
+
+    /* ══════════════════════════════════════════════
+       ABOUT
+    ══════════════════════════════════════════════ */
+    .about-section { background: var(--offwhite); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .about-photo-wrap { position: relative; }
+    .about-photo {
+      width: 100%; border-radius: 12px;
+      box-shadow: 0 24px 64px rgba(9,30,51,0.16), 0 4px 16px rgba(9,30,51,0.1);
+      display: block;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      background: var(--navy);
+      border: 2px solid var(--green);
+      color: var(--white);
+      padding: 18px 22px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(9,30,51,0.25);
+    }
+    .about-badge-num {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 2.4rem; font-weight: 900;
+      color: var(--green);
+      line-height: 1;
+    }
+    .about-badge-text {
+      font-size: 11px; font-weight: 700;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 4px;
+    }
+    .about-right { padding-bottom: 20px; }
+    .about-quote {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 1.25rem; font-weight: 600;
+      font-style: italic;
+      color: var(--navy);
+      line-height: 1.6;
+      border-left: 4px solid var(--green);
+      padding-left: 20px;
+      margin: 28px 0;
+    }
+    .about-body {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+    .cred-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      list-style: none;
+    }
+    .cred-list li {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 13px; font-weight: 600;
+      color: var(--navy);
+    }
+    .cred-list li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ══════════════════════════════════════════════
+       CTA BANNER
+    ══════════════════════════════════════════════ */
+    .cta-section {
+      background: var(--navy-deep);
+      padding: 80px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(0,167,0,0.12) 0%, transparent 70%);
+    }
+    .cta-inner { position: relative; z-index: 1; }
+    .cta-title {
+      font-family: 'Work Sans', sans-serif;
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 900;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+    .cta-title span { color: var(--green); }
+    .cta-sub {
+      font-size: 17px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+    .cta-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .btn-green {
+      background: var(--green);
+      color: var(--white);
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800; font-size: 15px;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 18px 40px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-green:hover { background: var(--green-dark); transform: translateY(-2px); }
+    .btn-outline-white {
+      background: transparent;
+      color: var(--white);
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700; font-size: 15px;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 17px 38px;
+      border-radius: 6px;
+      border: 2px solid rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .btn-outline-white:hover { border-color: rgba(255,255,255,0.7); transform: translateY(-2px); }
+
+    /* ══════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════ */
+    footer {
+      background: var(--navy-deep);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 64px 48px 40px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 48px;
+    }
+    .footer-logo {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 18px; font-weight: 800;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 14px;
+    }
+    .footer-logo span { color: var(--green); }
+    .footer-tagline {
+      font-size: 13px; font-style: italic;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .footer-contact { display: flex; flex-direction: column; gap: 8px; }
+    .footer-contact a {
+      color: rgba(255,255,255,0.6);
+      font-size: 14px; text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-contact a:hover { color: var(--green); }
+    .footer-social { display: flex; gap: 10px; margin-top: 18px; }
+    .social-btn {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 14px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .social-btn:hover { background: var(--green); color: var(--white); }
+    .footer-col h4 {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 13px; font-weight: 800;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links li a {
+      color: rgba(255,255,255,0.55);
+      font-size: 14px; text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links li a:hover { color: var(--green); }
+    .footer-license {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      margin-top: 20px;
+      line-height: 1.5;
+    }
+
+    .footer-bottom {
+      background: rgba(0,0,0,0.3);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-bottom-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 18px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-legal {
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ══════════════════════════════════════════════
+       MOBILE STICKY CTA
+    ══════════════════════════════════════════════ */
+    .mobile-sticky {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      z-index: 9998;
+      background: var(--navy-deep);
+      border-top: 2px solid var(--green);
+      padding: 12px 16px;
+      gap: 10px;
+    }
+    .mobile-sticky a {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 10px;
+      border-radius: 6px;
+      font-family: 'Work Sans', sans-serif;
+      font-size: 14px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .mobile-call {
+      background: var(--green);
+      color: var(--white);
+    }
+    .mobile-quote {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+
+    /* ══════════════════════════════════════════════
+       ANIMATIONS
+    ══════════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes growLine {
+      from { opacity: 0; transform: scaleX(0); }
+      to   { opacity: 1; transform: scaleX(1); }
+    }
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ══════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .hero { grid-template-columns: 1fr 380px; }
+      .hero-left { padding: 48px 40px 80px 48px; }
+    }
+    @media (max-width: 960px) {
+      nav { padding: 0 24px; }
+      .nav-phone { display: none; }
+      .nav-mobile-toggle { display: block; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: calc(100vh - 68px);
+      }
+      .hero-left {
+        padding: 56px 24px 40px;
+        min-height: 60vh;
+      }
+      .hero-right {
+        padding: 0 24px 40px;
+        background: rgba(9,30,51,0.6);
+      }
+
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-item:nth-child(2) { border-right: none; }
+
+      section { padding: 64px 24px; }
+
+      .services-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-badge { bottom: 12px; right: 12px; }
+
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-inner > :first-child { grid-column: 1 / -1; }
+
+      .mobile-sticky { display: flex; }
+      body { padding-bottom: 72px; }
+    }
+    @media (max-width: 640px) {
+      .hero-h1 { font-size: 36px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      .review-card { padding: 24px 20px; }
+      .cred-list { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-eyebrow, .hero-h1, .hero-divider, .hero-sub,
+      .hero-stat, .hero-right, .fade-up, .service-card {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      #grain { display: none; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo"><span>Terrano</span> Plumbing</div>
+<!-- ══════════════════════════════════
+     LOADER
+══════════════════════════════════ -->
+<div id="loader">
+  <div class="loader-logo">Terrano <span>Plumbing</span></div>
+  <div class="loader-stars">★★★★★</div>
+  <p class="loader-quote" id="loaderQuote"></p>
+  <div class="loader-progress" id="loaderProgress"></div>
+</div>
+
+<!-- ══════════════════════════════════
+     GRAIN CANVAS
+══════════════════════════════════ -->
+<canvas id="grain" aria-hidden="true"></canvas>
+
+<!-- ══════════════════════════════════
+     PAGE
+══════════════════════════════════ -->
+<div id="page">
+
+<!-- NAV -->
+<nav aria-label="Main navigation">
+  <a href="#" class="nav-logo">Terrano <span>Plumbing</span></a>
   <div class="nav-right">
-    <a href="tel:5614773197" class="nav-phone">(561) 477-3197</a>
-    <a href="tel:5614773197" class="nav-cta">Free Estimate</a>
+    <a href="tel:5614773197" class="nav-phone">☎ (561) 477-3197</a>
+    <a href="#quote-form" class="nav-cta">Free Quote</a>
+    <button class="nav-mobile-toggle" aria-label="Menu" onclick="this.closest('nav').classList.toggle('open')">&#9776;</button>
   </div>
 </nav>
 
-<section class="hero">
-  <img class="hero-bg" src="../../assets/samples/Plumbers/65c08d28a657a16e0d067f50_63ae00d11ee10938936b4e26_image5.webp" alt="Terrano Plumbing expert service in Boca Raton" loading="eager">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Boca Raton, FL &nbsp;·&nbsp; Ross Terrano &nbsp;·&nbsp; Since 1994</div>
-    <h1 class="hero-h1">Boca Raton's<br><em>Trusted</em><br>Plumber Since 1994.</h1>
-    <div class="hero-rule"></div>
-    <p class="hero-sub">Ross Terrano communicates every step of the way, shows up on time, and does the work right. Boca families have counted on him for over 30 years.</p>
-    <div class="hero-actions">
-      <a href="tel:5614773197" class="btn-primary">Get a Free Estimate</a>
-      <a href="tel:5614773197" class="btn-ghost">Call Ross</a>
+<!-- HERO -->
+<section class="hero" aria-label="Hero">
+  <img
+    src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1600&q=80"
+    alt="Professional plumber working on pipes in Palm Beach County"
+    class="hero-bg"
+    loading="eager"
+  >
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
+      Palm Beach County · License CFC053956
+    </div>
+    <h1 class="hero-h1">
+      Plumbing Done<br>
+      <em>Right. Every Time.</em>
+    </h1>
+    <div class="hero-divider" aria-hidden="true"></div>
+    <p class="hero-sub">
+      South Florida's 1st Licensed Green Plumber — serving Palm Beach County with EPA WaterSense solutions, flat-rate pricing, and 24/7 emergency response since 1994.
+    </p>
+    <div class="hero-stat" aria-label="4.8 star rating from over 1,100 Google reviews">
+      <span class="hero-stat-num" id="ratingCounter">0.0</span>
+      <div class="hero-stat-label">
+        <span class="hero-stat-stars">★★★★★</span>
+        <span class="hero-stat-text">4.8 Google Rating · 1,100+ Reviews</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right" id="quote-form">
+    <div class="lead-form">
+      <div class="lead-form-title">Get a Free Plumbing Quote</div>
+      <p class="lead-form-sub">No service fee for estimates. A licensed tech calls you within 2 hours.</p>
+      <form onsubmit="handleFormSubmit(event)" novalidate>
+        <div class="form-group">
+          <label for="f-name">Your Name</label>
+          <input type="text" id="f-name" name="name" placeholder="John Smith" required>
+        </div>
+        <div class="form-group">
+          <label for="f-phone">Phone Number</label>
+          <input type="tel" id="f-phone" name="phone" placeholder="(561) 000-0000" required>
+        </div>
+        <div class="form-group">
+          <label for="f-email">Email Address</label>
+          <input type="email" id="f-email" name="email" placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label for="f-service">Service Needed</label>
+          <select id="f-service" name="service">
+            <option value="">Select a service...</option>
+            <option>Plumbing Repair</option>
+            <option>Drain Cleaning</option>
+            <option>Water Heater</option>
+            <option>Bathroom Remodeling</option>
+            <option>Pipe Repiping</option>
+            <option>Leak Detection</option>
+            <option>Emergency Service</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <button type="submit" class="form-submit">Get My Free Quote →</button>
+      </form>
+      <p class="form-disclaimer">Your info is never sold or shared. Palm Beach County's trusted plumber since 1994.</p>
+    </div>
+  </div>
+
+  <div class="hero-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,22 C360,52 1080,0 1440,30 L1440,52 L0,52 Z" fill="#0d1e30"/>
+    </svg>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar" role="complementary" aria-label="Trust indicators">
+  <div class="trust-grid">
+    <div class="trust-item fade-up">
+      <div class="trust-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <div class="trust-num">30+</div>
+      <div class="trust-label">Years Serving Florida</div>
+      <div class="trust-sub">Family Business Since 1994</div>
+    </div>
+    <div class="trust-item fade-up">
+      <div class="trust-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="trust-num">A+</div>
+      <div class="trust-label">Licensed & Insured</div>
+      <div class="trust-sub">CFC053956 · BBB Accredited</div>
+    </div>
+    <div class="trust-item fade-up">
+      <div class="trust-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="trust-num">2</div>
+      <div class="trust-label">County Service Area</div>
+      <div class="trust-sub">Palm Beach + Broward</div>
+    </div>
+    <div class="trust-item fade-up">
+      <div class="trust-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div class="trust-num">4.8</div>
+      <div class="trust-label">Google Rating</div>
+      <div class="trust-sub">1,100+ Verified Reviews</div>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEWS CAROUSEL -->
+<section class="reviews-section" aria-label="Customer reviews">
+  <div class="section-inner">
+    <div class="fade-up">
+      <div class="section-label">What Customers Say</div>
+      <h2 class="section-title">Palm Beach's Most Trusted Plumber</h2>
+      <p class="section-sub">Over 1,100 five-star reviews on Google. Here's what neighbors say about Terrano Plumbing & Remodeling.</p>
+    </div>
+    <div class="carousel-wrap fade-up" role="region" aria-label="Customer reviews carousel">
+      <div class="carousel-track">
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p class="review-text">"A+ experience from start to finish. The installation team moved what was necessary and put it back exactly as it was — the area was left cleaner than before they arrived. I won't use anyone else for plumbing."</p>
+          <div class="review-author">Google Review — Palm Beach County Homeowner · Water Heater Installation</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p class="review-text">"Terrano Plumbing is the first plumbing company I have complete trust in. Punctual, personable, and professional — every issue was resolved in under two hours. Highly recommend to anyone in South Florida."</p>
+          <div class="review-author">Google Review — Boca Raton Homeowner · Plumbing Repair</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p class="review-text">"Ross and his team pay attention to every detail and do quality work. Very professional service, reliable, top-quality workmanship, and fair pricing. You can tell they genuinely care about doing the job right."</p>
+          <div class="review-author">Google Review — Wellington, FL Homeowner · Pipe Repair</div>
+        </div>
+      </div>
+      <button class="carousel-btn carousel-prev" aria-label="Previous review">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-btn carousel-next" aria-label="Next review">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="carousel-dots" role="tablist" aria-label="Review navigation">
+      <button class="carousel-dot active" aria-label="Review 1" role="tab"></button>
+      <button class="carousel-dot" aria-label="Review 2" role="tab"></button>
+      <button class="carousel-dot" aria-label="Review 3" role="tab"></button>
     </div>
   </div>
 </section>
 
-<div class="trust-bar">
-  <div class="trust-item"><div class="trust-label-top">Since</div><div class="trust-label-bot">1994</div></div>
-  <div class="trust-item"><div class="trust-label-top">Owner</div><div class="trust-label-bot">Operated</div></div>
-  <div class="trust-item"><div class="trust-label-top">Free</div><div class="trust-label-bot">Estimates</div></div>
-  <div class="trust-item"><div class="trust-label-top">100%</div><div class="trust-label-bot">Licensed &amp; Insured</div></div>
+<!-- SERVICES GRID -->
+<section class="services-section" aria-label="Services">
+  <div class="section-inner">
+    <div class="fade-up">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Full-Service Plumbing &amp; Remodeling</h2>
+      <p class="section-sub">From emergency repairs to complete bathroom transformations — licensed, insured, and backed by 30 years of Palm Beach experience.</p>
+    </div>
+    <div class="services-grid" role="list">
+      <div class="service-card" role="listitem">
+        <img
+          src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=800&q=80"
+          alt="Plumber repairing pipes in a Palm Beach County home"
+          class="service-photo"
+          loading="lazy"
+        >
+        <div class="service-body">
+          <span class="service-icon" aria-hidden="true">🔧</span>
+          <div class="service-name">Plumbing Repair</div>
+          <p class="service-desc">Leaky faucets, burst pipes, running toilets, pressure problems — diagnosed and fixed right the first time with upfront flat-rate pricing, no surprises on the bill.</p>
+          <a href="tel:5614773197" class="service-link">Call for Service →</a>
+        </div>
+      </div>
+      <div class="service-card" role="listitem">
+        <img
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+          alt="Professional drain cleaning service in South Florida"
+          class="service-photo"
+          loading="lazy"
+        >
+        <div class="service-body">
+          <span class="service-icon" aria-hidden="true">🌀</span>
+          <div class="service-name">Drain Cleaning</div>
+          <p class="service-desc">Hydro-jetting and video line inspection to clear blockages others can't. We diagnose the cause, not just the symptom — so slow drains stay clear longer.</p>
+          <a href="tel:5614773197" class="service-link">Call for Service →</a>
+        </div>
+      </div>
+      <div class="service-card" role="listitem">
+        <img
+          src="https://images.unsplash.com/photo-1534889156835-fda6c89966d1?auto=format&fit=crop&w=800&q=80"
+          alt="Water heater installation by licensed plumber"
+          class="service-photo"
+          loading="lazy"
+        >
+        <div class="service-body">
+          <span class="service-icon" aria-hidden="true">🔥</span>
+          <div class="service-name">Water Heaters</div>
+          <p class="service-desc">Electric, gas, tankless, and hybrid heat pump water heaters — sales, installation, and service. EPA WaterSense certified. We spec the most energy-efficient option for your home.</p>
+          <a href="tel:5614773197" class="service-link">Call for Service →</a>
+        </div>
+      </div>
+      <div class="service-card" role="listitem">
+        <img
+          src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=80"
+          alt="Beautiful bathroom remodel in Boca Raton home"
+          class="service-photo"
+          loading="lazy"
+        >
+        <div class="service-body">
+          <span class="service-icon" aria-hidden="true">🛁</span>
+          <div class="service-name">Bathroom Remodeling</div>
+          <p class="service-desc">Complete bathroom and kitchen remodels with full plumbing rough-in, shower pan installation, and fixture upgrades. Fully permitted, inspected, and up to South Florida code.</p>
+          <a href="tel:5614773197" class="service-link">Call for Service →</a>
+        </div>
+      </div>
+      <div class="service-card" role="listitem">
+        <img
+          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
+          alt="Pipe repiping service by certified plumber"
+          class="service-photo"
+          loading="lazy"
+        >
+        <div class="service-body">
+          <span class="service-icon" aria-hidden="true">🔩</span>
+          <div class="service-name">Pipe Repiping</div>
+          <p class="service-desc">Full-home Uponor PEX repiping for aging copper or galvanized systems. Lower water bills, better pressure, no more pinhole leaks — and warrantied Uponor fittings built to last.</p>
+          <a href="tel:5614773197" class="service-link">Call for Service →</a>
+        </div>
+      </div>
+      <div class="service-card" role="listitem">
+        <img
+          src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=800&q=80"
+          alt="Leak detection specialist using infrared imaging"
+          class="service-photo"
+          loading="lazy"
+        >
+        <div class="service-body">
+          <span class="service-icon" aria-hidden="true">🔍</span>
+          <div class="service-name">Leak Detection</div>
+          <p class="service-desc">Infrared thermal imaging and video line inspection to find hidden leaks behind walls and under slabs before they cause catastrophic damage. Non-invasive, pinpoint accurate.</p>
+          <a href="tel:5614773197" class="service-link">Call for Service →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" aria-label="About Terrano Plumbing">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-photo-wrap fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80"
+          alt="Experienced plumbing technician at work — Terrano Plumbing & Remodeling"
+          class="about-photo"
+          loading="lazy"
+        >
+        <div class="about-badge" aria-hidden="true">
+          <div class="about-badge-num">1994</div>
+          <div class="about-badge-text">Est. in South Florida</div>
+        </div>
+      </div>
+      <div class="about-right fade-up">
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">South Florida's First<br>Green Plumber</h2>
+        <blockquote class="about-quote">"Quality craftsmanship, professionalism, and customer satisfaction — that's what Terrano Plumbing stands for, every single job."</blockquote>
+        <p class="about-body">
+          Terrano Plumbing &amp; Remodeling has been a family business serving Palm Beach County and Broward County since 1994. As South Florida's pioneering Licensed Green Plumber, we were founding members of the Green Plumbers USA licensing program — earning Green Plumber of the Year honors in both 2012 and 2014.
+        </p>
+        <p class="about-body">
+          Every job — from a dripping faucet to a full bathroom remodel — is handled by our licensed, background-checked technicians. We are EPA WaterSense Partners, EPA Lead-Safe Certified, and proud recipients of Angie's List Super Service Awards from 2015 through 2020.
+        </p>
+        <ul class="cred-list" aria-label="Credentials and certifications">
+          <li>Licensed Green Plumber · CFC053956</li>
+          <li>BBB A+ Accredited Since 2009</li>
+          <li>EPA WaterSense Partner</li>
+          <li>EPA Lead-Safe Certified Firm</li>
+          <li>Angie's List Super Service Award</li>
+          <li>Green Plumber of the Year ('12, '14)</li>
+          <li>PHCC Member</li>
+          <li>USGBC Affiliated</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-section" aria-label="Call to action">
+  <div class="cta-inner">
+    <div class="fade-up">
+      <h2 class="cta-title">Ready to <span>Go Green, Save Green?</span></h2>
+      <p class="cta-sub">Join 1,100+ Palm Beach County homeowners who trust Terrano. Same-day service available. No service fee for estimates.</p>
+      <div class="cta-buttons">
+        <a href="tel:5614773197" class="btn-green">☎ Call (561) 477-3197</a>
+        <a href="#quote-form" class="btn-outline-white">Get a Free Quote Online</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer aria-label="Site footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Terrano <span>Plumbing</span></div>
+      <p class="footer-tagline">"Go Green, Save Some Green" — South Florida's 1st Licensed Green Plumber</p>
+      <div class="footer-contact" aria-label="Contact information">
+        <a href="tel:5614773197">☎ (561) 477-3197</a>
+        <a href="#">11444 Clear Creek Pl, Boca Raton, FL 33428</a>
+        <a href="#">Available 24/7 for Emergencies</a>
+      </div>
+      <div class="footer-social" aria-label="Social media links">
+        <a href="https://www.facebook.com/TerranoPlumbing" class="social-btn" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://twitter.com/TerranoPlumbing" class="social-btn" target="_blank" rel="noopener" aria-label="Twitter/X">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/terranoplumbingandremodeling" class="social-btn" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+      </div>
+      <p class="footer-license">License: CFC053956 · Fully Licensed &amp; Insured in Florida</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul class="footer-links">
+        <li><a href="tel:5614773197">Plumbing Repair</a></li>
+        <li><a href="tel:5614773197">Drain Cleaning</a></li>
+        <li><a href="tel:5614773197">Water Heaters</a></li>
+        <li><a href="tel:5614773197">Bathroom Remodeling</a></li>
+        <li><a href="tel:5614773197">Pipe Repiping</a></li>
+        <li><a href="tel:5614773197">Leak Detection</a></li>
+        <li><a href="tel:5614773197">24/7 Emergency Service</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Service Areas</h4>
+      <ul class="footer-links">
+        <li><a href="tel:5614773197">Boca Raton</a></li>
+        <li><a href="tel:5614773197">Boynton Beach</a></li>
+        <li><a href="tel:5614773197">Delray Beach</a></li>
+        <li><a href="tel:5614773197">Wellington</a></li>
+        <li><a href="tel:5614773197">West Palm Beach</a></li>
+        <li><a href="tel:5614773197">Royal Palm Beach</a></li>
+        <li><a href="tel:5614773197">Broward County</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <p class="footer-copy">© 2026 Terrano Plumbing &amp; Remodeling. All rights reserved.</p>
+      <p class="footer-legal">CFC053956 · Palm Beach County · Broward County · Florida</p>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-sticky" aria-label="Mobile call to action">
+  <a href="tel:5614773197" class="mobile-call">☎ Call Now</a>
+  <a href="#quote-form" class="mobile-quote">Free Quote</a>
 </div>
+
+</div><!-- /#page -->
+
+<!-- ══════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  /* ── LOADER ── */
+  var quotes = [
+    '"A+ experience from start to finish — the area was left cleaner than before they arrived."',
+    '"Terrano Plumbing is the first company I have complete trust in. Punctual, personable, professional."',
+    '"Very professional, reliable, top-quality work, and fair pricing. They genuinely care about doing the job right."'
+  ];
+  var loader = document.getElementById('loader');
+  var quoteEl = document.getElementById('loaderQuote');
+  var progress = document.getElementById('loaderProgress');
+  var idx = 0;
+
+  function showQuote(i) {
+    quoteEl.classList.remove('visible');
+    setTimeout(function() {
+      quoteEl.textContent = quotes[i];
+      quoteEl.classList.add('visible');
+    }, 300);
+  }
+
+  showQuote(0);
+  setTimeout(function() { showQuote(1); }, 1600);
+  setTimeout(function() { showQuote(2); }, 3200);
+
+  // Start progress bar
+  setTimeout(function() { progress.style.width = '100%'; }, 50);
+
+  // Fade out loader, reveal page
+  setTimeout(function() {
+    loader.style.opacity = '0';
+    setTimeout(function() {
+      loader.style.display = 'none';
+      document.getElementById('page').style.visibility = 'visible';
+      startRatingCounter();
+    }, 900);
+  }, 4800);
+
+  /* ── GRAIN CANVAS ── */
+  var canvas = document.getElementById('grain');
+  var ctx = canvas ? canvas.getContext('2d') : null;
+  var raf;
+
+  function resizeCanvas() {
+    if (!canvas) return;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function renderGrain() {
+    if (!ctx) return;
+    var w = canvas.width, h = canvas.height;
+    var img = ctx.createImageData(w, h);
+    var d = img.data;
+    for (var i = 0; i < d.length; i += 4) {
+      var v = Math.random() * 255 | 0;
+      d[i]   = v * 0.7;   // R — slight blue tint for plumbing
+      d[i+1] = v * 0.85;  // G
+      d[i+2] = v * 1.0;   // B
+      d[i+3] = 10;         // A — subtle
+    }
+    ctx.putImageData(img, 0, 0);
+    raf = requestAnimationFrame(renderGrain);
+  }
+
+  resizeCanvas();
+  renderGrain();
+  window.addEventListener('resize', resizeCanvas);
+
+  /* ── RATING COUNTER ── */
+  function startRatingCounter() {
+    var el = document.getElementById('ratingCounter');
+    if (!el) return;
+    var target = 4.8;
+    var start = 0;
+    var duration = 2200;
+    var startTime = null;
+
+    function easeOutExpo(t) {
+      return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    }
+
+    function tick(now) {
+      if (!startTime) startTime = now;
+      var progress = Math.min((now - startTime) / duration, 1);
+      var value = start + (target - start) * easeOutExpo(progress);
+      el.textContent = value.toFixed(1);
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+
+    setTimeout(function() { requestAnimationFrame(tick); }, 400);
+  }
+
+  /* ── INTERSECTION OBSERVER (fade-up + staggered cards) ── */
+  var observerOptions = { threshold: 0.12, rootMargin: '0px 0px -40px 0px' };
+
+  var fadeObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.fade-up').forEach(function(el) {
+    fadeObserver.observe(el);
+  });
+
+  // Staggered service cards
+  var cardObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var cards = entry.target.querySelectorAll('.service-card');
+        cards.forEach(function(card, i) {
+          setTimeout(function() {
+            card.classList.add('visible');
+          }, i * 100);
+        });
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05 });
+
+  var servicesGrid = document.querySelector('.services-grid');
+  if (servicesGrid) cardObserver.observe(servicesGrid);
+
+  /* ── REVIEWS CAROUSEL ── */
+  (function() {
+    var wrap = document.querySelector('.carousel-wrap');
+    if (!wrap) return;
+    var track = wrap.querySelector('.carousel-track');
+    var dots = document.querySelectorAll('.carousel-dot');
+    var cards = track.querySelectorAll('.review-card');
+    var n = cards.length, cur = 0, timer;
+    var touchStartX = 0;
+
+    function go(i) {
+      cur = ((i % n) + n) % n;
+      track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+      dots.forEach(function(d, j) { d.classList.toggle('active', j === cur); });
+    }
+
+    function reset() {
+      clearInterval(timer);
+      timer = setInterval(function() { go(cur + 1); }, 5000);
+    }
+
+    wrap.querySelector('.carousel-prev').addEventListener('click', function() { go(cur - 1); reset(); });
+    wrap.querySelector('.carousel-next').addEventListener('click', function() { go(cur + 1); reset(); });
+    dots.forEach(function(d, i) { d.addEventListener('click', function() { go(i); reset(); }); });
+
+    // Touch/swipe support
+    track.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', function(e) {
+      var diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) { go(diff > 0 ? cur + 1 : cur - 1); reset(); }
+    });
+
+    reset();
+  })();
+
+  /* ── FORM SUBMIT ── */
+  window.handleFormSubmit = function(e) {
+    e.preventDefault();
+    var btn = e.target.querySelector('.form-submit');
+    btn.textContent = '✓ Request Received!';
+    btn.style.background = '#007a00';
+    btn.disabled = true;
+    setTimeout(function() {
+      btn.textContent = 'Get My Free Quote →';
+      btn.style.background = '';
+      btn.disabled = false;
+      e.target.reset();
+    }, 4000);
+  };
+
+  /* ── SMOOTH SCROLL ── */
+  document.querySelectorAll('a[href="#quote-form"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.getElementById('quote-form');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        var first = target.querySelector('input');
+        if (first) setTimeout(function() { first.focus(); }, 600);
+      }
+    });
+  });
+
+})();
+</script>
 
 </body>
 </html>

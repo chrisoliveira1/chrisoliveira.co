@@ -3,180 +3,1358 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pinecrest Construction — Davie, FL</title>
+<title>Pinecrest Construction | Broward County General Contractor | CGC#1516143</title>
+<meta name="description" content="Pinecrest Construction — Broward County's trusted Certified General Contractor. Custom homes, remodels, commercial buildouts. CGC#1516143. Call (954) 817-3030 for a free estimate.">
+<meta property="og:title" content="Pinecrest Construction | Broward County General Contractor">
+<meta property="og:description" content="30+ years building custom homes and remodeling South Florida. Licensed CGC#1516143. Free project estimates.">
+<meta property="og:image" content="https://chrisoliveira.co/p/pinecrest-construction/preview.jpg">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" as="style">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<style>
-:root{
-  --slate:#2c3e50;
-  --slate-d:#1a2533;
-  --red:#c0392b;
-  --red-l:#e04433;
-  --off-white:#fafaf8;
-  --muted-text:rgba(255,255,255,0.66);
-  --ff-head:'Oswald',sans-serif;
-  --ff-body:'IBM Plex Sans',sans-serif;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--ff-body);background:var(--slate-d);color:#fff;overflow-x:hidden}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap">
 
-/* NAV */
+<style>
+/* ─── RESET + ROOT ─────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+
+:root{
+  --navy:     #0f2540;
+  --navy-d:   #091929;
+  --navy-m:   #162e4d;
+  --amber:    #c8822a;
+  --amber-l:  #dfa050;
+  --amber-d:  #a06618;
+  --white:    #ffffff;
+  --off:      #f5f3ef;
+  --text:     #1a2535;
+  --muted:    #6b7280;
+  --line:     #e5e2db;
+  --trust-bg: #111f33;
+  --ff-head:  'Oswald', sans-serif;
+  --ff-body:  'Inter', sans-serif;
+}
+
+body{
+  font-family:var(--ff-body);
+  color:var(--text);
+  background:var(--off);
+  overflow-x:hidden;
+}
+
+/* ─── LOADER ────────────────────────────────── */
+#loader{
+  position:fixed;inset:0;z-index:99999;
+  background:var(--navy-d);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:40px;
+  transition:opacity .9s ease;
+}
+#loader.fade-out{opacity:0;pointer-events:none}
+.loader-stars{
+  color:var(--amber);
+  font-size:1.5rem;
+  letter-spacing:6px;
+  margin-bottom:28px;
+  opacity:0;
+  transition:opacity .5s ease;
+}
+.loader-quote{
+  font-family:var(--ff-body);
+  font-size:clamp(1.15rem,2.8vw,2rem);
+  font-weight:300;
+  font-style:italic;
+  color:rgba(255,255,255,0.92);
+  text-align:center;
+  max-width:760px;
+  line-height:1.65;
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity .5s ease, transform .5s ease;
+}
+.loader-quote.visible, .loader-stars.visible{opacity:1;transform:translateY(0)}
+
+/* ─── GRAIN CANVAS ──────────────────────────── */
+#grain{
+  position:fixed;inset:0;z-index:99997;
+  pointer-events:none;
+  opacity:1;
+}
+
+/* ─── PAGE (hidden until loader done) ────────── */
+#page{visibility:hidden}
+
+/* ─── NAV ────────────────────────────────────── */
 nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  background:rgba(26,37,51,0.97);
-  border-bottom:1px solid rgba(192,57,43,0.3);
-  padding:0 48px;height:64px;
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:68px;
+  background:rgba(15,37,64,0.93);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(200,130,42,0.25);
+  display:flex;align-items:center;
+  padding:0 clamp(20px,4vw,56px);
+}
+.nav-inner{
+  width:100%;max-width:1280px;margin:0 auto;
   display:flex;align-items:center;justify-content:space-between;
 }
-.nav-mark{font-family:var(--ff-head);font-size:20px;font-weight:700;letter-spacing:2px;color:var(--red);text-transform:uppercase}
-.nav-center{display:flex;flex-direction:column;align-items:center}
-.nav-biz{font-size:13px;font-weight:600;color:rgba(255,255,255,0.8);letter-spacing:.5px}
-.nav-meta{font-size:11px;color:rgba(255,255,255,0.38);margin-top:2px}
+.nav-logo{
+  font-family:var(--ff-head);
+  font-size:1.25rem;
+  font-weight:700;
+  letter-spacing:.04em;
+  color:var(--white);
+  text-decoration:none;
+  display:flex;align-items:center;gap:10px;
+  line-height:1.1;
+}
+.nav-logo span{
+  display:block;
+  color:var(--amber);
+  font-size:.75rem;
+  font-family:var(--ff-body);
+  font-weight:400;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  opacity:.8;
+}
+.nav-right{
+  display:flex;align-items:center;gap:16px;
+}
+.nav-phone{
+  color:rgba(255,255,255,.8);
+  font-size:.9rem;
+  font-weight:500;
+  text-decoration:none;
+  letter-spacing:.01em;
+}
+.nav-phone:hover{color:var(--amber)}
 .nav-cta{
-  background:var(--red);color:#fff;padding:10px 22px;
-  border-radius:4px;font-size:13px;font-weight:600;
-  text-decoration:none;white-space:nowrap;
+  background:var(--amber);
+  color:var(--white);
+  font-family:var(--ff-head);
+  font-size:.85rem;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:9px 20px;
+  border-radius:4px;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:background .2s, transform .15s;
 }
-.nav-cta:hover{background:var(--red-l)}
+.nav-cta:hover{background:var(--amber-l);transform:translateY(-1px)}
 
-/* HERO — text left, photo right, darker background */
+/* ─── HERO ───────────────────────────────────── */
 #hero{
-  min-height:100vh;padding-top:64px;
-  display:grid;grid-template-columns:1fr 1fr;overflow:hidden;
-  background:var(--slate-d);
+  position:relative;
+  height:calc(100vh - 68px);
+  margin-top:68px;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:1fr 480px;
+  min-height:560px;
 }
-.hero-text{
-  display:flex;flex-direction:column;justify-content:center;
-  padding:80px 48px 80px 72px;
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+}
+.hero-bg img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center 35%;
+  display:block;
+}
+.hero-bg::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(
+    105deg,
+    rgba(9,25,41,0.95) 0%,
+    rgba(15,37,64,0.88) 30%,
+    rgba(15,37,64,0.55) 62%,
+    rgba(9,25,41,0.30) 100%
+  );
+}
+.hero-left{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;
+  justify-content:center;
+  padding:clamp(32px,5vw,72px) 48px clamp(72px,9vw,112px) clamp(32px,5vw,72px);
+  max-width:680px;
 }
 .hero-eyebrow{
-  font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;
-  color:var(--red);margin-bottom:20px;
+  font-family:var(--ff-body);
+  font-size:.78rem;
+  font-weight:600;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--amber);
+  margin-bottom:22px;
+  display:flex;align-items:center;gap:10px;
+}
+.hero-eyebrow::before{
+  content:'';display:block;
+  width:28px;height:2px;
+  background:var(--amber);
+  flex-shrink:0;
 }
 .hero-h1{
   font-family:var(--ff-head);
-  font-size:clamp(52px,5.6vw,80px);
-  line-height:1.0;font-weight:700;
-  color:#fff;margin-bottom:10px;
+  font-size:clamp(2.4rem,5.5vw,4.2rem);
+  font-weight:700;
+  line-height:1.05;
+  color:var(--white);
+  letter-spacing:.02em;
+  text-transform:uppercase;
+  margin-bottom:22px;
 }
-.hero-h1 .num{color:var(--red)}
-.hero-divider{
-  width:56px;height:3px;background:var(--red);margin:20px 0;
-}
+.hero-h1 .accent{color:var(--amber)}
 .hero-sub{
-  font-size:16px;line-height:1.7;color:var(--muted-text);
-  max-width:420px;margin-bottom:36px;
+  font-size:clamp(.95rem,1.6vw,1.1rem);
+  font-weight:400;
+  color:rgba(255,255,255,.78);
+  line-height:1.7;
+  max-width:500px;
+  margin-bottom:36px;
 }
-.hero-ctas{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-.btn-primary{
-  background:var(--red);color:#fff;padding:14px 28px;
-  border-radius:4px;font-size:15px;font-weight:600;text-decoration:none;
+.hero-stat-wrap{
+  display:flex;align-items:center;gap:0;
+  border:1px solid rgba(200,130,42,0.30);
+  border-radius:6px;
+  overflow:hidden;
+  max-width:480px;
+  background:rgba(9,25,41,0.5);
 }
-.btn-primary:hover{background:var(--red-l)}
-.btn-ghost{color:var(--muted-text);font-size:15px;font-weight:500;text-decoration:none}
-.btn-ghost:hover{color:#fff}
+.hero-stat{
+  flex:1;
+  padding:16px 20px;
+  border-right:1px solid rgba(200,130,42,0.18);
+}
+.hero-stat:last-child{border-right:none}
+.hs-num{
+  font-family:var(--ff-head);
+  font-size:1.6rem;
+  font-weight:700;
+  color:var(--amber);
+  line-height:1;
+  margin-bottom:4px;
+}
+.hs-label{
+  font-size:.72rem;
+  font-weight:500;
+  color:rgba(255,255,255,.55);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
 
-/* HERO VISUAL */
-.hero-visual{position:relative;overflow:hidden}
-.hero-img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
-.hero-overlay{
+/* ─── HERO RIGHT — LEAD FORM ─────────────────── */
+.hero-right{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;
+  justify-content:center;
+  padding:clamp(32px,4vw,56px) clamp(24px,3vw,48px) clamp(80px,10vw,120px) 32px;
+}
+.form-card{
+  background:rgba(255,255,255,0.97);
+  border-radius:8px;
+  padding:32px 28px 36px;
+  box-shadow:0 24px 64px rgba(9,25,41,0.5), 0 4px 16px rgba(9,25,41,0.3);
+}
+.form-title{
+  font-family:var(--ff-head);
+  font-size:1.3rem;
+  font-weight:700;
+  color:var(--navy);
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  margin-bottom:6px;
+}
+.form-sub{
+  font-size:.82rem;
+  color:var(--muted);
+  margin-bottom:24px;
+  line-height:1.5;
+}
+.form-group{
+  margin-bottom:14px;
+}
+.form-group label{
+  display:block;
+  font-size:.75rem;
+  font-weight:600;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--navy);
+  margin-bottom:5px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea{
+  width:100%;
+  padding:10px 14px;
+  border:1.5px solid var(--line);
+  border-radius:4px;
+  font-family:var(--ff-body);
+  font-size:.9rem;
+  color:var(--text);
+  background:var(--white);
+  transition:border-color .2s;
+  outline:none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+  border-color:var(--amber);
+}
+.form-btn{
+  width:100%;
+  background:var(--amber);
+  color:var(--white);
+  font-family:var(--ff-head);
+  font-size:1rem;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:14px;
+  border:none;
+  border-radius:4px;
+  cursor:pointer;
+  margin-top:6px;
+  transition:background .2s, transform .15s;
+}
+.form-btn:hover{background:var(--amber-l);transform:translateY(-1px)}
+.form-note{
+  text-align:center;
+  font-size:.72rem;
+  color:var(--muted);
+  margin-top:10px;
+}
+
+/* ─── WAVE BREAK ──────────────────────────────── */
+.hero-wave{
+  position:absolute;bottom:0;left:0;width:100%;
+  line-height:0;z-index:3;pointer-events:none;
+}
+.hero-wave svg{display:block;width:100%;height:52px}
+
+/* ─── TRUST BAR ───────────────────────────────── */
+#trust{
+  background:var(--trust-bg);
+  padding:0;
+}
+.trust-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  max-width:1280px;margin:0 auto;
+}
+.trust-item{
+  padding:28px 32px;
+  border-right:1px solid rgba(255,255,255,0.12);
+  display:flex;align-items:center;gap:16px;
+}
+.trust-item:last-child{border-right:none}
+.trust-icon{
+  font-size:1.6rem;
+  flex-shrink:0;
+}
+.trust-num{
+  font-family:var(--ff-head);
+  font-size:1.7rem;
+  font-weight:700;
+  color:var(--amber);
+  line-height:1;
+  margin-bottom:4px;
+}
+.trust-label{
+  font-size:.75rem;
+  font-weight:500;
+  color:rgba(255,255,255,.55);
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  line-height:1.4;
+}
+
+/* ─── SECTION SHARED ──────────────────────────── */
+.section-label{
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--amber);
+  margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-label::before{
+  content:'';display:block;
+  width:20px;height:2px;
+  background:var(--amber);flex-shrink:0;
+}
+.section-title{
+  font-family:var(--ff-head);
+  font-size:clamp(1.8rem,3.5vw,2.8rem);
+  font-weight:700;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  color:var(--navy);
+  line-height:1.1;
+  margin-bottom:14px;
+}
+.section-sub{
+  font-size:1rem;
+  color:var(--muted);
+  line-height:1.7;
+  max-width:580px;
+}
+
+/* ─── REVIEWS CAROUSEL ────────────────────────── */
+#reviews{
+  background:var(--off);
+  padding:88px clamp(20px,4vw,56px);
+}
+.reviews-inner{max-width:800px;margin:0 auto;text-align:center}
+.reviews-inner .section-label{justify-content:center}
+.reviews-inner .section-label::before{display:none}
+.reviews-inner .section-sub{margin:0 auto}
+.review-card{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:40px 48px;
+}
+.review-stars{
+  color:#f59e0b;
+  font-size:1.2rem;
+  margin-bottom:18px;
+  letter-spacing:3px;
+}
+.review-text{
+  font-size:1.05rem;
+  color:var(--text);
+  line-height:1.75;
+  margin-bottom:22px;
+  font-style:italic;
+}
+.review-author{
+  font-size:.82rem;
+  font-weight:700;
+  color:var(--muted);
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.carousel-wrap{position:relative;margin-top:48px;overflow:hidden}
+.carousel-track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.carousel-track .review-card{flex:0 0 100%}
+.carousel-btn{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:var(--white);border:1px solid var(--line);
+  border-radius:50%;width:44px;height:44px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  z-index:2;color:var(--muted);padding:0;
+  box-shadow:0 2px 12px rgba(0,0,0,.1);
+  transition:border-color .2s, color .2s;
+}
+.carousel-btn:hover{border-color:var(--amber);color:var(--amber)}
+.carousel-prev{left:12px}
+.carousel-next{right:12px}
+.carousel-dots{
+  display:flex;justify-content:center;gap:8px;margin-top:20px;
+}
+.carousel-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:#d1d5db;cursor:pointer;border:none;padding:0;
+  transition:all .25s;
+}
+.carousel-dot.active{background:var(--amber);width:24px;border-radius:4px}
+
+/* ─── SERVICES GRID ───────────────────────────── */
+#services{
+  background:var(--white);
+  padding:88px clamp(20px,4vw,56px);
+}
+.services-inner{max-width:1280px;margin:0 auto}
+.services-header{margin-bottom:52px}
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.service-card{
+  background:var(--off);
+  border-radius:8px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  transition:transform .25s, box-shadow .25s;
+}
+.service-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 40px rgba(15,37,64,0.12);
+}
+.service-card.reveal{
+  opacity:0;transform:translateY(24px);
+  transition:opacity .55s ease, transform .55s ease;
+}
+.service-card.reveal.in-view{opacity:1;transform:translateY(0)}
+.service-img{
+  width:100%;height:200px;
+  object-fit:cover;display:block;
+}
+.service-body{padding:24px 24px 28px}
+.service-icon{
+  font-size:1.6rem;margin-bottom:10px;
+  display:block;
+}
+.service-name{
+  font-family:var(--ff-head);
+  font-size:1.1rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  color:var(--navy);
+  margin-bottom:10px;
+}
+.service-desc{
+  font-size:.88rem;
+  color:var(--muted);
+  line-height:1.65;
+}
+
+/* ─── ABOUT ───────────────────────────────────── */
+#about{
+  background:var(--navy);
+  padding:88px clamp(20px,4vw,56px);
+}
+.about-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:420px 1fr;
+  gap:72px;align-items:center;
+}
+.about-photo{
+  position:relative;
+}
+.about-photo img{
+  width:100%;border-radius:8px;
+  display:block;
+  box-shadow:0 32px 80px rgba(0,0,0,0.4);
+}
+.about-badge{
+  position:absolute;bottom:-20px;right:-20px;
+  background:var(--amber);
+  color:var(--white);
+  font-family:var(--ff-head);
+  padding:16px 20px;
+  border-radius:6px;
+  text-align:center;
+  box-shadow:0 8px 24px rgba(200,130,42,0.4);
+}
+.about-badge-num{
+  display:block;
+  font-size:2rem;
+  font-weight:700;
+  line-height:1;
+}
+.about-badge-txt{
+  display:block;
+  font-size:.72rem;
+  font-weight:500;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  opacity:.85;
+  margin-top:3px;
+}
+.about-content .section-title{color:var(--white)}
+.about-content .section-label{margin-bottom:16px}
+.about-body{
+  font-size:.97rem;
+  color:rgba(255,255,255,.72);
+  line-height:1.78;
+  margin-bottom:32px;
+}
+.about-creds{
+  display:flex;flex-wrap:wrap;gap:10px;
+  margin-bottom:32px;
+}
+.cred-pill{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(200,130,42,0.35);
+  color:rgba(255,255,255,.85);
+  font-size:.75rem;
+  font-weight:600;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  padding:7px 14px;
+  border-radius:20px;
+}
+.cred-pill.highlight{
+  background:var(--amber);
+  border-color:var(--amber);
+  color:var(--white);
+}
+.about-quote{
+  border-left:3px solid var(--amber);
+  padding-left:20px;
+  font-size:1rem;
+  font-style:italic;
+  color:rgba(255,255,255,.6);
+  line-height:1.7;
+}
+
+/* ─── CTA BANNER ──────────────────────────────── */
+#cta-banner{
+  background:var(--navy-d);
+  padding:80px clamp(20px,4vw,56px);
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+#cta-banner::before{
+  content:'';
   position:absolute;inset:0;
-  background:linear-gradient(to right, var(--slate-d) 0%, rgba(26,37,51,0.35) 35%, transparent 100%);
+  background:radial-gradient(ellipse 80% 60% at 50% 50%, rgba(200,130,42,0.08) 0%, transparent 70%);
 }
-.hero-badge{
-  position:absolute;top:48px;right:28px;
-  background:rgba(192,57,43,0.9);
-  padding:16px 20px;border-radius:4px;
-  backdrop-filter:blur(4px);
+.cta-content{position:relative;z-index:1}
+.cta-eyebrow{
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--amber);
+  margin-bottom:16px;
 }
-.hero-badge-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-bottom:6px}
-.hero-badge-val{font-family:var(--ff-head);font-size:24px;font-weight:700;color:#fff}
-.hero-badge-sub{font-size:11px;color:rgba(255,255,255,0.65);margin-top:4px}
+.cta-h2{
+  font-family:var(--ff-head);
+  font-size:clamp(1.8rem,3.5vw,2.8rem);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  color:var(--white);
+  margin-bottom:16px;
+}
+.cta-sub{
+  font-size:1rem;
+  color:rgba(255,255,255,.65);
+  max-width:520px;margin:0 auto 36px;
+  line-height:1.7;
+}
+.cta-btns{
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  flex-wrap:wrap;
+}
+.btn-primary{
+  background:var(--amber);
+  color:var(--white);
+  font-family:var(--ff-head);
+  font-size:1rem;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:16px 36px;
+  border-radius:4px;
+  text-decoration:none;
+  transition:background .2s, transform .15s;
+}
+.btn-primary:hover{background:var(--amber-l);transform:translateY(-2px)}
+.btn-outline{
+  background:transparent;
+  border:2px solid rgba(255,255,255,0.3);
+  color:rgba(255,255,255,.85);
+  font-family:var(--ff-head);
+  font-size:1rem;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:14px 34px;
+  border-radius:4px;
+  text-decoration:none;
+  transition:border-color .2s, color .2s;
+}
+.btn-outline:hover{border-color:var(--amber);color:var(--amber)}
 
-/* PROOF STRIP */
-#proof{
-  background:var(--off-white);
-  padding:32px 72px;
-  display:grid;grid-template-columns:repeat(4,1fr);
-  border-top:4px solid var(--red);
+/* ─── FOOTER ──────────────────────────────────── */
+footer{
+  background:var(--navy-d);
+  border-top:1px solid rgba(255,255,255,0.07);
+  padding:64px clamp(20px,4vw,56px) 0;
 }
-.proof-item{
-  padding:0 28px 0 0;
-  border-right:1px solid rgba(44,62,80,0.1);
+.footer-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:1.4fr 1fr 1fr;
+  gap:48px;padding-bottom:48px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
 }
-.proof-item:last-child{border-right:none}
-.proof-val{
-  font-family:var(--ff-head);font-weight:700;
-  font-size:32px;color:var(--slate);display:block;
+.footer-logo{
+  font-family:var(--ff-head);
+  font-size:1.2rem;
+  font-weight:700;
+  color:var(--white);
+  margin-bottom:8px;
+  letter-spacing:.04em;
 }
-.proof-label{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#7a7878;margin-top:5px;display:block}
+.footer-tagline{
+  font-size:.82rem;
+  color:rgba(255,255,255,.45);
+  margin-bottom:20px;
+  line-height:1.6;
+}
+.footer-license{
+  font-size:.75rem;
+  color:rgba(255,255,255,.35);
+  letter-spacing:.05em;
+}
+.footer-heading{
+  font-family:var(--ff-head);
+  font-size:.82rem;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--amber);
+  margin-bottom:20px;
+}
+.footer-list{
+  list-style:none;
+  display:flex;flex-direction:column;gap:9px;
+}
+.footer-list li a,
+.footer-list li span{
+  font-size:.88rem;
+  color:rgba(255,255,255,.55);
+  text-decoration:none;
+  transition:color .2s;
+}
+.footer-list li a:hover{color:var(--amber)}
+.footer-bottom{
+  max-width:1280px;margin:0 auto;
+  padding:20px 0;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:10px;
+}
+.footer-copy{
+  font-size:.78rem;
+  color:rgba(255,255,255,.3);
+}
+.footer-copy span{color:var(--amber)}
 
+/* ─── MOBILE STICKY CTA ───────────────────────── */
+#sticky-mobile{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;z-index:900;
+  background:var(--navy-d);
+  border-top:2px solid var(--amber);
+  padding:12px 20px;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+}
+#sticky-mobile a{
+  flex:1;
+  text-align:center;
+  font-family:var(--ff-head);
+  font-size:.95rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:12px 10px;
+  border-radius:4px;
+  text-decoration:none;
+  transition:opacity .2s;
+}
+#sticky-mobile .sticky-call{
+  background:var(--amber);color:var(--white);
+}
+#sticky-mobile .sticky-est{
+  background:transparent;
+  border:1.5px solid rgba(255,255,255,0.25);
+  color:rgba(255,255,255,.85);
+}
+
+/* ─── REVEAL ANIMATIONS ───────────────────────── */
+.reveal{
+  opacity:0;transform:translateY(28px);
+  transition:opacity .6s ease, transform .6s ease;
+}
+.reveal.in-view{opacity:1;transform:translateY(0)}
+
+/* ─── REDUCED MOTION ──────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  #loader{display:none}
+  #page{visibility:visible!important}
+  #grain{display:none}
+  .reveal,.service-card.reveal{opacity:1!important;transform:none!important;transition:none!important}
+  *{animation:none!important;transition:none!important}
+}
+
+/* ─── RESPONSIVE ──────────────────────────────── */
+@media(max-width:1100px){
+  #hero{grid-template-columns:1fr 420px}
+  .about-inner{grid-template-columns:340px 1fr;gap:48px}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:900px){
-  nav{padding:0 20px}
-  .nav-center{display:none}
-  #hero{grid-template-columns:1fr}
-  .hero-visual{display:none}
-  .hero-text{padding:52px 24px 48px}
-  #proof{grid-template-columns:repeat(2,1fr);padding:28px 24px;gap:20px}
-  .proof-item{border-right:none;padding-right:0}
+  #hero{
+    grid-template-columns:1fr;
+    height:auto;min-height:auto;
+    padding-bottom:60px;
+  }
+  .hero-left{padding:48px 24px 32px}
+  .hero-right{padding:0 24px 48px}
+  .hero-stat-wrap{flex-wrap:wrap}
+  .hero-bg::after{
+    background:linear-gradient(180deg,rgba(9,25,41,0.92) 0%,rgba(15,37,64,0.85) 100%);
+  }
+  .trust-grid{grid-template-columns:repeat(2,1fr)}
+  .trust-item:nth-child(2){border-right:none}
+  .trust-item:nth-child(3){border-top:1px solid rgba(255,255,255,0.12)}
+  .trust-item:nth-child(4){border-right:none;border-top:1px solid rgba(255,255,255,0.12)}
+  .about-inner{grid-template-columns:1fr;gap:40px}
+  .about-badge{right:-10px}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:32px}
+  .review-card{padding:28px 24px}
+  #sticky-mobile{display:flex}
+  body{padding-bottom:68px}
+  nav .nav-phone{display:none}
 }
-@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media(max-width:640px){
+  .services-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr}
+  .cta-btns{flex-direction:column;align-items:stretch;max-width:280px;margin:0 auto}
+  .hero-h1{font-size:2.1rem}
+  .hero-stat-wrap{display:none}
+}
 </style>
 </head>
 <body>
-<nav>
-  <span class="nav-mark">Pinecrest</span>
-  <div class="nav-center">
-    <span class="nav-biz">Pinecrest Construction</span>
-    <span class="nav-meta">Davie, FL &middot; CGC Licensed</span>
+
+<!-- ═══════════════ LOADER ═══════════════ -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-stars" id="l-stars">★★★★★</div>
+  <p class="loader-quote" id="l-quote"></p>
+</div>
+
+<!-- ═══════════════ GRAIN ════════════════ -->
+<canvas id="grain" aria-hidden="true"></canvas>
+
+<!-- ═══════════════ PAGE ═════════════════ -->
+<div id="page">
+
+<!-- NAV -->
+<nav role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      Pinecrest Construction
+      <span>Broward County, FL</span>
+    </a>
+    <div class="nav-right">
+      <a href="tel:9548173030" class="nav-phone">(954) 817-3030</a>
+      <a href="#hero" class="nav-cta">Free Estimate</a>
+    </div>
   </div>
-  <a class="nav-cta" href="tel:9548173030">(954) 817-3030</a>
 </nav>
 
-<section id="hero">
-  <div class="hero-text">
-    <p class="hero-eyebrow">Davie, FL &middot; CGC Licensed</p>
-    <h1 class="hero-h1"><span class="num">40</span> Years.<br><span class="num">150+</span><br>Projects.<br>Steve on<br>Every One.</h1>
-    <div class="hero-divider"></div>
-    <p class="hero-sub">Steve Gonzalez, CGC, has built and renovated across South Florida for 40 years. That track record should be generating new jobs every week. Your current site isn&rsquo;t doing it justice.</p>
-    <div class="hero-ctas">
-      <a class="btn-primary" href="tel:9548173030">Call (954) 817-3030</a>
-      <a class="btn-ghost" href="#proof">Credentials &rarr;</a>
+<!-- HERO -->
+<section id="hero" aria-label="Hero">
+  <div class="hero-bg">
+    <img
+      src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=80"
+      alt="Custom home construction project in Broward County Florida"
+      fetchpriority="high"
+    >
+  </div>
+
+  <!-- LEFT: copy -->
+  <div class="hero-left">
+    <div class="hero-eyebrow">Broward County, FL &nbsp;·&nbsp; CGC #1516143</div>
+    <h1 class="hero-h1">
+      Built to Last.<br>
+      <span class="accent">Built Right.</span>
+    </h1>
+    <p class="hero-sub">
+      South Florida's trusted Certified General Contractor — 25+ years delivering custom homes, estate remodels, and commercial buildouts with precision and craftsmanship.
+    </p>
+    <div class="hero-stat-wrap">
+      <div class="hero-stat">
+        <div class="hs-num" id="counter-homes">0</div>
+        <div class="hs-label">Homes Built</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hs-num" id="counter-projects">0</div>
+        <div class="hs-label">Remodel Projects</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hs-num" id="counter-rating">0.0</div>
+        <div class="hs-label">Star Rating</div>
+      </div>
     </div>
   </div>
-  <div class="hero-visual">
-    <img class="hero-img"
-      src="../../assets/samples/gc/drawing-construction-plan-2021-08-28-18-46-13-utc-scaled.jpg.webp"
-      alt="Pinecrest Construction professional reviewing blueprints and plans on a project">
-    <div class="hero-overlay"></div>
-    <div class="hero-badge">
-      <div class="hero-badge-label">CGC Licensed</div>
-      <div class="hero-badge-val">Steve Gonzalez</div>
-      <div class="hero-badge-sub">Florida Certified General Contractor</div>
+
+  <!-- RIGHT: lead form -->
+  <div class="hero-right">
+    <div class="form-card">
+      <div class="form-title">Get a Free Project Estimate</div>
+      <p class="form-sub">Tell us about your project — we'll get back to you within 24 hours.</p>
+      <form action="#" method="POST" id="hero-form">
+        <div class="form-group">
+          <label for="f-name">Your Name</label>
+          <input type="text" id="f-name" name="name" placeholder="John Smith" required>
+        </div>
+        <div class="form-group">
+          <label for="f-phone">Phone Number</label>
+          <input type="tel" id="f-phone" name="phone" placeholder="(954) 000-0000" required>
+        </div>
+        <div class="form-group">
+          <label for="f-email">Email Address</label>
+          <input type="email" id="f-email" name="email" placeholder="john@example.com">
+        </div>
+        <div class="form-group">
+          <label for="f-project">Project Type</label>
+          <select id="f-project" name="project">
+            <option value="">Select a project type…</option>
+            <option>Home Addition</option>
+            <option>Kitchen Remodel</option>
+            <option>Bathroom Remodel</option>
+            <option>New Custom Home</option>
+            <option>Commercial Buildout</option>
+            <option>Roofing / Exterior</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <button type="submit" class="form-btn">Request My Free Estimate →</button>
+      </form>
+      <p class="form-note">No obligation. Licensed, insured &amp; BBB A+ rated.</p>
+    </div>
+  </div>
+
+  <!-- Wave break -->
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,22 C360,52 1080,0 1440,30 L1440,52 L0,52 Z" fill="#111f33"/>
+    </svg>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<section id="trust" aria-label="Trust credentials">
+  <div class="trust-grid">
+    <div class="trust-item">
+      <div class="trust-icon" aria-hidden="true">🏗️</div>
+      <div>
+        <div class="trust-num">25+</div>
+        <div class="trust-label">Years in Business</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon" aria-hidden="true">📋</div>
+      <div>
+        <div class="trust-num">CGC #1516143</div>
+        <div class="trust-label">Licensed &amp; Fully Insured</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon" aria-hidden="true">📍</div>
+      <div>
+        <div class="trust-num">Broward + Miami-Dade</div>
+        <div class="trust-label">South Florida Service Area</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon" aria-hidden="true">⭐</div>
+      <div>
+        <div class="trust-num">4.7 / 5.0</div>
+        <div class="trust-label">BBB A+ · Top 1% FL Contractors</div>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="proof">
-  <div class="proof-item">
-    <span class="proof-val">40 Years</span>
-    <span class="proof-label">Experience</span>
-  </div>
-  <div class="proof-item">
-    <span class="proof-val">150+</span>
-    <span class="proof-label">Projects Built</span>
-  </div>
-  <div class="proof-item">
-    <span class="proof-val">CGC</span>
-    <span class="proof-label">FL Licensed</span>
-  </div>
-  <div class="proof-item">
-    <span class="proof-val">Owner-Run</span>
-    <span class="proof-label">Every Job</span>
+<!-- REVIEWS CAROUSEL -->
+<section id="reviews" aria-label="Customer reviews">
+  <div class="reviews-inner">
+    <div class="section-label reveal">Customer Reviews</div>
+    <h2 class="section-title reveal" style="color:var(--navy)">What Our Clients Say</h2>
+    <p class="section-sub reveal">Real words from South Florida homeowners and developers who trusted us with their biggest investments.</p>
+
+    <div class="carousel-wrap" role="region" aria-label="Reviews carousel">
+      <div class="carousel-track">
+
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p class="review-text">"Steve has been our contractor for over 20 years. Every project — large or small — is completed with the utmost professionalism and skill. I wouldn't use anyone else."</p>
+          <div class="review-author">Linda M. &mdash; Coral Springs, FL</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p class="review-text">"From planning and building our 8,500-square-foot estate home to every remodel since, Steve has consistently delivered the highest level of expertise and attention to detail."</p>
+          <div class="review-author">M. Awan &mdash; Southwest Ranches, FL</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p class="review-text">"Pinecrest is dependable, trustworthy, and does a quality job on time. It was refreshing to work with someone who truly knows every facet of construction."</p>
+          <div class="review-author">C. Peterson &mdash; Fort Lauderdale, FL</div>
+        </div>
+
+      </div>
+      <button class="carousel-btn carousel-prev" aria-label="Previous review">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-btn carousel-next" aria-label="Next review">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="carousel-dots" role="tablist" aria-label="Review navigation">
+      <button class="carousel-dot active" aria-label="Review 1" role="tab"></button>
+      <button class="carousel-dot" aria-label="Review 2" role="tab"></button>
+      <button class="carousel-dot" aria-label="Review 3" role="tab"></button>
+    </div>
   </div>
 </section>
+
+<!-- SERVICES GRID -->
+<section id="services" aria-label="Services">
+  <div class="services-inner">
+    <div class="services-header">
+      <div class="section-label reveal">What We Build</div>
+      <h2 class="section-title reveal">Services We Offer</h2>
+      <p class="section-sub reveal">From ground-up custom homes to complete interior remodels — fully permitted, fully managed, fully guaranteed.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <img
+          class="service-img"
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+          alt="Home addition construction project"
+          loading="lazy"
+        >
+        <div class="service-body">
+          <span class="service-icon" aria-hidden="true">🏠</span>
+          <div class="service-name">Home Additions</div>
+          <p class="service-desc">Master suite expansions, second-story additions, in-law quarters — fully permitted and engineered to match your existing structure seamlessly.</p>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <img
+          class="service-img"
+          src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80"
+          alt="Luxury kitchen remodeling"
+          loading="lazy"
+        >
+        <div class="service-body">
+          <span class="service-icon" aria-hidden="true">🍳</span>
+          <div class="service-name">Kitchen Remodeling</div>
+          <p class="service-desc">Full gut-to-finish kitchen transformations — custom cabinetry, stone countertops, new layouts, and top-brand appliance integration.</p>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <img
+          class="service-img"
+          src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=80"
+          alt="Bathroom remodeling and renovation"
+          loading="lazy"
+        >
+        <div class="service-body">
+          <span class="service-icon" aria-hidden="true">🛁</span>
+          <div class="service-name">Bathroom Remodeling</div>
+          <p class="service-desc">Spa-quality master baths, guest bath refreshes, and accessible conversions — custom tile work, frameless glass, and all plumbing upgrades.</p>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <img
+          class="service-img"
+          src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80"
+          alt="New custom home construction"
+          loading="lazy"
+        >
+        <div class="service-body">
+          <span class="service-icon" aria-hidden="true">🏗️</span>
+          <div class="service-name">New Construction</div>
+          <p class="service-desc">Custom estate homes built from the ground up — site planning, permit acquisition, subcontractor management, and quality control on every phase.</p>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <img
+          class="service-img"
+          src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
+          alt="Commercial office buildout"
+          loading="lazy"
+        >
+        <div class="service-body">
+          <span class="service-icon" aria-hidden="true">🏢</span>
+          <div class="service-name">Commercial Buildouts</div>
+          <p class="service-desc">Tenant improvements and ground-up commercial construction — offices, retail, medical, and mixed-use. On time, on budget, code compliant.</p>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <img
+          class="service-img"
+          src="https://images.unsplash.com/photo-1635424710928-0544e8512eac?auto=format&fit=crop&w=800&q=80"
+          alt="Roofing and exterior renovation"
+          loading="lazy"
+        >
+        <div class="service-body">
+          <span class="service-icon" aria-hidden="true">🔧</span>
+          <div class="service-name">Roofing &amp; Exterior</div>
+          <p class="service-desc">Impact windows, stucco, painting, fascia repair, patios, decks, and complete exterior restorations built for South Florida's demanding climate.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" aria-label="About Pinecrest Construction">
+  <div class="about-inner">
+    <div class="about-photo reveal">
+      <img
+        src="https://images.unsplash.com/photo-1590508505891-a1e5e3d0e9d2?auto=format&fit=crop&w=800&q=80"
+        alt="Experienced general contractor reviewing blueprints on a Broward County jobsite"
+        loading="lazy"
+      >
+      <div class="about-badge">
+        <span class="about-badge-num">100+</span>
+        <span class="about-badge-txt">Homes Built</span>
+      </div>
+    </div>
+    <div class="about-content reveal">
+      <div class="section-label">Our Story</div>
+      <h2 class="section-title">Since 2000, Building South Florida's Finest Homes</h2>
+      <p class="about-body">
+        Pinecrest Construction was founded on a simple principle: every client deserves the same level of care and craftsmanship that you'd want on your own home. Over 25 years, we've built more than 100 custom homes and completed 120+ remodeling projects across Broward and Miami-Dade counties — from 8,500 sq ft estate homes in Southwest Ranches to precision kitchen remodels in Coral Springs.
+      </p>
+      <p class="about-body">
+        Our founder, Steve Gonzalez, C.G.C., is a state-certified general contractor, published author on consumer construction rights, and has been featured on CNBC and CNN as a construction industry expert. When you work with Pinecrest, you work directly with someone who has decades of hands-on experience and a reputation built on referrals.
+      </p>
+      <div class="about-creds">
+        <span class="cred-pill highlight">CGC #1516143</span>
+        <span class="cred-pill">BBB A+ Rating</span>
+        <span class="cred-pill">Top 1% FL Contractors</span>
+        <span class="cred-pill">US Green Building Council</span>
+        <span class="cred-pill">196+ Permits Pulled</span>
+        <span class="cred-pill">CNBC · CNN Featured</span>
+      </div>
+      <blockquote class="about-quote">
+        "Steve's an excellent contractor — honest and hardworking. We've used him since 1985."<br>
+        <strong style="color:rgba(255,255,255,.5);font-size:.82rem;letter-spacing:.04em;">— Jacki &amp; Bernard Gran, Miami, FL</strong>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section id="cta-banner" aria-label="Call to action">
+  <div class="cta-content">
+    <div class="cta-eyebrow">Ready to Build?</div>
+    <h2 class="cta-h2">Let's Start Your Project</h2>
+    <p class="cta-sub">Free consultations, detailed budget planning, and permit management handled from day one. Serving Broward and Miami-Dade counties.</p>
+    <div class="cta-btns">
+      <a href="tel:9548173030" class="btn-primary">Call (954) 817-3030</a>
+      <a href="#hero" class="btn-outline">Request a Free Estimate</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Pinecrest Construction</div>
+      <p class="footer-tagline">Precision &amp; quality for over 25 years.<br>South Florida's trusted Certified General Contractor.</p>
+      <p class="footer-license">Florida CGC #1516143 · QB0016059<br>Licensed · Insured · BBB A+ Rated</p>
+    </div>
+    <div>
+      <div class="footer-heading">Services</div>
+      <ul class="footer-list">
+        <li><a href="#services">Home Additions</a></li>
+        <li><a href="#services">Kitchen Remodeling</a></li>
+        <li><a href="#services">Bathroom Remodeling</a></li>
+        <li><a href="#services">New Construction</a></li>
+        <li><a href="#services">Commercial Buildouts</a></li>
+        <li><a href="#services">Roofing &amp; Exterior</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Contact</div>
+      <ul class="footer-list">
+        <li><a href="tel:9548173030">(954) 817-3030</a></li>
+        <li><span>13326 SW 28th St #101</span></li>
+        <li><span>Davie, FL 33330</span></li>
+        <li><span>Broward County &amp; Miami-Dade</span></li>
+        <li><a href="https://pinecrestconstruction.com" target="_blank" rel="noopener">pinecrestconstruction.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2025 Pinecrest Construction, Inc. &nbsp;·&nbsp; <span>Florida CGC #1516143</span></p>
+    <p class="footer-copy">Davie, FL &nbsp;·&nbsp; Serving Broward &amp; Miami-Dade</p>
+  </div>
+</footer>
+
+</div><!-- /#page -->
+
+<!-- MOBILE STICKY CTA -->
+<div id="sticky-mobile" role="complementary" aria-label="Mobile call to action">
+  <a href="tel:9548173030" class="sticky-call">Call Now</a>
+  <a href="#hero" class="sticky-est">Free Estimate</a>
+</div>
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<script>
+(function(){
+'use strict';
+
+/* ─── LOADER ──────────────────────────── */
+var QUOTES = [
+  ""Steve has been our contractor for over 20 years. The utmost professionalism and skill on every single project."",
+  ""From planning our 8,500 sq ft estate to every remodel since — Steve delivers the highest level of expertise."",
+  ""Dependable, trustworthy, quality work on time. Pinecrest is the only contractor I'll ever call.""
+];
+var loader  = document.getElementById('loader');
+var lStars  = document.getElementById('l-stars');
+var lQuote  = document.getElementById('l-quote');
+var page    = document.getElementById('page');
+
+var qi = 0;
+function showQuote(){
+  lStars.classList.add('visible');
+  lQuote.textContent = QUOTES[qi];
+  lQuote.classList.add('visible');
+  qi++;
+  if(qi < QUOTES.length){
+    setTimeout(function(){
+      lQuote.classList.remove('visible');
+      setTimeout(showQuote, 500);
+    }, 1400);
+  } else {
+    setTimeout(function(){
+      loader.classList.add('fade-out');
+      page.style.visibility = 'visible';
+      setTimeout(function(){ loader.style.display = 'none'; }, 900);
+      startCounters();
+    }, 1200);
+  }
+}
+showQuote();
+
+/* ─── GRAIN CANVAS ────────────────────── */
+var canvas = document.getElementById('grain');
+var ctx    = canvas.getContext('2d');
+var W, H, animId;
+function resize(){
+  W = canvas.width  = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+function drawGrain(){
+  var img = ctx.createImageData(W, H);
+  var d   = img.data;
+  for(var i = 0; i < d.length; i += 4){
+    var v = (Math.random() * 255)|0;
+    d[i]   = v * 1.0;
+    d[i+1] = v * 0.85;
+    d[i+2] = v * 0.5;
+    d[i+3] = 10;
+  }
+  ctx.putImageData(img, 0, 0);
+  animId = requestAnimationFrame(drawGrain);
+}
+drawGrain();
+
+/* ─── HERO COUNTERS ───────────────────── */
+function startCounters(){
+  setTimeout(function(){
+    animateCount(document.getElementById('counter-homes'),    0, 100,  2200, false, '+');
+    animateCount(document.getElementById('counter-projects'), 0, 120,  2400, false, '+');
+    animateCount(document.getElementById('counter-rating'),   0, 4.7,  2200, true,  '');
+  }, 400);
+}
+function animateCount(el, from, to, dur, isFloat, suffix){
+  if(!el) return;
+  var start = null;
+  function step(ts){
+    if(!start) start = ts;
+    var p = Math.min((ts - start) / dur, 1);
+    var ease = 1 - Math.pow(1 - p, 3);
+    var val = from + (to - from) * ease;
+    el.textContent = isFloat ? val.toFixed(1) : (Math.round(val) + suffix);
+    if(p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+/* ─── INTERSECTION OBSERVER ───────────── */
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.classList.add('in-view');
+      io.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.12});
+document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+/* Staggered service cards */
+var cards = document.querySelectorAll('.services-grid .service-card.reveal');
+var cardIO = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      var idx = Array.prototype.indexOf.call(cards, e.target);
+      setTimeout(function(){ e.target.classList.add('in-view'); }, idx * 100);
+      cardIO.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.08});
+cards.forEach(function(c){ cardIO.observe(c); });
+
+/* ─── REVIEWS CAROUSEL ────────────────── */
+(function(){
+  var wrap  = document.querySelector('.carousel-wrap');
+  if(!wrap) return;
+  var track = wrap.querySelector('.carousel-track');
+  var dots  = document.querySelectorAll('.carousel-dot');
+  var n     = track.querySelectorAll('.review-card').length;
+  var cur   = 0, timer;
+
+  function go(i){
+    cur = (i % n + n) % n;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dots.forEach(function(d, j){ d.classList.toggle('active', j === cur); });
+  }
+  wrap.querySelector('.carousel-prev').addEventListener('click', function(){ go(cur - 1); reset(); });
+  wrap.querySelector('.carousel-next').addEventListener('click', function(){ go(cur + 1); reset(); });
+  dots.forEach(function(d, i){ d.addEventListener('click', function(){ go(i); reset(); }); });
+
+  /* Touch / swipe */
+  var tx0 = null;
+  wrap.addEventListener('touchstart', function(e){ tx0 = e.touches[0].clientX; }, {passive:true});
+  wrap.addEventListener('touchend',   function(e){
+    if(tx0 === null) return;
+    var dx = e.changedTouches[0].clientX - tx0;
+    if(Math.abs(dx) > 40) go(dx < 0 ? cur + 1 : cur - 1);
+    tx0 = null; reset();
+  }, {passive:true});
+
+  function reset(){ clearInterval(timer); timer = setInterval(function(){ go(cur + 1); }, 5000); }
+  reset();
+})();
+
+/* ─── FORM HANDLER ────────────────────── */
+document.getElementById('hero-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  var btn = this.querySelector('.form-btn');
+  btn.textContent = 'Thank You — We\'ll Be in Touch!';
+  btn.style.background = '#16a34a';
+  btn.disabled = true;
+});
+
+})();
+</script>
+
 </body>
 </html>

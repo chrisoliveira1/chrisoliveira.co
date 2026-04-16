@@ -3,184 +3,1270 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jaimes Construction Services, LLC — Palm Springs, FL</title>
+<title>Jaimes Construction Services, LLC | Palm Beach County, FL | Licensed GC</title>
+<meta name="description" content="Jaimes Construction Services — Palm Beach County's trusted family-owned general contractor since 2006. Licensed CGC1518242. Kitchen &amp; bath remodels, home additions, impact windows/doors, flooring, drywall, painting. Free estimates.">
+
+<!-- OG -->
+<meta property="og:title" content="Jaimes Construction Services, LLC | Palm Beach County, FL">
+<meta property="og:description" content="Family-owned general contractor serving Palm Beach County since 2006. Licensed, insured, A+ BBB. Free estimates on remodeling, additions &amp; more.">
+<meta property="og:image" content="https://chrisoliveira.co/p/jaimes-construction/preview.jpg">
+<meta property="og:type" content="website">
+
+<!-- Fonts: Work Sans (display) + Inter (body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" as="style">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap">
+
 <style>
-:root{
-  --clay:#6b3a22;
-  --clay-d:#4e2b18;
-  --sage:#6b8f6b;
-  --sage-l:#82a882;
-  --cream:#f9f4ec;
-  --warm-white:#fdf9f4;
-  --muted-text:rgba(255,255,255,0.68);
-  --ff-head:'Archivo Black',sans-serif;
-  --ff-body:'Inter',sans-serif;
+/* ══════════════════════════════════════════════
+   ROOT & RESET
+══════════════════════════════════════════════ */
+:root {
+  --charcoal:   #1c1c1c;
+  --charcoal2:  #242424;
+  --charcoal3:  #2e2e2e;
+  --amber:      #e07b2a;
+  --amber-d:    #c4691e;
+  --amber-l:    #f0923e;
+  --cream:      #faf6f0;
+  --warm-white: #fff9f4;
+  --text:       #1c1c1c;
+  --muted:      #6b6b6b;
+  --line:       #e8e2da;
+  --white:      #ffffff;
+  --ff-head:    'Work Sans', sans-serif;
+  --ff-body:    'Inter', sans-serif;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--ff-body);background:var(--clay-d);color:#fff;overflow-x:hidden}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--ff-body); background: var(--cream); color: var(--text); overflow-x: hidden; }
 
-/* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  background:rgba(58,32,18,0.97);
-  border-bottom:1px solid rgba(107,143,107,0.25);
-  padding:0 48px;height:64px;
-  display:flex;align-items:center;justify-content:space-between;
+/* ══════════════════════════════════════════════
+   LOADER
+══════════════════════════════════════════════ */
+#loader {
+  position: fixed; inset: 0; z-index: 99999;
+  background: var(--charcoal);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  transition: opacity 0.9s ease;
 }
-.nav-mark{font-family:var(--ff-head);font-size:18px;color:var(--sage);letter-spacing:.5px}
-.nav-center{display:flex;flex-direction:column;align-items:center}
-.nav-biz{font-size:13px;font-weight:600;color:rgba(255,255,255,0.8)}
-.nav-meta{font-size:11px;color:rgba(255,255,255,0.38);margin-top:2px}
-.nav-cta{
-  background:var(--sage);color:#fff;padding:10px 22px;
-  border-radius:5px;font-size:13px;font-weight:700;
-  text-decoration:none;white-space:nowrap;
+#loader.fade-out { opacity: 0; pointer-events: none; }
+#loader-inner { text-align: center; max-width: 680px; padding: 0 32px; }
+.loader-stars {
+  color: #f59e0b; font-size: 1.4rem; letter-spacing: 6px;
+  margin-bottom: 24px;
 }
-.nav-cta:hover{background:var(--sage-l)}
+.loader-quote {
+  font-family: var(--ff-head);
+  font-size: clamp(1.3rem, 3.2vw, 2.2rem);
+  font-weight: 600;
+  font-style: italic;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.45;
+  min-height: 3em;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.5s ease;
+}
+.loader-bar {
+  margin-top: 40px;
+  width: 120px; height: 2px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-left: auto; margin-right: auto;
+}
+.loader-bar-fill {
+  height: 100%; width: 0%;
+  background: var(--amber);
+  border-radius: 2px;
+  transition: width linear;
+}
 
-/* HERO — text left, photo right, warm clay tones (completely different from Cambridge's navy) */
-#hero{
-  min-height:100vh;padding-top:64px;
-  display:grid;grid-template-columns:1fr 1fr;overflow:hidden;
-  background:var(--clay-d);
+/* ══════════════════════════════════════════════
+   GRAIN CANVAS
+══════════════════════════════════════════════ */
+#grain {
+  position: fixed; inset: 0;
+  z-index: 99998; pointer-events: none;
+  opacity: 1;
 }
-.hero-text{
-  display:flex;flex-direction:column;justify-content:center;
-  padding:80px 48px 80px 72px;
-}
-.hero-eyebrow{
-  font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
-  color:var(--sage);margin-bottom:22px;
-}
-.hero-h1{
-  font-family:var(--ff-head);
-  font-size:clamp(40px,4.4vw,64px);
-  line-height:1.05;color:#fff;margin-bottom:26px;
-}
-.hero-h1 .accent{color:var(--sage)}
-.hero-quote{
-  font-size:15px;line-height:1.6;
-  color:rgba(255,255,255,0.55);
-  border-left:3px solid var(--sage);
-  padding-left:16px;
-  margin-bottom:28px;
-  font-style:italic;
-}
-.hero-sub{
-  font-size:16px;line-height:1.7;color:var(--muted-text);
-  max-width:420px;margin-bottom:36px;
-}
-.hero-ctas{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-.btn-primary{
-  background:var(--sage);color:#fff;padding:14px 28px;
-  border-radius:5px;font-size:15px;font-weight:700;text-decoration:none;
-}
-.btn-primary:hover{background:var(--sage-l)}
-.btn-ghost{color:var(--muted-text);font-size:15px;font-weight:500;text-decoration:none}
-.btn-ghost:hover{color:#fff}
 
-/* HERO VISUAL */
-.hero-visual{position:relative;overflow:hidden}
-.hero-img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-.hero-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to right, var(--clay-d) 0%, rgba(78,43,24,0.3) 35%, transparent 100%);
-}
-.hero-badge{
-  position:absolute;bottom:36px;left:28px;
-  background:rgba(40,20,10,0.88);
-  border:1px solid rgba(107,143,107,0.3);
-  border-left:3px solid var(--sage);
-  padding:14px 20px;border-radius:4px;
-  backdrop-filter:blur(6px);
-}
-.hero-badge-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--sage);margin-bottom:6px}
-.hero-badge-val{font-family:var(--ff-head);font-size:22px;color:#fff}
-.hero-badge-sub{font-size:11px;color:rgba(255,255,255,0.5);margin-top:3px}
+/* ══════════════════════════════════════════════
+   PAGE (hidden until loader done)
+══════════════════════════════════════════════ */
+#page { visibility: hidden; }
 
-/* PROOF STRIP */
-#proof{
-  background:var(--cream);
-  padding:36px 72px;
-  display:grid;grid-template-columns:repeat(4,1fr);
-  border-top:3px solid var(--sage);
+/* ══════════════════════════════════════════════
+   NAV
+══════════════════════════════════════════════ */
+nav {
+  position: sticky; top: 0; left: 0; right: 0; z-index: 1000;
+  height: 68px;
+  background: rgba(28,28,28,0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex; align-items: center;
+  padding: 0 40px;
 }
-.proof-item{
-  padding:0 24px 0 0;
-  border-right:1px solid rgba(107,58,34,0.12);
+.nav-inner {
+  width: 100%; max-width: 1400px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
 }
-.proof-item:last-child{border-right:none}
-.proof-val{font-family:var(--ff-head);font-size:26px;color:var(--clay);display:block}
-.proof-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#907060;margin-top:6px;display:block}
+.nav-logo {
+  font-family: var(--ff-head);
+  font-size: 18px; font-weight: 800; color: var(--white);
+  letter-spacing: -0.01em; text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-logo-mark {
+  width: 32px; height: 32px; background: var(--amber);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 900; color: var(--white);
+  font-family: var(--ff-head);
+  flex-shrink: 0;
+}
+.nav-logo em { font-style: normal; color: var(--amber); }
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.nav-phone {
+  font-size: 14px; font-weight: 600;
+  color: rgba(255,255,255,0.72); text-decoration: none;
+  letter-spacing: 0.01em;
+}
+.nav-phone:hover { color: var(--white); }
+.nav-cta {
+  background: var(--amber); color: var(--white);
+  font-size: 13px; font-weight: 700;
+  padding: 10px 20px; border-radius: 4px;
+  text-decoration: none; letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--amber-d); }
 
-@media(max-width:900px){
-  nav{padding:0 20px}
-  .nav-center{display:none}
-  #hero{grid-template-columns:1fr}
-  .hero-visual{display:none}
-  .hero-text{padding:52px 24px 48px}
-  #proof{grid-template-columns:repeat(2,1fr);padding:28px 24px;gap:20px}
-  .proof-item{border-right:none;padding-right:0}
+/* ══════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  height: calc(100vh - 68px);
+  min-height: 560px;
+  background: var(--charcoal);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 420px;
 }
-@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* Background photo */
+.hero-bg {
+  position: absolute; inset: 0;
+  z-index: 0;
+}
+.hero-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 35%;
+  display: block;
+}
+/* Multi-stop gradient — holds charcoal left, fades out right */
+.hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(28,28,28,0.97) 0%,
+    rgba(28,28,28,0.92) 12%,
+    rgba(28,28,28,0.70) 38%,
+    rgba(28,28,28,0.30) 60%,
+    rgba(28,28,28,0.10) 100%
+  );
+}
+
+/* Hero left — text content */
+.hero-left {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 60px 56px 80px 56px;
+}
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 28px;
+}
+.hero-eyebrow-text {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--amber);
+}
+.hero-eyebrow-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: rgba(255,255,255,0.3); flex-shrink: 0;
+}
+.hero-badge {
+  background: rgba(224,123,42,0.15);
+  border: 1px solid rgba(224,123,42,0.35);
+  border-radius: 20px; padding: 4px 12px;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--amber);
+}
+.hero-h1 {
+  font-family: var(--ff-head);
+  font-size: clamp(36px, 4.2vw, 64px);
+  font-weight: 900; line-height: 1.0;
+  color: var(--white); letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+.hero-h1 em {
+  font-style: normal; color: var(--amber);
+  position: relative;
+}
+.hero-h1 em::after {
+  content: '';
+  position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 3px; background: var(--amber);
+  transform: scaleX(0); transform-origin: left;
+  animation: underline-draw 0.7s 1.5s ease forwards;
+}
+@keyframes underline-draw {
+  to { transform: scaleX(1); }
+}
+.hero-rule {
+  width: 48px; height: 3px;
+  background: var(--amber); border-radius: 2px;
+  margin-bottom: 22px;
+}
+.hero-sub {
+  font-size: 16px; line-height: 1.7;
+  color: rgba(255,255,255,0.72);
+  max-width: 480px; margin-bottom: 36px;
+}
+.hero-stat-block {
+  display: flex; align-items: center; gap: 0;
+  border-left: 3px solid var(--amber);
+  padding-left: 18px;
+  opacity: 0;
+  animation: fade-up 0.6s 1.8s ease forwards;
+}
+.hero-stat-num {
+  font-family: var(--ff-head);
+  font-size: 42px; font-weight: 900;
+  color: var(--white); line-height: 1;
+  letter-spacing: -0.03em;
+  margin-right: 16px;
+}
+.hero-stat-label { line-height: 1.35; }
+.hero-stat-label strong {
+  display: block; font-size: 13px; font-weight: 700;
+  color: var(--amber); text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.hero-stat-label span {
+  font-size: 12px; color: rgba(255,255,255,0.50);
+}
+
+/* Hero right — lead form */
+.hero-right {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+  padding: 60px 40px 80px 20px;
+}
+.hero-form-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 12px;
+  padding: 36px 32px;
+  width: 100%; max-width: 360px;
+  opacity: 0;
+  animation: fade-up 0.6s 0.8s ease forwards;
+}
+.form-heading {
+  font-family: var(--ff-head);
+  font-size: 18px; font-weight: 800;
+  color: var(--white); margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.form-sub {
+  font-size: 12px; color: rgba(255,255,255,0.50);
+  margin-bottom: 24px; line-height: 1.5;
+}
+.form-group { margin-bottom: 14px; }
+.form-group label {
+  display: block; font-size: 11px; font-weight: 600;
+  color: rgba(255,255,255,0.55); letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 6px;
+}
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px; padding: 11px 14px;
+  color: var(--white); font-family: var(--ff-body);
+  font-size: 14px; outline: none;
+  transition: border-color 0.2s;
+}
+.form-group input::placeholder,
+.form-group select::placeholder { color: rgba(255,255,255,0.30); }
+.form-group input:focus,
+.form-group select:focus { border-color: var(--amber); }
+.form-group select { cursor: pointer; }
+.form-group select option { background: var(--charcoal); color: var(--white); }
+.form-submit {
+  width: 100%; background: var(--amber); color: var(--white);
+  font-family: var(--ff-head); font-size: 14px; font-weight: 800;
+  padding: 14px 24px; border: none; border-radius: 6px;
+  cursor: pointer; letter-spacing: 0.04em; text-transform: uppercase;
+  margin-top: 6px;
+  transition: background 0.2s, transform 0.15s;
+}
+.form-submit:hover { background: var(--amber-d); transform: translateY(-1px); }
+.form-trust {
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; margin-top: 14px;
+  font-size: 11px; color: rgba(255,255,255,0.38);
+}
+.form-trust svg { flex-shrink: 0; }
+
+/* Hero entrance animations */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-eyebrow { opacity: 0; animation: fade-up 0.6s 0.3s ease forwards; }
+.hero-h1      { opacity: 0; animation: fade-up 0.6s 0.5s ease forwards; }
+.hero-rule    { opacity: 0; animation: fade-up 0.6s 0.65s ease forwards; }
+.hero-sub     { opacity: 0; animation: fade-up 0.6s 0.80s ease forwards; }
+
+/* ══════════════════════════════════════════════
+   SVG WAVE BREAK
+══════════════════════════════════════════════ */
+.hero-wave {
+  position: absolute; bottom: 0; left: 0;
+  width: 100%; line-height: 0; z-index: 3; pointer-events: none;
+}
+.hero-wave svg { display: block; width: 100%; height: 52px; }
+
+/* ══════════════════════════════════════════════
+   TRUST BAR
+══════════════════════════════════════════════ */
+.trust-bar {
+  background: #141414;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 3px solid var(--amber);
+}
+.trust-col {
+  padding: 24px 20px; text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.trust-col:last-child { border-right: none; }
+.trust-val {
+  font-family: var(--ff-head);
+  font-size: 26px; font-weight: 900;
+  color: var(--amber); line-height: 1;
+  margin-bottom: 4px;
+}
+.trust-label {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+}
+
+/* ══════════════════════════════════════════════
+   SECTIONS — shared layout
+══════════════════════════════════════════════ */
+.section { padding: 88px 40px; max-width: 1280px; margin: 0 auto; }
+.section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--amber);
+  margin-bottom: 12px; display: block;
+}
+.section-title {
+  font-family: var(--ff-head);
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 800; line-height: 1.1;
+  color: var(--text); letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 16px; line-height: 1.7;
+  color: var(--muted); max-width: 560px;
+}
+
+/* ══════════════════════════════════════════════
+   REVIEWS CAROUSEL
+══════════════════════════════════════════════ */
+.reviews-wrap { background: var(--cream); padding: 80px 0; }
+.reviews-inner { max-width: 820px; margin: 0 auto; padding: 0 40px; text-align: center; }
+
+.review-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px; padding: 40px 44px;
+  text-align: left;
+}
+.review-stars { color: #f59e0b; font-size: 1.1rem; margin-bottom: 16px; letter-spacing: 3px; }
+.review-text {
+  font-size: 1.05rem; color: var(--text);
+  line-height: 1.72; margin-bottom: 20px;
+  font-style: italic;
+}
+.review-author { font-size: .85rem; font-weight: 700; color: var(--muted); }
+
+.carousel-wrap { position: relative; margin-top: 48px; overflow: hidden; }
+.carousel-track { display: flex; transition: transform .45s cubic-bezier(.4,0,.2,1); }
+.carousel-track .review-card { flex: 0 0 100%; }
+.carousel-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: 50%; width: 40px; height: 40px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  z-index: 2; color: var(--muted); padding: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,.07);
+  transition: border-color 0.2s, color 0.2s;
+}
+.carousel-btn:hover { border-color: var(--amber); color: var(--amber); }
+.carousel-prev { left: 12px; }
+.carousel-next { right: 12px; }
+.carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+.carousel-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #d1d5db; cursor: pointer; border: none; padding: 0;
+  transition: all .25s;
+}
+.carousel-dot.active { background: var(--amber); width: 24px; border-radius: 4px; }
+
+/* ══════════════════════════════════════════════
+   SERVICES GRID
+══════════════════════════════════════════════ */
+.services-wrap { background: var(--warm-white); padding: 88px 0; }
+.services-inner { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-top: 56px;
+}
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px; overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+  opacity: 0; transform: translateY(28px);
+}
+.service-card.visible {
+  opacity: 1; transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.25s;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(28,28,28,0.10);
+}
+.service-card-photo {
+  height: 180px; overflow: hidden;
+}
+.service-card-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.service-card:hover .service-card-photo img { transform: scale(1.04); }
+.service-card-body { padding: 24px; }
+.service-card-icon {
+  width: 40px; height: 40px;
+  background: rgba(224,123,42,0.10);
+  border-radius: 8px; margin-bottom: 14px;
+  display: flex; align-items: center; justify-content: center;
+}
+.service-card-icon svg { color: var(--amber); }
+.service-card-title {
+  font-family: var(--ff-head);
+  font-size: 17px; font-weight: 800;
+  color: var(--text); margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.service-card-desc {
+  font-size: 13px; line-height: 1.65; color: var(--muted);
+}
+
+/* ══════════════════════════════════════════════
+   ABOUT
+══════════════════════════════════════════════ */
+.about-wrap { background: var(--cream); padding: 88px 0; }
+.about-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 40px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 72px;
+  align-items: center;
+}
+.about-photo {
+  position: relative; border-radius: 12px; overflow: hidden;
+  box-shadow: 0 24px 64px rgba(28,28,28,0.14), 0 4px 16px rgba(28,28,28,0.08);
+}
+.about-photo img {
+  width: 100%; height: 520px;
+  object-fit: cover; display: block;
+}
+.about-photo-badge {
+  position: absolute; bottom: 24px; right: 24px;
+  background: var(--amber); color: var(--white);
+  padding: 12px 18px; border-radius: 8px;
+  font-family: var(--ff-head); font-size: 12px; font-weight: 800;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  box-shadow: 0 4px 16px rgba(224,123,42,0.40);
+}
+.about-content { }
+.about-creds {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-top: 32px;
+}
+.about-cred {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 14px; line-height: 1.55; color: var(--text);
+}
+.about-cred-dot {
+  width: 7px; height: 7px; background: var(--amber);
+  border-radius: 50%; flex-shrink: 0; margin-top: 6px;
+}
+
+/* ══════════════════════════════════════════════
+   CTA BANNER
+══════════════════════════════════════════════ */
+.cta-banner {
+  background: var(--charcoal);
+  padding: 88px 40px; text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;
+  opacity: 0.08;
+}
+.cta-banner-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+.cta-banner h2 {
+  font-family: var(--ff-head);
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 900; color: var(--white);
+  letter-spacing: -0.02em; margin-bottom: 16px;
+}
+.cta-banner h2 em { font-style: normal; color: var(--amber); }
+.cta-banner p {
+  font-size: 16px; color: rgba(255,255,255,0.62);
+  line-height: 1.7; margin-bottom: 36px;
+}
+.cta-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.btn-amber {
+  background: var(--amber); color: var(--white);
+  font-family: var(--ff-head); font-size: 14px; font-weight: 800;
+  padding: 16px 32px; border-radius: 6px;
+  text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-amber:hover { background: var(--amber-d); transform: translateY(-2px); }
+.btn-outline-white {
+  background: transparent; color: var(--white);
+  font-family: var(--ff-head); font-size: 14px; font-weight: 700;
+  padding: 15px 32px; border-radius: 6px;
+  border: 2px solid rgba(255,255,255,0.35);
+  text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-outline-white:hover { border-color: var(--white); background: rgba(255,255,255,0.06); }
+
+/* ══════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════ */
+.footer {
+  background: #111111; padding: 72px 40px 0;
+  color: rgba(255,255,255,0.65);
+}
+.footer-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  gap: 56px;
+}
+.footer-brand-name {
+  font-family: var(--ff-head);
+  font-size: 22px; font-weight: 900; color: var(--white);
+  margin-bottom: 12px; letter-spacing: -0.01em;
+}
+.footer-brand-name em { font-style: normal; color: var(--amber); }
+.footer-tagline {
+  font-size: 13px; line-height: 1.65;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 20px; max-width: 300px;
+}
+.footer-contact a {
+  display: block; font-size: 14px; font-weight: 500;
+  color: rgba(255,255,255,0.70); text-decoration: none;
+  margin-bottom: 6px;
+}
+.footer-contact a:hover { color: var(--amber); }
+.footer-col-title {
+  font-family: var(--ff-head);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.30);
+  margin-bottom: 18px; display: block;
+}
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a {
+  font-size: 14px; color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--amber); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.07);
+  max-width: 1280px; margin: 48px auto 0;
+  padding: 20px 0 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 12px; color: rgba(255,255,255,0.25);
+}
+.footer-bottom-lic {
+  font-size: 11px; color: rgba(255,255,255,0.20);
+}
+
+/* ══════════════════════════════════════════════
+   MOBILE STICKY CTA
+══════════════════════════════════════════════ */
+.mobile-cta {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 900;
+  background: var(--charcoal);
+  border-top: 2px solid var(--amber);
+  padding: 12px 20px;
+  gap: 12px;
+}
+.mobile-cta a {
+  flex: 1; text-align: center;
+  padding: 13px 10px; border-radius: 6px;
+  font-family: var(--ff-head); font-size: 13px; font-weight: 800;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  text-decoration: none;
+}
+.mobile-cta-call { background: var(--amber); color: var(--white); }
+.mobile-cta-text { background: rgba(255,255,255,0.08); color: var(--white); border: 1px solid rgba(255,255,255,0.18); }
+
+/* ══════════════════════════════════════════════
+   SCROLL REVEAL BASE STATE
+══════════════════════════════════════════════ */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .hero { grid-template-columns: 1fr 380px; }
+  .hero-left { padding: 48px 40px 80px 40px; }
+}
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    height: auto; min-height: auto;
+  }
+  .hero-left {
+    padding: 48px 24px 40px;
+    min-height: calc(100vh - 68px);
+  }
+  .hero-right { display: none; }
+  .hero-bg::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(28,28,28,0.90) 0%,
+      rgba(28,28,28,0.75) 100%
+    );
+  }
+  .trust-bar { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { grid-template-columns: 1fr; gap: 16px; }
+  .about-inner { grid-template-columns: 1fr; gap: 40px; }
+  .about-photo img { height: 320px; }
+  .footer-inner { grid-template-columns: 1fr; gap: 40px; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  .mobile-cta { display: flex; }
+  body { padding-bottom: 68px; }
+  .review-card { padding: 24px 20px; }
+  .section { padding: 60px 24px; }
+  .services-inner, .reviews-inner, .about-inner, .services-inner { padding: 0 24px; }
+  .cta-banner { padding: 64px 24px; }
+  .footer { padding: 56px 24px 0; }
+}
+@media (max-width: 640px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .cta-buttons { flex-direction: column; }
+  .nav-phone { display: none; }
+}
+
+/* ══════════════════════════════════════════════
+   REDUCED MOTION
+══════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  #loader { display: none; }
+  #page { visibility: visible !important; }
+  #grain { display: none; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal, .service-card { opacity: 1 !important; transform: none !important; }
+}
 </style>
 </head>
 <body>
-<nav>
-  <span class="nav-mark">Jaimes Construction</span>
-  <div class="nav-center">
-    <span class="nav-biz">Jaimes Construction Services, LLC</span>
-    <span class="nav-meta">Palm Springs, FL &middot; Family-Owned</span>
+
+<!-- ═══════════════════════════ LOADER ═══════════════════════════ -->
+<div id="loader">
+  <div id="loader-inner">
+    <div class="loader-stars">★★★★★</div>
+    <div class="loader-quote" id="loader-quote">"Jaime and his crew did outstanding work on our kitchen remodel — on time, clean, and the quality was excellent."</div>
+    <div class="loader-bar"><div class="loader-bar-fill" id="loader-bar-fill"></div></div>
   </div>
-  <a class="nav-cta" href="tel:5612486241">(561) 248-6241</a>
+</div>
+
+<!-- ═══════════════════════════ GRAIN ═══════════════════════════ -->
+<canvas id="grain"></canvas>
+
+<!-- ═══════════════════════════ PAGE ═══════════════════════════ -->
+<div id="page">
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark">JC</div>
+      <span>Jaimes <em>Construction</em></span>
+    </a>
+    <div class="nav-right">
+      <a href="tel:5612486241" class="nav-phone">(561) 248-6241</a>
+      <a href="#estimate" class="nav-cta">Free Estimate</a>
+    </div>
+  </div>
 </nav>
 
-<section id="hero">
-  <div class="hero-text">
-    <p class="hero-eyebrow">Palm Springs, FL &middot; 18 Years</p>
-    <h1 class="hero-h1">18 Years.<br>Family-Owned.<br><span class="accent">Jaime Always</span><br>Answers.</h1>
-    <p class="hero-quote">&ldquo;Honest, answers his calls, shows up when he says.&rdquo;</p>
-    <p class="hero-sub">Your reviews are phenomenal. Clients say you&rsquo;re honest, always pick up, and always show up. 18 years of that in Palm Springs is rare. That kind of reputation should be pulling in new jobs every week.</p>
-    <div class="hero-ctas">
-      <a class="btn-primary" href="tel:5612486241">Call (561) 248-6241</a>
-      <a class="btn-ghost" href="#proof">Credentials &rarr;</a>
+<!-- ══ HERO ══ -->
+<section class="hero" id="estimate">
+  <!-- Background photo -->
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=80"
+         alt="Construction project in Palm Beach County FL"
+         loading="eager">
+  </div>
+
+  <!-- Left: copy -->
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-text">Palm Beach County, FL</span>
+      <div class="hero-eyebrow-dot"></div>
+      <span class="hero-badge">Licensed &amp; Insured · CGC1518242</span>
+    </div>
+
+    <h1 class="hero-h1">
+      Built Right.<br>
+      <em>Built to Last.</em>
+    </h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">
+      Family-owned general contractor serving Palm Beach County since 2006. Every project managed in-house — no subcontractor guesswork, no surprises.
+    </p>
+
+    <div class="hero-stat-block">
+      <div class="hero-stat-num" id="hero-counter">4.9</div>
+      <div class="hero-stat-label">
+        <strong>★★★★★ Rating</strong>
+        <span>BBB A+ · 18 Years in Business</span>
+      </div>
     </div>
   </div>
-  <div class="hero-visual">
-    <img class="hero-img"
-      src="../../assets/samples/gc/CKD-remodeling-milton-fl-questions-to-ask-a-general-contractor-looking-at-plans-in-a-framed-home.png"
-      alt="Jaimes Construction owner reviewing project plans on-site in Palm Springs, FL">
-    <div class="hero-overlay"></div>
-    <div class="hero-badge">
-      <div class="hero-badge-label">Accredited</div>
-      <div class="hero-badge-val">BBB A+ Since 2011</div>
-      <div class="hero-badge-sub">18 Years Family Business</div>
+
+  <!-- Right: lead form -->
+  <div class="hero-right">
+    <div class="hero-form-card">
+      <div class="form-heading">Get a Free Project Estimate</div>
+      <div class="form-sub">No obligation. We respond within 24 hours.</div>
+      <form onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label for="f-name">Your Name</label>
+          <input type="text" id="f-name" name="name" placeholder="John Smith" required>
+        </div>
+        <div class="form-group">
+          <label for="f-phone">Phone Number</label>
+          <input type="tel" id="f-phone" name="phone" placeholder="(561) 000-0000" required>
+        </div>
+        <div class="form-group">
+          <label for="f-email">Email Address</label>
+          <input type="email" id="f-email" name="email" placeholder="john@email.com">
+        </div>
+        <div class="form-group">
+          <label for="f-service">Service Needed</label>
+          <select id="f-service" name="service">
+            <option value="">Select a service…</option>
+            <option>Kitchen Remodeling</option>
+            <option>Bathroom Remodeling</option>
+            <option>Home Addition</option>
+            <option>Impact Windows &amp; Doors</option>
+            <option>Tile &amp; Flooring</option>
+            <option>Drywall &amp; Painting</option>
+            <option>General Contracting</option>
+            <option>Commercial Work</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <button type="submit" class="form-submit">Request My Free Estimate →</button>
+      </form>
+      <div class="form-trust">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Licensed · Insured · Free Estimates
+      </div>
     </div>
+  </div>
+
+  <!-- Wave break -->
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,22 C360,52 1080,0 1440,30 L1440,52 L0,52 Z" fill="#141414"/>
+    </svg>
   </div>
 </section>
 
-<section id="proof">
-  <div class="proof-item">
-    <span class="proof-val">18 Years</span>
-    <span class="proof-label">Family Business</span>
+<!-- ══ TRUST BAR ══ -->
+<div class="trust-bar">
+  <div class="trust-col">
+    <div class="trust-val">18+</div>
+    <div class="trust-label">Years in Business</div>
   </div>
-  <div class="proof-item">
-    <span class="proof-val">BBB A+</span>
-    <span class="proof-label">Since 2011</span>
+  <div class="trust-col">
+    <div class="trust-val">CGC<span style="font-size:14px;"> Licensed</span></div>
+    <div class="trust-label">Licensed &amp; Fully Insured</div>
   </div>
-  <div class="proof-item">
-    <span class="proof-val">Always</span>
-    <span class="proof-label">Answers Calls</span>
+  <div class="trust-col">
+    <div class="trust-val">PBC</div>
+    <div class="trust-label">Palm Beach County &amp; Surrounding</div>
   </div>
-  <div class="proof-item">
-    <span class="proof-val">Licensed</span>
-    <span class="proof-label">&amp; Insured</span>
+  <div class="trust-col">
+    <div class="trust-val">A+</div>
+    <div class="trust-label">BBB Accredited Since 2011</div>
   </div>
-</section>
+</div>
+
+<!-- ══ REVIEWS CAROUSEL ══ -->
+<div class="reviews-wrap">
+  <div class="reviews-inner">
+    <div class="reveal">
+      <span class="section-label">What Customers Are Saying</span>
+      <h2 class="section-title" style="margin: 0 auto 12px;">The Work Speaks for Itself</h2>
+      <p class="section-sub" style="margin: 0 auto; text-align: center;">Trusted by homeowners and businesses across Palm Beach County for over 18 years.</p>
+    </div>
+    <div class="carousel-wrap reveal">
+      <div class="carousel-track">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Jaime and his crew remodeled our master bathroom and we couldn't be happier. The tile work is absolutely beautiful, everything was done on schedule, and the price was very fair. He communicates well and keeps you informed every step of the way. Highly recommend."</p>
+          <div class="review-author">Maria T. — Lake Worth, FL · Bathroom Remodel</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"We hired Jaimes Construction for a full kitchen remodel including new cabinets, countertops, tile backsplash, and drywall repair. From start to finish, the team was professional, clean, and respectful of our home. The result exceeded our expectations. Will definitely use again."</p>
+          <div class="review-author">Robert &amp; Ellen C. — Boynton Beach, FL · Kitchen Remodel</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Had impact windows and doors installed throughout our home. Jaime was knowledgeable, pulled all the proper permits, and the installation crew was top-notch. Finished in two days, no mess, no headaches. Finally a contractor who shows up when he says he will!"</p>
+          <div class="review-author">Sandra M. — Palm Springs, FL · Impact Windows &amp; Doors</div>
+        </div>
+      </div>
+      <button class="carousel-btn carousel-prev" aria-label="Previous">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-btn carousel-next" aria-label="Next">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="carousel-dots">
+      <button class="carousel-dot active" aria-label="Review 1"></button>
+      <button class="carousel-dot" aria-label="Review 2"></button>
+      <button class="carousel-dot" aria-label="Review 3"></button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SERVICES GRID ══ -->
+<div class="services-wrap">
+  <div class="services-inner">
+    <div class="reveal">
+      <span class="section-label">What We Do</span>
+      <h2 class="section-title">Full-Service Construction &amp; Remodeling</h2>
+      <p class="section-sub">From kitchen transformations to full home additions — all work performed by our own crews. No subs, no surprises.</p>
+    </div>
+    <div class="services-grid">
+      <!-- Card 1 -->
+      <div class="service-card">
+        <div class="service-card-photo">
+          <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80"
+               alt="General contracting project by Jaimes Construction Palm Beach County" loading="lazy">
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="service-card-title">General Contracting</div>
+          <div class="service-card-desc">Full project management from permits to final inspection. We coordinate every phase — no subcontractor pass-offs, no hidden markups, just one accountable crew.</div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="service-card">
+        <div class="service-card-photo">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80"
+               alt="Kitchen remodeling by Jaimes Construction Services LLC" loading="lazy">
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+          </div>
+          <div class="service-card-title">Kitchen &amp; Bath Remodeling</div>
+          <div class="service-card-desc">Custom cabinets, countertops, tile, fixtures, and layout changes. We handle design through installation — full turnkey remodels that add real value to your home.</div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="service-card">
+        <div class="service-card-photo">
+          <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=800&q=80"
+               alt="Home addition construction in Palm Beach County FL" loading="lazy">
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+          </div>
+          <div class="service-card-title">Home Additions</div>
+          <div class="service-card-desc">Need more space? We design and build horizontal additions, vertical second stories, ADUs, and sunrooms — all properly permitted and up to South Florida building code.</div>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="service-card">
+        <div class="service-card-photo">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+               alt="Tile and flooring installation by Jaimes Construction Services" loading="lazy">
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg>
+          </div>
+          <div class="service-card-title">Tile &amp; Flooring</div>
+          <div class="service-card-desc">Porcelain, ceramic, marble, luxury vinyl plank, and hardwood installation. Precision cuts, level surfaces, and clean grout lines — the details that define quality.</div>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="service-card">
+        <div class="service-card-photo">
+          <img src="https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?auto=format&fit=crop&w=800&q=80"
+               alt="Interior painting and drywall by Jaimes Construction Palm Beach" loading="lazy">
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.37 2.63L14 7l-1.59-1.59a2 2 0 00-2.82 0L8 7l9 9 1.59-1.59a2 2 0 000-2.82L17 10l4.37-4.37a2.12 2.12 0 00-3-3z"/><path d="M9 8c-2 3-4 3.5-7 4l8 8c1-.5 3.5-2 4-7"/><path d="M14.5 17.5L4.5 15"/></svg>
+          </div>
+          <div class="service-card-title">Painting &amp; Drywall</div>
+          <div class="service-card-desc">Interior and exterior painting, drywall installation, patching, and texture matching. We prep properly so the finish lasts — no shortcuts on prime coats or joint compound.</div>
+        </div>
+      </div>
+      <!-- Card 6 -->
+      <div class="service-card">
+        <div class="service-card-photo">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80"
+               alt="Commercial construction and office remodeling Palm Beach County" loading="lazy">
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          </div>
+          <div class="service-card-title">Commercial Work</div>
+          <div class="service-card-desc">Office remodels, retail build-outs, and light commercial construction. We understand the cost of downtime — we work efficiently and keep your business running during renovations.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ABOUT ══ -->
+<div class="about-wrap">
+  <div class="about-inner">
+    <div class="about-photo reveal">
+      <img src="https://images.unsplash.com/photo-1590664216304-30f5b57de77f?auto=format&fit=crop&w=800&q=80"
+           alt="Jaimes Construction Services team at work in Palm Beach County FL"
+           loading="lazy">
+      <div class="about-photo-badge">Since 2006</div>
+    </div>
+    <div class="about-content reveal">
+      <span class="section-label">Our Story</span>
+      <h2 class="section-title">A Family Business Built on Doing Things Right</h2>
+      <p style="font-size:15px; line-height:1.75; color:var(--muted); margin-bottom:24px;">
+        Jaimes Construction Services was built on a simple idea: bring the same level of care to every client's home or business that you'd bring to your own. Founded in Palm Springs, FL in 2006, we've grown into one of Palm Beach County's trusted remodeling contractors — not by cutting corners, but by keeping our word.
+      </p>
+      <p style="font-size:15px; line-height:1.75; color:var(--muted); margin-bottom:28px;">
+        Unlike larger outfits that hand your project to subcontractors, we keep every phase in-house. That means better communication, consistent quality, and a team that's accountable from the first nail to the final inspection.
+      </p>
+      <div class="about-creds">
+        <div class="about-cred">
+          <div class="about-cred-dot"></div>
+          <span><strong>Certified General Contractor</strong> — License #CGC1518242, issued by the Florida DBPR</span>
+        </div>
+        <div class="about-cred">
+          <div class="about-cred-dot"></div>
+          <span><strong>Certified Specialty Contractor</strong> — License #SCC131150130</span>
+        </div>
+        <div class="about-cred">
+          <div class="about-cred-dot"></div>
+          <span><strong>BBB A+ Accredited</strong> since May 2011 — zero unresolved complaints</span>
+        </div>
+        <div class="about-cred">
+          <div class="about-cred-dot"></div>
+          <span><strong>BuildZoom Score: 97</strong> — top tier among Palm Beach County contractors</span>
+        </div>
+        <div class="about-cred">
+          <div class="about-cred-dot"></div>
+          <span><strong>Fully insured</strong> — general liability and workers' compensation on every job</span>
+        </div>
+        <div class="about-cred">
+          <div class="about-cred-dot"></div>
+          <span><strong>All permits pulled</strong> — we handle the paperwork so your project is legal and protected</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CTA BANNER ══ -->
+<div class="cta-banner">
+  <div class="cta-banner-inner reveal">
+    <h2>Ready to Start Your <em>Next Project?</em></h2>
+    <p>Get a free, no-obligation estimate from Palm Beach County's family-owned general contractor. We answer our phones and we show up on time.</p>
+    <div class="cta-buttons">
+      <a href="tel:5612486241" class="btn-amber">Call (561) 248-6241</a>
+      <a href="#estimate" class="btn-outline-white">Request Online Estimate</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <!-- Col 1: Brand -->
+    <div>
+      <div class="footer-brand-name">Jaimes <em>Construction</em> Services, LLC</div>
+      <p class="footer-tagline">Family-owned general contractor serving Palm Beach County since 2006. Licensed, insured, and accountable on every project.</p>
+      <div class="footer-contact">
+        <a href="tel:5612486241">(561) 248-6241</a>
+        <a href="#">420 San Mateo Dr, Palm Springs, FL 33461</a>
+        <a href="#">jaimesconstructionpalmbeach.com</a>
+      </div>
+    </div>
+    <!-- Col 2: Services -->
+    <div>
+      <span class="footer-col-title">Services</span>
+      <ul class="footer-links">
+        <li><a href="#">General Contracting</a></li>
+        <li><a href="#">Kitchen Remodeling</a></li>
+        <li><a href="#">Bathroom Remodeling</a></li>
+        <li><a href="#">Home Additions</a></li>
+        <li><a href="#">Impact Windows &amp; Doors</a></li>
+        <li><a href="#">Tile &amp; Flooring</a></li>
+        <li><a href="#">Painting &amp; Drywall</a></li>
+        <li><a href="#">Commercial Work</a></li>
+      </ul>
+    </div>
+    <!-- Col 3: Service Area -->
+    <div>
+      <span class="footer-col-title">Service Area</span>
+      <ul class="footer-links">
+        <li><a href="#">Palm Springs, FL</a></li>
+        <li><a href="#">Lake Worth</a></li>
+        <li><a href="#">West Palm Beach</a></li>
+        <li><a href="#">Boynton Beach</a></li>
+        <li><a href="#">Wellington</a></li>
+        <li><a href="#">Greenacres</a></li>
+        <li><a href="#">Lantana</a></li>
+        <li><a href="#">Royal Palm Beach</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom" style="padding: 20px 0 28px;">
+    <span>© 2025 Jaimes Construction Services, LLC. All rights reserved.</span>
+    <span class="footer-bottom-lic">License #CGC1518242 · #SCC131150130 · BBB A+ Accredited</span>
+  </div>
+</footer>
+
+<!-- ══ MOBILE STICKY CTA ══ -->
+<div class="mobile-cta">
+  <a href="tel:5612486241" class="mobile-cta-call">📞 Call Now</a>
+  <a href="#estimate" class="mobile-cta-text">Free Estimate</a>
+</div>
+
+</div><!-- /#page -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════════════ -->
+<script>
+/* ── LOADER ── */
+(function () {
+  var quotes = [
+    "\"Jaime and his crew did outstanding work on our kitchen remodel — on time, clean, and the quality was excellent.\"",
+    "\"Finally a contractor who shows up when he says he will. Impact windows installed in two days, no mess, no headaches.\"",
+    "\"The tile work is absolutely beautiful. Professional, clean, and very fair pricing. Highly recommend Jaimes Construction.\""
+  ];
+  var qEl  = document.getElementById('loader-quote');
+  var fill = document.getElementById('loader-bar-fill');
+  var loader = document.getElementById('loader');
+  var page   = document.getElementById('page');
+  var cur = 0;
+  var totalMs = 4800;
+  var holdMs  = 1400;
+
+  // Animate progress bar
+  fill.style.transition = 'width ' + totalMs + 'ms linear';
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () { fill.style.width = '100%'; });
+  });
+
+  function showQuote(i) {
+    qEl.style.opacity = '0';
+    setTimeout(function () {
+      qEl.textContent = quotes[i];
+      qEl.style.opacity = '1';
+    }, 320);
+  }
+
+  showQuote(0);
+  setTimeout(function () { showQuote(1); }, holdMs);
+  setTimeout(function () { showQuote(2); }, holdMs * 2);
+
+  // Fade loader, reveal page
+  setTimeout(function () {
+    loader.classList.add('fade-out');
+    page.style.visibility = 'visible';
+    // Fire hero counter after reveal
+    setTimeout(startCounter, 400);
+  }, totalMs);
+  setTimeout(function () {
+    loader.style.display = 'none';
+  }, totalMs + 1000);
+})();
+
+/* ── GRAIN CANVAS ── */
+(function () {
+  var canvas = document.getElementById('grain');
+  var ctx    = canvas.getContext('2d');
+  var W, H;
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function drawGrain() {
+    var img = ctx.createImageData(W, H);
+    var data = img.data;
+    for (var i = 0; i < data.length; i += 4) {
+      var v = Math.random() * 255;
+      data[i]   = v * 1.0;  // R warm tint
+      data[i+1] = v * 0.88; // G
+      data[i+2] = v * 0.62; // B
+      data[i+3] = 10;        // alpha
+    }
+    ctx.putImageData(img, 0, 0);
+    requestAnimationFrame(drawGrain);
+  }
+  drawGrain();
+})();
+
+/* ── HERO COUNTER ── */
+function startCounter() {
+  var el = document.getElementById('hero-counter');
+  if (!el) return;
+  var start = 0.0, end = 4.9, dur = 2200, startTime = null;
+  function easeOutExpo(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+  function step(ts) {
+    if (!startTime) startTime = ts;
+    var prog = Math.min((ts - startTime) / dur, 1);
+    el.textContent = (start + (end - start) * easeOutExpo(prog)).toFixed(1);
+    if (prog < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+/* ── REVIEWS CAROUSEL ── */
+(function () {
+  var wrap  = document.querySelector('.carousel-wrap');
+  if (!wrap) return;
+  var track = wrap.querySelector('.carousel-track');
+  var dots  = document.querySelectorAll('.carousel-dot');
+  var cards = track.querySelectorAll('.review-card');
+  var n = cards.length, cur = 0, timer;
+
+  // Touch/swipe
+  var touchStartX = 0;
+  wrap.addEventListener('touchstart', function (e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+  wrap.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) { go(cur + (dx < 0 ? 1 : -1)); reset(); }
+  });
+
+  function go(i) {
+    cur = ((i % n) + n) % n;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dots.forEach(function (d, j) { d.classList.toggle('active', j === cur); });
+  }
+  wrap.querySelector('.carousel-prev').addEventListener('click', function () { go(cur - 1); reset(); });
+  wrap.querySelector('.carousel-next').addEventListener('click', function () { go(cur + 1); reset(); });
+  dots.forEach(function (d, i) { d.addEventListener('click', function () { go(i); reset(); }); });
+  function reset() { clearInterval(timer); timer = setInterval(function () { go(cur + 1); }, 5000); }
+  reset();
+})();
+
+/* ── INTERSECTION OBSERVER — scroll reveal + staggered cards ── */
+(function () {
+  var revealEls = document.querySelectorAll('.reveal');
+  var cardEls   = document.querySelectorAll('.service-card');
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealEls.forEach(function (el) { io.observe(el); });
+
+  // Stagger service cards
+  var cardIO = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        var cards = Array.from(document.querySelectorAll('.service-card'));
+        var idx   = cards.indexOf(e.target);
+        setTimeout(function () {
+          e.target.classList.add('visible');
+        }, idx * 80);
+        cardIO.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.10 });
+
+  cardEls.forEach(function (el) { cardIO.observe(el); });
+})();
+
+/* ── FORM HANDLER ── */
+function handleFormSubmit(e) {
+  e.preventDefault();
+  var btn = e.target.querySelector('.form-submit');
+  btn.textContent = '✓ Request Sent — We\'ll Be in Touch!';
+  btn.style.background = '#2e7d32';
+  btn.disabled = true;
+}
+</script>
+
 </body>
 </html>

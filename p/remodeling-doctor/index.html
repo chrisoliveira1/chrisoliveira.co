@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Remodeling Doctor | Palm Beach County's Premier Home Remodeling</title>
+  <meta name="description" content="The Remodeling Doctor — licensed, bonded &amp; insured home remodeling contractor serving Boynton Beach, Boca Raton, West Palm Beach &amp; all of Palm Beach County, FL. Kitchen, bathroom, flooring, additions &amp; more. 25+ years experience. Free estimates.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Remodeling Doctor | Palm Beach County, FL">
+  <meta property="og:description" content="Licensed &amp; insured remodeling contractor with 25+ years of experience in South Florida. Kitchens, bathrooms, flooring, additions &amp; more. Free estimates.">
+  <meta property="og:image" content="https://chrisoliveira.co/p/remodeling-doctor/preview.jpg">
+  <meta property="og:url" content="https://chrisoliveira.co/p/remodeling-doctor/">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+
+  <style>
+    /* ══════════════════════════════════════════
+       RESET & ROOT
+    ══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #0d1f30;
+      --navy-mid:  #122639;
+      --navy-dark: #091522;
+      --teal:      #2a9d8f;
+      --teal-dark: #1f7a6e;
+      --teal-light:#3bbdad;
+      --white:     #ffffff;
+      --off:       #f4f6f8;
+      --text:      #1a2e3e;
+      --muted:     #5a7080;
+      --line:      #e2e8ed;
+      --trust-bg:  #0f2a3d;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── LOADER ── */
+    #loader {
+      position: fixed; inset: 0; z-index: 99999;
+      background: var(--navy-dark);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 40px;
+      transition: opacity 0.9s ease;
+    }
+    #loader.fade-out { opacity: 0; pointer-events: none; }
+
+    .loader-logo {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: var(--teal);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 56px;
+      opacity: 0.9;
+    }
+    .loader-logo span { color: var(--white); }
+
+    .loader-review {
+      text-align: center;
+      max-width: 680px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      position: absolute;
+    }
+    .loader-review.active { opacity: 1; }
+
+    .loader-stars {
+      color: #f59e0b;
+      font-size: 1.3rem;
+      letter-spacing: 4px;
+      margin-bottom: 20px;
+    }
+    .loader-quote {
+      font-family: 'DM Sans', sans-serif;
+      font-style: italic;
+      font-size: clamp(1.25rem, 3vw, 2rem);
+      color: var(--white);
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    .loader-bar {
+      position: absolute;
+      bottom: 0; left: 0;
+      height: 3px;
+      background: var(--teal);
+      width: 0%;
+      transition: width 4.8s linear;
+    }
+    .loader-bar.run { width: 100%; }
+
+    /* ── PAGE (hidden until loader fades) ── */
+    #page { visibility: hidden; }
+
+    /* ── GRAIN CANVAS ── */
+    #grain {
+      position: fixed; inset: 0;
+      z-index: 99998;
+      pointer-events: none;
+      opacity: 1;
+    }
+
+    /* ══════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════ */
+    .nav {
+      position: sticky; top: 0; left: 0; right: 0;
+      height: 68px;
+      z-index: 1000;
+      background: rgba(13,31,48,0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(42,157,143,0.18);
+      display: flex; align-items: center;
+      padding: 0 40px;
+    }
+    .nav-inner {
+      width: 100%; max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo-icon {
+      width: 34px; height: 34px;
+      background: var(--teal);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-logo-icon svg { width: 18px; height: 18px; fill: white; }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-top { font-size: 0.65rem; font-weight: 600; color: var(--teal); text-transform: uppercase; letter-spacing: 0.12em; }
+    .nav-logo-main { font-size: 1.05rem; color: var(--white); }
+
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-phone {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-phone:hover { color: var(--teal-light); }
+    .btn-nav {
+      background: var(--teal);
+      color: var(--white);
+      padding: 9px 22px;
+      border-radius: 6px;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .btn-nav:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+    /* ══════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      height: calc(100vh - 68px);
+      min-height: 560px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 440px;
+      align-items: center;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 40%;
+      display: block;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(9,21,34,0.92) 0%,
+        rgba(9,21,34,0.88) 38%,
+        rgba(9,21,34,0.60) 62%,
+        rgba(9,21,34,0.40) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 60px 48px 60px 64px;
+      max-width: 660px;
+    }
+
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 24px;
+      opacity: 0; transform: translateY(18px);
+      animation: fadeUp 0.7s ease 0.3s forwards;
+    }
+    .eyebrow-pill {
+      background: rgba(42,157,143,0.18);
+      border: 1px solid rgba(42,157,143,0.4);
+      color: var(--teal-light);
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 5px 12px;
+      border-radius: 40px;
+    }
+
+    .hero h1 {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.6rem, 5.5vw, 4rem);
+      color: var(--white);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 22px;
+      opacity: 0; transform: translateY(22px);
+      animation: fadeUp 0.75s ease 0.5s forwards;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--teal-light);
+      position: relative;
+      display: inline-block;
+    }
+    .hero h1 em::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 3px;
+      background: var(--teal);
+      border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: drawLine 0.6s ease 1.3s forwards;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.65;
+      margin-bottom: 36px;
+      max-width: 520px;
+      opacity: 0; transform: translateY(16px);
+      animation: fadeUp 0.7s ease 0.7s forwards;
+    }
+
+    .hero-rating {
+      display: flex; align-items: center; gap: 16px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      opacity: 0; transform: translateY(14px);
+      animation: fadeUp 0.7s ease 0.9s forwards;
+    }
+    .hero-rating-num {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 900;
+      font-size: 2.8rem;
+      color: var(--teal-light);
+      line-height: 1;
+      border-left: 3px solid var(--teal);
+      padding-left: 16px;
+    }
+    .hero-rating-meta { display: flex; flex-direction: column; gap: 4px; }
+    .hero-rating-stars { color: #f59e0b; font-size: 1rem; letter-spacing: 3px; }
+    .hero-rating-label { font-size: 0.82rem; color: rgba(255,255,255,0.6); font-weight: 500; }
+
+    /* ── HERO FORM ── */
+    .hero-form-wrap {
+      position: relative; z-index: 2;
+      padding: 60px 52px 60px 20px;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.8s ease 0.6s forwards;
+    }
+
+    .hero-form {
+      background: rgba(255,255,255,0.97);
+      border-radius: 16px;
+      padding: 36px 32px;
+      box-shadow: 0 32px 80px rgba(9,21,34,0.4), 0 4px 16px rgba(9,21,34,0.2);
+    }
+    .hero-form-title {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--navy);
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+    .hero-form-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .form-field { margin-bottom: 14px; }
+    .form-field label {
+      display: block;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.72rem;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+    .form-field input, .form-field select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-field input:focus, .form-field select:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(42,157,143,0.12);
+    }
+    .form-field input::placeholder { color: #a0aab4; }
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--teal);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .form-submit:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(42,157,143,0.35);
+    }
+    .form-fine {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+    .form-badge {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      margin-top: 16px; padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+    .form-badge-dot {
+      width: 8px; height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .form-badge span {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* ── SVG WAVE ── */
+    .hero-wave {
+      position: absolute; bottom: 0; left: 0;
+      width: 100%; line-height: 0; z-index: 3;
+      pointer-events: none;
+    }
+    .hero-wave svg { display: block; width: 100%; height: 52px; }
+
+    /* ══════════════════════════════════════════
+       TRUST BAR
+    ══════════════════════════════════════════ */
+    .trust-bar {
+      background: var(--trust-bg);
+      padding: 0;
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 1280px; margin: 0 auto;
+    }
+    .trust-item {
+      padding: 32px 24px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      display: flex; flex-direction: column;
+      align-items: center; gap: 8px;
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-icon { margin-bottom: 4px; }
+    .trust-icon svg { width: 28px; height: 28px; fill: var(--teal); }
+    .trust-num {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 900;
+      font-size: 2rem;
+      color: var(--teal-light);
+      line-height: 1;
+    }
+    .trust-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      line-height: 1.3;
+    }
+
+    /* ══════════════════════════════════════════
+       SHARED SECTION STYLES
+    ══════════════════════════════════════════ */
+    .section { padding: 96px 40px; }
+    .section-inner { max-width: 1180px; margin: 0 auto; }
+
+    .section-label {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 560px;
+      margin-bottom: 56px;
+    }
+
+    /* ══════════════════════════════════════════
+       REVIEWS CAROUSEL
+    ══════════════════════════════════════════ */
+    .reviews-section { background: var(--off); }
+
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 36px 40px;
+      box-shadow: 0 4px 20px rgba(13,31,48,0.06);
+    }
+    .review-stars {
+      color: #f59e0b;
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      letter-spacing: 3px;
+    }
+    .review-text {
+      font-size: 1.05rem;
+      color: var(--text);
+      line-height: 1.72;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .review-author {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .review-author span { color: var(--muted); font-weight: 500; }
+
+    .carousel-wrap {
+      position: relative;
+      margin-top: 48px;
+      overflow: hidden;
+      border-radius: 14px;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.48s cubic-bezier(0.4,0,0.2,1);
+    }
+    .carousel-track .review-card {
+      flex: 0 0 100%;
+    }
+    .carousel-btn {
+      position: absolute; top: 50%;
+      transform: translateY(-50%);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      width: 44px; height: 44px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 2;
+      color: var(--muted);
+      padding: 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: box-shadow 0.2s, color 0.2s;
+    }
+    .carousel-btn:hover { color: var(--teal); box-shadow: 0 4px 16px rgba(42,157,143,0.2); }
+    .carousel-prev { left: 16px; }
+    .carousel-next { right: 16px; }
+    .carousel-dots {
+      display: flex; justify-content: center; gap: 8px;
+      margin-top: 20px;
+    }
+    .carousel-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #d1d5db;
+      cursor: pointer; border: none; padding: 0;
+      transition: all 0.28s;
+    }
+    .carousel-dot.active {
+      background: var(--teal);
+      width: 26px;
+      border-radius: 4px;
+    }
+
+    /* ══════════════════════════════════════════
+       SERVICES GRID
+    ══════════════════════════════════════════ */
+    .services-section { background: var(--white); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .service-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--white);
+      transition: box-shadow 0.25s, transform 0.25s;
+      opacity: 0; transform: translateY(28px);
+    }
+    .service-card.visible {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.25s, border-color 0.25s;
+    }
+    .service-card:hover {
+      box-shadow: 0 16px 48px rgba(13,31,48,0.12);
+      transform: translateY(-4px);
+      border-color: rgba(42,157,143,0.3);
+    }
+    .service-photo {
+      height: 200px; overflow: hidden;
+    }
+    .service-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s ease;
+      display: block;
+    }
+    .service-card:hover .service-photo img { transform: scale(1.04); }
+    .service-body { padding: 24px 26px 28px; }
+    .service-icon {
+      width: 44px; height: 44px;
+      background: rgba(42,157,143,0.1);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+    }
+    .service-icon svg { width: 22px; height: 22px; fill: var(--teal); }
+    .service-title {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--navy);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ══════════════════════════════════════════
+       ABOUT
+    ══════════════════════════════════════════ */
+    .about-section { background: var(--off); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .about-photo-wrap { position: relative; }
+    .about-photo {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(13,31,48,0.14);
+    }
+    .about-photo img {
+      width: 100%; height: 480px;
+      object-fit: cover; object-position: center 20%;
+      display: block;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -24px; right: -24px;
+      background: var(--teal);
+      color: var(--white);
+      border-radius: 14px;
+      padding: 20px 24px;
+      box-shadow: 0 8px 32px rgba(42,157,143,0.35);
+      text-align: center;
+    }
+    .about-badge-num {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 900;
+      font-size: 2rem;
+      line-height: 1;
+    }
+    .about-badge-label {
+      font-size: 0.72rem;
+      opacity: 0.85;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    .about-content { padding-right: 16px; }
+    .about-content .section-title { margin-bottom: 20px; }
+    .about-body {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+    .about-creds { list-style: none; margin-bottom: 36px; }
+    .about-creds li {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+    .about-creds li:last-child { border-bottom: none; }
+    .cred-check {
+      width: 20px; height: 20px;
+      background: rgba(42,157,143,0.12);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .cred-check svg { width: 11px; height: 11px; stroke: var(--teal); fill: none; stroke-width: 2.5; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--teal);
+      color: var(--white);
+      padding: 14px 30px;
+      border-radius: 8px;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(42,157,143,0.35);
+    }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      color: var(--white);
+      padding: 14px 30px;
+      border-radius: 8px;
+      border: 2px solid rgba(255,255,255,0.35);
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.6);
+      transform: translateY(-2px);
+    }
+
+    /* ══════════════════════════════════════════
+       CTA BANNER
+    ══════════════════════════════════════════ */
+    .cta-section {
+      background: var(--navy);
+      padding: 96px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(42,157,143,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-inner {
+      max-width: 800px; margin: 0 auto;
+      text-align: center;
+      position: relative; z-index: 1;
+    }
+    .cta-section .section-label { text-align: center; }
+    .cta-title {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+    .cta-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.65;
+      margin-bottom: 44px;
+    }
+    .cta-buttons {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .btn-cta-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--teal);
+      color: var(--white);
+      padding: 16px 36px;
+      border-radius: 8px;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-cta-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(42,157,143,0.4);
+    }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    .footer {
+      background: var(--navy-dark);
+      padding: 72px 40px 48px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .footer-grid {
+      max-width: 1180px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+    .footer-logo {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--white);
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px;
+    }
+    .footer-logo-icon {
+      width: 32px; height: 32px;
+      background: var(--teal);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-logo-icon svg { width: 16px; height: 16px; fill: white; }
+    .footer-tagline {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .footer-contact-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 10px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-contact-item:hover { color: var(--teal-light); }
+    .footer-contact-item svg { width: 15px; height: 15px; flex-shrink: 0; stroke: var(--teal); fill: none; stroke-width: 2; margin-top: 2px; }
+
+    .footer-col-title {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--teal-light);
+      margin-bottom: 20px;
+    }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 10px; }
+    .footer-links a {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-bottom {
+      max-width: 1180px; margin: 0 auto;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+    }
+    .footer-bottom-badges {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .footer-badge {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ══════════════════════════════════════════
+       MOBILE STICKY CTA
+    ══════════════════════════════════════════ */
+    .mobile-cta {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 900;
+      background: var(--navy-dark);
+      border-top: 2px solid var(--teal);
+      padding: 14px 20px;
+      gap: 12px;
+    }
+    .mobile-cta a {
+      flex: 1;
+      text-align: center;
+      padding: 13px 16px;
+      border-radius: 8px;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .mobile-cta-call {
+      background: var(--teal);
+      color: var(--white);
+    }
+    .mobile-cta-text {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.25);
+    }
+
+    /* ══════════════════════════════════════════
+       ANIMATIONS
+    ══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes drawLine {
+      to { transform: scaleX(1); }
+    }
+    @keyframes countUp {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .hero { grid-template-columns: 1fr 400px; }
+      .hero-content { padding: 48px 36px 48px 48px; }
+      .hero-form-wrap { padding: 48px 44px 48px 16px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: calc(100vh - 68px);
+      }
+      .hero-bg { position: fixed; height: 100%; }
+      .hero-content {
+        padding: 56px 28px 32px;
+        max-width: 100%;
+      }
+      .hero-form-wrap {
+        padding: 0 28px 64px;
+      }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-item:nth-child(2) { border-right: none; }
+      .trust-item:nth-child(3) { border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .trust-item:nth-child(4) { border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .about-photo img { height: 340px; }
+      .about-badge { right: 16px; bottom: -16px; }
+      .about-content { padding-right: 0; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .review-card { padding: 24px 22px; }
+      .mobile-cta { display: flex; }
+      body { padding-bottom: 80px; }
+    }
+    @media (max-width: 640px) {
+      .nav { padding: 0 20px; }
+      .nav-phone { display: none; }
+      .section { padding: 72px 20px; }
+      .services-grid { grid-template-columns: 1fr; gap: 20px; }
+      .trust-grid { grid-template-columns: 1fr 1fr; }
+      .hero-content { padding: 48px 20px 28px; }
+      .hero-form-wrap { padding: 0 20px 72px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+      .cta-section { padding: 72px 20px; }
+      .footer { padding: 56px 20px 40px; }
+      .cta-buttons { flex-direction: column; align-items: stretch; text-align: center; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      #loader { display: none; }
+      #page { visibility: visible !important; }
+      #grain { display: none; }
+      *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     LOADER
+══════════════════════════════════════════ -->
+<div id="loader">
+  <div class="loader-logo">The <span>Remodeling</span> Doctor</div>
+
+  <div class="loader-review" id="lr1">
+    <div class="loader-stars">★★★★★</div>
+    <p class="loader-quote">"Mike did a great job repairing my wood floor. Professional, thorough, and explained everything up front."</p>
+  </div>
+  <div class="loader-review" id="lr2">
+    <div class="loader-stars">★★★★★</div>
+    <p class="loader-quote">"Fantastic job and service. Very professional and customer-service oriented — quite refreshing these days."</p>
+  </div>
+  <div class="loader-review" id="lr3">
+    <div class="loader-stars">★★★★★</div>
+    <p class="loader-quote">"Amazing service. Can't say enough about this company. They will be my go-to contractor from here on out."</p>
+  </div>
+
+  <div class="loader-bar" id="loaderBar"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     GRAIN CANVAS
+══════════════════════════════════════════ -->
+<canvas id="grain"></canvas>
+
+<!-- ══════════════════════════════════════════
+     PAGE
+══════════════════════════════════════════ -->
+<div id="page">
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="The Remodeling Doctor home">
+        <div class="nav-logo-icon">
+          <!-- Medical cross / tool hybrid icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 3H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/>
+          </svg>
+        </div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-top">The</span>
+          <span class="nav-logo-main">Remodeling Doctor</span>
+        </div>
+      </a>
+      <div class="nav-right">
+        <a href="tel:5613691836" class="nav-phone" aria-label="Call (561) 369-1836">(561) 369-1836</a>
+        <a href="#diagnosis" class="btn-nav">Free Diagnosis</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero">
+    <!-- Background photo -->
+    <div class="hero-bg">
+      <img
+        src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1800&q=85"
+        alt="Beautifully remodeled modern kitchen interior in Palm Beach County, FL"
+        loading="eager"
+      >
+    </div>
+
+    <!-- Left: Copy -->
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-pill">Palm Beach County</span>
+        <span class="eyebrow-pill">Licensed &amp; Insured</span>
+      </div>
+
+      <h1>We Diagnose.<br><em>We Treat.</em><br>We Transform.</h1>
+
+      <p class="hero-sub">
+        Palm Beach County's trusted remodeling specialist — 25+ years prescribing precise solutions for kitchens, bathrooms, flooring, and full-home renovations across Boynton Beach, Boca Raton, and West Palm Beach.
+      </p>
+
+      <div class="hero-rating">
+        <div class="hero-rating-num" id="heroRating">5.0</div>
+        <div class="hero-rating-meta">
+          <div class="hero-rating-stars">★★★★★</div>
+          <div class="hero-rating-label">Perfect Rating · Boynton Beach, FL</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Lead Form -->
+    <div class="hero-form-wrap" id="diagnosis">
+      <div class="hero-form">
+        <div class="hero-form-title">Get Your Free Diagnosis</div>
+        <div class="hero-form-sub">No obligation · Same-week estimate available</div>
+
+        <form action="#" method="post" novalidate>
+          <div class="form-field">
+            <label for="form-name">Your Name</label>
+            <input type="text" id="form-name" name="name" placeholder="Jane Smith" autocomplete="name" required>
+          </div>
+          <div class="form-field">
+            <label for="form-phone">Phone Number</label>
+            <input type="tel" id="form-phone" name="phone" placeholder="(561) 555-0100" autocomplete="tel" required>
+          </div>
+          <div class="form-field">
+            <label for="form-email">Email Address</label>
+            <input type="email" id="form-email" name="email" placeholder="jane@email.com" autocomplete="email" required>
+          </div>
+          <div class="form-field">
+            <label for="form-service">What do you need?</label>
+            <select id="form-service" name="service">
+              <option value="">Select a service...</option>
+              <option>Kitchen Remodeling</option>
+              <option>Bathroom Remodeling</option>
+              <option>Flooring Installation</option>
+              <option>Painting &amp; Drywall</option>
+              <option>Home Addition</option>
+              <option>Full Home Renovation</option>
+              <option>Other / Not Sure</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit">Schedule My Free Estimate →</button>
+          <p class="form-fine">We respond within 1 business day. No spam, ever.</p>
+        </form>
+
+        <div class="form-badge">
+          <div class="form-badge-dot"></div>
+          <span>Licensed · Bonded · Insured · Free Estimates</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wave break -->
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,22 C240,52 480,4 720,30 C960,56 1200,8 1440,28 L1440,52 L0,52 Z" fill="#0f2a3d"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar" role="region" aria-label="Trust indicators">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+        </div>
+        <div class="trust-num">25+</div>
+        <div class="trust-label">Years of<br>Experience</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+        </div>
+        <div class="trust-num">LBI</div>
+        <div class="trust-label">Licensed · Bonded<br>&amp; Insured</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
+        <div class="trust-num">PBC</div>
+        <div class="trust-label">Palm Beach County<br>South Florida</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <div class="trust-num">5.0</div>
+        <div class="trust-label">Star Rating<br>Perfect Score</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEWS CAROUSEL -->
+  <section class="section reviews-section" aria-label="Customer reviews">
+    <div class="section-inner">
+      <div class="section-label">What Patients Are Saying</div>
+      <h2 class="section-title reveal">Real Results from Real Homeowners</h2>
+      <p class="section-sub reveal">Every project gets the same careful prescription: listen, diagnose, deliver. Here's what Palm Beach County homeowners have to say.</p>
+
+      <div class="carousel-wrap reveal">
+        <div class="carousel-track">
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Mike did a great job repairing my wood floor. He explained exactly what the job would involve before starting, was professional throughout, and the result looks incredible. You can't tell there was ever any damage."</p>
+            <div class="review-author">Doris K. <span>— Boynton Beach, FL · Flooring Repair</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Fantastic job and service from start to finish. Very professional and customer-service oriented — quite refreshing these days. Our bathroom is completely transformed. I tell everyone who asks that this is the only contractor to call."</p>
+            <div class="review-author">Christine T. <span>— West Palm Beach, FL · Bathroom Remodel</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Amazing service. Can't say enough about this company. They showed up on time, worked cleanly, and the kitchen looks like it's out of a magazine. They will be my go-to contractor from here on out. Would recommend to anyone in South Florida."</p>
+            <div class="review-author">Jaslene M. <span>— Boca Raton, FL · Kitchen Remodel</span></div>
+          </div>
+        </div>
+        <button class="carousel-btn carousel-prev" aria-label="Previous review">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="carousel-btn carousel-next" aria-label="Next review">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+      <div class="carousel-dots">
+        <button class="carousel-dot active" aria-label="Review 1"></button>
+        <button class="carousel-dot" aria-label="Review 2"></button>
+        <button class="carousel-dot" aria-label="Review 3"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES GRID -->
+  <section class="section services-section" aria-label="Services">
+    <div class="section-inner">
+      <div class="section-label">Our Specialties</div>
+      <h2 class="section-title reveal">Every Room Gets the Right Treatment</h2>
+      <p class="section-sub reveal">From a single bathroom refresh to a complete home overhaul — we prescribe exactly what your home needs, nothing more.</p>
+
+      <div class="services-grid">
+
+        <!-- Kitchen -->
+        <div class="service-card" data-delay="0">
+          <div class="service-photo">
+            <img
+              src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80"
+              alt="Modern kitchen remodel with white cabinetry and quartz countertops"
+              loading="lazy"
+            >
+          </div>
+          <div class="service-body">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2.01L6 2c-1.1 0-2 .89-2 2v3c0 .74.43 1.38 1 1.73V20c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V8.72c.57-.35 1-.99 1-1.72V4c0-1.11-.89-1.99-2-1.99zM15 14H9v-2h6v2zm3-7H6V4l12 .01V7z"/></svg>
+            </div>
+            <div class="service-title">Kitchen Remodeling</div>
+            <p class="service-desc">Full kitchen transformations — from cabinet refacing and custom cabinetry to countertops, backsplash tile, and complete gut renovations. We provide a virtual design preview before any work begins.</p>
+          </div>
+        </div>
+
+        <!-- Bathroom -->
+        <div class="service-card" data-delay="100">
+          <div class="service-photo">
+            <img
+              src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=80"
+              alt="Luxury bathroom remodel with tile shower and modern fixtures"
+              loading="lazy"
+            >
+          </div>
+          <div class="service-body">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 6c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm12 0H11c0 1.66-1.34 3-3 3S5 7.66 5 6H2v13h1v2h2v-2h14v2h2v-2h1V6h-3zm1 11H4V8h16v9z"/></svg>
+            </div>
+            <div class="service-title">Bathroom Remodeling</div>
+            <p class="service-desc">Tile surrounds, vanity replacements, walk-in showers, tub-to-shower conversions, and full bathroom gut renovations — including condo and co-op compliance work throughout Palm Beach County.</p>
+          </div>
+        </div>
+
+        <!-- Flooring -->
+        <div class="service-card" data-delay="200">
+          <div class="service-photo">
+            <img
+              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+              alt="Hardwood flooring installation in modern South Florida home"
+              loading="lazy"
+            >
+          </div>
+          <div class="service-body">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h19v-3H2v3zM20 8H3c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h17c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1zm-1 6H4v-4h15v4zM2 3v3h19V3H2z"/></svg>
+            </div>
+            <div class="service-title">Flooring Installation</div>
+            <p class="service-desc">Hardwood, ceramic tile, laminate, luxury vinyl plank — we handle demolition, subfloor prep, installation, and finishing. All debris removed to certified recycling facilities.</p>
+          </div>
+        </div>
+
+        <!-- Painting & Drywall -->
+        <div class="service-card" data-delay="0">
+          <div class="service-photo">
+            <img
+              src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=800&q=80"
+              alt="Interior painting and drywall finishing in residential home"
+              loading="lazy"
+            >
+          </div>
+          <div class="service-body">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 14c-1.66 0-3 1.34-3 3 0 1.31-1.16 2-2 2 .92 1.22 2.49 2 4 2 2.21 0 4-1.79 4-4 0-1.66-1.34-3-3-3zm13.71-9.37l-1.34-1.34c-.39-.39-1.02-.39-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41z"/></svg>
+            </div>
+            <div class="service-title">Painting &amp; Drywall</div>
+            <p class="service-desc">Interior repainting, drywall installation, patching, texture matching, and trim carpentry. We leave every room cleaner than we found it — paint drips and dust included.</p>
+          </div>
+        </div>
+
+        <!-- Home Additions -->
+        <div class="service-card" data-delay="100">
+          <div class="service-photo">
+            <img
+              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80"
+              alt="Home addition construction with framing and windows in South Florida"
+              loading="lazy"
+            >
+          </div>
+          <div class="service-body">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            </div>
+            <div class="service-title">Home Additions</div>
+            <p class="service-desc">Dormer construction, room additions, covered patios, and expanded living spaces — all properly permitted and built to South Florida building codes from foundation to finish.</p>
+          </div>
+        </div>
+
+        <!-- Full Home Renovation -->
+        <div class="service-card" data-delay="200">
+          <div class="service-photo">
+            <img
+              src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80"
+              alt="Full home renovation open-concept living space with modern finishes"
+              loading="lazy"
+            >
+          </div>
+          <div class="service-body">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 2.05v2.02c3.95.49 7 3.85 7 7.93 0 3.21-1.81 6-4.72 7.28L13 17v5l5-3-1.22-1.22C19.91 16.26 22 13.27 22 10c0-5.18-3.94-9.45-9-9.95zM11 2.05C5.95 2.55 2 6.82 2 12c0 3.27 2.09 6.26 5.22 7.78L6 21l5 3v-5l-2.28 2.28C6.81 20 5 17.21 5 14c0-4.08 3.05-7.44 7-7.93V2.05z"/></svg>
+            </div>
+            <div class="service-title">Full Home Renovation</div>
+            <p class="service-desc">Complete whole-home transformations for condos, co-ops, and single-family homes. One contractor, one point of contact, zero coordination headaches — from initial diagnosis to final walkthrough.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section about-section" aria-label="About The Remodeling Doctor">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-photo-wrap reveal">
+          <div class="about-photo">
+            <img
+              src="https://chrisoliveira.co/assets/samples/GC/CKD-remodeling-milton-fl-questions-to-ask-a-general-contractor-looking-at-plans-in-a-framed-home.png"
+              alt="The Remodeling Doctor contractor reviewing plans in a home under renovation"
+              loading="lazy"
+            >
+          </div>
+          <div class="about-badge">
+            <div class="about-badge-num">25+</div>
+            <div class="about-badge-label">Years Serving<br>South Florida</div>
+          </div>
+        </div>
+
+        <div class="about-content reveal">
+          <div class="section-label">The Prescription Difference</div>
+          <h2 class="section-title">Your Home Deserves an Accurate Diagnosis</h2>
+          <p class="about-body">
+            Most contractors hand you a proposal before they truly understand your home. The Remodeling Doctor works differently — every project begins with a thorough diagnostic walkthrough, identifying what your home actually needs rather than what's easiest to sell. After 25+ years in South Florida's demanding building environment, we've learned that the right treatment plan is the difference between a renovation that lasts and one that fails.
+          </p>
+          <p class="about-body" style="margin-top:-12px;">
+            Based in Boynton Beach and serving all of Palm Beach County, we specialize in kitchens, bathrooms, flooring, and full-home renovations for condos, co-ops, and residential homes. Every project includes a virtual design preview — so you see the finished result before a single wall is touched.
+          </p>
+
+          <ul class="about-creds" aria-label="Credentials">
+            <li>
+              <div class="cred-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Licensed, Bonded &amp; Insured contractor — Palm Beach County
+            </li>
+            <li>
+              <div class="cred-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+              25+ years of professional experience in South Florida remodeling
+            </li>
+            <li>
+              <div class="cred-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Virtual 3D design preview provided before any work begins
+            </li>
+            <li>
+              <div class="cred-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Debris removed to certified recycling facilities — every job
+            </li>
+            <li>
+              <div class="cred-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Condo, co-op &amp; HOA remodel expertise — all permits handled
+            </li>
+            <li>
+              <div class="cred-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Free estimates · Monday–Friday, 9 AM–6 PM
+            </li>
+          </ul>
+
+          <a href="tel:5613691836" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Call (561) 369-1836
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-section" aria-label="Call to action">
+    <div class="cta-inner">
+      <div class="section-label">Ready to Transform Your Home?</div>
+      <h2 class="cta-title reveal">Your Free Diagnosis Is One Call Away</h2>
+      <p class="cta-sub reveal">
+        Stop living with a kitchen that doesn't work for you, a bathroom that embarrasses you, or floors that have seen better days. We've been solving South Florida homes' biggest problems for over 25 years — let's diagnose yours.
+      </p>
+      <div class="cta-buttons reveal">
+        <a href="#diagnosis" class="btn-cta-primary">
+          Get My Free Estimate
+        </a>
+        <a href="tel:5613691836" class="btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Call (561) 369-1836
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-grid">
+      <!-- Col 1: Brand -->
+      <div>
+        <div class="footer-logo">
+          <div class="footer-logo-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+          </div>
+          The Remodeling Doctor
+        </div>
+        <p class="footer-tagline">Licensed, bonded &amp; insured home remodeling specialists serving Boynton Beach, Boca Raton, West Palm Beach, Lake Worth, and all of Palm Beach County, FL.</p>
+        <a href="tel:5613691836" class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          (561) 369-1836
+        </a>
+        <a href="mailto:TheRemodelingDoctor@gmail.com" class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          TheRemodelingDoctor@gmail.com
+        </a>
+        <div class="footer-contact-item" style="cursor:default;">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          2014 S Federal Hwy B208, Boynton Beach, FL 33435
+        </div>
+      </div>
+
+      <!-- Col 2: Services -->
+      <div>
+        <div class="footer-col-title">Our Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Kitchen Remodeling</a></li>
+          <li><a href="#">Bathroom Remodeling</a></li>
+          <li><a href="#">Flooring Installation</a></li>
+          <li><a href="#">Painting &amp; Drywall</a></li>
+          <li><a href="#">Home Additions</a></li>
+          <li><a href="#">Full Home Renovation</a></li>
+          <li><a href="#">Condo &amp; Co-op Remodeling</a></li>
+          <li><a href="#">Window &amp; Door Replacement</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Service Area + Hours -->
+      <div>
+        <div class="footer-col-title">Service Areas</div>
+        <ul class="footer-links" style="margin-bottom:28px;">
+          <li><a href="#">Boynton Beach</a></li>
+          <li><a href="#">Boca Raton</a></li>
+          <li><a href="#">West Palm Beach</a></li>
+          <li><a href="#">Lake Worth</a></li>
+          <li><a href="#">Delray Beach</a></li>
+          <li><a href="#">Palm Beach Gardens</a></li>
+        </ul>
+        <div class="footer-col-title">Hours</div>
+        <ul class="footer-links">
+          <li><a href="#">Mon–Fri: 9:00 AM – 6:00 PM</a></li>
+          <li><a href="#">Sat–Sun: By Appointment</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 The Remodeling Doctor. All rights reserved. · Boynton Beach, FL 33435</p>
+      <div class="footer-bottom-badges">
+        <span class="footer-badge">Licensed</span>
+        <span class="footer-badge">Bonded</span>
+        <span class="footer-badge">Insured</span>
+        <span class="footer-badge">Free Estimates</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE STICKY CTA -->
+  <div class="mobile-cta" aria-label="Mobile call to action" role="complementary">
+    <a href="tel:5613691836" class="mobile-cta-call">Call Now</a>
+    <a href="#diagnosis" class="mobile-cta-text">Free Estimate</a>
+  </div>
+
+</div><!-- /#page -->
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  /* ── GRAIN CANVAS ── */
+  var canvas = document.getElementById('grain');
+  var ctx = canvas ? canvas.getContext('2d') : null;
+  var grainFrame;
+
+  function resizeGrain() {
+    if (!canvas) return;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function renderGrain() {
+    if (!ctx) return;
+    var w = canvas.width, h = canvas.height;
+    var imageData = ctx.createImageData(w, h);
+    var data = imageData.data;
+    for (var i = 0; i < data.length; i += 4) {
+      var v = Math.random() * 255 | 0;
+      // Teal-tinted grain matching the brand
+      data[i]     = v * 0.55 | 0;  // R
+      data[i + 1] = v * 0.85 | 0;  // G
+      data[i + 2] = v * 0.80 | 0;  // B
+      data[i + 3] = 9;              // alpha — very subtle
+    }
+    ctx.putImageData(imageData, 0, 0);
+    grainFrame = requestAnimationFrame(renderGrain);
+  }
+
+  if (canvas) {
+    resizeGrain();
+    renderGrain();
+    window.addEventListener('resize', resizeGrain);
+  }
+
+  /* ── LOADER ── */
+  var loader = document.getElementById('loader');
+  var page = document.getElementById('page');
+  var reviews = [
+    document.getElementById('lr1'),
+    document.getElementById('lr2'),
+    document.getElementById('lr3')
+  ];
+  var loaderBar = document.getElementById('loaderBar');
+
+  function showReview(idx) {
+    reviews.forEach(function(r) { r.classList.remove('active'); });
+    if (reviews[idx]) reviews[idx].classList.add('active');
+  }
+
+  if (loader && page) {
+    showReview(0);
+    // Start progress bar
+    setTimeout(function() {
+      if (loaderBar) loaderBar.classList.add('run');
+    }, 50);
+
+    setTimeout(function() { showReview(1); }, 1400);
+    setTimeout(function() { showReview(2); }, 2800);
+
+    setTimeout(function() {
+      loader.classList.add('fade-out');
+      page.style.visibility = 'visible';
+      // Start hero rating counter after loader
+      setTimeout(startHeroCounter, 400);
+    }, 4800);
+
+    setTimeout(function() {
+      loader.style.display = 'none';
+    }, 5800);
+  } else if (page) {
+    page.style.visibility = 'visible';
+  }
+
+  /* ── HERO RATING COUNTER ── */
+  function startHeroCounter() {
+    var el = document.getElementById('heroRating');
+    if (!el) return;
+    var start = 0;
+    var target = 5.0;
+    var duration = 2200;
+    var startTime = null;
+
+    function easeOutExpo(t) {
+      return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    }
+
+    function step(ts) {
+      if (!startTime) startTime = ts;
+      var progress = Math.min((ts - startTime) / duration, 1);
+      var eased = easeOutExpo(progress);
+      el.textContent = (start + (target - start) * eased).toFixed(1);
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = '5.0';
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ── INTERSECTION OBSERVER — scroll reveal ── */
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function(el) { observer.observe(el); });
+  } else {
+    revealEls.forEach(function(el) { el.classList.add('visible'); });
+  }
+
+  /* ── STAGGERED SERVICE CARDS ── */
+  var serviceCards = document.querySelectorAll('.service-card');
+  if ('IntersectionObserver' in window && serviceCards.length) {
+    var cardObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var delay = parseInt(entry.target.getAttribute('data-delay') || '0', 10);
+          setTimeout(function() {
+            entry.target.classList.add('visible');
+          }, delay);
+          cardObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    serviceCards.forEach(function(card) { cardObserver.observe(card); });
+  } else {
+    serviceCards.forEach(function(card) { card.classList.add('visible'); });
+  }
+
+  /* ── REVIEWS CAROUSEL ── */
+  (function() {
+    var wrap = document.querySelector('.carousel-wrap');
+    if (!wrap) return;
+    var track = wrap.querySelector('.carousel-track');
+    var dots = document.querySelectorAll('.carousel-dot');
+    var cards = track.querySelectorAll('.review-card');
+    var n = cards.length;
+    var cur = 0;
+    var timer;
+
+    function go(i) {
+      cur = ((i % n) + n) % n;
+      track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+      dots.forEach(function(d, j) {
+        d.classList.toggle('active', j === cur);
+      });
+    }
+
+    wrap.querySelector('.carousel-prev').addEventListener('click', function() {
+      go(cur - 1); reset();
+    });
+    wrap.querySelector('.carousel-next').addEventListener('click', function() {
+      go(cur + 1); reset();
+    });
+    dots.forEach(function(d, i) {
+      d.addEventListener('click', function() { go(i); reset(); });
+    });
+
+    // Touch/swipe support
+    var touchStartX = 0;
+    track.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    track.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) { go(dx < 0 ? cur + 1 : cur - 1); reset(); }
+    }, { passive: true });
+
+    function reset() {
+      clearInterval(timer);
+      timer = setInterval(function() { go(cur + 1); }, 5000);
+    }
+    reset();
+  })();
+
+})();
+</script>
+
+</body>
+</html>

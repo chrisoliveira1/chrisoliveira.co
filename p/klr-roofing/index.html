@@ -3,99 +3,1212 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KLR Roofing Corp | West Palm Beach, FL | Veteran Owned</title>
+  <title>KLR Roofing Corp | Palm Beach County, FL | Licensed Roofer</title>
+  <meta name="description" content="KLR Roofing Corp — veteran-owned, state-licensed roofing contractor serving Palm Beach County since 2008. Shingle, tile, metal, and commercial roofing. BBB A+. Call (561) 603-9914.">
+  <!-- OG -->
+  <meta property="og:title" content="KLR Roofing Corp | Palm Beach County's Trusted Roofer">
+  <meta property="og:description" content="Veteran-owned. State certified. Over 30 years of combined experience. Serving West Palm Beach and surrounding areas.">
+  <meta property="og:image" content="https://chrisoliveira.co/p/klr-roofing/preview.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chrisoliveira.co/p/klr-roofing/">
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+
   <style>
+    /* ── RESET & ROOT ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --green: #2d3a2e;
-      --gold: #c9a227;
-      --cream: #f9f7f0;
-      --dark: #1a1a1a;
-      --white: #ffffff;
+      --navy:    #0c243e;
+      --navy2:   #0f2d4e;
+      --blue:    #2f5aae;
+      --blue2:   #3d6abf;
+      --accent:  #4a7fd4;
+      --steel:   #1e3a5f;
+      --white:   #ffffff;
+      --offwhite:#f5f7fa;
+      --paper:   #f0f4f8;
+      --text:    #1a2a3a;
+      --muted:   #5a7a9a;
+      --line:    #d4dce6;
+      --trust-bg:#0c243e;
     }
-    body { font-family: 'Inter', sans-serif; color: var(--dark); background: var(--cream); }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
 
+    /* ── LOADER ── */
+    #loader {
+      position: fixed; inset: 0; z-index: 99999;
+      background: var(--navy);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      transition: opacity 0.9s ease;
+    }
+    #loader.fade-out { opacity: 0; pointer-events: none; }
+    .loader-stars {
+      color: #f59e0b;
+      font-size: 1.5rem;
+      letter-spacing: 4px;
+      margin-bottom: 28px;
+    }
+    .loader-quote {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.3rem, 3.2vw, 2.2rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--white);
+      text-align: center;
+      max-width: 680px;
+      padding: 0 32px;
+      line-height: 1.4;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .loader-quote.visible { opacity: 1; }
+    .loader-bar {
+      position: absolute; bottom: 0; left: 0;
+      height: 3px; background: var(--accent);
+      width: 0%; transition: width 4.8s linear;
+    }
+    .loader-bar.run { width: 100%; }
+
+    /* ── PAGE (hidden until loader done) ── */
+    #page { visibility: hidden; }
+
+    /* ── GRAIN CANVAS ── */
+    #grain {
+      position: fixed; inset: 0;
+      z-index: 99998;
+      pointer-events: none;
+      opacity: 1;
+    }
+
+    /* ── NAV ── */
     nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--green);
+      position: sticky; top: 0; z-index: 1000;
+      height: 68px;
+      background: rgba(12, 36, 62, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(74, 127, 212, 0.2);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px; height: 68px;
+      padding: 0 56px;
     }
-    .nav-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 800; color: var(--white); letter-spacing: 0.08em; text-transform: uppercase; }
-    .nav-logo span { color: var(--gold); }
+    .nav-logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
     .nav-right { display: flex; align-items: center; gap: 20px; }
-    .nav-phone { color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 600; text-decoration: none; }
-    .nav-cta { background: var(--gold); color: var(--green); font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 3px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; }
+    .nav-phone {
+      color: var(--white); font-size: 15px; font-weight: 600;
+      text-decoration: none; letter-spacing: 0.02em;
+    }
+    .nav-phone:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--blue); color: var(--white);
+      font-weight: 700; font-size: 12px;
+      padding: 10px 24px; border-radius: 4px;
+      text-decoration: none; text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--blue2); }
 
-    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 68px); max-height: 832px; }
-    .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 64px 52px 64px 64px; background: var(--cream); }
-    .hero-flag { display: inline-flex; align-items: center; gap: 8px; color: var(--green); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
-    .hero-flag::before { content: '🇺🇸'; font-size: 16px; }
-    .hero-h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(50px, 5.2vw, 80px); font-weight: 800; line-height: 1.0; color: var(--green); margin-bottom: 16px; text-transform: uppercase; }
-    .hero-h1 span { color: var(--gold); }
-    .hero-rule { width: 60px; height: 4px; background: var(--gold); margin-bottom: 20px; }
-    .hero-sub { font-size: 17px; line-height: 1.65; color: #3a4a3b; max-width: 420px; margin-bottom: 36px; }
-    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-    .btn-primary { background: var(--green); color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px; padding: 14px 30px; border-radius: 3px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; }
-    .btn-link { color: var(--green); font-weight: 600; font-size: 15px; text-decoration: none; }
-    .btn-link::after { content: ' →'; color: var(--gold); }
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: calc(100vh - 68px);
+      min-height: 580px;
+      overflow: hidden;
+      display: flex; align-items: center;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 40%;
+      display: block;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(12,36,62,0.93) 0%,
+        rgba(12,36,62,0.82) 45%,
+        rgba(12,36,62,0.40) 72%,
+        rgba(12,36,62,0.10) 100%
+      );
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      width: 100%; max-width: 1280px;
+      margin: 0 auto; padding: 0 56px;
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 64px;
+      align-items: center;
+    }
+    /* LEFT */
+    .hero-left { color: var(--white); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(74,127,212,0.18);
+      border: 1px solid rgba(74,127,212,0.4);
+      border-radius: 100px;
+      padding: 7px 16px;
+      font-size: 12px; font-weight: 600;
+      color: rgba(255,255,255,0.90);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%; background: var(--accent);
+      flex-shrink: 0;
+    }
+    .hero-h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(42px, 6vw, 78px);
+      font-weight: 700; line-height: 1.0;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 20px;
+    }
+    .hero-h1 em { font-style: normal; color: var(--accent); }
+    .hero-sub {
+      font-size: 1.05rem; line-height: 1.7;
+      color: rgba(255,255,255,0.80);
+      max-width: 480px;
+      margin-bottom: 36px;
+    }
+    /* Hero stat counter */
+    .hero-stat {
+      display: inline-flex; align-items: center; gap: 20px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 28px;
+    }
+    .hero-stat-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(52px, 7vw, 80px);
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      display: flex; flex-direction: column;
+      gap: 4px;
+    }
+    .hero-stat-stars { color: #f59e0b; font-size: 1rem; letter-spacing: 3px; }
+    .hero-stat-text {
+      font-size: 0.88rem; font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.4;
+    }
 
-    .hero-img { position: relative; overflow: hidden; }
-    .hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* RIGHT — glassmorphic form */
+    .hero-form-wrap {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 16px;
+      padding: 36px 32px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+    }
+    .hero-form-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem; font-weight: 600;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .hero-form-sub {
+      font-size: 0.82rem; color: rgba(255,255,255,0.6);
+      margin-bottom: 24px; line-height: 1.5;
+    }
+    .hero-form { display: flex; flex-direction: column; gap: 12px; }
+    .hero-form input {
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.20);
+      border-radius: 8px;
+      padding: 13px 16px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .hero-form input::placeholder { color: rgba(255,255,255,0.45); }
+    .hero-form input:focus { border-color: var(--accent); }
+    .hero-form-btn {
+      background: var(--blue);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem; font-weight: 700;
+      padding: 15px;
+      border: none; border-radius: 8px;
+      cursor: pointer;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 4px;
+    }
+    .hero-form-btn:hover { background: var(--blue2); transform: translateY(-1px); }
+    .hero-form-note {
+      font-size: 0.72rem; color: rgba(255,255,255,0.45);
+      text-align: center; margin-top: 10px; line-height: 1.5;
+    }
 
-    .trust-bar { background: var(--green); display: grid; grid-template-columns: repeat(4, 1fr); }
-    .trust-item { padding: 26px 28px; text-align: center; border-right: 1px solid rgba(255,255,255,0.1); }
+    /* SVG WAVE */
+    .hero-wave {
+      position: absolute; bottom: 0; left: 0;
+      width: 100%; line-height: 0; z-index: 3;
+      pointer-events: none;
+    }
+    .hero-wave svg { display: block; width: 100%; height: 52px; }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--trust-bg);
+      padding: 0;
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 1280px; margin: 0 auto;
+    }
+    .trust-item {
+      padding: 32px 24px;
+      display: flex; flex-direction: column;
+      align-items: center; text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
     .trust-item:last-child { border-right: none; }
-    .trust-number { font-family: 'Barlow Condensed', sans-serif; font-size: 36px; font-weight: 800; color: var(--gold); line-height: 1; margin-bottom: 4px; letter-spacing: 0.04em; }
-    .trust-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
+    .trust-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.4rem; font-weight: 700;
+      color: var(--accent); line-height: 1;
+      margin-bottom: 6px;
+    }
+    .trust-label {
+      font-size: 0.78rem; font-weight: 600;
+      color: rgba(255,255,255,0.70);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      line-height: 1.4;
+    }
 
-    @media (max-width: 768px) {
-      nav { padding: 0 20px; }
-      .hero { grid-template-columns: 1fr; min-height: auto; max-height: none; }
-      .hero-text { padding: 48px 24px 32px; }
-      .hero-img { height: 280px; }
-      .trust-bar { grid-template-columns: repeat(2, 1fr); }
+    /* ── SECTION SHARED ── */
+    section { padding: 88px 56px; }
+    .section-inner { max-width: 1280px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.16em;
+      color: var(--blue);
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::before { content: ''; width: 24px; height: 2px; background: var(--blue); }
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 700; color: var(--navy);
+      line-height: 1.1; text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 1.05rem; color: var(--muted);
+      line-height: 1.7; max-width: 560px;
+    }
+
+    /* ── REVIEWS CAROUSEL ── */
+    .reviews-section { background: var(--offwhite); }
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 36px 40px;
+    }
+    .review-stars { color: #f59e0b; font-size: 1.1rem; margin-bottom: 14px; letter-spacing: 3px; }
+    .review-text {
+      font-size: 1rem; color: var(--text);
+      line-height: 1.7; margin-bottom: 18px;
+      font-style: italic;
+    }
+    .review-author { font-size: .85rem; font-weight: 700; color: var(--muted); }
+    .carousel-wrap { position: relative; margin-top: 48px; overflow: hidden; }
+    .carousel-track { display: flex; transition: transform .45s cubic-bezier(.4,0,.2,1); }
+    .carousel-track .review-card { flex: 0 0 100%; }
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: 50%; width: 40px; height: 40px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      z-index: 2; color: var(--muted); padding: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,.07);
+    }
+    .carousel-prev { left: 12px; }
+    .carousel-next { right: 12px; }
+    .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 16px; }
+    .carousel-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #d1d5db; cursor: pointer; border: none; padding: 0;
+      transition: all .25s;
+    }
+    .carousel-dot.active { background: var(--blue); width: 24px; border-radius: 4px; }
+
+    /* ── SERVICES GRID ── */
+    .services-section { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 52px;
+    }
+    .service-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--white);
+      transition: box-shadow 0.25s, transform 0.25s;
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    .service-card.revealed {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.25s, border-color 0.25s;
+    }
+    .service-card:hover {
+      box-shadow: 0 12px 40px rgba(15,45,78,0.14);
+      transform: translateY(-3px);
+    }
+    .service-photo {
+      height: 180px; overflow: hidden;
+    }
+    .service-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .service-card:hover .service-photo img { transform: scale(1.05); }
+    .service-body { padding: 24px; }
+    .service-icon {
+      width: 44px; height: 44px;
+      background: rgba(47,90,174,0.10);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+      color: var(--blue);
+    }
+    .service-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.15rem; font-weight: 600;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+    }
+    .service-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── ABOUT ── */
+    .about-section { background: var(--paper); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+      margin-top: 52px;
+    }
+    .about-photo {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(12,36,62,0.18), 0 4px 16px rgba(12,36,62,0.10);
+    }
+    .about-photo img { width: 100%; display: block; }
+    .about-creds { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
+    .about-cred {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.93rem; color: var(--text); line-height: 1.5;
+    }
+    .about-cred-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--blue); flex-shrink: 0; margin-top: 6px;
+    }
+    .about-pull {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.4rem; font-weight: 400; font-style: italic;
+      color: var(--navy); line-height: 1.4;
+      border-left: 4px solid var(--accent);
+      padding-left: 20px;
+      margin: 28px 0 20px;
+    }
+
+    /* ── CTA BANNER ── */
+    .cta-section {
+      background: var(--navy);
+      text-align: center;
+      padding: 80px 56px;
+    }
+    .cta-section .section-label { justify-content: center; }
+    .cta-section .section-label::before { display: none; }
+    .cta-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700; color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+    .cta-title em { font-style: normal; color: var(--accent); }
+    .cta-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,0.70);
+      line-height: 1.7; max-width: 560px; margin: 0 auto 40px;
+    }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--blue); color: var(--white);
+      font-weight: 700; font-size: 0.92rem;
+      padding: 16px 36px; border-radius: 6px;
+      text-decoration: none; text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--blue2); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 2px solid rgba(255,255,255,0.35);
+      font-weight: 700; font-size: 0.92rem;
+      padding: 16px 36px; border-radius: 6px;
+      text-decoration: none; text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+    .btn-outline:hover {
+      border-color: var(--accent); color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #06111f;
+      color: rgba(255,255,255,0.7);
+      padding: 64px 56px 0;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 48px;
+      max-width: 1280px; margin: 0 auto;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+    .footer-brand-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--white); text-transform: uppercase;
+      letter-spacing: 0.06em; margin-bottom: 14px;
+    }
+    .footer-brand-name span { color: var(--accent); }
+    .footer-about {
+      font-size: 0.88rem; line-height: 1.7;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 20px;
+    }
+    .footer-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(47,90,174,0.18);
+      border: 1px solid rgba(47,90,174,0.3);
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 0.78rem; font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      text-transform: uppercase; letter-spacing: 0.07em;
+    }
+    .footer-col-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.95rem; font-weight: 600;
+      color: var(--white); text-transform: uppercase;
+      letter-spacing: 0.08em; margin-bottom: 18px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 0.88rem; color: rgba(255,255,255,0.55);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-contact-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.88rem; color: rgba(255,255,255,0.55);
+      margin-bottom: 12px; line-height: 1.5;
+    }
+    .footer-contact-item a { color: rgba(255,255,255,0.55); text-decoration: none; }
+    .footer-contact-item a:hover { color: var(--accent); }
+    .footer-contact-icon {
+      width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px;
+      color: var(--accent);
+    }
+    .footer-bottom {
+      max-width: 1280px; margin: 0 auto;
+      padding: 20px 0;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.78rem; color: rgba(255,255,255,0.35);
+    }
+    .footer-lic {
+      font-size: 0.78rem; color: rgba(255,255,255,0.35);
+    }
+
+    /* ── MOBILE STICKY CTA ── */
+    .mobile-cta {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 900;
+      background: var(--blue);
+      padding: 14px 24px;
+      gap: 12px;
+    }
+    .mobile-cta a {
+      flex: 1; text-align: center;
+      color: var(--white); font-weight: 700;
+      font-size: 0.9rem; text-decoration: none;
+      padding: 12px 8px; border-radius: 6px;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .mobile-cta a:first-child { background: rgba(255,255,255,0.18); }
+    .mobile-cta a:last-child { background: var(--navy); }
+
+    /* ── REVEAL ANIMATION ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .hero-inner { grid-template-columns: 1fr 360px; gap: 40px; }
+    }
+    @media (max-width: 900px) {
+      nav { padding: 0 28px; }
+      .nav-phone { display: none; }
+      .hero-inner {
+        grid-template-columns: 1fr;
+        padding: 0 28px;
+        gap: 40px;
+      }
+      .hero-form-wrap { max-width: 500px; }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
+      .trust-item:nth-child(2n) { }
+      .trust-item:last-child { border-bottom: none; }
+      section { padding: 64px 28px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .review-card { padding: 24px 20px; }
+      .mobile-cta { display: flex; }
+      body { padding-bottom: 68px; }
+      .cta-section { padding: 64px 28px; }
+      footer { padding: 48px 28px 0; }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .hero-h1 { font-size: 38px; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-outline { width: 100%; max-width: 320px; }
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      #loader { display: none; }
+      #page { visibility: visible !important; }
+      #grain { display: none; }
+      .reveal, .service-card { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .service-card.revealed { transition: box-shadow 0.2s !important; }
+      .hero-stat-num { transition: none !important; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo"><span>KLR</span> Roofing Corp</div>
+<!-- ── LOADER ── -->
+<div id="loader">
+  <div class="loader-stars">★★★★★</div>
+  <div class="loader-quote" id="loaderQuote"></div>
+  <div class="loader-bar" id="loaderBar"></div>
+</div>
+
+<!-- ── GRAIN CANVAS ── -->
+<canvas id="grain" aria-hidden="true"></canvas>
+
+<!-- ── PAGE ── -->
+<div id="page">
+
+<!-- NAV -->
+<nav role="navigation" aria-label="Main navigation">
+  <a href="#" class="nav-logo">KLR <span>ROOFING</span> CORP</a>
   <div class="nav-right">
     <a href="tel:5616039914" class="nav-phone">(561) 603-9914</a>
-    <a href="tel:5616039914" class="nav-cta">Free Estimate</a>
+    <a href="#estimate" class="nav-cta">Free Estimate</a>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-flag">Veteran Owned &amp; Operated &nbsp;·&nbsp; West Palm Beach, FL</div>
-    <h1 class="hero-h1">Built on<br><span>Service.</span><br>Built to Last.</h1>
-    <div class="hero-rule"></div>
-    <p class="hero-sub">
-      Michael Fitzpatrick served his country and brought that same discipline to roofing. KLR stands for the initials of his three kids. Every job is personal.
-    </p>
-    <div class="hero-actions">
-      <a href="tel:5616039914" class="btn-primary">Get a Free Estimate</a>
-      <a href="tel:5616039914" class="btn-link">Call Michael</a>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <img
+      src="https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?auto=format&fit=crop&w=1600&q=80"
+      alt="Professional roofing crew installing shingles on a Palm Beach County home"
+      loading="eager"
+    >
+  </div>
+  <div class="hero-bg" style="position:absolute;inset:0;z-index:1;background:linear-gradient(105deg,rgba(12,36,62,0.93) 0%,rgba(12,36,62,0.82) 45%,rgba(12,36,62,0.40) 72%,rgba(12,36,62,0.10) 100%);"></div>
+
+  <div class="hero-inner">
+    <!-- LEFT -->
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        Palm Beach County, FL &nbsp;·&nbsp; Lic. CCC1328862
+      </div>
+      <h1 class="hero-h1">
+        Roofs That<br>
+        <em>Protect</em><br>
+        What Matters
+      </h1>
+      <p class="hero-sub">
+        State-certified, veteran-owned roofing contractor serving West Palm Beach and surrounding communities. Up-front pricing, timely completions, satisfaction guaranteed.
+      </p>
+      <div class="hero-stat">
+        <div class="hero-stat-num" id="heroCounter">4.8</div>
+        <div class="hero-stat-label">
+          <div class="hero-stat-stars">★★★★★</div>
+          <div class="hero-stat-text">Rated 4.8 Stars<br>BBB A+ · 30+ Yrs Experience</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT — Lead form -->
+    <div class="hero-form-wrap" id="estimate">
+      <div class="hero-form-title">Get a Free Roof Estimate</div>
+      <div class="hero-form-sub">No pressure, no obligation — just an honest assessment from a licensed pro.</div>
+      <form class="hero-form" onsubmit="handleFormSubmit(event)">
+        <input type="text" name="name" placeholder="Your Full Name" required autocomplete="name">
+        <input type="tel" name="phone" placeholder="Phone Number" required autocomplete="tel">
+        <input type="email" name="email" placeholder="Email Address" required autocomplete="email">
+        <button type="submit" class="hero-form-btn">Send My Free Estimate &rarr;</button>
+      </form>
+      <p class="hero-form-note">We respond within 24 hours. Your info is never shared.</p>
     </div>
   </div>
-  <div class="hero-img">
-    <img src="../../assets/samples/Roofers/roofing-operative-ss2502774429.jpg.webp" alt="KLR Roofing Corp skilled roofer laying new tiles on a West Palm Beach residence" loading="eager">
+
+  <!-- SVG Wave -->
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,22 C320,52 720,0 1080,32 C1260,46 1380,28 1440,30 L1440,52 L0,52 Z" fill="#0c243e"/>
+    </svg>
   </div>
 </section>
 
-<div class="trust-bar">
-  <div class="trust-item"><div class="trust-number">Veteran</div><div class="trust-label">Owned Business</div></div>
-  <div class="trust-item"><div class="trust-number">15+</div><div class="trust-label">Years in FL Roofing</div></div>
-  <div class="trust-item"><div class="trust-number">30+</div><div class="trust-label">Years Combined Exp.</div></div>
-  <div class="trust-item"><div class="trust-number">100%</div><div class="trust-label">Licensed &amp; Insured</div></div>
+<!-- TRUST BAR -->
+<div class="trust-bar" role="region" aria-label="Trust indicators">
+  <div class="trust-grid">
+    <div class="trust-item">
+      <div class="trust-num">17+</div>
+      <div class="trust-label">Years Serving<br>Palm Beach</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">✓</div>
+      <div class="trust-label">Licensed &amp;<br>Fully Insured</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">4-County</div>
+      <div class="trust-label">Service Area<br>Palm Beach · Broward · Martin · St. Lucie</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">A+</div>
+      <div class="trust-label">BBB Rating<br>Veteran Owned</div>
+    </div>
+  </div>
 </div>
+
+<!-- REVIEWS CAROUSEL -->
+<section class="reviews-section" role="region" aria-label="Customer reviews">
+  <div class="section-inner">
+    <div class="section-label reveal">What Our Customers Say</div>
+    <h2 class="section-title reveal">Real Roofs. Real Results.</h2>
+    <p class="section-sub reveal">Palm Beach homeowners and business owners trust KLR Roofing to get the job done right — on time and on budget.</p>
+
+    <div class="carousel-wrap" role="region" aria-label="Review carousel">
+      <div class="carousel-track">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"KLR replaced our entire roof after the storm and they were absolutely outstanding. The crew showed up on time every day, kept things clean, and Michael was transparent about every step of the process. Our new roof looks incredible."</p>
+          <div class="review-author">Jennifer M. — West Palm Beach, FL</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I got four quotes for my tile roof replacement and KLR was the most honest. No hidden fees, no upselling — exactly what they quoted is what I paid. The work was finished two days ahead of schedule and the cleanup was immaculate."</p>
+          <div class="review-author">Robert D. — Lake Worth, FL</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"As a commercial property manager I've worked with a lot of contractors. KLR stands apart. They diagnosed a chronic leak that two other roofers missed, fixed it properly the first time, and their documentation for insurance was perfect."</p>
+          <div class="review-author">Sandra K. — Boca Raton, FL</div>
+        </div>
+      </div>
+      <button class="carousel-btn carousel-prev" aria-label="Previous review">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-btn carousel-next" aria-label="Next review">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="carousel-dots" role="tablist" aria-label="Review navigation">
+      <button class="carousel-dot active" role="tab" aria-label="Review 1" aria-selected="true"></button>
+      <button class="carousel-dot" role="tab" aria-label="Review 2" aria-selected="false"></button>
+      <button class="carousel-dot" role="tab" aria-label="Review 3" aria-selected="false"></button>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES GRID -->
+<section class="services-section" role="region" aria-label="Our roofing services" id="services">
+  <div class="section-inner">
+    <div class="section-label reveal">What We Do</div>
+    <h2 class="section-title reveal">Roofing Services</h2>
+    <p class="section-sub reveal">From a single repair to a full commercial replacement — every job is handled by state-certified technicians who treat your property like their own.</p>
+
+    <div class="services-grid">
+
+      <!-- 1. Shingle Roofing -->
+      <div class="service-card">
+        <div class="service-photo">
+          <img
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+            alt="Asphalt shingle roofing installation by KLR Roofing Corp"
+            loading="lazy"
+          >
+        </div>
+        <div class="service-body">
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <div class="service-name">Shingle Roofing</div>
+          <p class="service-desc">Architectural and three-tab shingle systems for Florida's climate — wind-resistant, properly permitted, and installed to manufacturer specs to protect your warranty.</p>
+        </div>
+      </div>
+
+      <!-- 2. Tile Roofing -->
+      <div class="service-card">
+        <div class="service-photo">
+          <img
+            src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80"
+            alt="Clay tile roofing on a Palm Beach County home"
+            loading="lazy"
+          >
+        </div>
+        <div class="service-body">
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/>
+            </svg>
+          </div>
+          <div class="service-name">Tile Roofing</div>
+          <p class="service-desc">Concrete and clay tile systems that are built to last decades in South Florida's sun and storm environment. We handle full replacements and precision tile repairs.</p>
+        </div>
+      </div>
+
+      <!-- 3. Metal Roofing -->
+      <div class="service-card">
+        <div class="service-photo">
+          <img
+            src="https://images.unsplash.com/photo-1597484662317-9b8e7a4a6b5a?auto=format&fit=crop&w=800&q=80"
+            alt="Standing seam metal roofing installation"
+            loading="lazy"
+          >
+        </div>
+        <div class="service-body">
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <div class="service-name">Metal Roofing</div>
+          <p class="service-desc">Standing seam and exposed-fastener metal roofing — the longest-lasting option for Florida homes, with superior wind uplift resistance and energy-saving reflectivity.</p>
+        </div>
+      </div>
+
+      <!-- 4. Roof Repair -->
+      <div class="service-card">
+        <div class="service-photo">
+          <img
+            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
+            alt="Roofing contractor performing a roof repair"
+            loading="lazy"
+          >
+        </div>
+        <div class="service-body">
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+            </svg>
+          </div>
+          <div class="service-name">Roof Repair</div>
+          <p class="service-desc">Leak detection and targeted repairs for all roof types. We find the source — not just the symptom — and fix it properly so you don't get the same call-back twice.</p>
+        </div>
+      </div>
+
+      <!-- 5. Commercial Roofing -->
+      <div class="service-card">
+        <div class="service-photo">
+          <img
+            src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80"
+            alt="Commercial flat roofing on a large building"
+            loading="lazy"
+          >
+        </div>
+        <div class="service-body">
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
+            </svg>
+          </div>
+          <div class="service-name">Commercial Roofing</div>
+          <p class="service-desc">Flat, low-slope, and commercial membrane systems for retail, industrial, and multi-family properties across Palm Beach and Broward counties. Fully documented for insurance.</p>
+        </div>
+      </div>
+
+      <!-- 6. Roof Sentry Maintenance -->
+      <div class="service-card">
+        <div class="service-photo">
+          <img
+            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80"
+            alt="Roof maintenance and inspection service"
+            loading="lazy"
+          >
+        </div>
+        <div class="service-body">
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div class="service-name">Roof Sentry Program</div>
+          <p class="service-desc">Our preventative maintenance program catches small problems before they become expensive emergencies — scheduled inspections, cleaning, and minor repairs to extend your roof's life.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" role="region" aria-label="About KLR Roofing Corp" id="about">
+  <div class="section-inner">
+    <div class="section-label reveal">Who We Are</div>
+    <h2 class="section-title reveal">Family Owned. Veteran Built.<br>Palm Beach Trusted.</h2>
+
+    <div class="about-grid">
+      <div class="about-photo reveal">
+        <img
+          src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80"
+          alt="KLR Roofing Corp crew working on a Palm Beach County home"
+          loading="lazy"
+        >
+      </div>
+      <div class="reveal">
+        <p style="font-size:1.05rem;line-height:1.8;color:var(--text);margin-bottom:20px;">
+          KLR Roofing Corp has been protecting Palm Beach County homes and businesses since 2008. What started as a commitment to honest roofing service has grown into one of the county's most trusted contractors — built on transparency, precision, and a veteran's sense of duty to get the job done right.
+        </p>
+        <div class="about-pull">
+          "Up-front pricing. Timely completions. Satisfaction guaranteed — every single job."
+        </div>
+        <p style="font-size:1.0rem;line-height:1.75;color:var(--muted);margin-bottom:24px;">
+          We bring over 30 years of combined roofing experience to every project. Our team handles everything from single-family home repairs to multi-building commercial replacements — always properly permitted, always installed to manufacturer specifications.
+        </p>
+        <div class="about-creds">
+          <div class="about-cred"><div class="about-cred-dot"></div>Florida State Certified Roofing Contractor · Lic. CCC1328862</div>
+          <div class="about-cred"><div class="about-cred-dot"></div>General Liability &amp; Workers' Compensation Insurance</div>
+          <div class="about-cred"><div class="about-cred-dot"></div>BBB Accredited · A+ Rating</div>
+          <div class="about-cred"><div class="about-cred-dot"></div>Veteran-Owned Business (Verified)</div>
+          <div class="about-cred"><div class="about-cred-dot"></div>Serving Palm Beach, Broward, Martin &amp; St. Lucie Counties</div>
+          <div class="about-cred"><div class="about-cred-dot"></div>All work warrantied · Manufacturer spec compliance guaranteed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-section" role="region" aria-label="Get a free estimate">
+  <div class="section-label" style="color:var(--accent);">Ready to Start?</div>
+  <h2 class="cta-title">Your Roof Deserves a<br><em>Licensed</em> Second Opinion</h2>
+  <p class="cta-sub">Whether you need a repair, a full replacement, or just peace of mind before storm season — we'll give you an honest, up-front assessment at no cost.</p>
+  <div class="cta-buttons">
+    <a href="tel:5616039914" class="btn-primary">Call (561) 603-9914</a>
+    <a href="#estimate" class="btn-outline">Get Online Estimate</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="footer-grid">
+    <!-- Brand -->
+    <div>
+      <div class="footer-brand-name">KLR <span>Roofing</span> Corp</div>
+      <p class="footer-about">Veteran-owned, family-operated roofing contractor serving West Palm Beach and surrounding communities since 2008. State certified, fully insured, BBB A+.</p>
+      <div class="footer-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Lic. CCC1328862
+      </div>
+    </div>
+    <!-- Services -->
+    <div>
+      <div class="footer-col-title">Services</div>
+      <div class="footer-links">
+        <a href="#services">Shingle Roofing</a>
+        <a href="#services">Tile Roofing</a>
+        <a href="#services">Metal Roofing</a>
+        <a href="#services">Roof Repair</a>
+        <a href="#services">Commercial Roofing</a>
+        <a href="#services">Roof Sentry Program</a>
+      </div>
+    </div>
+    <!-- Contact -->
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-contact-item">
+        <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        <a href="tel:5616039914">(561) 603-9914</a>
+      </div>
+      <div class="footer-contact-item">
+        <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="mailto:michael@klrroofing.com">michael@klrroofing.com</a>
+      </div>
+      <div class="footer-contact-item">
+        <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        6535 Patricia Dr,<br>West Palm Beach, FL 33413
+      </div>
+      <div class="footer-contact-item">
+        <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Mon–Fri 8am–6pm · Sat 9am–3pm
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 KLR Roofing Corp. All rights reserved.</span>
+    <span class="footer-lic">FL State Lic. CCC1328862 · West Palm Beach, FL</span>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-cta" aria-label="Mobile call to action">
+  <a href="tel:5616039914">&#128222; Call Now</a>
+  <a href="#estimate">Free Estimate</a>
+</div>
+
+</div><!-- /#page -->
+
+<script>
+/* ── LOADER ── */
+(function(){
+  var quotes = [
+    "KLR replaced our entire roof and the crew was outstanding. On time, spotless cleanup, and exactly what they quoted.",
+    "The most honest roofing company I've worked with in 20 years. No hidden fees, no upselling — just quality work.",
+    "They found a chronic leak two other roofers missed. Fixed it properly the first time. Perfect documentation for insurance."
+  ];
+  var el = document.getElementById('loaderQuote');
+  var bar = document.getElementById('loaderBar');
+  var loader = document.getElementById('loader');
+  var page = document.getElementById('page');
+  var i = 0;
+
+  function showQuote(idx) {
+    el.classList.remove('visible');
+    setTimeout(function(){
+      el.textContent = '\u201C' + quotes[idx] + '\u201D';
+      el.classList.add('visible');
+    }, 250);
+  }
+
+  showQuote(0);
+  setTimeout(function(){ bar.classList.add('run'); }, 50);
+
+  var interval = setInterval(function(){
+    i++;
+    if(i < quotes.length){
+      showQuote(i);
+    } else {
+      clearInterval(interval);
+    }
+  }, 1400);
+
+  // Fade out loader after ~4.8s
+  setTimeout(function(){
+    loader.classList.add('fade-out');
+    page.style.visibility = 'visible';
+    setTimeout(function(){
+      loader.style.display = 'none';
+      startHeroCounter();
+    }, 900);
+  }, 4800);
+})();
+
+/* ── GRAIN CANVAS ── */
+(function(){
+  var canvas = document.getElementById('grain');
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w, h, imageData;
+
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    imageData = ctx.createImageData(w, h);
+  }
+
+  function grain(){
+    var data = imageData.data;
+    for(var i = 0; i < data.length; i += 4){
+      var v = (Math.random() * 255)|0;
+      data[i]   = v * 0.7;
+      data[i+1] = v * 0.82;
+      data[i+2] = v * 1.0;
+      data[i+3] = 10;
+    }
+    ctx.putImageData(imageData, 0, 0);
+    requestAnimationFrame(grain);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  grain();
+})();
+
+/* ── HERO COUNTER (fires after loader) ── */
+function startHeroCounter(){
+  var el = document.getElementById('heroCounter');
+  if(!el) return;
+  var target = 4.8;
+  var start = 0;
+  var duration = 2200;
+  var startTime = null;
+
+  function easeOutExpo(t){ return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+
+  function step(ts){
+    if(!startTime) startTime = ts;
+    var elapsed = ts - startTime;
+    var progress = Math.min(elapsed / duration, 1);
+    var eased = easeOutExpo(progress);
+    el.textContent = (eased * target).toFixed(1);
+    if(progress < 1) requestAnimationFrame(step);
+    else el.textContent = target.toFixed(1);
+  }
+
+  setTimeout(function(){ requestAnimationFrame(step); }, 400);
+}
+
+/* ── INTERSECTION OBSERVER REVEALS ── */
+(function(){
+  var revealEls = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(function(el){ observer.observe(el); });
+
+  // Staggered service cards
+  var cards = document.querySelectorAll('.service-card');
+  var cardObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var idx = Array.from(cards).indexOf(entry.target);
+        setTimeout(function(){
+          entry.target.classList.add('revealed');
+        }, idx * 90);
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
+  cards.forEach(function(card){ cardObserver.observe(card); });
+})();
+
+/* ── REVIEWS CAROUSEL ── */
+(function(){
+  var wrap = document.querySelector('.carousel-wrap');
+  if(!wrap) return;
+  var track = wrap.querySelector('.carousel-track');
+  var dots = document.querySelectorAll('.carousel-dot');
+  var n = track.querySelectorAll('.review-card').length;
+  var cur = 0, timer;
+  var startX = 0, isDragging = false;
+
+  function go(i){
+    cur = (i % n + n) % n;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dots.forEach(function(d, j){
+      d.classList.toggle('active', j === cur);
+      d.setAttribute('aria-selected', j === cur ? 'true' : 'false');
+    });
+  }
+
+  wrap.querySelector('.carousel-prev').addEventListener('click', function(){ go(cur - 1); reset(); });
+  wrap.querySelector('.carousel-next').addEventListener('click', function(){ go(cur + 1); reset(); });
+  dots.forEach(function(d, i){ d.addEventListener('click', function(){ go(i); reset(); }); });
+
+  // Swipe support
+  track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; isDragging = true; }, {passive:true});
+  track.addEventListener('touchend', function(e){
+    if(!isDragging) return;
+    var diff = startX - e.changedTouches[0].clientX;
+    if(Math.abs(diff) > 40){ go(diff > 0 ? cur + 1 : cur - 1); reset(); }
+    isDragging = false;
+  }, {passive:true});
+
+  function reset(){ clearInterval(timer); timer = setInterval(function(){ go(cur + 1); }, 5000); }
+  reset();
+})();
+
+/* ── FORM SUBMIT (demo handler) ── */
+function handleFormSubmit(e){
+  e.preventDefault();
+  var btn = e.target.querySelector('.hero-form-btn');
+  btn.textContent = 'Request Sent \u2714';
+  btn.style.background = '#1a7a4a';
+  btn.disabled = true;
+}
+
+/* ── NAV SCROLL OPACITY ── */
+(function(){
+  var nav = document.querySelector('nav');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 20){
+      nav.style.background = 'rgba(12,36,62,0.97)';
+    } else {
+      nav.style.background = 'rgba(12,36,62,0.92)';
+    }
+  }, {passive:true});
+})();
+</script>
 
 </body>
 </html>

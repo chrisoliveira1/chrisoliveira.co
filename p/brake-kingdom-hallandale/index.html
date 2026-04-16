@@ -3,155 +3,1781 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brake Kingdom | Hallandale Auto Repair</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #F5F5F0; }
+  <title>Brake Kingdom | Hallandale Beach Auto Repair — Since 1995</title>
+  <meta name="description" content="ASE Certified auto repair in Hallandale Beach, FL. Brakes, oil changes, engine diagnostics, AC service & more. Serving South Florida since 1995. Call (305) 933-2882.">
 
+  <!-- OG -->
+  <meta property="og:title" content="Brake Kingdom | Hallandale Beach Auto Repair">
+  <meta property="og:description" content="ASE Certified. 4.9★ on Google. Honest auto repair serving South Florida since 1995.">
+  <meta property="og:image" content="https://chrisoliveira.co/p/brake-kingdom-hallandale/preview.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts: Oswald (authority/bold) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════
+       TOKENS
+    ═══════════════════════════════════════════ */
+    :root {
+      --red:       #c0392b;
+      --red-dark:  #922b21;
+      --red-light: #e74c3c;
+      --charcoal:  #1a1a1a;
+      --dark:      #111111;
+      --gray:      #2c2c2c;
+      --mid:       #4a4a4a;
+      --muted:     #888888;
+      --line:      #e5e5e5;
+      --bg:        #f5f5f2;
+      --white:     #ffffff;
+      --trust-bg:  #141414;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ═══════════════════════════════════════════
+       LOADER
+    ═══════════════════════════════════════════ */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--dark);
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      transition: opacity 0.9s ease;
+    }
+
+    .loader-logo {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.25em;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: 56px;
+      opacity: 0.7;
+    }
+
+    .loader-quote {
+      text-align: center;
+      max-width: 640px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      position: absolute;
+    }
+
+    .loader-quote.active { opacity: 1; }
+
+    .loader-stars {
+      color: #f59e0b;
+      font-size: 1.3rem;
+      letter-spacing: 4px;
+      margin-bottom: 20px;
+    }
+
+    .loader-text {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.2rem, 3vw, 1.9rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.5;
+      font-style: italic;
+      letter-spacing: -0.01em;
+    }
+
+    .loader-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      background: var(--red);
+      width: 0%;
+      transition: width 4.8s linear;
+    }
+
+    #page {
+      visibility: hidden;
+    }
+
+    /* ═══════════════════════════════════════════
+       GRAIN CANVAS
+    ═══════════════════════════════════════════ */
+    #grain {
+      position: fixed;
+      inset: 0;
+      z-index: 99998;
+      pointer-events: none;
+      opacity: 1;
+    }
+
+    /* ═══════════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════════ */
     nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
       height: 68px;
-      background: #1C1C1E;
+      background: rgba(17, 17, 17, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 40px;
-      position: relative;
-      z-index: 10;
-    }
-    .nav-brand {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 24px;
-      color: #F5F5F0;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-    .nav-brand span { color: #F9A825; }
-    .nav-phone {
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 15px;
-      color: #F5F5F0;
-      text-decoration: none;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    .hero {
-      position: relative;
-      height: calc(100vh - 68px);
+    .nav-logo {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .nav-logo span { color: var(--red); }
+
+    .nav-right {
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 20px;
+    }
+
+    .nav-phone {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-phone:hover { color: var(--white); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--red);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 9px 20px;
+      border-radius: 4px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .nav-cta:hover {
+      background: var(--red-dark);
+      transform: translateY(-1px);
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════ */
+    .hero {
+      height: calc(100vh - 68px);
+      margin-top: 68px;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 440px;
       overflow: hidden;
     }
-    .hero img {
+
+    .hero-bg {
       position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      background-image: url('https://images.unsplash.com/photo-1625047509168-a7026f36de04?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center 30%;
+      z-index: 0;
     }
-    .hero-overlay {
+
+    .hero-bg::after {
+      content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(
-        155deg,
-        rgba(28, 28, 30, 0.94) 0%,
-        rgba(28, 28, 30, 0.68) 50%,
-        rgba(28, 28, 30, 0.92) 100%
+        100deg,
+        rgba(17,17,17,0.96) 0%,
+        rgba(17,17,17,0.88) 40%,
+        rgba(17,17,17,0.55) 65%,
+        rgba(17,17,17,0.25) 100%
       );
     }
-    .hero-content {
+
+    .hero-left {
       position: relative;
       z-index: 2;
-      text-align: center;
-      max-width: 700px;
-      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 56px 80px 64px;
     }
-    .hero-content h1 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: clamp(36px, 5.5vw, 66px);
-      color: #ffffff;
-      text-transform: uppercase;
-      line-height: 1.08;
-      margin-bottom: 16px;
-    }
-    .hero-content p {
-      font-size: clamp(16px, 2vw, 19px);
-      color: rgba(255, 255, 255, 0.82);
-      line-height: 1.5;
-      margin-bottom: 32px;
-    }
-    .cta-btn {
-      display: inline-block;
-      background: #C62828;
-      color: #fff;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 18px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 16px 48px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .cta-btn:hover { background: #a12020; }
 
-    .trust-bar {
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.7s ease 0.2s forwards;
+    }
+
+    .eyebrow-tag {
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 3px;
+    }
+
+    .eyebrow-sep {
+      width: 1px;
+      height: 14px;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .eyebrow-loc {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hero-h1 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+      line-height: 1.0;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.7s ease 0.4s forwards;
+    }
+
+    .hero-h1 em {
+      font-style: normal;
+      color: var(--red);
+      position: relative;
+    }
+
+    .hero-h1 em::after {
+      content: '';
       position: absolute;
-      bottom: 48px;
-      left: 50%;
-      transform: translateX(-50%);
+      bottom: -3px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--red);
+      border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: drawLine 0.5s ease 1.2s forwards;
+    }
+
+    .hero-sub {
+      font-size: 1.02rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.65;
+      max-width: 440px;
+      margin-bottom: 36px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.7s ease 0.6s forwards;
+    }
+
+    .hero-stat {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 28px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.7s ease 0.75s forwards;
+    }
+
+    .stat-num {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 3.2rem;
+      line-height: 1;
+      color: var(--red);
+      min-width: 80px;
+    }
+
+    .stat-meta { display: flex; flex-direction: column; gap: 4px; }
+
+    .stat-stars {
+      color: #f59e0b;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* Hero right — lead form */
+    .hero-right {
+      position: relative;
       z-index: 2;
       display: flex;
       align-items: center;
-      gap: 24px;
-      flex-wrap: wrap;
       justify-content: center;
+      padding: 40px 48px 80px 24px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.7s ease 0.8s forwards;
     }
-    .trust-bar span {
-      font-family: 'Barlow Condensed', sans-serif;
+
+    .hero-form-card {
+      background: rgba(255,255,255,0.97);
+      border-radius: 10px;
+      padding: 36px 32px;
+      width: 100%;
+      max-width: 360px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.45), 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    .form-head {
+      font-family: 'Oswald', sans-serif;
       font-weight: 600;
-      font-size: 14px;
-      color: #F9A825;
+      font-size: 1.25rem;
+      color: var(--charcoal);
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      white-space: nowrap;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
     }
-    .trust-bar .divider {
-      width: 1px;
-      height: 16px;
-      background: rgba(249, 168, 37, 0.35);
+
+    .form-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .form-field {
+      margin-bottom: 14px;
+    }
+
+    .form-field label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 5px;
+    }
+
+    .form-field input,
+    .form-field select {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 5px;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--charcoal);
+      background: var(--white);
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus {
+      outline: none;
+      border-color: var(--red);
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 13px;
+      background: var(--red);
+      color: var(--white);
+      border: none;
+      border-radius: 5px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .form-submit:hover {
+      background: var(--red-dark);
+      transform: translateY(-1px);
+    }
+
+    .form-note {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 10px;
+      line-height: 1.4;
+    }
+
+    /* SVG Wave */
+    .hero-wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      line-height: 0;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .hero-wave svg {
+      display: block;
+      width: 100%;
+      height: 52px;
+    }
+
+    /* ═══════════════════════════════════════════
+       TRUST BAR
+    ═══════════════════════════════════════════ */
+    .trust-bar {
+      background: var(--trust-bg);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .trust-item {
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.09);
+      gap: 6px;
+    }
+
+    .trust-item:last-child { border-right: none; }
+
+    .trust-num {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 2.4rem;
+      color: var(--red);
+      line-height: 1;
+    }
+
+    .trust-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .trust-detail {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.65);
+      font-weight: 400;
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION SHARED
+    ═══════════════════════════════════════════ */
+    .section {
+      padding: 96px 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--charcoal);
+      text-transform: uppercase;
+      line-height: 1.05;
+      letter-spacing: 0.01em;
+      margin-bottom: 14px;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--mid);
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    /* ═══════════════════════════════════════════
+       REVIEWS CAROUSEL
+    ═══════════════════════════════════════════ */
+    .reviews-section {
+      background: var(--bg);
+      padding: 96px 0;
+    }
+
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 36px 40px;
+    }
+
+    .review-stars {
+      color: #f59e0b;
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+      letter-spacing: 3px;
+    }
+
+    .review-text {
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.75;
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+
+    .review-author {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .carousel-wrap {
+      position: relative;
+      margin-top: 48px;
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .carousel-track .review-card {
+      flex: 0 0 100%;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      color: var(--mid);
+      padding: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      transition: all 0.2s;
+    }
+
+    .carousel-btn:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .carousel-prev { left: 12px; }
+    .carousel-next { right: 12px; }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #d1d5db;
+      cursor: pointer;
+      border: none;
+      padding: 0;
+      transition: all 0.25s;
+    }
+
+    .carousel-dot.active {
+      background: var(--red);
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    /* ═══════════════════════════════════════════
+       SERVICES GRID
+    ═══════════════════════════════════════════ */
+    .services-section {
+      background: var(--white);
+      padding: 96px 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .service-card {
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid var(--line);
+      transition: transform 0.25s, box-shadow 0.25s;
+      opacity: 0;
+      transform: translateY(28px);
+    }
+
+    .service-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.25s, border-color 0.2s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+      border-color: var(--red);
+    }
+
+    .service-photo {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .service-body {
+      padding: 24px 24px 28px;
+    }
+
+    .service-icon {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .service-name {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--mid);
+      line-height: 1.65;
+    }
+
+    /* ═══════════════════════════════════════════
+       ABOUT
+    ═══════════════════════════════════════════ */
+    .about-section {
+      background: var(--bg);
+      padding: 96px 0;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .about-photo-wrap {
+      position: relative;
+    }
+
+    .about-photo {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--red);
+      color: var(--white);
+      border-radius: 8px;
+      padding: 18px 22px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(192,57,43,0.4);
+    }
+
+    .badge-num {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 2.4rem;
+      line-height: 1;
+      display: block;
+    }
+
+    .badge-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    .about-creds {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 28px;
+      margin-bottom: 36px;
+    }
+
+    .cred-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--charcoal);
+    }
+
+    .cred-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .about-quote {
+      border-left: 3px solid var(--red);
+      padding-left: 20px;
+      margin-top: 32px;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--mid);
+      line-height: 1.65;
+    }
+
+    /* ═══════════════════════════════════════════
+       CTA BANNER
+    ═══════════════════════════════════════════ */
+    .cta-banner {
+      background: var(--dark);
+      padding: 80px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-banner::before {
+      content: 'KINGDOM';
+      position: absolute;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 18vw;
+      color: rgba(255,255,255,0.02);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      pointer-events: none;
+      letter-spacing: 0.1em;
+    }
+
+    .cta-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 16px;
+    }
+
+    .cta-h2 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .cta-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 40px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .cta-btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red);
+      color: var(--white);
+      text-decoration: none;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 15px 32px;
+      border-radius: 5px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: var(--red-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      text-decoration: none;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 15px 32px;
+      border-radius: 5px;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════ */
+    footer {
+      background: #0d0d0d;
+      padding: 64px 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 56px;
+    }
+
+    .footer-brand-name {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .footer-brand-name span { color: var(--red); }
+
+    .footer-tagline {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .footer-contact p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 2;
+    }
+
+    .footer-contact a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+    }
+
+    .footer-contact a:hover { color: var(--white); }
+
+    .footer-col-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: rgba(255,255,255,0.85); }
+
+    .footer-hours {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+    }
+
+    .hours-day { color: rgba(255,255,255,0.45); }
+    .hours-time { color: rgba(255,255,255,0.75); font-weight: 500; }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: rgba(255,255,255,0.5);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .social-btn:hover {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .footer-lic {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.25);
+      text-align: right;
+    }
+
+    /* ═══════════════════════════════════════════
+       MOBILE STICKY CTA
+    ═══════════════════════════════════════════ */
+    .mobile-sticky {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 12px 20px;
+      z-index: 999;
+      gap: 12px;
+    }
+
+    .mobile-sticky a {
+      flex: 1;
+      text-align: center;
+      padding: 12px;
+      border-radius: 5px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .sticky-call {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .sticky-dir {
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+    ═══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes drawLine {
+      to { transform: scaleX(1); }
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .hero { grid-template-columns: 1fr 400px; }
+      .hero-left { padding: 48px 40px 80px 48px; }
+      .hero-right { padding: 40px 32px 80px 16px; }
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-phone { display: none; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: calc(100vh - 68px);
+      }
+
+      .hero-left {
+        padding: 48px 28px 40px;
+        order: 1;
+      }
+
+      .hero-right {
+        padding: 0 28px 56px;
+        order: 2;
+      }
+
+      .hero-form-card { max-width: 100%; }
+
+      .trust-bar { grid-template-columns: repeat(2, 1fr); }
+      .trust-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.09); }
+      .trust-item:nth-child(2n) { border-bottom: 1px solid rgba(255,255,255,0.09); }
+      .trust-item:last-child { border-bottom: none; }
+
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-badge { right: 16px; bottom: -16px; }
+
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+
+      .mobile-sticky { display: flex; }
+
+      body { padding-bottom: 70px; }
+
+      .review-card { padding: 24px 20px; }
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 0 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-h1 { font-size: 2.6rem; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      #loader { display: none; }
+      #page { visibility: visible !important; }
+      #grain { display: none; }
+      * { animation: none !important; transition: none !important; }
     }
   </style>
 </head>
 <body>
+
+<!-- ═══════════════════════════════════════════
+     LOADER
+═══════════════════════════════════════════ -->
+<div id="loader">
+  <div class="loader-logo">Brake Kingdom</div>
+
+  <div class="loader-quote" id="q1">
+    <div class="loader-stars">★★★★★</div>
+    <p class="loader-text">"Israel is the most honest man and mechanic I have ever met in my life. Prices are fair, work is impeccable."</p>
+  </div>
+
+  <div class="loader-quote" id="q2">
+    <div class="loader-stars">★★★★★</div>
+    <p class="loader-text">"I drove an hour and a half just to come here — the prices and the honesty are unlike anything else in South Florida."</p>
+  </div>
+
+  <div class="loader-quote" id="q3">
+    <div class="loader-stars">★★★★★</div>
+    <p class="loader-text">"Trustworthy, fast, and genuinely care about doing right by the customer. My whole family brings their cars here."</p>
+  </div>
+
+  <div class="loader-bar" id="loader-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     GRAIN CANVAS
+═══════════════════════════════════════════ -->
+<canvas id="grain"></canvas>
+
+<!-- ═══════════════════════════════════════════
+     MAIN PAGE
+═══════════════════════════════════════════ -->
+<div id="page">
+
+  <!-- NAV -->
   <nav>
-    <div class="nav-brand">Brake <span>Kingdom</span></div>
-    <a href="tel:3059332882" class="nav-phone">(305) 933-2882</a>
-  </nav>
-  <section class="hero">
-    <img src="../../assets/samples/Auto repair/Boss-Auto-Repair-in-Olympia-Four-Wheel-Drive-Repair.jpg" alt="Auto repair shop">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Hallandale's Full-Service Auto Repair</h1>
-      <p>Owner-operated expertise for every make and model. Honest work, fair prices.</p>
-      <a href="#" class="cta-btn">Schedule Service</a>
+    <div class="nav-logo">Brake <span>Kingdom</span></div>
+    <div class="nav-right">
+      <a href="tel:3059332882" class="nav-phone">(305) 933-2882</a>
+      <a href="#schedule" class="nav-cta">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Schedule Service
+      </a>
     </div>
-    <div class="trust-bar">
-      <span>ASE Certified</span>
-      <div class="divider"></div>
-      <span>Owner Operated</span>
-      <div class="divider"></div>
-      <span>Since 1995</span>
-      <div class="divider"></div>
-      <span>Hallandale, FL</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="schedule">
+    <div class="hero-bg"></div>
+
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-tag">ASE Certified</span>
+        <span class="eyebrow-sep"></span>
+        <span class="eyebrow-loc">Hallandale Beach, FL</span>
+      </div>
+
+      <h1 class="hero-h1">
+        South Florida's<br>
+        <em>Trusted</em> Auto<br>
+        Repair Kingdom
+      </h1>
+
+      <p class="hero-sub">
+        ASE Certified and AATI Licensed mechanics serving Hallandale Beach, Hollywood, Aventura, and all of South Florida since 1995. Flat, honest pricing — every time.
+      </p>
+
+      <div class="hero-stat">
+        <div class="stat-num" id="rating-counter">4.9</div>
+        <div class="stat-meta">
+          <div class="stat-stars">★★★★★</div>
+          <div class="stat-label">Perfect Rating · 236 Google Reviews</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-form-card">
+        <div class="form-head">Schedule Your Service</div>
+        <p class="form-sub">We'll call you back within 1 business hour.</p>
+
+        <form onsubmit="return false;">
+          <div class="form-field">
+            <label for="f-name">Your Name</label>
+            <input type="text" id="f-name" name="name" placeholder="John Smith" autocomplete="name">
+          </div>
+          <div class="form-field">
+            <label for="f-phone">Phone Number</label>
+            <input type="tel" id="f-phone" name="phone" placeholder="(305) 000-0000" autocomplete="tel">
+          </div>
+          <div class="form-field">
+            <label for="f-email">Email Address</label>
+            <input type="email" id="f-email" name="email" placeholder="you@email.com" autocomplete="email">
+          </div>
+          <div class="form-field">
+            <label for="f-service">Service Needed</label>
+            <select id="f-service" name="service">
+              <option value="">Select a service…</option>
+              <option>Brake Service</option>
+              <option>Oil Change</option>
+              <option>Engine Diagnostics</option>
+              <option>Tire Rotation / Alignment</option>
+              <option>AC / Electrical Repair</option>
+              <option>Transmission Service</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit">Get a Free Quote</button>
+          <p class="form-note">No spam. Your info stays private.</p>
+        </form>
+      </div>
+    </div>
+
+    <!-- SVG Wave -->
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,22 C360,52 1080,0 1440,30 L1440,52 L0,52 Z" fill="#141414"/>
+      </svg>
     </div>
   </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <div class="trust-num">30+</div>
+      <div class="trust-label">Years in Business</div>
+      <div class="trust-detail">Serving South Florida since 1995</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">ASE</div>
+      <div class="trust-label">Certified Mechanics</div>
+      <div class="trust-detail">AATI Licensed + State Certified</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">7</div>
+      <div class="trust-label">Cities Served</div>
+      <div class="trust-detail">Hallandale · Hollywood · Aventura · Miami</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">4.9★</div>
+      <div class="trust-label">Google Rating</div>
+      <div class="trust-detail">236 verified customer reviews</div>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <section class="reviews-section">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">What Customers Say</div>
+        <h2 class="section-title">The South Florida Standard<br>for Honest Auto Repair</h2>
+        <p class="section-sub">4.9 stars across 236 Google reviews. Here's why drivers across South Florida keep coming back to their Kingdom.</p>
+      </div>
+
+      <div class="carousel-wrap reveal">
+        <div class="carousel-track">
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"If you're looking for a reliable mechanic, you found it! Israel, the owner, was really honest and straightforward about what my car needed. Prices are fair and the work was done fast. I won't take my car anywhere else."</p>
+            <div class="review-author">Megan G. — Google Review · Hallandale Beach, FL</div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"I found Brake Kingdom over ten years ago because of all the positive online reviews, and every single visit has delivered. Honest, skilled, and fairly priced. Israel and his crew are phenomenal — this is how a shop should be run."</p>
+            <div class="review-author">Fred R. — Google Review · Aventura, FL</div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"I've been using Israel's services for more than nine years. His work is impeccable, his pricing is always fair, and his honesty is rare. I've sent my whole family here. Brake Kingdom is the only shop I trust with my vehicles."</p>
+            <div class="review-author">Juana H. — Google Review · Hollywood, FL</div>
+          </div>
+
+        </div>
+
+        <button class="carousel-btn carousel-prev" aria-label="Previous review">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="carousel-btn carousel-next" aria-label="Next review">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <div class="carousel-dots">
+        <button class="carousel-dot active" aria-label="Review 1"></button>
+        <button class="carousel-dot" aria-label="Review 2"></button>
+        <button class="carousel-dot" aria-label="Review 3"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">What We Do</div>
+        <h2 class="section-title">Full-Service Auto Repair<br>Under One Kingdom</h2>
+        <p class="section-sub">From routine maintenance to complex diagnostics — ASE Certified technicians handle it all with the same honesty that's kept South Florida drivers loyal for 30 years.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card">
+          <img class="service-photo" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=800&q=80" alt="Brake service and inspection at Brake Kingdom Hallandale" loading="lazy">
+          <div class="service-body">
+            <span class="service-icon">🔧</span>
+            <div class="service-name">Brake Service</div>
+            <p class="service-desc">Pads, rotors, calipers, and brake fluid flush. We diagnose what actually needs replacing — no upselling, no pressure. ABS and parking brake included.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img class="service-photo" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80" alt="Oil change service at Brake Kingdom" loading="lazy">
+          <div class="service-body">
+            <span class="service-icon">💧</span>
+            <div class="service-name">Oil Change</div>
+            <p class="service-desc">Conventional or full synthetic, with filter and 27-point inspection. Fast turnaround, honest recommendations — no invented problems.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img class="service-photo" src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80" alt="Tire rotation and balancing service" loading="lazy">
+          <div class="service-body">
+            <span class="service-icon">⚙️</span>
+            <div class="service-name">Tire Rotation & Alignment</div>
+            <p class="service-desc">Front-end work, axles, CV joints, and proper alignment to maximize tire life and keep your car tracking straight down I-95.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img class="service-photo" src="https://images.unsplash.com/photo-1609710228159-0fa9bd7e0827?auto=format&fit=crop&w=800&q=80" alt="Engine diagnostics and computer scan" loading="lazy">
+          <div class="service-body">
+            <span class="service-icon">🖥️</span>
+            <div class="service-name">Engine Diagnostics</div>
+            <p class="service-desc">Check engine light? Full computer diagnostics pinpoint the real issue — not a guess. Tune-ups, engine repair, and radiator service on site.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img class="service-photo" src="https://images.unsplash.com/photo-1537984822441-cff330075342?auto=format&fit=crop&w=800&q=80" alt="Suspension and steering repair" loading="lazy">
+          <div class="service-body">
+            <span class="service-icon">🚗</span>
+            <div class="service-name">Suspension & Steering</div>
+            <p class="service-desc">Shocks, struts, ball joints, tie rods, and power steering repair. We fix what's broken — full written estimate before any work begins.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img class="service-photo" src="https://images.unsplash.com/photo-1558618047-3c8c76ca6c2b?auto=format&fit=crop&w=800&q=80" alt="AC repair and recharge service South Florida" loading="lazy">
+          <div class="service-body">
+            <span class="service-icon">❄️</span>
+            <div class="service-name">AC & Electrical Repair</div>
+            <p class="service-desc">South Florida heat demands a working AC. Refrigerant recharge, compressor diagnosis, and full electrical troubleshooting for all makes and models.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-photo-wrap reveal">
+          <img class="about-photo"
+               src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
+               alt="Mechanic working at Brake Kingdom auto repair shop in Hallandale Beach"
+               loading="lazy">
+          <div class="about-badge">
+            <span class="badge-num">30+</span>
+            <span class="badge-label">Years of Trust</span>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="section-label">Our Story</div>
+          <h2 class="section-title">Built on Honesty.<br>Proven Since 1995.</h2>
+          <p style="font-size:0.97rem; color:var(--mid); line-height:1.75; margin-top:16px;">
+            Brake Kingdom opened its doors in Hallandale Beach in 1995 with one commitment: total honesty. Three decades later, that commitment is why customers drive from Miami, Fort Lauderdale, and across South Florida — past a dozen other shops — to bring their cars here.
+          </p>
+          <p style="font-size:0.97rem; color:var(--mid); line-height:1.75; margin-top:14px;">
+            Every vehicle gets a real diagnosis, a written estimate, and fair pricing. We're not here to find things to fix. We're here to fix what actually needs fixing — and tell you what doesn't.
+          </p>
+
+          <div class="about-creds">
+            <div class="cred-item"><span class="cred-dot"></span> ASE Certified Technicians</div>
+            <div class="cred-item"><span class="cred-dot"></span> AATI Licensed Auto Repair Facility</div>
+            <div class="cred-item"><span class="cred-dot"></span> All Florida State & Local Licenses Current</div>
+            <div class="cred-item"><span class="cred-dot"></span> 4.9★ Rated · 236 Google Reviews</div>
+            <div class="cred-item"><span class="cred-dot"></span> All Makes & Models — Domestic and Import</div>
+            <div class="cred-item"><span class="cred-dot"></span> Towing Available</div>
+          </div>
+
+          <div class="about-quote">
+            "Total honesty keeps our customers driving back to us since 1995."
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-label">Ready to Experience the Difference?</div>
+      <h2 class="cta-h2">Your Car Deserves<br>Honest Hands</h2>
+      <p class="cta-sub">Join 236 five-star South Florida drivers who trust Brake Kingdom. Monday–Saturday, 8 AM–5:30 PM.</p>
+      <div class="cta-btns">
+        <a href="#schedule" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Schedule Service Now
+        </a>
+        <a href="tel:3059332882" class="btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 1.3h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6.09 6.09l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (305) 933-2882
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Col 1: Brand -->
+        <div>
+          <div class="footer-brand-name">Brake <span>Kingdom</span></div>
+          <p class="footer-tagline">Honest auto repair serving South Florida<br>since 1995.</p>
+          <div class="footer-contact">
+            <p><a href="tel:3059332882">(305) 933-2882</a></p>
+            <p><a href="tel:9542372838">(954) 237-2838</a></p>
+            <p><a href="mailto:brakekingdom1@gmail.com">brakekingdom1@gmail.com</a></p>
+            <p style="color:rgba(255,255,255,0.4);font-size:0.82rem;margin-top:8px;">915 W Hallandale Beach Blvd<br>Hallandale, FL 33009</p>
+          </div>
+          <div class="footer-social">
+            <a href="https://facebook.com/brakekingdom1/" class="social-btn" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://twitter.com/brakekingdom" class="social-btn" target="_blank" rel="noopener" aria-label="Twitter/X">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Services -->
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="#schedule">Brake Service</a></li>
+            <li><a href="#schedule">Oil Change</a></li>
+            <li><a href="#schedule">Tire Rotation & Alignment</a></li>
+            <li><a href="#schedule">Engine Diagnostics</a></li>
+            <li><a href="#schedule">AC & Electrical Repair</a></li>
+            <li><a href="#schedule">Transmission Service</a></li>
+            <li><a href="#schedule">Auto Body Repair</a></li>
+            <li><a href="#schedule">Towing</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Hours -->
+        <div>
+          <div class="footer-col-title">Hours</div>
+          <div class="footer-hours">
+            <div class="hours-row">
+              <span class="hours-day">Monday</span>
+              <span class="hours-time">8:00 AM – 5:30 PM</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Tuesday</span>
+              <span class="hours-time">8:00 AM – 5:30 PM</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Wednesday</span>
+              <span class="hours-time">8:00 AM – 5:30 PM</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Thursday</span>
+              <span class="hours-time">8:00 AM – 5:30 PM</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Friday</span>
+              <span class="hours-time">8:00 AM – 5:30 PM</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Saturday</span>
+              <span class="hours-time">8:00 AM – 5:30 PM</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Sunday</span>
+              <span class="hours-time" style="color:rgba(255,255,255,0.35)">Closed</span>
+            </div>
+          </div>
+          <p style="margin-top:20px;font-size:0.8rem;color:rgba(255,255,255,0.3);">
+            Serving Hallandale · Hollywood · Aventura<br>North Miami Beach · Miami · Fort Lauderdale
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Brake Kingdom · 915 W Hallandale Beach Blvd, Hallandale, FL 33009</p>
+      <p class="footer-lic">ASE Certified · AATI Licensed · All FL State & Local Licenses</p>
+    </div>
+  </footer>
+
+  <!-- MOBILE STICKY CTA -->
+  <div class="mobile-sticky">
+    <a href="tel:3059332882" class="sticky-call">📞 Call Now</a>
+    <a href="#schedule" class="sticky-dir">Schedule Online</a>
+  </div>
+
+</div><!-- #page -->
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+/* ── LOADER ─────────────────────────────────── */
+(function() {
+  var loader = document.getElementById('loader');
+  var page   = document.getElementById('page');
+  var bar    = document.getElementById('loader-bar');
+  var quotes = [
+    document.getElementById('q1'),
+    document.getElementById('q2'),
+    document.getElementById('q3')
+  ];
+
+  var current = 0;
+  quotes[0].classList.add('active');
+
+  // Kick off progress bar
+  requestAnimationFrame(function() {
+    bar.style.width = '100%';
+  });
+
+  var interval = setInterval(function() {
+    quotes[current].classList.remove('active');
+    current++;
+    if (current < quotes.length) {
+      quotes[current].classList.add('active');
+    }
+    if (current >= quotes.length - 1) {
+      clearInterval(interval);
+      // Hold last quote, then fade out
+      setTimeout(function() {
+        loader.style.opacity = '0';
+        setTimeout(function() {
+          loader.style.display = 'none';
+          page.style.visibility = 'visible';
+          // Trigger rating counter after page reveal
+          setTimeout(startRatingCounter, 400);
+        }, 900);
+      }, 1200);
+    }
+  }, 1400);
+})();
+
+/* ── GRAIN CANVAS ───────────────────────────── */
+(function() {
+  var c = document.getElementById('grain');
+  if (!c) return;
+  var ctx = c.getContext('2d');
+  var w, h;
+
+  function resize() {
+    w = c.width  = window.innerWidth;
+    h = c.height = window.innerHeight;
+  }
+
+  function render() {
+    var img = ctx.createImageData(w, h);
+    var d   = img.data;
+    for (var i = 0; i < d.length; i += 4) {
+      var v = (Math.random() * 255) | 0;
+      d[i]   = v * 1.0;  // R — warm tint (matches red brand)
+      d[i+1] = v * 0.75; // G
+      d[i+2] = v * 0.65; // B
+      d[i+3] = 10;        // Alpha — very subtle
+    }
+    ctx.putImageData(img, 0, 0);
+    requestAnimationFrame(render);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  render();
+})();
+
+/* ── RATING COUNTER ─────────────────────────── */
+function startRatingCounter() {
+  var el = document.getElementById('rating-counter');
+  if (!el) return;
+  var start = 0, end = 4.9, duration = 2200, startTime = null;
+
+  function easeOutExpo(t) {
+    return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+  }
+
+  function step(ts) {
+    if (!startTime) startTime = ts;
+    var progress = Math.min((ts - startTime) / duration, 1);
+    var val = (start + (end - start) * easeOutExpo(progress)).toFixed(1);
+    el.textContent = val;
+    if (progress < 1) requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
+}
+
+/* ── INTERSECTION OBSERVER (reveal + cards) ── */
+(function() {
+  var revealEls = document.querySelectorAll('.reveal');
+  var cardEls   = document.querySelectorAll('.service-card');
+
+  var revealObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealEls.forEach(function(el) { revealObs.observe(el); });
+
+  // Staggered service cards
+  var cardObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var idx = Array.from(cardEls).indexOf(entry.target);
+        setTimeout(function() {
+          entry.target.classList.add('visible');
+        }, idx * 80);
+        cardObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  cardEls.forEach(function(el) { cardObs.observe(el); });
+})();
+
+/* ── REVIEWS CAROUSEL ───────────────────────── */
+(function() {
+  var wrap  = document.querySelector('.carousel-wrap');
+  if (!wrap) return;
+  var track = wrap.querySelector('.carousel-track');
+  var dots  = document.querySelectorAll('.carousel-dot');
+  var cards = track.querySelectorAll('.review-card');
+  var n = cards.length, cur = 0, timer;
+
+  // Touch / swipe support
+  var touchStartX = 0;
+  wrap.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  wrap.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) {
+      go(dx < 0 ? cur + 1 : cur - 1);
+      reset();
+    }
+  }, { passive: true });
+
+  function go(i) {
+    cur = ((i % n) + n) % n;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dots.forEach(function(d, j) { d.classList.toggle('active', j === cur); });
+  }
+
+  wrap.querySelector('.carousel-prev').addEventListener('click', function() { go(cur - 1); reset(); });
+  wrap.querySelector('.carousel-next').addEventListener('click', function() { go(cur + 1); reset(); });
+  dots.forEach(function(d, i) { d.addEventListener('click', function() { go(i); reset(); }); });
+
+  function reset() {
+    clearInterval(timer);
+    timer = setInterval(function() { go(cur + 1); }, 5000);
+  }
+
+  reset();
+})();
+</script>
+
 </body>
 </html>
