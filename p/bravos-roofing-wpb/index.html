@@ -52,78 +52,43 @@
       position: fixed;
       inset: 0;
       z-index: 9999;
-      background: var(--dark);
+      background: #0f1a10;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 2rem;
+      gap: 0;
       padding: 2rem;
       transition: opacity 0.7s ease, visibility 0.7s ease;
     }
     #loader.hidden { opacity: 0; visibility: hidden; }
 
-    .loader-logo {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 2rem;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      color: var(--white);
-    }
-    .loader-logo span { color: var(--accent); }
-
-    .loader-reviews {
+    .loader-quote-block {
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
-      max-width: 560px;
+      align-items: center;
+      max-width: 540px;
       width: 100%;
+      text-align: center;
     }
-    .loader-review {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius);
-      padding: 1rem 1.25rem;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .loader-review.visible { opacity: 1; transform: translateY(0); }
-
     .loader-stars {
       color: var(--accent);
-      font-size: 1rem;
-      margin-bottom: 0.4rem;
-      letter-spacing: 0.1em;
+      font-size: 1.5rem;
+      letter-spacing: 0.15em;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      margin-bottom: 1.1rem;
     }
+    .loader-stars.visible { opacity: 1; }
     .loader-quote {
-      font-size: 0.875rem;
-      line-height: 1.5;
-      color: var(--text);
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: #ffffff;
       font-style: italic;
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
-    .loader-author {
-      margin-top: 0.4rem;
-      font-size: 0.75rem;
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .loader-bar-wrap {
-      width: 200px;
-      height: 3px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 999px;
-      overflow: hidden;
-      margin-top: 0.5rem;
-    }
-    .loader-bar {
-      height: 100%;
-      background: var(--accent);
-      border-radius: 999px;
-      width: 0%;
-      transition: width linear;
-    }
+    .loader-quote.visible { opacity: 1; }
 
     /* ── Grain Canvas ── */
     #grain {
@@ -894,28 +859,9 @@
 
 <!-- ═══════════════ LOADER ═══════════════ -->
 <div id="loader">
-  <div class="loader-logo">BRAVO'S <span>ROOFING</span></div>
-
-  <div class="loader-reviews">
-    <div class="loader-review" id="lr1">
-      <div class="loader-stars">★★★★★</div>
-      <p class="loader-quote">"Bravo's crew replaced our entire roof after the storm and it looked like a completely new house. Finished ahead of schedule, cleaned up everything — couldn't ask for better."</p>
-      <div class="loader-author">— Maria G., West Palm Beach</div>
-    </div>
-    <div class="loader-review" id="lr2">
-      <div class="loader-stars">★★★★★</div>
-      <p class="loader-quote">"We got quotes from three companies. Bravo's was upfront, professional, and their price was fair. Two weeks later, zero issues — roof is rock solid. Highly recommend."</p>
-      <div class="loader-author">— Derek T., Delray Beach</div>
-    </div>
-    <div class="loader-review" id="lr3">
-      <div class="loader-stars">★★★★★</div>
-      <p class="loader-quote">"Antonio's team handled our tile roof repair fast and with zero mess. They were respectful, communicated every step, and the quality shows. This is the company you call."</p>
-      <div class="loader-author">— Sandra R., Lake Worth</div>
-    </div>
-  </div>
-
-  <div class="loader-bar-wrap">
-    <div class="loader-bar" id="loader-bar"></div>
+  <div class="loader-quote-block">
+    <div class="loader-stars" id="loader-stars">★★★★★</div>
+    <p class="loader-quote" id="loader-quote"></p>
   </div>
 </div>
 
@@ -938,7 +884,7 @@
 <section id="hero">
   <img
     id="hero-bg"
-    src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=80"
+    src="../../assets/samples/Roofers/hero-bg.avif"
     alt="Roofing crew working on a residential roof in West Palm Beach"
     loading="eager"
   >
@@ -1128,7 +1074,7 @@
       <!-- Roof Replacement -->
       <div class="service-card">
         <div class="service-img-wrap">
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=700&q=80" alt="Roof replacement West Palm Beach" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" alt="Roof replacement West Palm Beach" loading="lazy">
           <div class="service-img-overlay"></div>
         </div>
         <div class="service-body">
@@ -1145,7 +1091,7 @@
       <!-- Storm Damage Repair -->
       <div class="service-card">
         <div class="service-img-wrap">
-          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=700&q=80" alt="Storm damage roof repair South Florida" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1597764690523-4c5e70bb7d04?auto=format&fit=crop&w=800&q=80" alt="Storm damage roof repair South Florida" loading="lazy">
           <div class="service-img-overlay"></div>
         </div>
         <div class="service-body">
@@ -1162,7 +1108,7 @@
       <!-- Tile Roofing -->
       <div class="service-card">
         <div class="service-img-wrap">
-          <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=700&q=80" alt="Tile roofing West Palm Beach" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1605117882932-f9e32b03fea9?auto=format&fit=crop&w=800&q=80" alt="Tile roofing West Palm Beach" loading="lazy">
           <div class="service-img-overlay"></div>
         </div>
         <div class="service-body">
@@ -1179,7 +1125,7 @@
       <!-- Shingle Roofing -->
       <div class="service-card">
         <div class="service-img-wrap">
-          <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=700&q=80" alt="Shingle roofing South Florida" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80" alt="Shingle roofing South Florida" loading="lazy">
           <div class="service-img-overlay"></div>
         </div>
         <div class="service-body">
@@ -1196,7 +1142,7 @@
       <!-- Flat / TPO Roofing -->
       <div class="service-card">
         <div class="service-img-wrap">
-          <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=700&q=80" alt="Flat TPO commercial roofing" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80" alt="Flat TPO commercial roofing" loading="lazy">
           <div class="service-img-overlay"></div>
         </div>
         <div class="service-body">
@@ -1213,7 +1159,7 @@
       <!-- Gutters & Fascia -->
       <div class="service-card">
         <div class="service-img-wrap">
-          <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&w=700&q=80" alt="Gutters and fascia installation" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1635424711685-bcd1ef97a6b0?auto=format&fit=crop&w=800&q=80" alt="Gutters and fascia installation" loading="lazy">
           <div class="service-img-overlay"></div>
         </div>
         <div class="service-body">
@@ -1344,41 +1290,53 @@
 // ── Loader ──────────────────────────────────────────────
 (function() {
   const loader = document.getElementById('loader');
-  const bar = document.getElementById('loader-bar');
-  const reviews = [
-    document.getElementById('lr1'),
-    document.getElementById('lr2'),
-    document.getElementById('lr3')
+  const starsEl = document.getElementById('loader-stars');
+  const quoteEl = document.getElementById('loader-quote');
+
+  const quotes = [
+    '"Bravo\'s crew replaced our entire roof after the storm and it looked like a completely new house. Finished ahead of schedule, cleaned up everything — couldn\'t ask for better."',
+    '"We got quotes from three companies. Bravo\'s was upfront, professional, and their price was fair. Two weeks later, zero issues — roof is rock solid. Highly recommend."',
+    '"Antonio\'s team handled our tile roof repair fast and with zero mess. They were respectful, communicated every step, and the quality shows. This is the company you call."'
   ];
 
-  // Show reviews staggered
-  const delays = [200, 1100, 2000];
-  reviews.forEach((r, i) => {
-    setTimeout(() => r.classList.add('visible'), delays[i]);
-  });
-
-  // Progress bar over 4.4s
-  let start = null;
-  const duration = 4400;
-  function animateBar(ts) {
-    if (!start) start = ts;
-    const elapsed = ts - start;
-    const pct = Math.min((elapsed / duration) * 100, 100);
-    bar.style.width = pct + '%';
-    if (elapsed < duration) {
-      requestAnimationFrame(animateBar);
-    }
-  }
-  requestAnimationFrame(animateBar);
-
-  // Hide loader after 4.8s
-  setTimeout(() => {
-    loader.classList.add('hidden');
-    document.body.style.overflow = '';
-  }, 4800);
-
-  // Prevent scroll during loader
   document.body.style.overflow = 'hidden';
+
+  let idx = 0;
+
+  function showQuote(i) {
+    // Fade out existing content
+    starsEl.classList.remove('visible');
+    quoteEl.classList.remove('visible');
+
+    setTimeout(() => {
+      quoteEl.textContent = quotes[i];
+      // Stars fade in first
+      starsEl.classList.add('visible');
+      // Quote text fades in shortly after
+      setTimeout(() => {
+        quoteEl.classList.add('visible');
+      }, 300);
+    }, 400);
+  }
+
+  // Show first quote after a brief pause
+  setTimeout(() => showQuote(0), 200);
+
+  // Cycle through remaining quotes
+  const cycleInterval = 1600; // ~1.4s visible + transitions
+  const timer = setInterval(() => {
+    idx++;
+    if (idx < quotes.length) {
+      showQuote(idx);
+    } else {
+      clearInterval(timer);
+      // Fade out loader after last quote has been visible
+      setTimeout(() => {
+        loader.classList.add('hidden');
+        document.body.style.overflow = '';
+      }, 1000);
+    }
+  }, cycleInterval);
 })();
 
 // ── Grain Canvas ─────────────────────────────────────────
